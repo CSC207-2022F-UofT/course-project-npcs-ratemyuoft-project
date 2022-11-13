@@ -1,4 +1,4 @@
-package entities;
+package Entities;
 public class User {
     public String userName;
     public String password;
@@ -36,7 +36,7 @@ public class User {
         this.userName = newUserName;
     }
 
-    public void setPassword(string newPassword){
+    public void setPassword(String newPassword){
         this.password = newPassword;
     }
 

@@ -1,8 +1,10 @@
-package entities;
-import java.util;
-import entites.Student;
+package Entities;
 
-public class Review {
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class  Review {
 
     public int raitingOfTheCourse;
 
@@ -12,7 +14,7 @@ public class Review {
 
     public int numberOfDislikes= 0 ;
 
-    public Map<Student,String > comments= new HashMap<>();
+    public Map<Student,Comment > comments= new HashMap<>();
 
     //Constructors 1st one for having no comment, just a raiting and the 2nd one is for review with comment
     public Review(int raitingOfTheCourse){
