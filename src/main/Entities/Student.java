@@ -2,12 +2,12 @@ package Entities;
 
 public class Student {
 
-    String displayName;
-    String userName;
-    String Password;
-    String logStatus;
+    private String displayName;
+    private String userName;
+    private String Password;
+    private string logStatus;
 
-    public Student(String displayName, String userName, String Password, String logStatus){
+    public void Student(String displayName, String userName, String Password, String logStatus){
         this.displayName = displayName;
         this.userName = userName;
         this.Password = Password;
