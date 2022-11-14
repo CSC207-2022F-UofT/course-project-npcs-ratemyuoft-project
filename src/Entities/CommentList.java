@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class CommentList implements Iterable<List<Comment>> {
+public class CommentList implements Iterable<Comment> {
 
     private List<Comment> commentlist = new ArrayList<>();
 
@@ -13,15 +13,15 @@ public class CommentList implements Iterable<List<Comment>> {
         commentlist.add(c);
     }
 
+
     @Override
-    public Iterator<List<Comment>> iterator() {
-        return new CommentListIterator();
+    public Iterator<Comment> iterator() {
+        return new CommentIterator();
 
     }
 
-    private class CommentListIterator implements Iterator<List<Comment>> {
+    private class CommentIterator implements Iterator<Comment> {
         private int curr;
-
 
         @Override
         public boolean hasNext() {
@@ -29,15 +29,11 @@ public class CommentList implements Iterable<List<Comment>> {
         }
 
         @Override
-        public List<Comment> next() {
-            List<Comment> temp = new ArrayList<>();
-            while (hasNext()) {
-                temp.add(commentlist.get(curr++));
-            }
-            if (temp.size()> 0) {
-                return temp;
-            }
-            throw new NoSuchElementException();
+        public Comment next() {
+           if(hasNext()){
+               commentlist.get(curr ++);
+           }
+           throw new NoSuchElementException();
         }
     }
 }

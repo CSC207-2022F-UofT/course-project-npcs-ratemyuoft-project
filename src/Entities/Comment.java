@@ -18,8 +18,6 @@ public class Comment {
 
     public int getCommentNum() {return commentNum;}
 
-    public void setCommentNum(int commentNum) {this.commentNum = commentNum;}
-
     public static int getCount() {return count;}
 
     public static void setCount(int count) {Comment.count = count;}
@@ -32,6 +30,8 @@ public class Comment {
     public boolean equals(Object obj) {
         return this.comment.equals(obj);
     }
+
+
 
 
 

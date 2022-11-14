@@ -3,5 +3,6 @@ package UseCase;
 import Entities.Comment;
 
 public interface OutputBoundary {
-    void confirmMessage(Comment comment);
+    void confirmComment(Comment comment);
+    void outputMessage(String s);
 }
