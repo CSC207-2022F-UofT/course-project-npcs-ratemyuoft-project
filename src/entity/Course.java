@@ -1,7 +1,6 @@
-package entities;
-import java.util;
+package entity;
+import java.util.ArrayList;
 
-import entites.Review;
 
 
 public class Course {

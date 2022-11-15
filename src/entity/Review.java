@@ -1,6 +1,8 @@
-package entities;
-import java.util;
-import entites.Student;
+package entity;
+
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Review {
 
