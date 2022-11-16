@@ -51,10 +51,11 @@ public class Interactor implements InputBoundary {
             try {
                 //save new comments
                 gateway.saveComment(commentList);
-                this.outputBoundary.confirmComment(comment);
+
             } catch (IOException e) {
                 this.outputBoundary.outputMessage("saving new comment to file failed");
             }
+            this.outputBoundary.confirmComment(comment);
         }
         else {
             throw new InvalidInputException();
@@ -109,7 +110,5 @@ public class Interactor implements InputBoundary {
     @Override
     public void outputMessage(String s){
         this.outputBoundary.outputMessage(s);
-
-
     }
 }

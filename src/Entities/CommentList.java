@@ -23,6 +23,7 @@ public class CommentList implements Iterable<Comment> {
     private class CommentIterator implements Iterator<Comment> {
         private int curr;
 
+
         @Override
         public boolean hasNext() {
             return curr < commentlist.size();
