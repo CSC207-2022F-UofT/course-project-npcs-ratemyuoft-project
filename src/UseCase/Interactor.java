@@ -1,6 +1,5 @@
 package UseCase;
 
-import DataBase.DataAccess;
 import Entities.Comment;
 import Entities.CommentList;
 
@@ -10,13 +9,14 @@ public class Interactor implements InputBoundary {
     private final OutputBoundary outputBoundary;
     private Comment comment;
     private static CommentList commentList = new CommentList();
-    private Gateway gateway = new DataAccess();
+    private Gateway gateway ;
 
 
 
-    public Interactor(OutputBoundary outputBoundary, Comment comment) throws IOException, ClassNotFoundException {
+    public Interactor(OutputBoundary outputBoundary, Comment comment, Gateway gateway) throws IOException, ClassNotFoundException {
         this.outputBoundary = outputBoundary;
         this.comment = comment;
+        this.gateway = gateway;
         // import file and set as iterable commentList
         try{
             commentList = gateway.importComment();
