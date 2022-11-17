@@ -1,5 +1,5 @@
-package entity;
-public class Student extends User {
+package Entities;
+public class  Student extends User {
 
     public String major;
 
