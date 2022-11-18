@@ -31,15 +31,21 @@ public class Interactor implements InputBoundary {
 
 
     // helper function for add Comment
-    public boolean checkInput(Comment comment) {
+    public boolean checkInput(String comment) throws InvalidInputException {
         int count = 0;
-        String s = comment.getComment();
-        for (char c : s.toCharArray()){
+        for (char c : comment.toCharArray()){
             if (c != ' '){
                 count ++;
             }
         }
-        return (count <= 1500 && count > 0);
+
+        if (count <= 1500 && count > 0){
+            return true;
+        }
+        else {
+            //catch by controller
+            throw new InvalidInputException();
+        }
     }
 
 
@@ -49,9 +55,10 @@ public class Interactor implements InputBoundary {
     }
 
     @Override
-    public void addComment(String comment) throws InvalidInputException {
-        if (checkInput(comment)) {
-            commentList.addComment(comment);
+    public void addComment(String commentString) throws InvalidInputException {
+        if (checkInput(commentString)) {
+            Comment commentClass = new Comment(commentString);
+            commentList.addComment(commentClass);
             try {
                 //save new comments
                 gateway.saveComment(commentList);
@@ -59,11 +66,7 @@ public class Interactor implements InputBoundary {
             } catch (IOException e) {
                 this.outputBoundary.outputMessage("saving new comment to file failed");
             }
-            this.outputBoundary.confirmComment(comment);
-        }
-        else {
-            throw new InvalidInputException();
-            //catch by controller
+            this.outputBoundary.confirmComment(commentClass);
         }
 
     }
@@ -71,15 +74,21 @@ public class Interactor implements InputBoundary {
 
 
 
+
     // helper function
-    public boolean checkString (String s) {
+    public boolean checkString (String s) throws CommentNotInListException {
         int count = 0;
         for (char c : s.toCharArray()){
             if (c != ' '){
                 count ++;
             }
         }
-        return (count <= 1500 && count > 0);
+        if (count <= 1500 && count > 0){
+            return true;
+        }
+        else {
+            throw new CommentNotInListException();
+        }
     }
 
 
@@ -99,14 +108,7 @@ public class Interactor implements InputBoundary {
                         this.outputBoundary.outputMessage("edit and save new comment to file failed");
                     }
                 }
-                else {
-                    throw new CommentNotInListException();
-                }
-
             }
-        }
-        else {
-            throw new InvalidInputException();
         }
     }
 

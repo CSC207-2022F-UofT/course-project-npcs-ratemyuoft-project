@@ -7,7 +7,7 @@ public class Comment {
     private static int count;
 
 
-    public Comment() {
+    public Comment(String comment) {
         this.commentNum = count ++;
     }
 

@@ -1,6 +1,7 @@
 package UI;
 
 import InterfaceAdapter.Controller;
+import InterfaceAdapter.Presenter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +14,7 @@ public class AddCommentFrame extends JFrame {
     JTextArea textArea = new JTextArea();
     JButton enterButton = new JButton("Enter");
 
-    public AddCommentFrame(Controller controller){
+    public AddCommentFrame(Controller controller, Presenter presenter){
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(label, BorderLayout.NORTH);
         mainPanel.add(textArea, BorderLayout.CENTER);
@@ -26,7 +27,10 @@ public class AddCommentFrame extends JFrame {
         enterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.addComment();
+                String newComment = textArea.getText();
+                controller.addComment(newComment);
+
+
             }
         });
 

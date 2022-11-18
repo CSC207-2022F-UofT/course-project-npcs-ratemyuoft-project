@@ -21,7 +21,7 @@ public class Presenter(CommentFrame) implements OutputBoundary {
     }
 
     @Override
-    public void outputMessage(String s) {
+    public String outputMessage(String s) {
         return s;
     }
 
