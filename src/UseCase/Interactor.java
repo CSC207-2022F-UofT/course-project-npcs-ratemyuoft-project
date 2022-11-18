@@ -44,12 +44,12 @@ public class Interactor implements InputBoundary {
 
 
     @Override
-    public void showComments() {
-        outputBoundary.showComment(commentList);
+    public CommentList showComments() {
+        return(commentList);
     }
 
     @Override
-    public void addComment(Comment comment) throws InvalidInputException {
+    public void addComment(String comment) throws InvalidInputException {
         if (checkInput(comment)) {
             commentList.addComment(comment);
             try {

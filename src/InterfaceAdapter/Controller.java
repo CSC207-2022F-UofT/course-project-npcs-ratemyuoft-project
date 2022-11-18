@@ -1,6 +1,7 @@
 package InterfaceAdapter;
 
 import Entities.Comment;
+import Entities.CommentList;
 import UseCase.CommentNotInListException;
 import UseCase.InputBoundary;
 import UseCase.InvalidInputException;
@@ -17,7 +18,7 @@ public class Controller {
         inputBoundary.showComments();
     }
 
-    public void addComment(Comment comment)  {
+    public void addComment(String comment)  {
         try {
             inputBoundary.addComment(comment);
         } catch (InvalidInputException e) {

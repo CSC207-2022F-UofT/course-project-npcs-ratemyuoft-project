@@ -2,27 +2,27 @@ package InterfaceAdapter;
 
 import Entities.Comment;
 import Entities.CommentList;
+import UI.CommentFrame;
 import UseCase.OutputBoundary;
 
-public class Presenter implements OutputBoundary {
+public class Presenter(CommentFrame) implements OutputBoundary {
 
 
     @Override
-    public CommentList showComment(CommentList commentList) {
-        return commentList;
+    public CommentList showComments() {
+
     }
 
     // send to UI
     @Override
     public void confirmComment(Comment comment) {
-        System.out.println(comment);
+
 
     }
 
     @Override
     public void outputMessage(String s) {
-        System.out.println(s);
-
+        return s;
     }
 
 
