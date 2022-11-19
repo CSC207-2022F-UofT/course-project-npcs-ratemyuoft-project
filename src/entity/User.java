@@ -1,15 +1,21 @@
 package entity;
 public class User {
-    public String userName;
-    public String password;
+    private String userName;
+    private String password;
 
-    public static int numberOfusers = 0;
+    public static int numberOfusers = 0 ;
+    private int userId;
+
+    private boolean logInStatus;
+
+
 
     //Constructor
      public User(String username1, String password1 ){
          this.userName = username1;
          this.password = password1;
          numberOfusers++;
+         this.userId = numberOfusers;
      }
 
 
@@ -29,6 +35,10 @@ public class User {
          return numberOfusers;
     }
 
+    public int getUserId(){ return userId;}
+
+
+
     //Setters
 
 
@@ -40,7 +50,17 @@ public class User {
         this.password = newPassword;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+         return this.userName.equals(obj);
+    }
 
 
+    public boolean getLogInStatus() {
+        return logInStatus;
+    }
 
+    public void setLogInStatus(boolean logInStatus) {
+        this.logInStatus = logInStatus;
+    }
 }
