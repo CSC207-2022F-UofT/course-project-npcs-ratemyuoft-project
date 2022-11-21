@@ -18,8 +18,12 @@ public class User {
          this.userId = numberOfusers;
      }
 
+    public User() {
 
-     // Getters
+    }
+
+
+    // Getters
 
 
 

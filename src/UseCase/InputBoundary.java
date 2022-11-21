@@ -9,5 +9,5 @@ public interface InputBoundary {
     void outputMessage(String output);
 
     void editPassword(int userId,String username) throws InvalidInputException, NoUserWithSuchIDException ;
-    void editUsername(int userId,String password) throws InvalidInputException, NoUserWithSuchIDException;
+    void editUsername(int userId,String password) throws InvalidInputException, NoUserWithSuchIDException ;
 }

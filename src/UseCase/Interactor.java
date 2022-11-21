@@ -5,7 +5,7 @@ import entity.UserList;
 
 import java.io.IOException;
 
-public class Interactor {
+public class Interactor implements InputBoundary {
     private final OutputBoundary outputBoundary;
     private User user;
     public static UserList users = new UserList();
@@ -49,12 +49,11 @@ public class Interactor {
         return false;
     }
 
-   // @Override
+    @Override
     public UserList showUsers(){
         return(users);
     }
-
-   // @Override
+    @Override
 
     public void userRegister(String username, String password) throws InvalidInputException{
         if(checkInput(username) && !checkIfUserExists(username)){
@@ -69,8 +68,10 @@ public class Interactor {
             this.outputBoundary.confirmUser(user1);
         }
     }
-   // @Override
-    public void userLogIn(String username, String password) throws InvalidInputException{
+
+
+     @Override
+    public void userLogin(String username, String password) throws InvalidInputException{
         if(checkInput(username) && checkIfUserExists(username)){
             try{
                 for(User user: users){
@@ -88,24 +89,10 @@ public class Interactor {
     }
 
 
-    public boolean checkString(String s) throws UserNotInListException{
-        int count = 0;
-        for (char c: s.toCharArray()){
-            if(c!= ' ' ){
-                count++;
-            }
-        }
-        if(count <= 20 && count > 0){
-            return true;
-        }
-        else{
-            throw new UserNotInListException();
-        }
-    }
 
-   // @Override
-    public void editUsername(int userId,String username) throws InvalidInputException, UserNotInListException {
-        if(checkString(username)){
+    @Override
+    public void editUsername(int userId,String username) throws InvalidInputException {
+        if(checkInput(username)){
             for(User u : users){
                 if(u.getUserId() == userId){
                     try{
@@ -121,9 +108,9 @@ public class Interactor {
         }
     }
 
-    //@Override
-    public void editPassword(int userId,String password) throws InvalidInputException, UserNotInListException {
-        if(checkString(password)){
+    @Override
+    public void editPassword(int userId,String password) throws InvalidInputException {
+        if(checkInput(password)){
             for(User u : users){
                 if(u.getUserId() == userId){
                     try{
@@ -141,7 +128,7 @@ public class Interactor {
     }
 
 
-    //@Override
+    @Override
     public void outputMessage(String message){
         this.outputBoundary.outputMessage(message);
     }
