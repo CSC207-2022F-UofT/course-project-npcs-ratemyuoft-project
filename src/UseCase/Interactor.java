@@ -5,17 +5,15 @@ import Entities.CommentList;
 
 import java.io.IOException;
 
-public class Interactor implements InputBoundary {
+public class Interactor implements InputBoundary  {
     private final OutputBoundary outputBoundary;
-    private Comment comment;
     private static CommentList commentList = new CommentList();
-    private Gateway gateway ;
+    private final Gateway gateway ;
 
 
 
-    public Interactor(OutputBoundary outputBoundary, Comment comment) throws IOException, ClassNotFoundException {
+    public Interactor(OutputBoundary outputBoundary,Gateway gateway) throws IOException, ClassNotFoundException {
         this.outputBoundary = outputBoundary;
-        this.comment = comment;
         this.gateway = gateway;
         // import file and set as iterable commentList
         try{
@@ -50,24 +48,31 @@ public class Interactor implements InputBoundary {
 
 
     @Override
-    public CommentList showComments() {
-        return(commentList);
+    public CommentList showComments() throws IOException, ClassNotFoundException {
+        commentList = gateway.importComment();
+        Comment c = new Comment("ehhehe");
+        commentList.addComment(c);
+        return (commentList);
     }
 
     @Override
-    public void addComment(String commentString) throws InvalidInputException {
+    public void addComment(String commentString) throws InvalidInputException, IOException {
         if (checkInput(commentString)) {
             Comment commentClass = new Comment(commentString);
+            System.out.println(commentClass);
             commentList.addComment(commentClass);
             try {
                 //save new comments
                 gateway.saveComment(commentList);
-
             } catch (IOException e) {
-                this.outputBoundary.outputMessage("saving new comment to file failed");
+                throw new IOException();
             }
             this.outputBoundary.confirmComment(commentClass);
+        }else {
+            throw new InvalidInputException();
+            
         }
+        
 
     }
 

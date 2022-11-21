@@ -1,6 +1,8 @@
 package Entities;
 
-public class Comment {
+import java.io.Serializable;
+
+public class Comment implements Serializable {
     private int commentNum;
     private User user;
     private String comment;
@@ -9,9 +11,12 @@ public class Comment {
 
     public Comment(String comment) {
         this.commentNum = count ++;
+        this.comment = comment;
     }
 
-
+    public String toString(){
+        return "ID :" + commentNum + " Comment: " +comment;
+    }
     public User getUser() {return user;}
 
     public void setUser(User user) {this.user = user;}
