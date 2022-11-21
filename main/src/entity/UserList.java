@@ -1,11 +1,12 @@
 package entity;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class UserList implements Iterable<User>{
+public class UserList implements Iterable<User>, Serializable {
 
     private List<User> userlist = new ArrayList<>();
 
@@ -32,7 +33,7 @@ public class UserList implements Iterable<User>{
         @Override
         public User next() {
             if(hasNext()){
-                userlist.get(curr++);
+                return userlist.get(curr++);
             }
             throw new NoSuchElementException();
         }

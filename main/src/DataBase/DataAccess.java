@@ -1,5 +1,6 @@
 package DataBase;
 import entity.User;
+
 import java.io.*;
 import entity.UserList;
 import UseCase.Gateway;
@@ -18,7 +19,7 @@ public class DataAccess  implements Gateway{
     }
 
     @Override
-    public void saveUser(UserList users) throws IOException{
+    public void saveUser(UserList users) throws IOException, NullPointerException{
         FileOutputStream fileOutputStream = new FileOutputStream(fileName);
         ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
         outputStream.writeObject(users);

@@ -3,6 +3,8 @@ import UseCase.*;
 import entity.User;
 import entity.UserList;
 
+import java.io.IOException;
+
 
 public class Controller {
     private final InputBoundary inputBoundary;
@@ -11,8 +13,8 @@ public class Controller {
         this.inputBoundary = inputBoundary;
     }
 
-    public void showUsers(){
-        inputBoundary.showUsers();
+    public UserList showUsers(){
+        return inputBoundary.showUsers();
     }
 
     public void userRegister(String username, String password){
@@ -22,6 +24,8 @@ public class Controller {
             inputBoundary.outputMessage("Invalid input");
         }catch (UserAlreadyExistsException e) {
             inputBoundary.outputMessage("User already exists");
+        } catch (IOException e) {
+            inputBoundary.outputMessage("Invalid input");
         }
     }
 
