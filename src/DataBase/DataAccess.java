@@ -14,6 +14,12 @@ public class DataAccess implements Gateway ,Serializable{
 
         FileInputStream fileIn = new FileInputStream(fileName);
         ObjectInputStream inputStream = new ObjectInputStream(fileIn);
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        if (br.readLine() == null) {
+            FileOutputStream fileOut = new FileOutputStream(fileName);
+            ObjectOutputStream outputStream = new ObjectOutputStream(fileOut);
+            outputStream.writeObject(new CommentList());
+        }
         CommentList newComments = (CommentList) inputStream.readObject();
         return newComments;
 

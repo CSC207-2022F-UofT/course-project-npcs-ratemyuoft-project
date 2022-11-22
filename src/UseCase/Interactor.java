@@ -12,12 +12,14 @@ public class Interactor implements InputBoundary  {
 
 
 
+
     public Interactor(OutputBoundary outputBoundary,Gateway gateway) throws IOException, ClassNotFoundException {
         this.outputBoundary = outputBoundary;
         this.gateway = gateway;
         // import file and set as iterable commentList
         try{
             commentList = gateway.importComment();
+
         } catch (IOException e ){
             commentList = new CommentList();
             this.outputBoundary.outputMessage("Importation failed");
@@ -50,8 +52,6 @@ public class Interactor implements InputBoundary  {
     @Override
     public CommentList showComments() throws IOException, ClassNotFoundException {
         commentList = gateway.importComment();
-        Comment c = new Comment("ehhehe");
-        commentList.addComment(c);
         return (commentList);
     }
 

@@ -37,7 +37,7 @@ public class ShowCommentsFrame extends JFrame {
             JOptionPane.showMessageDialog(null, "Class Not found");
 
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Comment Not Saved!");
+            JOptionPane.showMessageDialog(null, "No Comments Yet");
         }
 
 
@@ -55,9 +55,7 @@ public class ShowCommentsFrame extends JFrame {
                 ShowCommentsFrame.super.dispose();
                 try {
                     new MainFrame(controller);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                } catch (ClassNotFoundException ex) {
+                } catch (IOException | ClassNotFoundException ex) {
                     throw new RuntimeException(ex);
                 }
 

@@ -14,7 +14,6 @@ public class AddCommentFrame extends JFrame {
     JPanel mainPanel = new JPanel();
     JLabel label = new JLabel("Write Comment:");
     JTextArea textArea = new JTextArea();
-
     JPanel buttonPanel = new JPanel();
     JButton enterButton = new JButton("Enter");
     JButton backButton = new JButton("Back");
