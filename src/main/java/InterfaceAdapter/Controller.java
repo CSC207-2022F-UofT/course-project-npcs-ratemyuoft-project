@@ -18,7 +18,8 @@ public class Controller {
     }
 
     public CommentList showComments() throws IOException, ClassNotFoundException {
-        return inputBoundary.showComments();
+       // return inputBoundary.showComments();
+        return  new CommentList();
 
     }
 

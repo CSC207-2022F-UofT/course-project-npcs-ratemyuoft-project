@@ -23,17 +23,13 @@ public class Comment implements Serializable {
 
     public int getCommentNum() {return commentNum;}
 
-    public static int getCount() {return count;}
-
-    public static void setCount(int count) {Comment.count = count;}
-
     public String getComment() {return comment;}
 
     public void setComment(String comment) {this.comment = comment;}
 
-    @Override
-    public boolean equals(Object obj) {
-        return this.comment.equals(obj);
+
+    public boolean equals(Comment obj) {
+        return this.comment.equals(obj.getComment());
     }
 
 

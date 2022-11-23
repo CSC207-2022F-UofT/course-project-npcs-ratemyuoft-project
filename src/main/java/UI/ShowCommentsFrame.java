@@ -4,6 +4,7 @@ import Entities.Comment;
 import Entities.CommentList;
 import InterfaceAdapter.Controller;
 import InterfaceAdapter.Presenter;
+import UseCase.OutputBoundary;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +20,7 @@ public class ShowCommentsFrame extends JFrame {
     Controller controller;
     JButton backButton = new JButton("Back");
 
-    public ShowCommentsFrame(Controller controller)  {
+    public ShowCommentsFrame(Controller controller, OutputBoundary presenter)  {
 
         this.controller = controller;
 
@@ -54,7 +55,7 @@ public class ShowCommentsFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 ShowCommentsFrame.super.dispose();
                 try {
-                    new MainFrame(controller);
+                    new MainFrame(controller,presenter);
                 } catch (IOException | ClassNotFoundException ex) {
                     throw new RuntimeException(ex);
                 }

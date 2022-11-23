@@ -31,35 +31,39 @@ public class Interactor implements InputBoundary  {
 
 
     // helper function for add Comment
-    public boolean checkInput(String comment) throws InvalidInputException {
-        int count = 0;
-        for (char c : comment.toCharArray()){
-            if (c != ' '){
-                count ++;
-            }
-        }
-
+    public boolean checkInput(String comment) {
+        int count = comment.length();
         if (count <= 1500 && count > 0){
             return true;
         }
-        else {
-            //catch by controller
-            throw new InvalidInputException();
-        }
+        return false;
     }
 
 
+    /**
+     * Send CommentList to Output Boundary
+     *if something is wrong when import Commentlist from database
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @Override
-    public CommentList showComments() throws IOException, ClassNotFoundException {
+    public void showComments() throws IOException, ClassNotFoundException {
         commentList = gateway.importComment();
-        return (commentList);
+         this.outputBoundary.showComments(commentList);
     }
+
+    /**
+     * @param commentString
+     * @throws InvalidInputException
+     * @throws IOException
+     * Check for valid input and turn in to a new Common class send to database
+     * if input not valid throw exception
+     */
 
     @Override
     public void addComment(String commentString) throws InvalidInputException, IOException {
         if (checkInput(commentString)) {
             Comment commentClass = new Comment(commentString);
-            System.out.println(commentClass);
             commentList.addComment(commentClass);
             try {
                 //save new comments
@@ -91,16 +95,14 @@ public class Interactor implements InputBoundary  {
         if (count <= 1500 && count > 0){
             return true;
         }
-        else {
-            throw new CommentNotInListException();
-        }
+        return false;
     }
 
 
 
     @Override
-    public void editComment(int commentNum, String s) throws InvalidInputException,  CommentNotInListException {
-        if(checkString(s)){
+    public void editComment(int commentNum, String s) throws CommentNotInListException, InvalidInputException {
+        if(checkInput(s)){
             for( Comment c : commentList) {
                 if (c.getCommentNum() == commentNum) {
                     try {
@@ -115,6 +117,10 @@ public class Interactor implements InputBoundary  {
                 }
             }
         }
+        else {
+            throw new CommentNotInListException();
+        }
+
     }
 
 

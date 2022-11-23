@@ -17,7 +17,7 @@ public class Main {
         OutputBoundary outputBoundary = new Presenter();
         InputBoundary inputBoundary = new Interactor(outputBoundary,gateway);
         Controller controller = new Controller(inputBoundary);
-        MainFrame mainFrame = new MainFrame(controller);
+        MainFrame mainFrame = new MainFrame(controller,outputBoundary);
 
 
     }

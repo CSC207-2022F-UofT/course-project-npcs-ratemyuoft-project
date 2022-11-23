@@ -3,6 +3,7 @@ package UI;
 import InterfaceAdapter.Controller;
 import InterfaceAdapter.Presenter;
 import UseCase.InvalidInputException;
+import UseCase.OutputBoundary;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +19,7 @@ public class AddCommentFrame extends JFrame {
     JButton enterButton = new JButton("Enter");
     JButton backButton = new JButton("Back");
 
-    public AddCommentFrame(Controller controller){
+    public AddCommentFrame(Controller controller, OutputBoundary presenter){
         buttonPanel.setLayout(new BorderLayout());
         buttonPanel.add(enterButton, BorderLayout.WEST);
         buttonPanel.add(backButton, BorderLayout.EAST);
@@ -41,7 +42,7 @@ public class AddCommentFrame extends JFrame {
                     JOptionPane.showMessageDialog(null, "Comment Saved!");
                     AddCommentFrame.super.dispose();
                     try {
-                        new MainFrame(controller);
+                        new MainFrame(controller,presenter);
 
                     } catch (ClassNotFoundException ex) {
                         JOptionPane.showMessageDialog(null, "Class Not Found!");
@@ -60,10 +61,8 @@ public class AddCommentFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 AddCommentFrame.super.dispose();
                 try {
-                    new MainFrame(controller);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                } catch (ClassNotFoundException ex) {
+                    new MainFrame(controller,presenter);
+                } catch (IOException | ClassNotFoundException ex) {
                     throw new RuntimeException(ex);
                 }
 

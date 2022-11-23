@@ -24,7 +24,7 @@ public class MainFrame extends JFrame{
 
 
 
-    public MainFrame(Controller controller) throws IOException, ClassNotFoundException {
+    public MainFrame(Controller controller, OutputBoundary presenter) throws IOException, ClassNotFoundException {
 
         buttonPanel.setLayout(new BorderLayout());
         buttonPanel.add(viewCommentButton ,BorderLayout.WEST);
@@ -43,7 +43,7 @@ public class MainFrame extends JFrame{
         viewCommentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ShowCommentsFrame showCommentsFrame = new ShowCommentsFrame(controller);
+                ShowCommentsFrame showCommentsFrame = new ShowCommentsFrame(controller,presenter);
                 MainFrame.super.dispose();
 
             }
@@ -52,7 +52,7 @@ public class MainFrame extends JFrame{
         newComment.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AddCommentFrame addCommentFrame = new AddCommentFrame(controller);
+                AddCommentFrame addCommentFrame = new AddCommentFrame(controller,presenter);
                 MainFrame.super.dispose();
 
             }
