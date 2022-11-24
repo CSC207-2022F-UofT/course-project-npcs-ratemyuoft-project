@@ -1,14 +1,16 @@
 package entity;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
 
-public class Course {
+public class Course implements Serializable {
+    private static final long serialVersionUID = 6529685098267757690L;
     public String courseName;
 
-    public ArrayList<Review> reviews= new ArrayList<Review>();
+    public ArrayList<Review> reviews= new ArrayList<>();
 
-    public double courseRaiting = 0.0;
+    public double courseRating = 0.0;
     public String fieldOfStudy;
 
     //Constructor
@@ -18,6 +20,9 @@ public class Course {
         this.fieldOfStudy = fieldOfStudy;
     }
 
+    public void AddReview(Review r){
+        reviews.add(r);
+    }
     //Getters
 
 
@@ -29,8 +34,12 @@ public class Course {
         return this.fieldOfStudy;
     }
 
-    public double getCourseRaiting() {
-        return this.courseRaiting;
+    public double getCourseRating() {
+        return this.courseRating;
+    }
+
+    public ArrayList<Review> GetReviews(){
+        return this.reviews;
     }
 
     //Setters
@@ -40,8 +49,8 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public void setCourseRaiting(double courseRaiting) {
-        this.courseRaiting = courseRaiting;
+    public void setCourseRating(double courseRating) {
+        this.courseRating = courseRating;
     }
 
     public void setFieldOfStudy(String fieldOfStudy) {

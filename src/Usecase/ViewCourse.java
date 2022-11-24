@@ -22,8 +22,7 @@ public class ViewCourse implements InputBoundary{
         } catch (IOException | ClassNotFoundException e){
             courseList = new CourseList();
         }
-
-        this.reviews = courseList.getReviews(this.course);
+        this.reviews = course.GetReviews();
     }
 
     public ArrayList<Review> getReviews(){

@@ -26,4 +26,12 @@ public class DataAccess implements Gateway {
         CourseList newCourseList = (CourseList) inputStream.readObject();
         return newCourseList;
     }
+
+    public void saveComment(CourseList commentList) throws IOException {
+
+        FileOutputStream fileOut = new FileOutputStream(fileName);
+        ObjectOutputStream outputStream = new ObjectOutputStream(fileOut);
+        outputStream.writeObject(commentList);
+        fileOut.close();
+    }
 }
