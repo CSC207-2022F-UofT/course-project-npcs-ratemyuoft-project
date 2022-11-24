@@ -1,8 +1,6 @@
 package InterfaceAdapter;
 
 import UseCase.*;
-import entity.UserList;
-import entity.User;
 import DataBase.DataAccess;
 
 
@@ -16,10 +14,8 @@ public class tempUI {
         InputBoundary inputBoundary = new Interactor(outputBoundary,gateway);
         Controller controller = new Controller(inputBoundary);
 
-        controller.userRegister("kolya","kolya123");
-        controller.userRegister("dmaslmdk","asdasdas");
-        for(User u: controller.showUsers() ){
-            System.out.println(u);
-        }
+        controller.showUsers();
+
+
     }
 }

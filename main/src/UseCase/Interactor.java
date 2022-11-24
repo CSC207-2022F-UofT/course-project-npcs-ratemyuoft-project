@@ -2,8 +2,6 @@ package UseCase;
 
 import entity.User;
 import entity.UserList;
-import DataBase.DataAccess;
-import UseCase.Gateway;
 
 import java.io.IOException;
 
@@ -13,7 +11,7 @@ public class Interactor implements InputBoundary {
     private final Gateway gateway;
 
 
-    public Interactor(OutputBoundary outputBoundary, Gateway gateway) throws IOException,ClassNotFoundException{
+    public Interactor(OutputBoundary outputBoundary, Gateway gateway) throws ClassNotFoundException{
         this.outputBoundary = outputBoundary;
         this.gateway =gateway;
         
@@ -49,16 +47,43 @@ public class Interactor implements InputBoundary {
         return false;
     }
 
+    public boolean checkUserStatus(String username){
+        for(User user: users){
+            if(user.getUserName().equals(username)){
+                return user.getLogInStatus();
+            }
+        }
+        return true;
+    }
+
+    public boolean checkPassword(String username, String password){
+        for (User u: users){
+            if(u.getUserName().equals(username)){
+                if(u.getPassword().equals(password)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     @Override
-    public UserList showUsers(){
-        return users;
+    public void showUsers(){
+        for(User u: users){
+            System.out.print(" " + u.getUserName());
+            System.out.print(" " + u.getMajor());
+            System.out.print(" " + u.getStartYearOfStudy());
+            System.out.print(" " + u.getLogInStatus() + "\n");
+        }
 
     }
     @Override
 
-    public void userRegister(String username, String password) throws InvalidInputException, IOException {
-        if(checkInput(username) && !checkIfUserExists(username) && checkInput(password)){
-            User user1 = new User(username,password);
+    public void userRegister(String username, String password, String major, int startYearOfStudy) throws
+            InvalidInputException, IOException {
+        if(checkInput(username) && checkInput(major)&& startYearOfStudy <=2022 && !checkIfUserExists(username) &&
+                checkInput(password)){
+            User user1 = new User(username,password,major,startYearOfStudy);
             users.addUser(user1);
             try{
                 gateway.saveUser(users);
@@ -76,7 +101,7 @@ public class Interactor implements InputBoundary {
 
      @Override
     public void userLogin(String username, String password) throws InvalidInputException{
-        if(checkInput(username) && checkIfUserExists(username)){
+        if(checkInput(username)&& checkInput(password) && checkIfUserExists(username)&& !checkUserStatus(username) && checkPassword(username,password)){
             try{
                 for(User user: users){
                     if(user.getUserName().equals(username)){
@@ -92,47 +117,33 @@ public class Interactor implements InputBoundary {
         }
     }
 
-
-
     @Override
-    public void editUsername(int userId,String username) throws InvalidInputException {
-        if(checkInput(username)){
-            for(User u : users){
-                if(u.getUserId() == userId){
-                    try{
-                        u.setUserName(username);
-                        gateway.importUser();
-                        this.outputBoundary.outputMessage("Username is changed");
-                    }catch (IOException e){
-                        this.outputBoundary.outputMessage("edit and save username failed");
-                    } catch (ClassNotFoundException e) {
-
+    public void userLogOut(String username) throws InvalidInputException {
+        if( checkInput(username) && checkIfUserExists(username) && checkUserStatus(username)){
+            try{
+                for(User user: users){
+                    if(user.getUserName().equals(username)){
+                        user.setLogInStatus(false);
                     }
                 }
+                gateway.saveUser(users);
+            }catch(IOException e){
+                this.outputBoundary.outputMessage("Log out failed");
             }
+        }else{
+            throw new InvalidInputException();
         }
+
     }
 
-    @Override
-    public void editPassword(int userId,String password) throws InvalidInputException {
-        if(checkInput(password)){
-            for(User u : users){
-                if(u.getUserId() == userId){
-                    try{
-                        u.setPassword(password);
-                        gateway.saveUser(users);
-                        this.outputBoundary.outputMessage("Password is changed");
-                    }catch (IOException e){
-                        this.outputBoundary.outputMessage("edit and save password failed");
-                    }
-                }
-            }
-        }
-    }
+
+
+
 
 
     @Override
     public void outputMessage(String message){
         this.outputBoundary.outputMessage(message);
     }
+
 }

@@ -1,7 +1,6 @@
 package InterfaceAdapter;
 import UseCase.*;
-import entity.User;
-import entity.UserList;
+
 
 import java.io.IOException;
 
@@ -13,19 +12,17 @@ public class Controller {
         this.inputBoundary = inputBoundary;
     }
 
-    public UserList showUsers(){
-        return inputBoundary.showUsers();
+    public void showUsers(){
+        inputBoundary.showUsers();
     }
 
-    public void userRegister(String username, String password){
+    public void userRegister(String username, String password, String major, int startYearOfStudy){
         try{
-            inputBoundary.userRegister(username,password);
+            inputBoundary.userRegister(username,password,major,startYearOfStudy);
         }catch(InvalidInputException e){
             inputBoundary.outputMessage("Invalid input");
-        }catch (UserAlreadyExistsException e) {
-            inputBoundary.outputMessage("User already exists");
-        } catch (IOException e) {
-            inputBoundary.outputMessage("Invalid input");
+        }catch (IOException e) {
+            inputBoundary.outputMessage("Invalid input ");
         }
     }
 
@@ -37,23 +34,6 @@ public class Controller {
         }
     }
 
-    public void editUsername(int userId,String username){
-        try{
-            inputBoundary.editUsername(userId,username);
-        } catch (InvalidInputException e) {
-            inputBoundary.outputMessage("Invalid input");
-        } catch (NoUserWithSuchIDException e) {
-            inputBoundary.outputMessage("There is no user with such id");
-        }
-    }
-    public void editPassword(int userId,String password){
-        try{
-            inputBoundary.editPassword(userId,password);
-        } catch (InvalidInputException e) {
-            inputBoundary.outputMessage("Invalid input");
-        } catch (NoUserWithSuchIDException e) {
-            inputBoundary.outputMessage("There is no user with such id");
-        }
-    }
+
 
 }

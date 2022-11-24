@@ -14,7 +14,7 @@ public class Review {
 
     public int numberOfDislikes= 0 ;
 
-    public Map<Student, Integer > comments= new HashMap<>();
+    public Map<User, Integer > comments= new HashMap<>();
 
     //Constructors 1st one for having no comment, just a raiting and the 2nd one is for review with comment
     public Review(int raitingOfTheCourse){

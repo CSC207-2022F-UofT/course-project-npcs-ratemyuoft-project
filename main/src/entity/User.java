@@ -3,24 +3,31 @@ public class User {
     private String userName;
     private String password;
 
+    public String major;
+
+    public int startYearOfStudy;
+
+
+
+
     public static int numberOfusers = 0 ;
-    private int userId;
+
 
     private boolean logInStatus;
 
 
 
     //Constructor
-     public User(String username1, String password1 ){
-         this.userName = username1;
-         this.password = password1;
+     public User(String username, String password, String major, int startYearOfStudy){
+         this.userName = username;
+         this.password = password;
+         this.startYearOfStudy = startYearOfStudy;
+         this.major = major;
          numberOfusers++;
-         this.userId = numberOfusers;
      }
 
-    public User() {
 
-    }
+
 
 
     // Getters
@@ -38,8 +45,15 @@ public class User {
     public static int getNumberOfUsers(){
          return numberOfusers;
     }
+    public int getStartYearOfStudy(){
+        return this.startYearOfStudy;
+    }
 
-    public int getUserId(){ return userId;}
+
+    public String getMajor() {
+        return this.major;
+    }
+
 
 
 
@@ -54,10 +68,7 @@ public class User {
         this.password = newPassword;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-         return this.userName.equals(obj);
-    }
+
 
 
     public boolean getLogInStatus() {
@@ -67,4 +78,13 @@ public class User {
     public void setLogInStatus(boolean logInStatus) {
         this.logInStatus = logInStatus;
     }
+
+    public void setMajor(String newMajor){
+        this.major = newMajor;
+    }
+
+    public void setStartYearOfStudy(int newYearOfStudy){
+        this.startYearOfStudy = newYearOfStudy;
+    }
+
 }
