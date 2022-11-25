@@ -8,18 +8,28 @@ import java.io.*;
 
 public class DataAccess implements Gateway ,Serializable{
 
-    private static final String fileName = "commentsFile.sav";
+    private static final String fileName = "/Users/blackchina23/Documents/School/csc207/course-project-npcs-ratemyuoft-project/commentsFile.sav";
+
+
     @Override
+
     public CommentList importComment() throws IOException, ClassNotFoundException {
 
-        FileInputStream fileIn = new FileInputStream(fileName);
-        ObjectInputStream inputStream = new ObjectInputStream(fileIn);
+
+        try {
+            ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName));
+        }catch (EOFException e){
+            CommentList newCL = new CommentList();
+            this.saveComment(newCL);
+        }
+        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName));
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         if (br.readLine() == null) {
             FileOutputStream fileOut = new FileOutputStream(fileName);
             ObjectOutputStream outputStream = new ObjectOutputStream(fileOut);
             outputStream.writeObject(new CommentList());
         }
+
         CommentList newComments = (CommentList) inputStream.readObject();
         return newComments;
 

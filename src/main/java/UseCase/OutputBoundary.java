@@ -5,8 +5,8 @@ import Entities.CommentList;
 
 public interface OutputBoundary {
 
-    CommentList showComments(CommentList commentList);
+    void showComments(CommentList commentList);
 
     boolean confirmComment(Comment comment);
-    String outputMessage(String s);
+    void outputMessage(String s);
 }
