@@ -3,14 +3,14 @@ package Entities;
 import java.io.Serializable;
 
 public class Comment implements Serializable {
-    private int commentNum;
+    private int commentNum ;
     private User user;
     private String comment;
     private static int count;
 
 
     public Comment(String comment) {
-        this.commentNum = count ++;
+        this.commentNum = ++ count ;
         this.comment = comment;
     }
 
@@ -28,9 +28,7 @@ public class Comment implements Serializable {
     public void setComment(String comment) {this.comment = comment;}
 
 
-    public boolean equals(Comment obj) {
-        return this.comment.equals(obj.getComment());
-    }
+
 
 
 

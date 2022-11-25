@@ -31,7 +31,7 @@ public class Interactor implements InputBoundary  {
 
 
     // helper function for add Comment
-    public boolean checkInput(String comment) {
+    private boolean checkInput(String comment) {
         int count = comment.length();
         if (count <= 1500 && count > 0){
             return true;
@@ -42,14 +42,15 @@ public class Interactor implements InputBoundary  {
 
     /**
      * Send CommentList to Output Boundary
-     *if something is wrong when import Commentlist from database
+     * if something is wrong when import Commentlist from database
+     *
      * @throws IOException
      * @throws ClassNotFoundException
      */
     @Override
     public void showComments() throws IOException, ClassNotFoundException {
         commentList = gateway.importComment();
-         this.outputBoundary.showComments(commentList);
+        this.outputBoundary.showComments(commentList);
     }
 
     /**
@@ -78,24 +79,6 @@ public class Interactor implements InputBoundary  {
         }
         
 
-    }
-
-
-
-
-
-    // helper function
-    public boolean checkString (String s) throws CommentNotInListException {
-        int count = 0;
-        for (char c : s.toCharArray()){
-            if (c != ' '){
-                count ++;
-            }
-        }
-        if (count <= 1500 && count > 0){
-            return true;
-        }
-        return false;
     }
 
 

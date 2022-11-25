@@ -1,9 +1,7 @@
 package UI;
 
 import InterfaceAdapter.Controller;
-import InterfaceAdapter.Presenter;
 import UseCase.InvalidInputException;
-import UseCase.OutputBoundary;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class AddCommentFrame extends JFrame {
+public class AddCommentFrame extends JFrame  {
     JPanel mainPanel = new JPanel();
     JLabel label = new JLabel("Write Comment:");
     JTextArea textArea = new JTextArea();
@@ -19,7 +17,11 @@ public class AddCommentFrame extends JFrame {
     JButton enterButton = new JButton("Enter");
     JButton backButton = new JButton("Back");
 
-    public AddCommentFrame(Controller controller, OutputBoundary presenter){
+
+
+
+    public AddCommentFrame(Controller controller){
+
         buttonPanel.setLayout(new BorderLayout());
         buttonPanel.add(enterButton, BorderLayout.WEST);
         buttonPanel.add(backButton, BorderLayout.EAST);
@@ -32,25 +34,29 @@ public class AddCommentFrame extends JFrame {
         this.pack();
         this.setVisible(true);
 
+
+
         enterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String newComment = textArea.getText();
-
                 try {
                     controller.addComment(newComment);
-                    JOptionPane.showMessageDialog(null, "Comment Saved!");
+                    controller.outPutMessage("Comment Saved!");
                     AddCommentFrame.super.dispose();
                     try {
-                        new MainFrame(controller,presenter);
+                        new MainFrame(controller);
 
                     } catch (ClassNotFoundException ex) {
-                        JOptionPane.showMessageDialog(null, "Class Not Found!");
+                        controller.outPutMessage("Class Not Found!");
+
                     }
                 } catch (InvalidInputException ex) {
-                    JOptionPane.showMessageDialog(null, "Comment Invalid!");
+                    controller.outPutMessage("Comment Invalid!");
+
                 } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(null, "Can't Save!");
+                    controller.outPutMessage("Can't Save!");
+
                 }
             }
         });
@@ -61,7 +67,7 @@ public class AddCommentFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 AddCommentFrame.super.dispose();
                 try {
-                    new MainFrame(controller,presenter);
+                    new MainFrame(controller);
                 } catch (IOException | ClassNotFoundException ex) {
                     throw new RuntimeException(ex);
                 }

@@ -16,10 +16,13 @@ public class Controller {
         this.inputBoundary = inputBoundary;
 
     }
+    public void outPutMessage(String message){
+        inputBoundary.outputMessage(message);
 
-    public CommentList showComments() throws IOException, ClassNotFoundException {
-       // return inputBoundary.showComments();
-        return  new CommentList();
+    }
+
+    public void showComments() throws IOException, ClassNotFoundException {
+         inputBoundary.showComments();
 
     }
 
@@ -27,8 +30,7 @@ public class Controller {
         try {
             inputBoundary.addComment(comment);
         } catch (InvalidInputException e) {
-            InvalidInputException InvalidInputException = null;
-            throw InvalidInputException;
+            throw new InvalidInputException();
         }catch (IOException e){
 
             throw new IOException();

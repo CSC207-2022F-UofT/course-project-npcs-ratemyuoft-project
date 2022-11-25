@@ -2,17 +2,22 @@ package InterfaceAdapter;
 
 import Entities.Comment;
 import Entities.CommentList;
-import UI.MainFrame;
+import UI.*;
 import UseCase.OutputBoundary;
 
 public class Presenter implements OutputBoundary {
 
+    MainFrame mainFrame;
+    UIShow uiShow;
+    UIMessage uiMessage;
+
 
     @Override
-    public CommentList showComments(CommentList commentList) {
-        return commentList;
-
+    public void showComments(CommentList commentList) {
+        uiShow = new ShowCommentsFrame();
+        uiShow.showComments(commentList);
     }
+
 
     @Override
     public boolean confirmComment(Comment comment) {
@@ -22,8 +27,11 @@ public class Presenter implements OutputBoundary {
     // send to UI
 
     @Override
-    public String outputMessage(String s) {
-        return s;
+    public void outputMessage(String s) {
+        uiMessage = new ShowMessageUI();
+        uiMessage.showMessage(s);
+
+
     }
 
 

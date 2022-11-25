@@ -10,15 +10,18 @@ public class CommentTest {
 
     Comment c;
     Comment c1;
+
+
     @Before
-    public void setUp() throws Exception {
+    public void setUpClass() throws Exception {
          c = new Comment("hi");
          c1 = new Comment("bye");
+        System.out.println(c1.getCommentNum());
 
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDownClass() throws Exception {
         c = null;
         c1 = null;
     }
@@ -44,8 +47,4 @@ public class CommentTest {
         assertEquals(c.getComment(),"bye") ;
     }
 
-    @Test
-    public void testEquals() {
-        assertTrue(c.equals(c1));
-    }
 }
