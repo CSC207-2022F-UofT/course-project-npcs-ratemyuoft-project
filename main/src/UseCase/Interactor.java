@@ -69,32 +69,8 @@ public class Interactor implements InputBoundary {
 
     @Override
     public void showUsers(){
-        for(User u: users){
-            System.out.print(" " + u.getUserName());
-            System.out.print(" " + u.getMajor());
-            System.out.print(" " + u.getStartYearOfStudy());
-            System.out.print(" " + u.getLogInStatus() + "\n");
-        }
+        this.outputBoundary.showUsers(users);
 
-    }
-    @Override
-
-    public void userRegister(String username, String password, String major, int startYearOfStudy) throws
-            InvalidInputException, IOException {
-        if(checkInput(username) && checkInput(major)&& startYearOfStudy <=2022 && !checkIfUserExists(username) &&
-                checkInput(password)){
-            User user1 = new User(username,password,major,startYearOfStudy);
-            users.addUser(user1);
-            try{
-                dataAccess.saveUser(users);
-            }catch(IOException e){
-                this.outputBoundary.outputMessage("Registering new user failed");
-            throw new IOException();
-            }
-
-        }else{
-            throw new InvalidInputException();
-        }
     }
 
 
@@ -117,21 +93,47 @@ public class Interactor implements InputBoundary {
     }
 
     @Override
-    public void userLogOut(String username) throws InvalidInputException {
-        if( checkInput(username) && checkIfUserExists(username) && checkUserStatus(username)){
+
+    public void userRegister(String username, String password, String major, int startYearOfStudy) throws
+            InvalidInputException, IOException {
+        if(checkInput(username) && checkInput(major)&& startYearOfStudy <=2022 && !checkIfUserExists(username) &&
+                checkInput(password)){
+            User user1 = new User(username,password,major,startYearOfStudy);
+            users.addUser(user1);
             try{
+                dataAccess.saveUser(users);
+                 String username1 = user1.getUserName();
                 for(User user: users){
-                    if(user.getUserName().equals(username)){
-                        user.setLogInStatus(false);
+                    if(user.getUserName().equals(username1)){
+                        user.setLogInStatus(true);
                     }
                 }
                 dataAccess.saveUser(users);
+
             }catch(IOException e){
-                this.outputBoundary.outputMessage("Log out failed");
+                this.outputBoundary.outputMessage("Registering new user failed");
+                throw new IOException();
             }
+
         }else{
             throw new InvalidInputException();
         }
+    }
+
+    @Override
+    public void userLogOut()  {
+
+        try{
+            for(User user: users){
+                if(user.getLogInStatus()){
+                        user.setLogInStatus(false);
+                }
+            }
+            dataAccess.saveUser(users);
+            }catch(IOException e){
+                this.outputBoundary.outputMessage("Log out failed");
+            }
+
 
     }
 

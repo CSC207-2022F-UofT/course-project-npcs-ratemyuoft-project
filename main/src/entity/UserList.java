@@ -4,7 +4,7 @@ import java.util.*;
 
 public class UserList implements Iterable<User>, Serializable {
 
-    private final List<User> userlist = new ArrayList<>();
+    private List<User> userlist = new ArrayList<>();
 
 
     public void addUser(User user){
@@ -12,18 +12,15 @@ public class UserList implements Iterable<User>, Serializable {
     }
 
 
-    public static class DsFill {
+    public class DsFill {
         public final Random generator = new Random();
 
         public int getRandomInRange(int lowerBound, int higherBound) {
             return lowerBound + generator.nextInt(higherBound - lowerBound + 1);
         }
 
-        public DsFill() {
 
-
-        }
-        public void builder(List<User> users){
+        public DsFill (){
                 for (int i = 0; i <= 100; i++) {
                     int random = getRandomInRange(1920, 2022);
                     String defaultUsername = "anonimus";
@@ -31,36 +28,32 @@ public class UserList implements Iterable<User>, Serializable {
                     if (i <= 20) {
                         User u = new User(defaultUsername + random, defaultPassword + i,
                                 "MATH", random);
-                        users.add(u);
+                        userlist.add(u);
                     } else if ( i <= 40) {
                         User u = new User(defaultUsername + random, defaultPassword + i,
                                 "CS", random);
-                        users.add(u);
+                        userlist.add(u);
                     } else if ( i <= 60) {
                         User u = new User(defaultUsername + random, defaultPassword + i,
                                 "HUMANITIES", random);
-                        users.add(u);
+                        userlist.add(u);
                     } else if ( i <= 80) {
                         User u = new User(defaultUsername + random, defaultPassword + i,
                                 "ENVIRONMENTAL SCIENCE", random);
-                        users.add(u);
+                        userlist.add(u);
                     }
                     else {
                         User u;
                         u = new User(defaultUsername + random, defaultPassword + i,
                                 "NO MAJOR", random);
-                        users.add(u);
+                        userlist.add(u);
                     }
                 }
         }
     }
 
 
-    public UserList(){
-        DsFill dsFill = new DsFill();
-        dsFill.builder(userlist);
-    }
-
+    DsFill dsFill = new DsFill();
 
 
 

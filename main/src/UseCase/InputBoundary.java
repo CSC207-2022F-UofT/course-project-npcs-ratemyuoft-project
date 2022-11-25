@@ -1,5 +1,6 @@
 package UseCase;
 
+import entity.User;
 import entity.UserList;
 
 import java.io.IOException;
@@ -13,6 +14,6 @@ public interface InputBoundary {
 
 
 
-    void userLogOut(String username) throws InvalidInputException;
+    void userLogOut() ;
 
 }
