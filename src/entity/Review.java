@@ -1,10 +1,11 @@
 package entity;
+import java.io.Serializable;
 
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Review {
+public class Review implements Serializable{
 
     public int raitingOfTheCourse;
 

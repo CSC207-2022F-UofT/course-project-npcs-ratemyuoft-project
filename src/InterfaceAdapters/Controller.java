@@ -11,8 +11,4 @@ public class Controller {
     public Controller(InputBoundary inputBoundary){
         this.inputBoundary = inputBoundary;
     }
-
-    public ArrayList<Review> getReviews(){
-        return inputBoundary.getReviews();
-    }
 }

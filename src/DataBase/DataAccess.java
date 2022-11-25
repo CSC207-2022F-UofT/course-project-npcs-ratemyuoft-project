@@ -16,19 +16,16 @@ public class DataAccess implements Gateway {
 
         FileInputStream fileIn = new FileInputStream(fileName);
         ObjectInputStream inputStream = new ObjectInputStream(fileIn);
-        BufferedReader br = new BufferedReader(new FileReader(fileName));
-        if (br.readLine() == null){
-            FileOutputStream fileOut = new FileOutputStream(fileName);
-            ObjectOutputStream outputStream = new ObjectOutputStream(fileOut);
-            outputStream.writeObject(new CourseList());
+       //BufferedReader br = new BufferedReader(new FileReader(fileName));
+        //if (br.readLine() == null){
+          //  FileOutputStream fileOut = new FileOutputStream(fileName);
+            //ObjectOutputStream outputStream = new ObjectOutputStream(fileOut);
+           // outputStream.writeObject(new CourseList());
 
-        }
         CourseList newCourseList = (CourseList) inputStream.readObject();
         return newCourseList;
     }
-
-    public void saveComment(CourseList commentList) throws IOException {
-
+    public void SaveCourse(CourseList commentList) throws IOException {
         FileOutputStream fileOut = new FileOutputStream(fileName);
         ObjectOutputStream outputStream = new ObjectOutputStream(fileOut);
         outputStream.writeObject(commentList);

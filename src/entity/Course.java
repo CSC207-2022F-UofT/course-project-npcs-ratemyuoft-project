@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 
 
-public class Course implements Serializable {
-    private static final long serialVersionUID = 6529685098267757690L;
+public class Course implements Serializable{
     public String courseName;
 
     public ArrayList<Review> reviews= new ArrayList<>();

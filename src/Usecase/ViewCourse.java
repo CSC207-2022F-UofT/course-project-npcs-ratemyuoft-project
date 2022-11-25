@@ -4,6 +4,7 @@ import entity.CourseList;
 import entity.Review;
 
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -22,6 +23,7 @@ public class ViewCourse implements InputBoundary{
         } catch (IOException | ClassNotFoundException e){
             courseList = new CourseList();
         }
+
         this.reviews = course.GetReviews();
     }
 
