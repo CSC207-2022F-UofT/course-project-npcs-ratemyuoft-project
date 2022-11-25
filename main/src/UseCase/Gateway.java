@@ -1,6 +1,5 @@
 package UseCase;
 
-import entity.User;
 import entity.UserList;
 
 import java.io.IOException;

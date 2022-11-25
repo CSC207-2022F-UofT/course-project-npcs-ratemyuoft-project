@@ -24,9 +24,9 @@ public class Interactor implements InputBoundary {
     }
 
 
-    public boolean checkInput(String username) throws InvalidInputException{
+    public boolean checkInput(String s) throws InvalidInputException{
         int count = 0;
-        for(char c: username.toCharArray()){
+        for(char c: s.toCharArray()){
             if(c!= ' '){
                 count++;
             }
@@ -91,7 +91,6 @@ public class Interactor implements InputBoundary {
                 this.outputBoundary.outputMessage("Registering new user failed");
             throw new IOException();
             }
-            this.outputBoundary.confirmUser(user1);
 
         }else{
             throw new InvalidInputException();

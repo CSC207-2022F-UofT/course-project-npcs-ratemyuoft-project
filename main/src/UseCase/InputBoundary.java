@@ -6,7 +6,8 @@ import java.io.IOException;
 
 public interface InputBoundary {
     void showUsers();
-    void userRegister(String username, String password, String major, int startYearOfStudy) throws InvalidInputException, IOException;
+    void userRegister(String username, String password, String major, int startYearOfStudy) throws InvalidInputException
+            , IOException;
     void userLogin(String username, String password) throws InvalidInputException;
     void outputMessage(String output);
 
