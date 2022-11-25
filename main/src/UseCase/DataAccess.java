@@ -4,9 +4,9 @@ import entity.UserList;
 
 import java.io.IOException;
 
-public interface Gateway {
+public interface DataAccess {
 
-    UserList importUser() throws IOException, ClassNotFoundException;
+    UserList importUsers() throws IOException, ClassNotFoundException;
     void saveUser(UserList userList) throws IOException;
 
 }

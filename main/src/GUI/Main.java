@@ -4,7 +4,7 @@ package GUI;
 import InterfaceAdapter.Controller;
 import InterfaceAdapter.Presenter;
 import UseCase.*;
-import DataBase.DataAccess;
+import DataBase.DataBase;
 
 
 import java.io.IOException;
@@ -32,10 +32,10 @@ public class Main extends javax.swing.JFrame {
 
 
         OutputBoundary outputBoundary = new Presenter();
-        Gateway gateway=new DataAccess();
+        DataAccess dataAccess = new DataBase();
         InputBoundary inputBoundary = null;
         try {
-            inputBoundary = new Interactor(outputBoundary,gateway);
+            inputBoundary = new Interactor(outputBoundary,dataAccess);
         } catch (ClassNotFoundException e) {
         }
         Controller controller = new Controller(inputBoundary);

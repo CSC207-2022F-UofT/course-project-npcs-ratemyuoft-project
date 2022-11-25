@@ -1,19 +1,76 @@
 package entity;
 
-public interface User {
-    static int getNumberOfUsers() {
-        return CommonUser.numberOfusers;
+public class User {
+    private final String userName;
+    private final String password;
+
+    public final String major;
+
+    public final int startYearOfStudy;
+
+
+
+
+    public static int numberOfusers = 0 ;
+
+
+    private boolean logInStatus;
+
+
+
+    //Constructor
+    public User(String username, String password, String major, int startYearOfStudy){
+        this.userName = username;
+        this.password = password;
+        this.startYearOfStudy = startYearOfStudy;
+        this.major = major;
+        numberOfusers++;
     }
 
-    String getUserName();
 
-    String getPassword();
 
-    int getStartYearOfStudy();
 
-    String getMajor();
 
-    boolean getLogInStatus();
+    // Getters
 
-    void setLogInStatus(boolean logInStatus);
+
+
+
+    public String getUserName() {
+        return this.userName;
+    }
+
+
+    public String getPassword() {
+        return this.password;
+    }
+
+
+    public int getStartYearOfStudy(){
+        return this.startYearOfStudy;
+    }
+
+
+    public String getMajor() {
+        return this.major;
+    }
+
+
+
+
+    //Setters
+
+
+
+
+    public boolean getLogInStatus() {
+        return logInStatus;
+    }
+
+
+    public void setLogInStatus(boolean logInStatus) {
+        this.logInStatus = logInStatus;
+    }
+
+
 }

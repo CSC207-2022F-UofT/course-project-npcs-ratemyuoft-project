@@ -7,16 +7,16 @@ import java.io.IOException;
 
 public class Interactor implements InputBoundary {
     private final OutputBoundary outputBoundary;
-    public static UserList users = new UserList();
-    private final Gateway gateway;
+    public static UserList users;
+    private final DataAccess dataAccess;
 
 
-    public Interactor(OutputBoundary outputBoundary, Gateway gateway) throws ClassNotFoundException{
+    public Interactor(OutputBoundary outputBoundary, DataAccess dataAccess) throws ClassNotFoundException{
         this.outputBoundary = outputBoundary;
-        this.gateway =gateway;
+        this.dataAccess = dataAccess;
         
         try{
-            users = gateway.importUser();
+            users = dataAccess.importUsers();
         }catch (IOException e ){
             users = new UserList();
             this.outputBoundary.outputMessage("Importation failed");
@@ -86,7 +86,7 @@ public class Interactor implements InputBoundary {
             User user1 = new User(username,password,major,startYearOfStudy);
             users.addUser(user1);
             try{
-                gateway.saveUser(users);
+                dataAccess.saveUser(users);
             }catch(IOException e){
                 this.outputBoundary.outputMessage("Registering new user failed");
             throw new IOException();
@@ -107,7 +107,7 @@ public class Interactor implements InputBoundary {
                         user.setLogInStatus(true);
                     }
                 }
-                gateway.saveUser(users);
+                dataAccess.saveUser(users);
             }catch(IOException e){
                 this.outputBoundary.outputMessage("Log in failed");
             }
@@ -125,7 +125,7 @@ public class Interactor implements InputBoundary {
                         user.setLogInStatus(false);
                     }
                 }
-                gateway.saveUser(users);
+                dataAccess.saveUser(users);
             }catch(IOException e){
                 this.outputBoundary.outputMessage("Log out failed");
             }
@@ -146,3 +146,16 @@ public class Interactor implements InputBoundary {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

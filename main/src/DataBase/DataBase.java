@@ -2,15 +2,15 @@ package DataBase;
 
 import java.io.*;
 
-import UseCase.Gateway;
+import UseCase.DataAccess;
 import entity.UserList;
 
-public class DataAccess  implements Gateway{
+public class DataBase implements DataAccess {
 
     private static final String fileName = "userfile.sav";
 
     @Override
-    public UserList importUser() throws IOException, ClassNotFoundException{
+    public UserList importUsers() throws IOException, ClassNotFoundException{
         FileInputStream fileInputStream = new FileInputStream(fileName);
         ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
         UserList newUsers = (UserList) inputStream.readObject();
