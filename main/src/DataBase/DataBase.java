@@ -1,9 +1,9 @@
 package DataBase;
-import entity.User;
 
 import java.io.*;
-import entity.UserList;
+
 import UseCase.Gateway;
+import entity.UserList;
 
 public class DataAccess  implements Gateway{
 

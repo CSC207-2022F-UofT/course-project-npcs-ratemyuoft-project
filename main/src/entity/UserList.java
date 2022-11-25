@@ -1,14 +1,14 @@
 package entity;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Random;
 
-public class UserList implements Iterable<User>, Serializable {
+public class UserList {
 
     private List<User> userlist = new ArrayList<>();
+
 
     public void addUser(User user){
         userlist.add(user);
@@ -69,7 +69,7 @@ public class UserList implements Iterable<User>, Serializable {
 
 
 
-    @Override
+
     public Iterator<User> iterator() {
         return new UserIterator();
     }
