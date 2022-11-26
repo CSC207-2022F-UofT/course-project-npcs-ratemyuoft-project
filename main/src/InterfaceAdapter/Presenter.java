@@ -12,7 +12,7 @@ public class Presenter implements OutputBoundary{
         for (User u: userList){
             System.out.print("||    Username : " + u.getUserName()+ "   ");
             System.out.print("||    Major : " + u.getMajor() + "   ");
-            System.out.print("||    Major : " + u.getLogInStatus() + "   ");
+            System.out.print("||    LogInStatus : " + u.getLogInStatus() + "   ");
             System.out.print("||    Enrolment year : "+ u.getStartYearOfStudy() + "   " +"\n");
         }
 
