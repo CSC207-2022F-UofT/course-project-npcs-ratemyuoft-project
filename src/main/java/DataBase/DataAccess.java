@@ -18,7 +18,7 @@ public class DataAccess implements Gateway ,Serializable{
 
         try {
             ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName));
-        }catch (EOFException e){
+            }catch (EOFException e){
             CommentList newCL = new CommentList();
             this.saveComment(newCL);
         }

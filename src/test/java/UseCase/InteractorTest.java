@@ -38,13 +38,13 @@ public class InteractorTest {
     }
 
     /**
-     * Check showComment
+     * Check showComment assert true if it can return to output Boundary
      */
     @Test
     public void showComments()  {
         try {
             testCommentList = testGateway.importComment();
-//            assertEquals(testCommentList.getClass(),new CommentList().getClass());
+            assertEquals(testCommentList.getClass(),new CommentList().getClass());
         } catch (IOException e) {
             fail("You messed up your code, shouldn't be a Error (IOException e)");
         } catch (ClassNotFoundException e) {
@@ -54,7 +54,11 @@ public class InteractorTest {
     }
 
     @Test
-    public void addComment() {
+    public void addComment() throws InvalidInputException, IOException {
+//
+//        testinteractor.addComment(" ");
+//        assertEquals(testinteractor.addComment(" ", true);
+
 
     }
 
@@ -62,7 +66,8 @@ public class InteractorTest {
     public void editComment() {
     }
 
+
     @Test
-    public void outputMessage() {
+    public void testOutputMessage() {
     }
 }
