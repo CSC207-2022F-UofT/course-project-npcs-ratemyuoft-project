@@ -1,4 +1,5 @@
 package Usecase;
+import entity.Course;
 import entity.Review;
 
 import java.util.ArrayList;
@@ -6,5 +7,5 @@ import java.util.ArrayList;
 public interface OutputBoundary {
     void outputMessage(String s);
 
-    ArrayList<Review> ReviewOutput(InputBoundary i);
+    void Display(ArrayList<Review> rlist, Course c);
 }
