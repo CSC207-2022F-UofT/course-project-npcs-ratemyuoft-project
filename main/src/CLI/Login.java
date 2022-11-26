@@ -1,9 +1,11 @@
 package CLI;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import InterfaceAdapter.Controller;
 import InterfaceAdapter.Presenter;
+import UseCase.InvalidInputException;
 
 
 public class Login implements LogInInterface  {
@@ -11,27 +13,29 @@ public class Login implements LogInInterface  {
 
     @Override
     public void login(Scanner scanner, Controller controller, Presenter presenter ,
-                      MainMenuInterface mainMenuInterface,LogOutInterface logOutInterface ,
-                      WelcomeMenuInterface welcomeMenuInterface,RegisterInterface registerInterface) {
+                      MainMenuInterface mainMenuInterface,
+                      WelcomeMenuInterface welcomeMenuInterface,RegisterInterface registerInterface,
+                      ShowUsersInterface showUsersInterface) throws IOException, ClassNotFoundException, InvalidInputException {
 
 
             presenter.outputMessage(" Enter username please => ");
-            String userName = scanner.nextLine();
+            String username = scanner.nextLine();
 
             presenter.outputMessage(" Enter password please = >");
             String password = scanner.nextLine();
 
-            controller.userLogin(userName,password);
 
-            if(scanner.nextLine().equals("Invalid input")) {
-                presenter.outputMessage("Please try again"+"\n" + "\n");
-                welcomeMenuInterface.displayWelcomeMenu(presenter);
-                welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter,registerInterface,
-                        this,mainMenuInterface,logOutInterface);
 
-            } else if (scanner.nextLine().equals("Login Successful!")) {
+
+            try{
+                controller.userLogin(username,password);
                 mainMenuInterface.displayMainMenu(presenter);
-                mainMenuInterface.choseOption(scanner,presenter,controller,logOutInterface);
+                mainMenuInterface.choseOption(scanner,presenter,controller,welcomeMenuInterface,
+                        registerInterface,this,showUsersInterface);
+            }catch (InvalidInputException e){
+                presenter.outputMessage("Please try again"+"\n" + "\n");
+                welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter,registerInterface,
+                        this,mainMenuInterface,showUsersInterface);
             }
 
 

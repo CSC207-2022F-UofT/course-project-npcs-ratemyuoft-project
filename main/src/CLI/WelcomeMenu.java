@@ -2,7 +2,9 @@ package CLI;
 
 import InterfaceAdapter.Controller;
 import InterfaceAdapter.Presenter;
+import UseCase.InvalidInputException;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class WelcomeMenu implements WelcomeMenuInterface{
@@ -16,22 +18,26 @@ public class WelcomeMenu implements WelcomeMenuInterface{
     @Override
     public void choseLoginOrRegister(Scanner scanner, Controller controller, Presenter presenter,
                                      RegisterInterface registerInterface, LogInInterface logInInterface,
-                                     MainMenuInterface mainMenuInterface, LogOutInterface logOutInterface) {
+                                     MainMenuInterface mainMenuInterface,
+                                     ShowUsersInterface showUsersInterface)
+            throws IOException, ClassNotFoundException, InvalidInputException {
 
         String choice = scanner.nextLine();
         if(choice.contains("1")){
 
-            registerInterface.register(scanner,controller,presenter,mainMenuInterface, logOutInterface,
-                    this ,logInInterface);
+            registerInterface.register(scanner,controller,presenter,mainMenuInterface,
+                    this ,logInInterface,showUsersInterface);
 
 
         } else if (choice.contains("2")) {
-            logInInterface.login(scanner,controller,presenter, mainMenuInterface,logOutInterface,
-                    this,registerInterface );
+            logInInterface.login(scanner,controller,presenter, mainMenuInterface,
+                    this,registerInterface,showUsersInterface );
 
         } else{
             presenter.outputMessage("Input is invalid. Please try again");
             displayWelcomeMenu(presenter);
+            choseLoginOrRegister(scanner,controller,presenter,registerInterface,logInInterface,
+                    mainMenuInterface,showUsersInterface);
         }
     }
 }

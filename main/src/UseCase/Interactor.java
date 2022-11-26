@@ -14,30 +14,24 @@ public class Interactor implements InputBoundary {
     public Interactor(OutputBoundary outputBoundary, DataAccess dataAccess) throws ClassNotFoundException{
         this.outputBoundary = outputBoundary;
         this.dataAccess = dataAccess;
-        
         try{
             users = dataAccess.importUsers();
-        }catch (IOException e ){
+        }catch (IOException e){
             users = new UserList();
-            this.outputBoundary.outputMessage("Importation failed");
+            this.outputBoundary.outputMessage("Importation Failed");
         }
+
     }
 
 
-    public boolean checkInput(String s) throws InvalidInputException{
-        int count = 0;
-        for(char c: s.toCharArray()){
-            if(c!= ' '){
-                count++;
-            }
-        }
-        if(count <= 20 && count > 0){
+    private boolean checkInput(String comment) {
+        int count = comment.length();
+        if (count <= 40 && count > 0){
             return true;
-        }else{
-            throw new InvalidInputException();
         }
-
+        return false;
     }
+
     public boolean checkIfUserExists(String username){
         for(User user: users){
             if(user.getUserName().equals(username)){
@@ -68,15 +62,18 @@ public class Interactor implements InputBoundary {
     }
 
     @Override
-    public void showUsers(){
+    public void showUsers() throws IOException, ClassNotFoundException {
+        users = dataAccess.importUsers();
         this.outputBoundary.showUsers(users);
 
     }
 
 
      @Override
-    public void userLogin(String username, String password) throws InvalidInputException{
-        if(checkInput(username)&& checkInput(password) && checkIfUserExists(username)&& !checkUserStatus(username) && checkPassword(username,password)){
+    public void userLogin(String username, String password) throws InvalidInputException, IOException, ClassNotFoundException {
+        users = dataAccess.importUsers();
+        if(checkInput(username)&& checkInput(password) && checkIfUserExists(username)&& !checkUserStatus(username) &&
+                checkPassword(username,password)){
             try{
                 for(User user: users){
                     if(user.getUserName().equals(username)){
@@ -84,55 +81,55 @@ public class Interactor implements InputBoundary {
                     }
                 }
                 dataAccess.saveUser(users);
+
             }catch(IOException e){
                 this.outputBoundary.outputMessage("Log in failed");
             }
         }else{
             throw new InvalidInputException();
         }
-    }
+     }
 
     @Override
 
     public void userRegister(String username, String password, String major, int startYearOfStudy) throws
             InvalidInputException, IOException {
-        if(checkInput(username) && checkInput(major)&& startYearOfStudy <=2022 && !checkIfUserExists(username) &&
-                checkInput(password)){
-            User user1 = new User(username,password,major,startYearOfStudy);
+        if (checkInput(username) && checkInput(major) && startYearOfStudy <= 2022 && checkInput(password) &&
+                !checkIfUserExists(username)) {
+            User user1 = new User(username, password, major, startYearOfStudy);
+            user1.setLogInStatus(true);
             users.addUser(user1);
-            try{
+            try {
                 dataAccess.saveUser(users);
-                 String username1 = user1.getUserName();
-                for(User user: users){
-                    if(user.getUserName().equals(username1)){
-                        user.setLogInStatus(true);
-                    }
-                }
-                dataAccess.saveUser(users);
-
-            }catch(IOException e){
-                this.outputBoundary.outputMessage("Registering new user failed");
-                throw new IOException();
+            } catch (IOException e) {
+                this.outputBoundary.outputMessage("Registration failed");
             }
 
-        }else{
+        } else if (checkIfUserExists(username)) {
+            outputBoundary.outputMessage("User with this username already exists");
+            throw new InvalidInputException();
+
+
+        } else {
             throw new InvalidInputException();
         }
     }
 
+
     @Override
-    public void userLogOut()  {
+    public void userLogOut() throws IOException, InvalidInputException {
 
         try{
             for(User user: users){
                 if(user.getLogInStatus()){
-                        user.setLogInStatus(false);
+                    user.setLogInStatus(false);
                 }
             }
             dataAccess.saveUser(users);
-            }catch(IOException e){
-                this.outputBoundary.outputMessage("Log out failed");
-            }
+
+        }catch(IOException e){
+            this.outputBoundary.outputMessage("Log out failed");
+        }
 
 
     }

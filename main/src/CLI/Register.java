@@ -1,52 +1,42 @@
 package CLI;
 
+import java.io.IOException;
 import java.util.Scanner;
 import InterfaceAdapter.Controller;
 import InterfaceAdapter.Presenter;
+import UseCase.InvalidInputException;
 
 public class Register implements RegisterInterface{
 
     @Override
     public void register(Scanner scanner, Controller controller, Presenter presenter,
                          MainMenuInterface mainMenuInterface,
-                         LogOutInterface logOutInterface,
                          WelcomeMenuInterface welcomeMenuInterface,
-                         LogInInterface logInInterface) {
+                         LogInInterface logInInterface,
+                         ShowUsersInterface showUsersInterface) throws IOException, ClassNotFoundException, InvalidInputException {
 
-        presenter.outputMessage(" Enter username please => ");
+        presenter.outputMessage(" Enter username please = > ");
         String userName = scanner.nextLine();
 
-        presenter.outputMessage(" Enter password please = >");
+        presenter.outputMessage(" Enter password please = > ");
         String password = scanner.nextLine();
 
-        presenter.outputMessage(" Confirm your password please = >");
-        String password1 = scanner.nextLine();
-
-        presenter.outputMessage(" Enter your Major please = >");
+        presenter.outputMessage(" Enter your Major please = > ");
         String major = scanner.nextLine();
 
-        presenter.outputMessage(" Enter the year when you started your studies please = >");
-        int startYear = scanner.nextInt();
-        int year = Integer.valueOf(startYear);
+        presenter.outputMessage(" Enter the year when you started your studies please = > ");
+        int year = scanner.nextInt();
 
-        if(password.equals(password1)){
+        try{
             controller.userRegister(userName,password,major,year);
-            if(scanner.nextLine().equals("Invalid input")){
-                    welcomeMenuInterface.displayWelcomeMenu(presenter);
-                    welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter,this,
-                            logInInterface,mainMenuInterface,logOutInterface);
-            }else if(scanner.nextLine().equals("Registration Successful!")){
-                    mainMenuInterface.displayMainMenu(presenter);
-                    mainMenuInterface.choseOption(scanner, presenter, controller, logOutInterface);
-            }
-        }else {
-            presenter.outputMessage("Your Password doesn't match, please try again");
-            welcomeMenuInterface.displayWelcomeMenu(presenter);
+            mainMenuInterface.displayMainMenu(presenter);
+            mainMenuInterface.choseOption(scanner, presenter, controller,
+                    welcomeMenuInterface,this,logInInterface,showUsersInterface);
+
+        }catch (InvalidInputException e){
             welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter,this,
-                    logInInterface,mainMenuInterface,logOutInterface);
+                    logInInterface,mainMenuInterface,showUsersInterface);
         }
-
-
 
 
     }

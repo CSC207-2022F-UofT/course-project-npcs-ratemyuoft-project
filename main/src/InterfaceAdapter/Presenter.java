@@ -10,9 +10,10 @@ public class Presenter implements OutputBoundary{
     @Override
     public void showUsers(UserList userList) {
         for (User u: userList){
-            System.out.print(u.getUserName());
-            System.out.print(u.getMajor());
-            System.out.print(u.getStartYearOfStudy() + "\n");
+            System.out.print("||    Username : " + u.getUserName()+ "   ");
+            System.out.print("||    Major : " + u.getMajor() + "   ");
+            System.out.print("||    Major : " + u.getLogInStatus() + "   ");
+            System.out.print("||    Enrolment year : "+ u.getStartYearOfStudy() + "   " +"\n");
         }
 
     }
@@ -20,6 +21,8 @@ public class Presenter implements OutputBoundary{
 
     @Override
     public void outputMessage(String s) {
-        System.out.print(s);
+        System.out.println(s);
     }
+
+
 }

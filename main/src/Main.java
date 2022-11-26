@@ -3,14 +3,14 @@ import CLI.BootCLIInterface;
 import DataBase.DataBase;
 import InterfaceAdapter.Controller;
 import InterfaceAdapter.Presenter;
-import UseCase.DataAccess;
-import UseCase.InputBoundary;
-import UseCase.Interactor;
-import UseCase.OutputBoundary;
+import UseCase.*;
+
+import java.io.IOException;
+
 
 public class Main {
 
-    public static void main(String[] args) throws ClassNotFoundException {
+    public static void main(String[] args) throws ClassNotFoundException, IOException, InvalidInputException {
         Presenter presenter = new Presenter();
         OutputBoundary outputBoundary = presenter;
         DataAccess dataAccess = new DataBase();
@@ -18,6 +18,7 @@ public class Main {
         Controller controller = new Controller(inputBoundary);
         BootCLIInterface bootCLIInterface = new BootCLI();
         bootCLIInterface.boot(outputBoundary,dataAccess,inputBoundary,controller,presenter);
+
 
 
     }
