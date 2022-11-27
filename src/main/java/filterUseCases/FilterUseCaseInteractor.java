@@ -20,7 +20,7 @@ public class FilterUseCaseInteractor implements FilterInputBoundary{
 
     public void importCourse(){
         try {
-            this.courselist = gateway.importCourse();
+            this.courselist = gateway.importCourses();
 
         } catch (
                 IOException | ClassNotFoundException e) {

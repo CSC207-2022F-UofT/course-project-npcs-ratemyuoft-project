@@ -1,12 +1,15 @@
 package filterUseCases;
 
 import entities.CourseList;
+import entities.Course;
 
 import java.io.IOException;
 import java.util.NoSuchElementException;
 
 public interface FilterDAGateway {
 
-    CourseList importCourse() throws IOException, NoSuchElementException, ClassNotFoundException;
+    void saveCourse(CourseList users) throws IOException, NullPointerException;
+
+    CourseList importCourses() throws IOException, ClassNotFoundException;
 
 }
