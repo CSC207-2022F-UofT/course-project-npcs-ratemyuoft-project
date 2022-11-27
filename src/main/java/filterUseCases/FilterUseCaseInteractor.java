@@ -7,48 +7,58 @@ import java.util.Objects;
 
 public class FilterUseCaseInteractor implements FilterInputBoundary{
 
-    private static CourseList courselist;
+    private CourseList courselist;
 
-    public FilterResponseModel filterResponseModel;
+    public FilterOutputBoundary presenter;
 
-    public FilterUseCaseInteractor(FilterDAGateway gateway) {
+    public FilterDAGateway gateway;
+
+    public FilterUseCaseInteractor(FilterDAGateway gateway, FilterOutputBoundary filterOutputBoundary) {
+        this.presenter = filterOutputBoundary;
+        this.gateway = gateway;
+    }
+
+    public void importCourse(){
         try {
-            courselist = gateway.importCourse();
-            this.filterResponseModel = new FilterResponseModel();
+            this.courselist = gateway.importCourse();
+
         } catch (
                 IOException | ClassNotFoundException e) {
-            courselist = new CourseList();
-            this.filterResponseModel = new FilterResponseModel("Importation failed");
+            this.courselist = new CourseList();
+            presenter.filterFailView("Importation Failed.");
         }
     }
 
     public FilterResponseModel filterByRating(FilterByRatingRequestModel filterByRatingRequestModel){
+        this.importCourse();
         CourseList cl = new CourseList();
         for(Course c : courselist) {
             if(c.getCourseRating() >= filterByRatingRequestModel.getRating()) {
                 cl.addCourse(c);
             }
         }
-        return new FilterResponseModel(cl);
+        return presenter.filterSuccessView(cl);
     }
 
     public FilterResponseModel filterByFOS(FilterByFOSRequestModel filterByFOSRequestModel){
+        this.importCourse();
         CourseList cl = new CourseList();
         for(Course c : courselist) {
             if(Objects.equals(c.courseName, filterByFOSRequestModel.getFOS())) {
                 cl.addCourse(c);
             }
         }
-        return new FilterResponseModel(cl);
+        return presenter.filterSuccessView(cl);
     }
 
     public FilterResponseModel filterByName(FilterByNameRequestModel filterByNameRequestModel){
+        this.importCourse();
         CourseList cl = new CourseList();
         for(Course c : courselist) {
             if(Objects.equals(c.courseName, filterByNameRequestModel.getName())) {
                 cl.addCourse(c);
             }
         }
-        return new FilterResponseModel(cl);
+        return presenter.filterSuccessView(cl);
     }
 }

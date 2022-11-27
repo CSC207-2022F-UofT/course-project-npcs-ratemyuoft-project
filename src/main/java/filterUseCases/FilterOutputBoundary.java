@@ -1,11 +1,13 @@
 package filterUseCases;
 import entities.Course;
+import entities.CourseList;
+import filterInterfaceAdapters.FilterFailError;
 
 import java.util.List;
 
 public interface FilterOutputBoundary {
 
-    String outputMessage();
+    FilterResponseModel filterSuccessView(CourseList courseList);
 
-    List<Course> outputCourse();
+    FilterResponseModel filterFailView  (String s)  throws FilterFailError;
 }

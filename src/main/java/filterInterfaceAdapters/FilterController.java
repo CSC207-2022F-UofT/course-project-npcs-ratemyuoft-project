@@ -11,10 +11,10 @@ public class FilterController {
         this.interactor = interactor;
     }
 
-     public FilterResponseModel FilterByName(String name) {
+    public FilterResponseModel FilterByName(String name) {
          FilterByNameRequestModel filterByNameRequestModel = new FilterByNameRequestModel(name);
          return interactor.filterByName(filterByNameRequestModel);
-     }
+    }
 
     public FilterResponseModel FilterByFOS(String FOS) {
         FilterByFOSRequestModel filterByFOSRequestModel = new FilterByFOSRequestModel(FOS);
