@@ -7,7 +7,7 @@ import entities.UserList;
 
 /**
  * Database class is an implementation of the DataAccess interface that is located in package useCase
- *
+ * <p>
  * Its task is to create .sav file which is used as a database. Update the database and pass the data from it
  * to a UserList.
  */
@@ -18,11 +18,11 @@ public class DataBase implements DataAccess {
 
     /**
      * @param users is the UserList that has all the users
-     * @throws IOException
+     * @throws IOException .
      * @throws NullPointerException
      *
      * both Exceptions are used for debugging and restricting purposes
-     *
+     * <p>
      *
      * saveUser accepts users and writes it to userFile.sav
      */
@@ -39,7 +39,7 @@ public class DataBase implements DataAccess {
      * importUsers method:
      *
      * @return UserList consisting of all users that are currently in userFile.sav
-     * @throws IOException
+     * @throws IOException .
      * @throws ClassNotFoundException
      * both Exceptions are used for debugging and restricting purposes
      */

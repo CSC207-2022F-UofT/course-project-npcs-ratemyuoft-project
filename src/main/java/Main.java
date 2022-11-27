@@ -1,23 +1,20 @@
-import CLI.BootCLI;
-import CLI.BootCLIInterface;
-import dataBase.DataBase;
-import interfaceAdapter.Controller;
-import interfaceAdapter.Presenter;
-import useCase.*;
+import cli.BootCLI;
+import cli.BootCLIInterface;
+import useCase.InvalidInputException;
 
 import java.io.IOException;
 
 
+/**
+ * The most important class of the project and at the same time is the shortest one. It is not supposed to
+ * have any other calls other than to run the project.
+ */
 public class Main {
 
     public static void main(String[] args) throws ClassNotFoundException, IOException, InvalidInputException {
-        Presenter presenter = new Presenter();
-        OutputBoundary outputBoundary = presenter;
-        DataAccess dataAccess = new DataBase();
-        InputBoundary inputBoundary =new Interactor(outputBoundary,dataAccess);
-        Controller controller = new Controller(inputBoundary);
+
         BootCLIInterface bootCLIInterface = new BootCLI();
-        bootCLIInterface.boot(outputBoundary,dataAccess,inputBoundary,controller,presenter);
+        bootCLIInterface.boot();
 
 
 

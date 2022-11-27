@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * Class User represents single user of the program
- *
+ * <p>
  *
  */
 public class User implements Serializable {
@@ -60,9 +60,9 @@ public class User implements Serializable {
 
     /**
      *  Methods: getUserName,getPassword,getStartYearOfStudy,getMajor
-     *
+     * <p>
      *  Are getters that are meant to be used inside the program, to access data of particular user
-     *
+     * <p>
      *  They return:  Username, password, startYearOfStudy and major respectively
      */
     public String getUserName() {

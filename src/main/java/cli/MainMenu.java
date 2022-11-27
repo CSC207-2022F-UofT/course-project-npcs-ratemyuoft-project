@@ -1,4 +1,4 @@
-package CLI;
+package cli;
 
 import interfaceAdapter.Controller;
 import interfaceAdapter.Presenter;
@@ -38,11 +38,7 @@ public class MainMenu implements MainMenuInterface{
                 controller.userLogOut();
                 welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter,registerInterface,
                         logInInterface,this,showUsersInterface);
-            }  catch (IOException e) {
-                displayMainMenu(presenter);
-                this.choseOption(scanner,presenter,controller,welcomeMenuInterface,registerInterface,
-                        logInInterface,showUsersInterface);
-            } catch (InvalidInputException e) {
+            }  catch (IOException | InvalidInputException e) {
                 displayMainMenu(presenter);
                 this.choseOption(scanner,presenter,controller,welcomeMenuInterface,registerInterface,
                         logInInterface,showUsersInterface);

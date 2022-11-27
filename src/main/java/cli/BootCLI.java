@@ -1,19 +1,20 @@
-package CLI;
+package cli;
 
+import dataBase.DataBase;
 import interfaceAdapter.Controller;
 import interfaceAdapter.Presenter;
-import useCase.DataAccess;
-import useCase.InputBoundary;
-import useCase.InvalidInputException;
-import useCase.OutputBoundary;
+import useCase.*;
 
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * This is the class that creates all the needed interfaces and calls the welcome menu. This class is only called
+ * by using BootCLI interface in Main class.
+ */
 public class BootCLI implements BootCLIInterface {
     @Override
-    public void boot(OutputBoundary outputBoundary, DataAccess dataAccess,InputBoundary inputBoundary,
-                     Controller controller,Presenter presenter) throws IOException, ClassNotFoundException, InvalidInputException {
+    public void boot() throws IOException, ClassNotFoundException, InvalidInputException {
 
         Scanner scanner = new Scanner(System.in);
         RegisterInterface registerInterface = new Register();
@@ -21,6 +22,10 @@ public class BootCLI implements BootCLIInterface {
         MainMenuInterface mainMenuInterface = new MainMenu();
         WelcomeMenuInterface welcomeMenuInterface = new WelcomeMenu();
         ShowUsersInterface showUsersInterface = new ShowUsers();
+        Presenter presenter = new Presenter();
+        DataAccess dataAccess = new DataBase();
+        InputBoundary inputBoundary =new Interactor(presenter,dataAccess);
+        Controller controller = new Controller(inputBoundary);
 
         welcomeMenuInterface.displayWelcomeMenu(presenter);
         welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter, registerInterface,

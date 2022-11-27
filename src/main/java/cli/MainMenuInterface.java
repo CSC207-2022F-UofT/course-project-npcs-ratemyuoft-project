@@ -1,4 +1,4 @@
-package CLI;
+package cli;
 
 import interfaceAdapter.Controller;
 import interfaceAdapter.Presenter;
