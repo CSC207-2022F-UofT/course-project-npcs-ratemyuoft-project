@@ -5,6 +5,15 @@ import useCase.*;
 import java.io.IOException;
 
 
+/**
+ * Controller class is used for communicating with inputBoundary interface . It's a starting point for information
+ * that is passed from UI to back end through the interface. That is why it is packaged as interfaceAdapter
+ *
+ *
+ *
+ * I don't think it is obligatory to explain each method here, because the only function of controller is to try
+ * to pass a method call to input boundary, and in case Exception is thrown- to catch it.
+ */
 public class Controller {
     private final InputBoundary inputBoundary;
 
@@ -16,11 +25,9 @@ public class Controller {
         try {
             inputBoundary.showUsers();
             inputBoundary.outputMessage("All Users are displayed"+ "\n");
-        }catch (IOException e){
+        }catch (IOException | ClassNotFoundException e){
             inputBoundary.outputMessage("Invalid input"+ "\n");
 
-        }catch (ClassNotFoundException e ){
-            inputBoundary.outputMessage("Invalid input"+ "\n");
         }
     }
 

@@ -34,6 +34,7 @@ public class Login implements LogInInterface  {
                         registerInterface,this,showUsersInterface);
             }catch (InvalidInputException e){
                 presenter.outputMessage("Please try again"+"\n" + "\n");
+                mainMenuInterface.displayMainMenu(presenter);
                 welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter,registerInterface,
                         this,mainMenuInterface,showUsersInterface);
             }

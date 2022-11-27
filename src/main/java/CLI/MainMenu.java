@@ -48,7 +48,7 @@ public class MainMenu implements MainMenuInterface{
                         logInInterface,showUsersInterface);
             }
 
-        } else{
+        }else{
             displayMainMenu(presenter);
             this.choseOption(scanner,presenter,controller,welcomeMenuInterface,registerInterface,
                     logInInterface,showUsersInterface);
