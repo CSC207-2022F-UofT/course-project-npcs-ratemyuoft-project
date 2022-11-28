@@ -8,12 +8,10 @@ import java.io.IOException;
 import java.io.*;
 
 public class DataAccess implements Gateway {
-    private static final String fileName = "Database.sav";
+    private static final String fileName = "Database10.sav";
 
     @Override
     public CourseList importcourselist() throws IOException, ClassNotFoundException {
-
-
         FileInputStream fileIn = new FileInputStream(fileName);
         ObjectInputStream inputStream = new ObjectInputStream(fileIn);
        //BufferedReader br = new BufferedReader(new FileReader(fileName));
@@ -28,6 +26,7 @@ public class DataAccess implements Gateway {
     public void SaveCourse(CourseList commentList) throws IOException {
         FileOutputStream fileOut = new FileOutputStream(fileName);
         ObjectOutputStream outputStream = new ObjectOutputStream(fileOut);
+
         outputStream.writeObject(commentList);
         fileOut.close();
     }

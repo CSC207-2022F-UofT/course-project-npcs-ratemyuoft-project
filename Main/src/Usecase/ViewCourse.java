@@ -35,8 +35,6 @@ public class ViewCourse implements InputBoundary{
             this.course = new Course("dfd", "fd");
         }
 
-
-
         this.reviews = this.course.GetReviews();
         this.output = output;
     }

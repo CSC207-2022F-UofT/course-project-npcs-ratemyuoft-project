@@ -1,8 +1,6 @@
 package InterfaceAdapters;
 
-import Usecase.InputBoundary;
 import Usecase.OutputBoundary;
-import Usecase.ViewCourse;
 import entity.Course;
 import entity.Review;
 
@@ -18,12 +16,15 @@ public class Presenter implements OutputBoundary {
     @Override
 
     public void Display(ArrayList<Review> rlist, Course c){
-        System.out.println(c.courseName);
+        System.out.println("Course: " + c.courseName);
 
         for (Review r: rlist){
-            System.out.println(r.optionalComment);
+            System.out.println("");
+            System.out.println("Name: " + r.Name);
+            System.out.println("Rating: " +r.Rating);
+            System.out.println("Comment: " + r.Comment);
+            System.out.println("Likes: " + r.numberOfLikes);
         }
-
     }
 
 }

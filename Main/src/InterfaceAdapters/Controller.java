@@ -24,6 +24,6 @@ public class Controller {
 
     public void Display(){
         InputBoundary ip = new ViewCourse(this.coursename, this.gateway, this.outputBoundary);
-
+        ip.Displayinformation();
     }
 }
