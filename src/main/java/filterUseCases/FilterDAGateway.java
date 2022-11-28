@@ -4,7 +4,6 @@ import entities.CourseList;
 import entities.Course;
 
 import java.io.IOException;
-import java.util.NoSuchElementException;
 
 public interface FilterDAGateway {
 

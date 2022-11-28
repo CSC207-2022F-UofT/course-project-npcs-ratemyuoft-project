@@ -1,24 +1,22 @@
-import filterInterfaceAdapters.DataBase;
-import filterInterfaceAdapters.FilterController;
-import filterInterfaceAdapters.FilterPresenter;
-import filterUseCases.*;
+import cli.BootCLI;
+import cli.BootCLIInterface;
+import useCase.InvalidInputException;
 
 import java.io.IOException;
 
+
+/**
+ * The most important class of the project and at the same time is the shortest one. It is not supposed to
+ * have any other calls other than to run the project.
+ */
 public class Main {
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        FilterDAGateway dataBase = new DataBase();
-        ((DataBase) dataBase).generateTempCourses2();
-//        System.out.println(dataBase.importCourses());
+    public static void main(String[] args) throws ClassNotFoundException, IOException, InvalidInputException {
 
-        FilterOutputBoundary filterPresenter = new FilterPresenter();
-        FilterInputBoundary filterUseCaseInteracter = new FilterUseCaseInteractor(dataBase, filterPresenter);
-        FilterController filterController = new FilterController(filterUseCaseInteracter);
-//
+        BootCLIInterface bootCLIInterface = new BootCLI();
+        bootCLIInterface.boot();
 
-        System.out.println(filterController.filterByFOS("Mathematics"));
-        System.out.println(filterController.filterByRating(6));
-        System.out.println(filterController.filterByName("MAT223"));
+
+
     }
 }

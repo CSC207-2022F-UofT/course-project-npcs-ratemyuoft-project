@@ -11,14 +11,15 @@ public class MainMenu implements MainMenuInterface{
     @Override
     public void displayMainMenu(Presenter presenter) {
         presenter.outputMessage("Avaliable Actions" + "\n" + "1. Show all the Users on our forum" + "\n" +
-                "2. Log out" + "\n" + "Another features will be avaliable later..." + "\n");
+                "2. Log out" + "\n" + "3. Filter for courses" + "\n" +
+                "Other features will be avaliable later..." + "\n");
         presenter.outputMessage("Please, enter the number of the option to proceed"+ "\n");
     }
 
     @Override
     public void choseOption(Scanner scanner,Presenter presenter, Controller controller,
-                             WelcomeMenuInterface welcomeMenuInterface,
-                            RegisterInterface registerInterface,LogInInterface logInInterface,
+                            WelcomeMenuInterface welcomeMenuInterface,
+                            RegisterInterface registerInterface, LogInInterface logInInterface,
                             ShowUsersInterface showUsersInterface)
             throws  ClassNotFoundException {
         int choice = scanner.nextInt();
@@ -44,7 +45,10 @@ public class MainMenu implements MainMenuInterface{
                         logInInterface,showUsersInterface);
             }
 
-        }else{
+        } else if (choice == 3) {
+
+
+        } else{
             displayMainMenu(presenter);
             this.choseOption(scanner,presenter,controller,welcomeMenuInterface,registerInterface,
                     logInInterface,showUsersInterface);

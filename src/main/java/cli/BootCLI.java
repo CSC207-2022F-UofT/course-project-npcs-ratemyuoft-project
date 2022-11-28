@@ -1,12 +1,14 @@
 package cli;
 
 import dataBase.DataBase;
+import filterInterfaceAdapters.FilterPresenter;
 import interfaceAdapter.Controller;
 import interfaceAdapter.Presenter;
 import useCase.*;
 
 import java.io.IOException;
 import java.util.Scanner;
+
 
 /**
  * This is the class that creates all the needed interfaces and calls the welcome menu. This class is only called
@@ -22,9 +24,11 @@ public class BootCLI implements BootCLIInterface {
         MainMenuInterface mainMenuInterface = new MainMenu();
         WelcomeMenuInterface welcomeMenuInterface = new WelcomeMenu();
         ShowUsersInterface showUsersInterface = new ShowUsers();
+
+
         Presenter presenter = new Presenter();
         DataAccess dataAccess = new DataBase();
-        InputBoundary inputBoundary =new Interactor(presenter,dataAccess);
+        InputBoundary inputBoundary = new Interactor(presenter,dataAccess);
         Controller controller = new Controller(inputBoundary);
 
         welcomeMenuInterface.displayWelcomeMenu(presenter);
