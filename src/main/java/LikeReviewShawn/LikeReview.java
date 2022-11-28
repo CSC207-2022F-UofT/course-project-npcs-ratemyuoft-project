@@ -1,8 +1,5 @@
-package LikeReview;
+package LikeReviewShawn;
 
-import DataBase.DataAccess;
-import Usecase.Gateway;
-import LikeReview.OutputBoundaryL;
 import entity.Course;
 import entity.CourseList;
 import entity.Review;
@@ -14,19 +11,19 @@ import java.util.Objects;
 public class LikeReview implements InputBoundaryL {
     public Review review;
     public CourseList courseList;
-    public Gateway gateway;
+    public UsecaseShawn.Gateway gatewayView;
     public OutputBoundaryL output;
 
     public int iter;
     public Course cs;
 
-    public LikeReview(String ReviewName, Gateway gateway, OutputBoundaryL output) {
+    public LikeReview(String ReviewName, UsecaseShawn.Gateway gatewayView, OutputBoundaryL output) {
 
-        this.gateway = gateway;
+        this.gatewayView = gatewayView;
         this.output = output;
 
         try {
-            this.courseList = this.gateway.importcourselist();
+            this.courseList = this.gatewayView.importcourselist();
         } catch (IOException | ClassNotFoundException e) {
             this.courseList = new CourseList();
         }
@@ -53,7 +50,7 @@ public class LikeReview implements InputBoundaryL {
     @Override
     public void AddLike () throws IOException, ClassNotFoundException {
         cs.reviews.get(iter).Like();
-        this.gateway.SaveCourse(this.courseList);
+        this.gatewayView.SaveCourse(this.courseList);
 
         //this.output.outputMessage("Course Liked");
             //System.out.println(this.review.numberOfLikes);

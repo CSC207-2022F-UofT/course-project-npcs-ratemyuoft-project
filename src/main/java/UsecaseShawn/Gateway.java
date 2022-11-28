@@ -1,7 +1,6 @@
-package Usecase;
+package UsecaseShawn;
 
 import entity.CourseList;
-
 import java.io.IOException;
 
 public interface Gateway {

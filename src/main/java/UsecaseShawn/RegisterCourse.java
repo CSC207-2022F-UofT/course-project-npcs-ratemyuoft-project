@@ -1,16 +1,15 @@
-package Usecase;
+package UsecaseShawn;
 
-import DataBase.DataAccess;
+import DataBaseShawn.DataAccess;
 import entity.Course;
 import entity.CourseList;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class RegisterCourse {
     public Course C;
 
-    public RegisterCourse(Course C, DataAccess gateway) throws IOException, ClassNotFoundException {
+    public RegisterCourse(Course C, DataBaseShawn.DataAccess gateway) throws IOException, ClassNotFoundException {
         try{
             CourseList courselist = gateway.importcourselist();
             for (Course c: courselist){

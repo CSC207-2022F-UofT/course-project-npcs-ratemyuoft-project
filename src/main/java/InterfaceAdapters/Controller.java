@@ -1,12 +1,9 @@
 package InterfaceAdapters;
 
-import Usecase.Gateway;
-import Usecase.InputBoundary;
-import Usecase.OutputBoundary;
-import Usecase.ViewCourse;
-import entity.Review;
-
-import java.util.ArrayList;
+import UsecaseShawn.Gateway;
+import UsecaseShawn.InputBoundary;
+import UsecaseShawn.OutputBoundary;
+import UsecaseShawn.ViewCourse;
 
 public class Controller {
     private String coursename;

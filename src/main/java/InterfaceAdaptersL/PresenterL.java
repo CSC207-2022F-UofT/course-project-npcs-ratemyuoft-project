@@ -1,6 +1,7 @@
 package InterfaceAdaptersL;
 
-import LikeReview.OutputBoundaryL;
+import LikeReviewShawn.OutputBoundaryL;
+import LikeReviewShawn.OutputBoundaryL;
 
 public class PresenterL implements OutputBoundaryL {
     @Override

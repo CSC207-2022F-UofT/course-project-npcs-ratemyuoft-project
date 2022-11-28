@@ -1,12 +1,10 @@
-package Usecase;
+package UsecaseShawn;
 import entity.Course;
 import entity.CourseList;
 import entity.Review;
 
 import java.io.IOException;
-import java.io.InvalidClassException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Objects;
 
 public class ViewCourse implements InputBoundary{

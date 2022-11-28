@@ -32,7 +32,6 @@ public class DataBase implements DataAccess {
         ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
         outputStream.writeObject(users);
         outputStream.close();
-
     }
 
     /**

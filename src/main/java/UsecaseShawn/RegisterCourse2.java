@@ -1,6 +1,6 @@
-package Usecase;
+package UsecaseShawn;
 
-import DataBase.DataAccess;
+import DataBaseShawn.DataAccess;
 import entity.CourseList;
 
 import java.io.IOException;

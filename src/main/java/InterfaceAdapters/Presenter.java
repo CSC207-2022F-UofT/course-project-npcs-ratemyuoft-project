@@ -1,12 +1,11 @@
 package InterfaceAdapters;
 
-import Usecase.OutputBoundary;
 import entity.Course;
 import entity.Review;
 
 import java.util.ArrayList;
 
-public class Presenter implements OutputBoundary {
+public class Presenter implements UsecaseShawn.OutputBoundary {
 
     @Override
     public void outputMessage(String s ){

@@ -1,7 +1,6 @@
-package DataBase;
+package DataBaseShawn;
 
-import Usecase.Gateway;
-import Usecase.RegisterCourse2;
+import UsecaseShawn.RegisterCourse2;
 import entity.Course;
 import entity.CourseList;
 import entity.Review;
@@ -10,7 +9,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.*;
 
-public class DataAccess implements Gateway {
+public class DataAccess implements UsecaseShawn.Gateway {
     private static final String fileName = "Database18.sav";
 
     @Override

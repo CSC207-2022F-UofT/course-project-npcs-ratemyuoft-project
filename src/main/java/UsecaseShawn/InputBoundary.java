@@ -1,6 +1,5 @@
-package Usecase;
+package UsecaseShawn;
 
-import entity.Course;
 import entity.Review;
 
 import java.util.ArrayList;
