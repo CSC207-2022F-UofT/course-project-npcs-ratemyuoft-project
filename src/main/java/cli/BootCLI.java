@@ -1,7 +1,12 @@
 package cli;
 
 import dataBase.DataBase;
+import filterInterfaceAdapters.FilterController;
 import filterInterfaceAdapters.FilterPresenter;
+import filterUseCases.FilterDAGateway;
+import filterUseCases.FilterInputBoundary;
+import filterUseCases.FilterOutputBoundary;
+import filterUseCases.FilterUseCaseInteractor;
 import interfaceAdapter.Controller;
 import interfaceAdapter.Presenter;
 import useCase.*;
@@ -25,15 +30,22 @@ public class BootCLI implements BootCLIInterface {
         WelcomeMenuInterface welcomeMenuInterface = new WelcomeMenu();
         ShowUsersInterface showUsersInterface = new ShowUsers();
 
+        Filter filter = new Filter();
+
 
         Presenter presenter = new Presenter();
-        DataAccess dataAccess = new DataBase();
+        DataAccess dataAccess = new dataBase.DataBase();
         InputBoundary inputBoundary = new Interactor(presenter,dataAccess);
         Controller controller = new Controller(inputBoundary);
 
+        FilterOutputBoundary filterPresenter = new FilterPresenter();
+        FilterDAGateway filterDataBase = new filterInterfaceAdapters.DataBase();
+        FilterInputBoundary filterUseCaseInteracter = new FilterUseCaseInteractor(filterDataBase, filterPresenter);
+        FilterController filterController = new FilterController(filterUseCaseInteracter);
+
         welcomeMenuInterface.displayWelcomeMenu(presenter);
         welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter, registerInterface,
-                logInInterface,mainMenuInterface,showUsersInterface);
+                logInInterface,mainMenuInterface,showUsersInterface, filter);
 
 
     }

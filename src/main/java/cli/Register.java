@@ -13,7 +13,7 @@ public class Register implements RegisterInterface{
                          MainMenuInterface mainMenuInterface,
                          WelcomeMenuInterface welcomeMenuInterface,
                          LogInInterface logInInterface,
-                         ShowUsersInterface showUsersInterface) throws IOException, ClassNotFoundException, InvalidInputException {
+                         ShowUsersInterface showUsersInterface, Filter filter) throws IOException, ClassNotFoundException, InvalidInputException {
 
         presenter.outputMessage(" Enter username please = > "+ "\n");
         String userName = scanner.nextLine();
@@ -31,11 +31,11 @@ public class Register implements RegisterInterface{
             controller.userRegister(userName,password,major,year);
             mainMenuInterface.displayMainMenu(presenter);
             mainMenuInterface.choseOption(scanner, presenter, controller,
-                    welcomeMenuInterface,this,logInInterface,showUsersInterface);
+                    welcomeMenuInterface,this,logInInterface,showUsersInterface, filter);
 
         }catch (InvalidInputException e){
             welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter,this,
-                    logInInterface,mainMenuInterface,showUsersInterface);
+                    logInInterface,mainMenuInterface,showUsersInterface, filter);
         }
 
 

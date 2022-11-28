@@ -1,5 +1,6 @@
 package cli;
 
+import filterInterfaceAdapters.FilterFailError;
 import interfaceAdapter.Controller;
 import interfaceAdapter.Presenter;
 import useCase.InvalidInputException;
@@ -19,24 +20,24 @@ public class WelcomeMenu implements WelcomeMenuInterface{
     public void choseLoginOrRegister(Scanner scanner, Controller controller, Presenter presenter,
                                      RegisterInterface registerInterface, LogInInterface logInInterface,
                                      MainMenuInterface mainMenuInterface,
-                                     ShowUsersInterface showUsersInterface)
-            throws IOException, ClassNotFoundException, InvalidInputException {
+                                     ShowUsersInterface showUsersInterface, Filter filter)
+            throws IOException, ClassNotFoundException, InvalidInputException, FilterFailError {
 
         String choice = scanner.nextLine();
         if(choice.contains("1")){
 
             registerInterface.register(scanner,controller,presenter,mainMenuInterface,
-                    this ,logInInterface,showUsersInterface);
+                    this ,logInInterface,showUsersInterface, filter);
 
 
         } else if (choice.contains("2")) {
             logInInterface.login(scanner,controller,presenter, mainMenuInterface,
-                    this,registerInterface,showUsersInterface );
+                    this,registerInterface,showUsersInterface, filter);
 
         } else{
             displayWelcomeMenu(presenter);
             choseLoginOrRegister(scanner,controller,presenter,registerInterface,logInInterface,
-                    mainMenuInterface,showUsersInterface);
+                    mainMenuInterface,showUsersInterface, filter);
         }
     }
 }

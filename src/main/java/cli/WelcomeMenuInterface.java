@@ -14,6 +14,6 @@ public interface WelcomeMenuInterface {
     void choseLoginOrRegister(Scanner scanner, Controller controller, Presenter presenter,
                               RegisterInterface registerInterface, LogInInterface logInInterface,
                               MainMenuInterface mainMenuInterface,
-                              ShowUsersInterface showUsersInterface) throws IOException, ClassNotFoundException, InvalidInputException;
+                              ShowUsersInterface showUsersInterface, Filter filter) throws IOException, ClassNotFoundException, InvalidInputException;
 
 }

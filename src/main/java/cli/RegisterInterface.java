@@ -11,6 +11,6 @@ public interface RegisterInterface {
     void register(Scanner scanner, Controller controller, Presenter presenter,
                   MainMenuInterface mainMenuInterface,
                   WelcomeMenuInterface welcomeMenuInterface, LogInInterface logInInterface,
-                  ShowUsersInterface showUsersInterface) throws IOException, ClassNotFoundException, InvalidInputException;
+                  ShowUsersInterface showUsersInterface, Filter filter) throws IOException, ClassNotFoundException, InvalidInputException;
 
 }

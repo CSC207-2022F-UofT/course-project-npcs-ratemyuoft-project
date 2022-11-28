@@ -11,6 +11,6 @@ public interface ShowUsersInterface {
                    WelcomeMenuInterface welcomeMenuInterface,
                    RegisterInterface registerInterface,
                    LogInInterface logInInterface,
-                   MainMenuInterface mainMenuInterface) throws IOException, ClassNotFoundException;
+                   MainMenuInterface mainMenuInterface, Filter filter) throws IOException, ClassNotFoundException;
 
 }

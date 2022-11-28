@@ -8,7 +8,9 @@ public class FilterPresenter implements FilterOutputBoundary {
 
     @Override
     public FilterResponseModel filterSuccessView(CourseList courseList) {
-        return new FilterResponseModel(courseList);
+        FilterResponseModel frs = new FilterResponseModel(courseList);
+        System.out.println(frs);
+        return frs;
     }
 
     @Override

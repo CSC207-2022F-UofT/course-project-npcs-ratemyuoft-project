@@ -13,7 +13,12 @@ public interface MainMenuInterface {
     void choseOption(Scanner scanner,Presenter presenter, Controller controller,
                       WelcomeMenuInterface welcomeMenuInterface,
                      RegisterInterface registerInterface,LogInInterface logInInterface,
-                     ShowUsersInterface showUsersInterface)
+                     ShowUsersInterface showUsersInterface, Filter filter)
             throws IOException, ClassNotFoundException;
 
+//    void choseOption(Scanner scanner, Presenter presenter, Controller controller,
+//                     WelcomeMenuInterface welcomeMenuInterface,
+//                     RegisterInterface registerInterface, LogInInterface logInInterface,
+//                     ShowUsersInterface showUsersInterface, FilterController filterController, FilterPresenter filterPresenter)
+//            throws  ClassNotFoundException;
 }
