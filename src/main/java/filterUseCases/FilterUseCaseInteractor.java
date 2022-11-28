@@ -1,4 +1,5 @@
 package filterUseCases;
+import courseDataBase.CourseDataAccessInterface;
 import dataStructures.FilterResponseModel;
 import dataStructures.Quartet;
 import dataStructures.FilterResponseSubModel;

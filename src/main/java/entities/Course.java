@@ -27,6 +27,8 @@ public class Course implements Serializable {
     public double courseRating = 0.0;
     public String fieldOfStudy;
 
+    public int reviewCount;
+
     /**
      * the constructor of an instance of Course class takes in a String and another String passed in as the courseName and
      * fieldOfStudy respectively.
@@ -46,6 +48,9 @@ public class Course implements Serializable {
     public String getFieldOfStudy() { return this.fieldOfStudy; }
     public double getCourseRating() { return this.courseRating; }
     public ArrayList<Review> getReviews() { return reviews;}
+    public int getReviewCount() {
+        return reviewCount;
+    }
 
     //Setters
     public void setCourseName(String courseName) {
@@ -59,5 +64,9 @@ public class Course implements Serializable {
     }
     public void addReview(Review r) {
         reviews.add(r);
+    }
+
+    public void setReviewCount(int r) {
+        this.reviewCount = r;
     }
 }

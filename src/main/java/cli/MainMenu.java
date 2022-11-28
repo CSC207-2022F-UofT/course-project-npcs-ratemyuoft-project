@@ -3,7 +3,7 @@ package cli;
 import courseDataBase.CourseDataAccess;
 import filterInterfaceAdapters.FilterController;
 import filterInterfaceAdapters.FilterPresenter;
-import filterUseCases.CourseDataAccessInterface;
+import courseDataBase.CourseDataAccessInterface;
 import filterUseCases.FilterInputBoundary;
 import filterUseCases.FilterOutputBoundary;
 import filterUseCases.FilterUseCaseInteractor;

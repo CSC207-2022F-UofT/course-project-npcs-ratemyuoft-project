@@ -4,7 +4,6 @@ import java.io.*;
 
 import entities.Course;
 import entities.CourseList;
-import filterUseCases.CourseDataAccessInterface;
 
 
 /**

@@ -1,4 +1,4 @@
-package filterUseCases;
+package courseDataBase;
 
 import entities.CourseList;
 
