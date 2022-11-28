@@ -25,6 +25,4 @@ public class FilterController {
         return interactor.filterByRating(filterByRatingRequestModel);
     }
 
-
-
 }
