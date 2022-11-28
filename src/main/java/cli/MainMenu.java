@@ -1,26 +1,27 @@
 package cli;
 
+import courseDataBase.CourseDataAccess;
 import filterInterfaceAdapters.FilterController;
 import filterInterfaceAdapters.FilterFailError;
 import filterInterfaceAdapters.FilterPresenter;
-import filterUseCases.FilterDAGateway;
+import courseDataBase.CourseDataBaseGateway;
 import filterUseCases.FilterInputBoundary;
 import filterUseCases.FilterOutputBoundary;
 import filterUseCases.FilterUseCaseInteractor;
-import interfaceAdapter.Controller;
-import interfaceAdapter.Presenter;
-import useCase.InvalidInputException;
+import loginInterfaceAdapter.LoginController;
+import loginInterfaceAdapter.LoginPresenter;
+import loginUseCase.InvalidInputException;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class MainMenu implements MainMenuInterface{
     @Override
-    public void displayMainMenu(Presenter presenter) {
-        presenter.outputMessage("Avaliable Actions" + "\n" + "1. Show all the Users on our forum" + "\n" +
+    public void displayMainMenu(LoginPresenter loginPresenter) {
+        loginPresenter.outputMessage("Avaliable Actions" + "\n" + "1. Show all the Users on our forum" + "\n" +
                 "2. Log out" + "\n" + "3. Filter for courses" + "\n" +
                 "Other features will be avaliable later..." + "\n");
-        presenter.outputMessage("Please, enter the number of the option to proceed"+ "\n");
+        loginPresenter.outputMessage("Please, enter the number of the option to proceed"+ "\n");
     }
 
 //    @Override
@@ -63,13 +64,13 @@ public class MainMenu implements MainMenuInterface{
 //    }
 
     @Override
-    public void choseOption(Scanner scanner, Presenter presenter, Controller controller, WelcomeMenuInterface welcomeMenuInterface, RegisterInterface registerInterface, LogInInterface logInInterface, ShowUsersInterface showUsersInterface, Filter filter) throws ClassNotFoundException, FilterFailError {
+    public void choseOption(Scanner scanner, LoginPresenter loginPresenter, LoginController loginController, WelcomeMenuInterface welcomeMenuInterface, RegisterInterface registerInterface, LogInInterface logInInterface, ShowUsersInterface showUsersInterface, Filter filter) throws ClassNotFoundException, FilterFailError {
         int choice = scanner.nextInt();
 
         if(choice == 1){
 
             try {
-                showUsersInterface.showUsers(scanner,presenter,controller,welcomeMenuInterface,
+                showUsersInterface.showUsers(scanner, loginPresenter, loginController,welcomeMenuInterface,
                         registerInterface,logInInterface,this, filter);
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -78,12 +79,12 @@ public class MainMenu implements MainMenuInterface{
 
         } else if (choice == 2) {
             try{
-                controller.userLogOut();
-                welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter,registerInterface,
+                loginController.userLogOut();
+                welcomeMenuInterface.choseLoginOrRegister(scanner, loginController, loginPresenter,registerInterface,
                         logInInterface,this,showUsersInterface, filter);
             }  catch (IOException | InvalidInputException e) {
-                displayMainMenu(presenter);
-                this.choseOption(scanner,presenter,controller,welcomeMenuInterface,registerInterface,
+                displayMainMenu(loginPresenter);
+                this.choseOption(scanner, loginPresenter, loginController,welcomeMenuInterface,registerInterface,
                         logInInterface,showUsersInterface, filter);
             }
 
@@ -92,18 +93,20 @@ public class MainMenu implements MainMenuInterface{
         } else if (choice == 3){
 
             FilterOutputBoundary filterPresenter = new FilterPresenter();
-            FilterDAGateway filterDataBase = new filterInterfaceAdapters.DataBase();
+            CourseDataBaseGateway filterDataBase = new CourseDataAccess();
             FilterInputBoundary filterUseCaseInteracter = new FilterUseCaseInteractor(filterDataBase, filterPresenter);
             FilterController filterController = new FilterController(filterUseCaseInteracter);
             filter.chooseFilterOptions(scanner, filterController, filterPresenter, this);
 
         } else {
-            displayMainMenu(presenter);
-            this.choseOption(scanner,presenter,controller,welcomeMenuInterface,registerInterface,
+            displayMainMenu(loginPresenter);
+            this.choseOption(scanner, loginPresenter, loginController,welcomeMenuInterface,registerInterface,
                     logInInterface,showUsersInterface, filter);
         }
 
     }
+
+
 
 
 }

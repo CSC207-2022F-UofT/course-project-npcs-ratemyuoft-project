@@ -1,61 +1,51 @@
 package entities;
+import java.io.Serializable;
+
 
 import java.util.HashMap;
 import java.util.Map;
 
+public class Review implements Serializable{
 
-public class  Review {
+    public String Name;
 
-    public int raitingOfTheCourse;
+    public int Rating;
 
-    public int numberOfLikes = 0;
+    public int numberOfLikes;
 
-    public String optionalComment;
+    public String Comment;
 
-    public int numberOfDislikes= 0 ;
-
-    public Map<User,Comment > comments= new HashMap<>();
+    public Map<User,String> comments= new HashMap<>();
 
     //Constructors 1st one for having no comment, just a raiting and the 2nd one is for review with comment
-    public Review(int raitingOfTheCourse){
-        this.raitingOfTheCourse = raitingOfTheCourse;
-    }
-
-    public Review(int raitingOfTheCourse, String optionalComment){
-        this.raitingOfTheCourse = raitingOfTheCourse;
-        this.optionalComment = optionalComment;
+    public Review(int Rating, String Comment, String Name){
+        this.Rating = Rating;
+        this.Comment = Comment;
+        this.Name = Name;
+        this.numberOfLikes = 0;
     }
     //Getters
-
-    public int getRaitingOfTheCourse(){
-        return this.raitingOfTheCourse;
-
+    public int getRating(){
+        return this.Rating;
     }
     public int getNumberOfLikes(){
         return this.numberOfLikes;
     }
-    public int getNumberOfDislikes(){
-        return this.numberOfDislikes;
-    }
 
-    public String getOptionalComment() {
-        return this.optionalComment;
+    public String getComment() {
+        return this.Comment;
     }
     //Setters
 
-    public void setNumberOfDislikes(int numberOfDislikes) {
-        this.numberOfDislikes = numberOfDislikes;
+    public void Like() {
+        this.numberOfLikes += 1;
     }
 
-    public void setNumberOfLikes(int numberOfLikes) {
-        this.numberOfLikes = numberOfLikes;
+    public void setRating(int rating) {
+        this.Rating = rating;
     }
 
-    public void setRaitingOfTheCourse(int raitingOfTheCourse) {
-        this.raitingOfTheCourse = raitingOfTheCourse;
-    }
-
-    public void setOptionalComment(String optionalComment) {
-        this.optionalComment = optionalComment;
+    public void setComment(String comment) {
+        this.Comment = comment;
     }
 }

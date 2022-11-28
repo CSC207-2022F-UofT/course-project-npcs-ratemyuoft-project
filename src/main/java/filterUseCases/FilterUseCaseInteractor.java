@@ -1,4 +1,5 @@
 package filterUseCases;
+import courseDataBase.CourseDataBaseGateway;
 import entities.CourseList;
 import entities.Course;
 
@@ -11,9 +12,9 @@ public class FilterUseCaseInteractor implements FilterInputBoundary{
 
     public FilterOutputBoundary presenter;
 
-    public FilterDAGateway gateway;
+    public CourseDataBaseGateway gateway;
 
-    public FilterUseCaseInteractor(FilterDAGateway gateway, FilterOutputBoundary filterOutputBoundary) {
+    public FilterUseCaseInteractor(CourseDataBaseGateway gateway, FilterOutputBoundary filterOutputBoundary) {
         this.presenter = filterOutputBoundary;
         this.gateway = gateway;
     }

@@ -1,15 +1,19 @@
 package cli;
 
-import dataBase.DataBase;
+import courseDataBase.CourseDataAccess;
+import userDataBase.UserDataBase;
 import filterInterfaceAdapters.FilterController;
 import filterInterfaceAdapters.FilterPresenter;
-import filterUseCases.FilterDAGateway;
+import courseDataBase.CourseDataBaseGateway;
 import filterUseCases.FilterInputBoundary;
 import filterUseCases.FilterOutputBoundary;
 import filterUseCases.FilterUseCaseInteractor;
-import interfaceAdapter.Controller;
-import interfaceAdapter.Presenter;
-import useCase.*;
+import loginInterfaceAdapter.LoginController;
+import loginInterfaceAdapter.LoginPresenter;
+import loginUseCase.LoginDataAccess;
+import loginUseCase.LoginInputBoundary;
+import loginUseCase.LoginInteractor;
+import loginUseCase.InvalidInputException;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -34,18 +38,18 @@ public class BootCLI implements BootCLIInterface {
         Filter filter = new Filter();
 
 
-        Presenter presenter = new Presenter();
-        DataAccess dataAccess = new dataBase.DataBase();
-        InputBoundary inputBoundary = new Interactor(presenter,dataAccess);
-        Controller controller = new Controller(inputBoundary);
+        LoginPresenter loginPresenter = new LoginPresenter();
+        LoginDataAccess loginDataAccess = new UserDataBase();
+        LoginInputBoundary loginInputBoundary = new LoginInteractor(loginPresenter, loginDataAccess);
+        LoginController loginController = new LoginController(loginInputBoundary);
 
         FilterOutputBoundary filterPresenter = new FilterPresenter();
-        FilterDAGateway filterDataBase = new filterInterfaceAdapters.DataBase();
+        CourseDataBaseGateway filterDataBase = new CourseDataAccess();
         FilterInputBoundary filterUseCaseInteracter = new FilterUseCaseInteractor(filterDataBase, filterPresenter);
         FilterController filterController = new FilterController(filterUseCaseInteracter);
 
-        welcomeMenuInterface.displayWelcomeMenu(presenter);
-        welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter, registerInterface,
+        welcomeMenuInterface.displayWelcomeMenu(loginPresenter);
+        welcomeMenuInterface.choseLoginOrRegister(scanner, loginController, loginPresenter, registerInterface,
                 logInInterface,mainMenuInterface,showUsersInterface, filter);
 
 

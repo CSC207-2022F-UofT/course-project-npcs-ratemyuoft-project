@@ -30,6 +30,10 @@ public class Course implements Serializable {
 
     public double getCourseRating() { return this.courseRating; }
 
+    public ArrayList<Review> getReviews() {
+        return reviews;
+    }
+
     //Setters
 
 
@@ -47,5 +51,9 @@ public class Course implements Serializable {
 
     public String toString(){
         return "Name: " + courseName + ", " + "Field of Studies: " + fieldOfStudy + ", Rating: " + courseRating;
+    }
+
+    public void addReview(Review r) {
+        reviews.add(r);
     }
 }

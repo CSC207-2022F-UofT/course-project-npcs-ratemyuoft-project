@@ -1,6 +1,6 @@
 import cli.BootCLI;
 import cli.BootCLIInterface;
-import useCase.InvalidInputException;
+import loginUseCase.InvalidInputException;
 
 import java.io.IOException;
 
@@ -15,8 +15,6 @@ public class Main {
 
         BootCLIInterface bootCLIInterface = new BootCLI();
         bootCLIInterface.boot();
-
-
 
     }
 }

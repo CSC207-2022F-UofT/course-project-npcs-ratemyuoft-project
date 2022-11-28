@@ -1,7 +1,7 @@
 package useCase;
 
 import dataBase.DataBase;
-import interfaceAdapter.Presenter;
+import loginInterfaceAdapter.Presenter;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

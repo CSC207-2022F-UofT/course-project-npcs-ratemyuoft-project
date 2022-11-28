@@ -1,6 +1,6 @@
 package dataBase;
 
-import useCase.DataAccess;
+import userDataBase.UserDataBase;
 import entities.User;
 import entities.UserList;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,7 @@ class DataBaseTest {
 
     UserList users1 = new UserList();
     UserList users2 = new UserList();
-    DataAccess dataAccess = new DataBase();
+    UserDataBase dataAccess = new UserDataBase();
 
     User u = new User("a","b","major",2020);
     User u1 = new User("r","c","math",2020);

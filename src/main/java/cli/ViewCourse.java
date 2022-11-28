@@ -3,8 +3,9 @@ package cli;
 import filterInterfaceAdapters.FilterController;
 import filterInterfaceAdapters.FilterPresenter;
 import filterUseCases.FilterOutputBoundary;
-import viewCourse.ViewCourseController;
-import viewCourse.ViewCoursePresenter;
+import loginInterfaceAdapter.LoginPresenter;
+import viewCourseInterfaceAdapters.ViewCourseController;
+import viewCourseInterfaceAdapters.ViewCoursePresenter;
 
 import java.util.Scanner;
 
@@ -18,6 +19,11 @@ public class ViewCourse {
 
         if (choice == 0) {
             filter.chooseFilterOptions(scanner, filterController, filterPresenter, mainMenuInterface);
+
+        }
+        if (choice == 100){
+            LoginPresenter loginPresenter = new LoginPresenter();
+            mainMenuInterface.displayMainMenu(loginPresenter);
 
         }
     }
