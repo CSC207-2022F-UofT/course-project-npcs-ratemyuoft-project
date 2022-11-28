@@ -95,6 +95,11 @@ public class DataBase implements FilterDAGateway {
         cl.addCourse(course5);
         cl.addCourse(course1);
         cl.addCourse(course7);
+        int i = 0;
+        for (Course c : cl){
+            c.setCourseRating(i);
+            i += 1;
+        }
         this.saveCourse(cl);
     }
 }

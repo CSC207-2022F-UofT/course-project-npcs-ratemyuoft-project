@@ -46,6 +46,6 @@ public class Course implements Serializable {
     }
 
     public String toString(){
-        return "Name: " + courseName + ", " + "Field of Studies: " + fieldOfStudy;
+        return "Name: " + courseName + ", " + "Field of Studies: " + fieldOfStudy + ", Rating: " + courseRating;
     }
 }

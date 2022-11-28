@@ -2,10 +2,10 @@ package filterUseCases;
 
 public class FilterByRatingRequestModel {
 
-    final private int rating;
+    final private double rating;
 
-    public FilterByRatingRequestModel(int rating){ this.rating = rating; }
+    public FilterByRatingRequestModel(double rating){ this.rating = rating; }
 
-    public int getRating(){ return this.rating; }
+    public double getRating(){ return this.rating; }
 
 }

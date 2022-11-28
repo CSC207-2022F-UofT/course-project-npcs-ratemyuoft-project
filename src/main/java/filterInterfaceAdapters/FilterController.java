@@ -15,15 +15,15 @@ public class FilterController {
          return interactor.filterByName(new FilterByNameRequestModel(name));
     }
 
-//    public FilterResponseModel FilterByFOS(String FOS) {
-//        FilterByFOSRequestModel filterByFOSRequestModel = new FilterByFOSRequestModel(FOS);
-//        return interactor.filterByFOS(filterByFOSRequestModel);
-//    }
-//
-//    public FilterResponseModel FilterByRating(int rating) {
-//        FilterByRatingRequestModel filterByRatingRequestModel = new FilterByRatingRequestModel(rating);
-//        return interactor.filterByRating(filterByRatingRequestModel);
-//    }
+    public FilterResponseModel filterByFOS(String FOS) {
+        FilterByFOSRequestModel filterByFOSRequestModel = new FilterByFOSRequestModel(FOS);
+        return interactor.filterByFOS(filterByFOSRequestModel);
+    }
+
+    public FilterResponseModel filterByRating(double rating) {
+        FilterByRatingRequestModel filterByRatingRequestModel = new FilterByRatingRequestModel(rating);
+        return interactor.filterByRating(filterByRatingRequestModel);
+    }
 
 
 

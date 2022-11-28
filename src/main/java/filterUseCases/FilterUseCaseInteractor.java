@@ -43,7 +43,7 @@ public class FilterUseCaseInteractor implements FilterInputBoundary{
         this.importCourse();
         CourseList cl = new CourseList();
         for(Course c : courselist) {
-            if(Objects.equals(c.courseName, filterByFOSRequestModel.getFOS())) {
+            if(Objects.equals(c.fieldOfStudy, filterByFOSRequestModel.getFOS())) {
                 cl.addCourse(c);
             }
         }
