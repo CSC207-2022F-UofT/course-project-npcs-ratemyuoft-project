@@ -9,9 +9,7 @@ import java.io.IOException;
 
 public class ControllerL {
     private String reviewname;
-
     private Gateway gateway;
-
     private OutputBoundaryL outputBoundary;
 
     public ControllerL(String reviewname, Gateway gateway, OutputBoundaryL outputBoundary){
@@ -21,8 +19,8 @@ public class ControllerL {
         this.outputBoundary = outputBoundary;
     }
 
-    public void Like() throws IOException {
+    public void Like() throws IOException, ClassNotFoundException {
         LikeReview lr = new LikeReview(this.reviewname, this.gateway, this.outputBoundary);
-        //lr.AddLike();
+        lr.AddLike();
     }
 }

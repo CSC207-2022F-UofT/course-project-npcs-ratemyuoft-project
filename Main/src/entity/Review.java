@@ -25,10 +25,8 @@ public class Review implements Serializable{
         this.numberOfLikes = 0;
     }
     //Getters
-
     public int getRating(){
         return this.Rating;
-
     }
     public int getNumberOfLikes(){
         return this.numberOfLikes;
@@ -38,7 +36,6 @@ public class Review implements Serializable{
         return this.Comment;
     }
     //Setters
-
 
     public void Like() {
         this.numberOfLikes += 1;

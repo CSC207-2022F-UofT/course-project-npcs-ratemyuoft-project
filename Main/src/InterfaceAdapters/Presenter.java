@@ -21,9 +21,10 @@ public class Presenter implements OutputBoundary {
         for (Review r: rlist){
             System.out.println("");
             System.out.println("Name: " + r.Name);
-            System.out.println("Rating: " +r.Rating);
+            System.out.println("Rating: " + r.Rating);
             System.out.println("Comment: " + r.Comment);
             System.out.println("Likes: " + r.numberOfLikes);
+            System.out.println(r);
         }
     }
 

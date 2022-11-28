@@ -10,15 +10,11 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class ViewCourse implements InputBoundary{
-
     private  CourseList courseList;
     private Course course;
     private ArrayList<Review> reviews;
-
     private OutputBoundary output;
-
     public ViewCourse(String coursename, Gateway gateway, OutputBoundary output){
-
         try{
             courseList = gateway.importcourselist();
         } catch (IOException | ClassNotFoundException e){
@@ -28,6 +24,7 @@ public class ViewCourse implements InputBoundary{
         for (Course i: courseList){
             if (Objects.equals(i.courseName, coursename)) {
                 this.course = i;
+                break;
             }
         }
 
@@ -45,8 +42,6 @@ public class ViewCourse implements InputBoundary{
 
     public void Displayinformation(){
         this.output.Display(this.reviews, this.course);
-
-
     }
 
 

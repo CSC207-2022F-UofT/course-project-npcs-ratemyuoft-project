@@ -11,8 +11,6 @@ public class RegisterCourse {
     public Course C;
 
     public RegisterCourse(Course C, DataAccess gateway) throws IOException, ClassNotFoundException {
-
-
         try{
             CourseList courselist = gateway.importcourselist();
             for (Course c: courselist){
@@ -32,13 +30,6 @@ public class RegisterCourse {
             courselist.AddCourse(C);
             gateway.SaveCourse(courselist);
         }
-
-
-
-
-
-
-
     }
 }
 
