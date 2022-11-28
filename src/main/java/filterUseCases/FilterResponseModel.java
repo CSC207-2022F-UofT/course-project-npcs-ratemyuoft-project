@@ -8,7 +8,12 @@ import java.util.List;
 
 public class FilterResponseModel {
 
-    public List<Course> courseList;
+    public CourseList courseList;
 
-    public FilterResponseModel(CourseList courseList){ this.courseList = courseList.getCourselist(); }
+    public FilterResponseModel(CourseList courseList){ this.courseList = courseList; }
+
+    public String toString(){
+        return courseList.toString();
+    }
+
 }

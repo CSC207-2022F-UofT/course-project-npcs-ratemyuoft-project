@@ -2,6 +2,7 @@ package filterInterfaceAdapters;
 
 import java.io.*;
 
+import entities.Course;
 import filterUseCases.FilterDAGateway;
 import entities.CourseList;
 
@@ -45,12 +46,12 @@ public class DataBase implements FilterDAGateway {
      */
     @Override
     public CourseList importCourses() throws IOException, ClassNotFoundException{
-        try {
-            ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName));
-        }catch (EOFException e){
-            CourseList newUL = new CourseList();
-            this.saveCourse(newUL);
-        }
+//        try {
+//            ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName));
+//        }catch (EOFException e){
+//            CourseList newUL = new CourseList();
+//            this.saveCourse(newUL);
+//        }
         ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName));
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         if (br.readLine() == null) {
@@ -61,5 +62,39 @@ public class DataBase implements FilterDAGateway {
 
         return (CourseList) inputStream.readObject();
 
+    }
+
+    public void generateTempCourses() throws IOException, NullPointerException{
+        CourseList cl = new CourseList();
+        for (int i = 1; i<=10; i++){
+            Course course = new Course(Integer.toString(i), Integer.toString(i*10));
+            cl.addCourse(course);
+        }
+        this.saveCourse(cl);
+    }
+
+    public void generateTempCourses2() throws IOException, NullPointerException{
+        CourseList cl = new CourseList();
+        Course course1 = new Course("MAT137", "Mathematics");
+        Course course2 = new Course("MAT223", "Mathematics");
+        Course course3 = new Course("MAT224", "Mathematics");
+        Course course4 = new Course("MAT135", "Mathematics");
+        Course course5 = new Course("MAT157", "Mathematics");
+        Course course6 = new Course("CSC108", "Computer Science");
+        Course course7 = new Course("CSC148", "Computer Science");
+        Course course8 = new Course("STA257", "Statistical Science");
+        Course course9 = new Course("STA261", "Statistical Science");
+        Course course10 = new Course("STA130", "Statistical Science");
+        cl.addCourse(course9);
+        cl.addCourse(course4);
+        cl.addCourse(course2);
+        cl.addCourse(course8);
+        cl.addCourse(course3);
+        cl.addCourse(course6);
+        cl.addCourse(course10);
+        cl.addCourse(course5);
+        cl.addCourse(course1);
+        cl.addCourse(course7);
+        this.saveCourse(cl);
     }
 }

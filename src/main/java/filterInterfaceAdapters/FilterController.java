@@ -11,20 +11,20 @@ public class FilterController {
         this.interactor = interactor;
     }
 
-    public FilterResponseModel FilterByName(String name) {
-         FilterByNameRequestModel filterByNameRequestModel = new FilterByNameRequestModel(name);
-         return interactor.filterByName(filterByNameRequestModel);
+    public FilterResponseModel filterByName(String name) {
+         return interactor.filterByName(new FilterByNameRequestModel(name));
     }
 
-    public FilterResponseModel FilterByFOS(String FOS) {
-        FilterByFOSRequestModel filterByFOSRequestModel = new FilterByFOSRequestModel(FOS);
-        return interactor.filterByFOS(filterByFOSRequestModel);
-    }
+//    public FilterResponseModel FilterByFOS(String FOS) {
+//        FilterByFOSRequestModel filterByFOSRequestModel = new FilterByFOSRequestModel(FOS);
+//        return interactor.filterByFOS(filterByFOSRequestModel);
+//    }
+//
+//    public FilterResponseModel FilterByRating(int rating) {
+//        FilterByRatingRequestModel filterByRatingRequestModel = new FilterByRatingRequestModel(rating);
+//        return interactor.filterByRating(filterByRatingRequestModel);
+//    }
 
-    public FilterResponseModel FilterByRating(int rating) {
-        FilterByRatingRequestModel filterByRatingRequestModel = new FilterByRatingRequestModel(rating);
-        return interactor.filterByRating(filterByRatingRequestModel);
-    }
 
 
 }

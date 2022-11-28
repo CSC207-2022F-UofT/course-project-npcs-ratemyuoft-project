@@ -9,5 +9,5 @@ public interface FilterOutputBoundary {
 
     FilterResponseModel filterSuccessView(CourseList courseList);
 
-    FilterResponseModel filterFailView  (String s)  throws FilterFailError;
+    FilterResponseModel filterFailView (String s) throws FilterFailError;
 }

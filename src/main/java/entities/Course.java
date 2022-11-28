@@ -1,9 +1,10 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Course {
+public class Course implements Serializable {
     public String courseName;
 
     public ArrayList<Review> reviews= new ArrayList<Review>();
@@ -42,5 +43,9 @@ public class Course {
 
     public void setFieldOfStudy(String fieldOfStudy) {
         this.fieldOfStudy = fieldOfStudy;
+    }
+
+    public String toString(){
+        return "Name: " + courseName + ", " + "Field of Studies: " + fieldOfStudy;
     }
 }

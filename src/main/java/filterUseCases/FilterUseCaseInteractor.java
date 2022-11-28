@@ -21,7 +21,6 @@ public class FilterUseCaseInteractor implements FilterInputBoundary{
     public void importCourse(){
         try {
             this.courselist = gateway.importCourses();
-
         } catch (
                 IOException | ClassNotFoundException e) {
             this.courselist = new CourseList();
