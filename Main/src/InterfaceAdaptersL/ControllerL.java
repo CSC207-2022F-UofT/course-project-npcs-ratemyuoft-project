@@ -1,26 +1,27 @@
 package InterfaceAdaptersL;
 
-import LikeReview.LikeReview;
-import Usecase.Gateway;
-import Usecase.OutputBoundary;
-import LikeReview.OutputBoundaryL;
+import DataBase.DataAccess;
+import InterfaceAdapters.Presenter;
+import LikeReview.InputBoundaryL;
+import entity.Course;
+import entity.Review;
 
 import java.io.IOException;
 
 public class ControllerL {
-    private String reviewname;
-    private Gateway gateway;
-    private OutputBoundaryL outputBoundary;
+    String s;
 
-    public ControllerL(String reviewname, Gateway gateway, OutputBoundaryL outputBoundary){
+    DataAccess d;
 
-        this.reviewname = reviewname;
-        this.gateway = gateway;
-        this.outputBoundary = outputBoundary;
+    PresenterL p;
+
+    public ControllerL(String s, DataAccess d, PresenterL p){
+
+
     }
 
     public void Like() throws IOException, ClassNotFoundException {
-        LikeReview lr = new LikeReview(this.reviewname, this.gateway, this.outputBoundary);
-        lr.AddLike();
+//        this.interacter.AddLike();
+
     }
 }
