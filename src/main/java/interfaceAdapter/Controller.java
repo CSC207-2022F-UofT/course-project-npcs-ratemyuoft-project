@@ -1,5 +1,7 @@
 package interfaceAdapter;
-import useCase.*;
+import useCase.InputBoundary;
+import useCase.Interactor; // this import can't be accessed, only used to initialize input boundary
+import useCase.InvalidInputException;
 
 
 import java.io.IOException;
@@ -14,20 +16,35 @@ import java.io.IOException;
  * I don't think it is obligatory to explain each method here, because the only function of controller is to try
  * to pass a method call to input boundary, and in case Exception is thrown- to catch it and explain what mistake might
  * have happened.
+ * <p>
+ *
+ *
+ *
+ *
+ * UPDATE: Now controller doesn't send simple message to inputBoundary->Interactor->OutputBoundary->Presenter->CLI
+ * <p>
+ * Instead, it Uses MVC Design Pattern, which allows us to avoid all that unneeded passes, and allows to
+ * send messages we want to send from Controller like that: ViewModel->Presenter->CLI
+ * <p>
+ * I hope I understood it correctly.
+ * <p>
+ *
  */
 public class Controller {
     private final InputBoundary inputBoundary;
+    private final ViewModel viewModel;
 
-    public Controller(InputBoundary inputBoundary){
-        this.inputBoundary = inputBoundary;
+    public Controller() throws ClassNotFoundException {
+        this.inputBoundary = new Interactor();
+        this.viewModel = new ViewModel();
     }
 
     public void showUsers() {
         try {
             inputBoundary.showUsers();
-            inputBoundary.outputMessage("All Users are displayed"+ "\n");
+            viewModel.outputFromController("All Users are displayed"+ "\n");
         }catch (IOException | ClassNotFoundException e){
-            inputBoundary.outputMessage("Invalid input"+ "\n");
+            viewModel.outputFromController("Invalid input"+ "\n");
 
         }
     }
@@ -35,16 +52,16 @@ public class Controller {
     public void userRegister(String username, String password, String major, int startYearOfStudy) throws ClassNotFoundException, IOException, InvalidInputException {
         try{
             inputBoundary.userRegister(username,password,major,startYearOfStudy);
-            inputBoundary.outputMessage("Registration Successful!"+ "\n");
+            viewModel.outputFromController("Registration Successful!"+ "\n");
 
         }catch(InvalidInputException e){
-            inputBoundary.outputMessage("Invalid input"+ "\n");
+            viewModel.outputFromController("Invalid input"+ "\n");
             throw new InvalidInputException();
         } catch (IOException e) {
-            inputBoundary.outputMessage("Invalid input"+ "\n");
+            viewModel.outputFromController("Invalid input"+ "\n");
             throw new IOException();
         } catch (ClassNotFoundException e) {
-            inputBoundary.outputMessage("Invalid input"+ "\n");
+            viewModel.outputFromController("Invalid input"+ "\n");
             throw new ClassNotFoundException();
         }
     }
@@ -52,22 +69,22 @@ public class Controller {
     public void userLogin(String username, String password) throws ClassNotFoundException, IOException, InvalidInputException {
         try{
             inputBoundary.userLogin(username,password);
-            inputBoundary.outputMessage("Login Successful!"+ "\n");
+            viewModel.outputFromController("Login Successful!"+ "\n");
         }catch(InvalidInputException e){
-            inputBoundary.outputMessage("Invalid input"+ "\n");
+            viewModel.outputFromController("Invalid input"+ "\n");
             throw new InvalidInputException();
         } catch (IOException e) {
-            inputBoundary.outputMessage("Invalid input"+ "\n");
+            viewModel.outputFromController("Invalid input"+ "\n");
             throw new IOException();
         } catch (ClassNotFoundException e) {
-            inputBoundary.outputMessage("Invalid input"+ "\n");
+            viewModel.outputFromController("Invalid input"+ "\n");
             throw new ClassNotFoundException();
         }
     }
 
     public void userLogOut() throws IOException  {
         inputBoundary.userLogOut();
-        inputBoundary.outputMessage("Log out successful!"+ "\n");
+        viewModel.outputFromController("Log out successful!"+ "\n");
 
 
     }

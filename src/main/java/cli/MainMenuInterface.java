@@ -10,10 +10,7 @@ public interface MainMenuInterface {
 
     void displayMainMenu(Presenter presenter);
 
-    void choseOption(Scanner scanner,Presenter presenter, Controller controller,
-                      WelcomeMenuInterface welcomeMenuInterface,
-                     RegisterInterface registerInterface,LogInInterface logInInterface,
-                     ShowUsersInterface showUsersInterface)
+    void choseOption(Scanner scanner,Presenter presenter, Controller controller)
             throws IOException, ClassNotFoundException;
 
 }

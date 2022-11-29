@@ -16,38 +16,36 @@ public class MainMenu implements MainMenuInterface{
     }
 
     @Override
-    public void choseOption(Scanner scanner,Presenter presenter, Controller controller,
-                             WelcomeMenuInterface welcomeMenuInterface,
-                            RegisterInterface registerInterface,LogInInterface logInInterface,
-                            ShowUsersInterface showUsersInterface)
+    public void choseOption(Scanner scanner,Presenter presenter, Controller controller)
             throws  ClassNotFoundException {
         int choice = scanner.nextInt();
 
         if(choice == 1){
 
             try {
-                showUsersInterface.showUsers(scanner,presenter,controller,welcomeMenuInterface,
-                        registerInterface,logInInterface,this);
+                ShowUsersInterface showUsersInterface =new ShowUsers();
+                showUsersInterface.showUsers(scanner,presenter,controller);
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                displayMainMenu(presenter);
+                choseOption(scanner,presenter,controller);
             }
 
 
         } else if (choice == 2) {
             try{
                 controller.userLogOut();
-                welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter,registerInterface,
-                        logInInterface,this,showUsersInterface);
-            }  catch (IOException | InvalidInputException e) {
+                WelcomeMenuInterface welcomeMenuInterface =new WelcomeMenu();
+                welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter);
+            }  catch (IOException  e) {
                 displayMainMenu(presenter);
-                this.choseOption(scanner,presenter,controller,welcomeMenuInterface,registerInterface,
-                        logInInterface,showUsersInterface);
+                choseOption(scanner,presenter,controller);
+            } catch (InvalidInputException e) {
+                throw new RuntimeException(e);
             }
 
         }else{
             displayMainMenu(presenter);
-            this.choseOption(scanner,presenter,controller,welcomeMenuInterface,registerInterface,
-                    logInInterface,showUsersInterface);
+            choseOption(scanner,presenter,controller);
         }
 
     }

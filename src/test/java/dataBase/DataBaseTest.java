@@ -1,15 +1,14 @@
 package dataBase;
 
-import useCase.DataAccess;
 import entities.User;
 import entities.UserList;
 import org.junit.jupiter.api.Test;
+import useCase.DataAccess;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DataBaseTest {
@@ -48,12 +47,12 @@ class DataBaseTest {
             }
             boolean everythingMatches = true;
             for(int i =0;i< list1.size();i++){
-                if(list1.get(i).getUserName().equals(list2.get(i).getUserName())
-                        && list1.get(i).getPassword().equals(list2.get(i).getPassword())
-                        && list1.get(i).getMajor().equals(list2.get(i).getMajor())
-                        && (list1.get(i).getStartYearOfStudy() == list2.get(i).getStartYearOfStudy())){
-                }else{
-                    everythingMatches=false;
+                if (!(list1.get(i).getUserName().equals(list2.get(i).getUserName()))
+                        || !(list1.get(i).getPassword().equals(list2.get(i).getPassword()))
+                        || !(list1.get(i).getMajor().equals(list2.get(i).getMajor()))
+                        || !(list1.get(i).getStartYearOfStudy() == list2.get(i).getStartYearOfStudy())) {
+                    everythingMatches = false;
+                    break;
                 }
             }
             assertTrue(everythingMatches,"Users were not saved properly");

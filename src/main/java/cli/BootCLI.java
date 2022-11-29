@@ -1,9 +1,8 @@
 package cli;
 
-import dataBase.DataBase;
 import interfaceAdapter.Controller;
 import interfaceAdapter.Presenter;
-import useCase.*;
+import useCase.InvalidInputException;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -17,19 +16,13 @@ public class BootCLI implements BootCLIInterface {
     public void boot() throws IOException, ClassNotFoundException, InvalidInputException {
 
         Scanner scanner = new Scanner(System.in);
-        RegisterInterface registerInterface = new Register();
-        LogInInterface logInInterface = new Login();
-        MainMenuInterface mainMenuInterface = new MainMenu();
-        WelcomeMenuInterface welcomeMenuInterface = new WelcomeMenu();
-        ShowUsersInterface showUsersInterface = new ShowUsers();
         Presenter presenter = new Presenter();
-        DataAccess dataAccess = new DataBase();
-        InputBoundary inputBoundary =new Interactor(presenter,dataAccess);
-        Controller controller = new Controller(inputBoundary);
+        Controller controller = new Controller();
+
+        WelcomeMenuInterface welcomeMenuInterface = new WelcomeMenu();
 
         welcomeMenuInterface.displayWelcomeMenu(presenter);
-        welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter, registerInterface,
-                logInInterface,mainMenuInterface,showUsersInterface);
+        welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter);
 
 
     }

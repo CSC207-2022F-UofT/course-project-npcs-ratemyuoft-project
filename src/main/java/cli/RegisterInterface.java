@@ -8,9 +8,6 @@ import useCase.InvalidInputException;
 
 public interface RegisterInterface {
 
-    void register(Scanner scanner, Controller controller, Presenter presenter,
-                  MainMenuInterface mainMenuInterface,
-                  WelcomeMenuInterface welcomeMenuInterface, LogInInterface logInInterface,
-                  ShowUsersInterface showUsersInterface) throws IOException, ClassNotFoundException, InvalidInputException;
+    void register(Scanner scanner, Controller controller, Presenter presenter) throws IOException, ClassNotFoundException, InvalidInputException;
 
 }

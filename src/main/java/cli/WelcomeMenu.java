@@ -16,27 +16,37 @@ public class WelcomeMenu implements WelcomeMenuInterface{
     }
 
     @Override
-    public void choseLoginOrRegister(Scanner scanner, Controller controller, Presenter presenter,
-                                     RegisterInterface registerInterface, LogInInterface logInInterface,
-                                     MainMenuInterface mainMenuInterface,
-                                     ShowUsersInterface showUsersInterface)
-            throws IOException, ClassNotFoundException, InvalidInputException {
+    public void choseLoginOrRegister(Scanner scanner, Controller controller, Presenter presenter) {
 
         String choice = scanner.nextLine();
         if(choice.contains("1")){
 
-            registerInterface.register(scanner,controller,presenter,mainMenuInterface,
-                    this ,logInInterface,showUsersInterface);
+            RegisterInterface registerInterface = new Register();
+            try {
+                registerInterface.register(scanner,controller,presenter);
+            } catch (IOException | ClassNotFoundException | InvalidInputException e) {
+                displayWelcomeMenu(presenter);
+                choseLoginOrRegister(scanner,controller,presenter);
+            }
 
 
         } else if (choice.contains("2")) {
-            logInInterface.login(scanner,controller,presenter, mainMenuInterface,
-                    this,registerInterface,showUsersInterface );
+            LogInInterface logInInterface = new Login();
+            try {
+                logInInterface.login(scanner,controller,presenter);
+            } catch (IOException | InvalidInputException | ClassNotFoundException e) {
+                displayWelcomeMenu(presenter);
+                choseLoginOrRegister(scanner,controller,presenter);
+            }
 
         } else{
-            displayWelcomeMenu(presenter);
-            choseLoginOrRegister(scanner,controller,presenter,registerInterface,logInInterface,
-                    mainMenuInterface,showUsersInterface);
+            WelcomeMenuInterface welcomeMenuInterface = new WelcomeMenu();
+            welcomeMenuInterface.displayWelcomeMenu(presenter);
+            try {
+                welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter);
+            } catch (IOException | InvalidInputException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

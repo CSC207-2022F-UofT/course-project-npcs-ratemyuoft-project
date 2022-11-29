@@ -12,10 +12,8 @@ public class Login implements LogInInterface  {
 
 
     @Override
-    public void login(Scanner scanner, Controller controller, Presenter presenter ,
-                      MainMenuInterface mainMenuInterface,
-                      WelcomeMenuInterface welcomeMenuInterface,RegisterInterface registerInterface,
-                      ShowUsersInterface showUsersInterface) throws IOException, ClassNotFoundException, InvalidInputException {
+    public void login(Scanner scanner, Controller controller, Presenter presenter)
+            throws IOException, ClassNotFoundException, InvalidInputException {
 
 
             presenter.outputMessage(" Enter username please => "+ "\n");
@@ -29,14 +27,14 @@ public class Login implements LogInInterface  {
 
             try{
                 controller.userLogin(username,password);
+                MainMenuInterface mainMenuInterface =new MainMenu();
                 mainMenuInterface.displayMainMenu(presenter);
-                mainMenuInterface.choseOption(scanner,presenter,controller,welcomeMenuInterface,
-                        registerInterface,this,showUsersInterface);
+                mainMenuInterface.choseOption(scanner,presenter,controller);
             }catch (InvalidInputException e){
                 presenter.outputMessage("Please try again"+"\n" + "\n");
+                WelcomeMenuInterface welcomeMenuInterface =new WelcomeMenu();
                 welcomeMenuInterface.displayWelcomeMenu(presenter);
-                welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter,registerInterface,
-                        this,mainMenuInterface,showUsersInterface);
+                welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter);
             }
 
 

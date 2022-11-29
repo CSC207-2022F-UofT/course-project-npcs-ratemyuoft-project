@@ -9,11 +9,8 @@ import useCase.InvalidInputException;
 public class Register implements RegisterInterface{
 
     @Override
-    public void register(Scanner scanner, Controller controller, Presenter presenter,
-                         MainMenuInterface mainMenuInterface,
-                         WelcomeMenuInterface welcomeMenuInterface,
-                         LogInInterface logInInterface,
-                         ShowUsersInterface showUsersInterface) throws IOException, ClassNotFoundException, InvalidInputException {
+    public void register(Scanner scanner, Controller controller, Presenter presenter) throws IOException,
+            ClassNotFoundException, InvalidInputException {
 
         presenter.outputMessage(" Enter username please = > "+ "\n");
         String userName = scanner.nextLine();
@@ -29,13 +26,13 @@ public class Register implements RegisterInterface{
 
         try{
             controller.userRegister(userName,password,major,year);
+            MainMenuInterface mainMenuInterface = new MainMenu();
             mainMenuInterface.displayMainMenu(presenter);
-            mainMenuInterface.choseOption(scanner, presenter, controller,
-                    welcomeMenuInterface,this,logInInterface,showUsersInterface);
+            mainMenuInterface.choseOption(scanner,presenter,controller);
 
         }catch (InvalidInputException e){
-            welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter,this,
-                    logInInterface,mainMenuInterface,showUsersInterface);
+            WelcomeMenuInterface welcomeMenuInterface = new WelcomeMenu();
+            welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter);
         }
 
 

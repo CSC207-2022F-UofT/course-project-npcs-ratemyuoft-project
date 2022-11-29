@@ -1,41 +1,23 @@
 package useCase;
 
-import dataBase.DataBase;
-import interfaceAdapter.Presenter;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Tests for outputMessage and showUsers were not made as they have the only task is to send the information
+ * forward to outputBoundary which sends it to Presenter.
+ */
 class InteractorTest {
 
-/*   Commented out tests are ommited as it is not impossible to test if they give the proper output to CMD.
-        However, you can be sure that I tested them while running the programm.
-
-
-
-
-   private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
-    @Before
-    public void setUpStreams(){
-        System.setOut(new PrintStream(outContent));
-    }
-    @After
-    public void restoreStreams(){
-        System.setOut(originalOut);
-    }
-
-*/
-    OutputBoundary outputBoundary = new Presenter();
-    DataAccess dataAccess = new DataBase();
     Interactor interactor;
 
     {
         try {
-            interactor = new Interactor(outputBoundary,dataAccess);
+            interactor = new Interactor();
         } catch (ClassNotFoundException e) {
             System.out.println("interactor is not constructed");
         }
@@ -85,25 +67,7 @@ class InteractorTest {
             System.out.println("wrong input");
         }
     }
-/*
-    @Test
-    void showUsersTest() {
-        try {
-            interactor.userRegister("username20","tired","ofTesting", 2002);
-            interactor.showUsers();
-            assertEquals("||    Username : " + "username20"+ "   " +
-                    "||    Major : " + "ofTesting" + "   " +
-                    "||    LogInStatus : " + true + "   " +
-                    "||    Enrolment year : "+ 2002 + "   " +"\n",outContent.toString());
-
-        } catch (InvalidInputException e) {
-            System.out.println("wrong input");
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("smth wrong with showUsers");
-        }
-    }
-*/
-    @Test
+@Test
     void userLoginTest() {
         try {
             interactor.userRegister("username30","tired","ofTesting", 2002);
@@ -149,10 +113,4 @@ class InteractorTest {
         }
 
     }
-/*
-    @Test
-    void outputMessageTest() {
-    }
-
- */
 }

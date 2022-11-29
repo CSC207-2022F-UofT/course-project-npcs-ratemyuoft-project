@@ -8,8 +8,5 @@ import useCase.InvalidInputException;
 
 public interface LogInInterface {
 
-    void login(Scanner scanner, Controller controller, Presenter presenter,
-               MainMenuInterface mainMenuInterface,
-               WelcomeMenuInterface welcomeMenuInterface, RegisterInterface registerInterface,
-               ShowUsersInterface showUsersInterface) throws IOException, ClassNotFoundException, InvalidInputException;
+    void login(Scanner scanner, Controller controller, Presenter presenter) throws IOException, ClassNotFoundException, InvalidInputException;
 }

@@ -36,6 +36,6 @@ class UserTest {
     @Test
     void setLogInStatusTest() {
         u.setLogInStatus(true);
-        assertEquals(true, u.getLogInStatus(),"setLogInStatus doesn't work properly");
+        assertTrue(u.getLogInStatus(), "setLogInStatus doesn't work properly");
     }
 }

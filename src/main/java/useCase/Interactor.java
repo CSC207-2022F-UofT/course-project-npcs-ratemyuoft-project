@@ -1,7 +1,9 @@
 package useCase;
 
+import dataBase.DataBase; // the import can not be used directly. it is used only through DataAccess interface
 import entities.User;
 import entities.UserList;
+import interfaceAdapter.Presenter; //  can not be used directly. only through outputBoundary
 
 import java.io.IOException;
 
@@ -19,18 +21,16 @@ public class Interactor implements InputBoundary {
 
 
     /**
-     * @param outputBoundary is needed to pass results of performing some method
-     * @param dataAccess is needed to access a DataBase
-     * @throws ClassNotFoundException is used for debugging in case something wrong with databse
+     * @throws ClassNotFoundException is used for debugging in case something wrong with database
      * <p>
      *
      *  The most important task of the constructor in that case is importing users from database, and in case something
      *  goes wrong(Exception thrown) it just creates a new Userlist and indicates that the importation from the
      *  DataBase failed.
      */
-    public Interactor(OutputBoundary outputBoundary, DataAccess dataAccess) throws ClassNotFoundException{
-        this.outputBoundary = outputBoundary;
-        this.dataAccess = dataAccess;
+    public Interactor() throws ClassNotFoundException{
+        this.outputBoundary = new Presenter();
+        this.dataAccess = new DataBase();
         try{
             users = dataAccess.importUsers();
         }catch (IOException e){
@@ -53,7 +53,7 @@ public class Interactor implements InputBoundary {
 
     /**
      * @param username of the User we want to register or logIn
-     * @return true if user is in databse, false if  not
+     * @return true if user is in database, false if  not
      */
     public boolean checkIfUserExists(String username){
         for(User user: users){
