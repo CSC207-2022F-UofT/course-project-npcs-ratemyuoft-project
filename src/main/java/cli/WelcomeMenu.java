@@ -16,8 +16,7 @@ public class WelcomeMenu implements WelcomeMenuInterface{
     }
 
     @Override
-    public void choseLoginOrRegister(Scanner scanner, Controller controller, Presenter presenter) {
-
+    public void choseLoginOrRegister(Scanner scanner, Controller controller, Presenter presenter){
         String choice = scanner.nextLine();
         if(choice.contains("1")){
 

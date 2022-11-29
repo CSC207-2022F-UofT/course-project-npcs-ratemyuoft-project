@@ -65,3 +65,34 @@
     be added to MainMenu, by just adding one more if statement and
     making a call of other interface that will lead user further.
     
+## 4. Updates 11/29/2022
+
+    1.CLI was simplified, by getting rid of unneeded Interfaces that 
+    were passed to interfaces they call, creating a lot of 
+    misunderstanding in a team regarding the use of CLI.
+
+    **********************************************************************
+
+    2. I also got rid of unneeded dependesies inside the project,
+    so that it would follow CA more.
+
+    **********************************************************************
+
+    3.MVC design pattern was implemented. Before, if controller wanted to
+    output a message to CLI it had to send it to InputBoundary->Interactor->
+    OutputBoundary->Presenter. Now this path is: ViewModel->Presenter.
+
+    **********************************************************************
+
+    4. The bug that in case that program crashes users that didn't log out
+    stay logged in and it was impossible to log in using that account was
+    also fixed by logging out all the users that were logged in as project
+    being started.
+
+    **********************************************************************
+
+    5. Regarding test covrage, Interactor class was showing only 80% covrage
+    as showUsers() and outputMessage(string s) were not tested. However,
+    this methods only pass the information to outputBoundary, without
+    modifying it in any way, hence doesn't need to be tested.
+

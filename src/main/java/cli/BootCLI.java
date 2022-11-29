@@ -21,6 +21,8 @@ public class BootCLI implements BootCLIInterface {
 
         WelcomeMenuInterface welcomeMenuInterface = new WelcomeMenu();
 
+        controller.userLogOut(); //this call is needed in case some users stayed logged in, when program was crashed.
+
         welcomeMenuInterface.displayWelcomeMenu(presenter);
         welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter);
 
