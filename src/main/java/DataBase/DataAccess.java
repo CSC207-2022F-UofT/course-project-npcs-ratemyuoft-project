@@ -7,8 +7,13 @@ import UseCase.Gateway;
 import java.io.*;
 
 public class DataAccess implements Gateway ,Serializable{
+    private String fileName;
 
-    private static final String fileName = "/Users/blackchina23/Documents/School/csc207/course-project-npcs-ratemyuoft-project/commentsFile.sav";
+    public DataAccess(String fileName){
+        this.fileName = fileName;
+
+    }
+
 
 
     @Override

@@ -1,26 +1,25 @@
 package InterfaceAdapter;
 
-import Entities.Comment;
-import Entities.CommentList;
+import DataStructures.OutPutData;
 import UI.*;
 import UseCase.OutputBoundary;
 
 public class Presenter implements OutputBoundary {
 
-    MainFrame mainFrame;
     UIShow uiShow;
     UIMessage uiMessage;
 
 
     @Override
-    public void showComments(CommentList commentList) {
+    public void showComments(OutPutData outPutData) {
         uiShow = new ShowCommentsFrame();
-        uiShow.showComments(commentList);
+        uiShow.showComments(outPutData.getComments());
     }
 
 
+
     @Override
-    public boolean confirmComment(Comment comment) {
+    public boolean confirmComment(String comment) {
         return false;
     }
 

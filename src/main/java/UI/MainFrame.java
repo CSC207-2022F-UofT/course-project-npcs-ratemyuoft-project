@@ -1,13 +1,7 @@
 package UI;
 
-import DataBase.DataAccess;
-import InterfaceAdapter.Controller;
-import InterfaceAdapter.Presenter;
-import UseCase.Gateway;
-import UseCase.InputBoundary;
-import UseCase.Interactor;
-import UseCase.OutputBoundary;
 
+import InterfaceAdapter.Controller;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -19,22 +13,42 @@ public class MainFrame extends JFrame{
     JButton viewCommentButton = new JButton("View All Comments");
     JButton newComment = new JButton("Comment");
     JButton editComment = new JButton("Edit Comment");
-    JLabel reviewNamePanel = new JLabel("******");
+    JPanel labelPanel = new JPanel();
+    JLabel userlabel ;
+    JLabel label ;
+
     JPanel buttonPanel = new JPanel();
 
 
-
+    /**
+     * Main Frame Controller
+     * @param controller
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public MainFrame(Controller controller) throws IOException, ClassNotFoundException {
 
+        label= new JLabel("Comments:");
+        label.setBounds(50, 50, 100, 30);
+        label.setFont(new Font("Courier New", Font.BOLD, 20));
+
+        JLabel userlabel = new JLabel(" User");
+        userlabel.setFont(new Font("Courier New", Font.PLAIN, 18));
 
         buttonPanel.setLayout(new BorderLayout());
         buttonPanel.add(viewCommentButton ,BorderLayout.WEST);
         buttonPanel.add(newComment ,BorderLayout.CENTER);
         buttonPanel.add(editComment ,BorderLayout.EAST);
 
+        labelPanel.setLayout(new BorderLayout());
+        labelPanel.add(label,BorderLayout.WEST);
+        labelPanel.add(userlabel,BorderLayout.CENTER);
+
         mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(reviewNamePanel , BorderLayout.NORTH);
+        mainPanel.add(labelPanel, BorderLayout.NORTH);
         mainPanel.add(buttonPanel , BorderLayout.SOUTH);
+
+
 
         this.add(mainPanel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -42,28 +56,34 @@ public class MainFrame extends JFrame{
         this.setVisible(true);
 
         viewCommentButton.addActionListener(new ActionListener() {
+            /**  This tells controllor that the button is pressed
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     controller.showComments();
-                    MainFrame.super.dispose();
+
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 } catch (ClassNotFoundException ex) {
                     throw new RuntimeException(ex);
                 }
-
-
             }
+            private void setVisible(boolean b) {
+                this.setVisible(b);
+            }
+
+
         });
 
         newComment.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new AddCommentFrame(controller);
-                MainFrame.super.dispose();
 
             }
+
         });
 
         editComment.addActionListener(new ActionListener() {

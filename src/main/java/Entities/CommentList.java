@@ -13,6 +13,9 @@ public class CommentList implements Iterable<Comment>, Serializable {
     public void addComment(Comment c){
         commentlist.add(c);
     }
+    public String getComment(int index){
+            return commentlist.get(index).getComment();
+    }
 
 
 

@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
 
-        Gateway gateway = new DataAccess();
+        Gateway gateway = new DataAccess("commentsFile.sav");
         OutputBoundary outputBoundary = new Presenter();
         InputBoundary inputBoundary = new Interactor(outputBoundary,gateway);
         Controller controller = new Controller(inputBoundary);

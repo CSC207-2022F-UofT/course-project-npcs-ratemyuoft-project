@@ -13,27 +13,32 @@ public class CommentTest {
 
 
     @Before
-    public void setUpClass() throws Exception {
+    public void setUp() throws Exception {
+
          c = new Comment("hi");
          c1 = new Comment("bye");
-        System.out.println(c1.getCommentNum());
+        System.out.println("new");
+
 
     }
 
     @After
-    public void tearDownClass() throws Exception {
+    public void tearDown() throws Exception {
         c = null;
         c1 = null;
     }
 
     @Test
     public void testToString() {
-//        assertEquals(c,"ID : 1 Comment: hi");
+        assertEquals( "ID :1 Comment: hi", c.toString());
+        assertEquals( "ID :1 Comment: bye", c1.toString());
     }
 
     @Test
     public void testGetCommentNum() {
-        assertEquals(c.getCommentNum(),1);
+
+        assertEquals(1,c.getCommentNum());
+        assertEquals(2,c1.getCommentNum());
     }
 
     @Test

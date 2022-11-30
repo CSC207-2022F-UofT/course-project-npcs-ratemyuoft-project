@@ -1,5 +1,7 @@
 package UseCase;
 
+
+
 import DataBase.DataAccess;
 import Entities.Comment;
 import Entities.CommentList;
@@ -25,7 +27,7 @@ public class InteractorTest {
 
         testCommentList = new CommentList();
         testOutputBoundary = new Presenter();
-        testGateway = new DataAccess();
+        testGateway = new DataAccess("commentsFileTest.sav");
         testinteractor = new Interactor(testOutputBoundary,testGateway);
 
 
@@ -33,8 +35,10 @@ public class InteractorTest {
 
     @After
     public void tearDown() throws Exception {
-        testinteractor = null;
         testCommentList = null;
+        testOutputBoundary = null;
+        testGateway = null;
+        testinteractor = null;
     }
 
     /**
@@ -44,20 +48,22 @@ public class InteractorTest {
     public void showComments()  {
         try {
             testCommentList = testGateway.importComment();
+
             assertEquals(testCommentList.getClass(),new CommentList().getClass());
         } catch (IOException e) {
             fail("You messed up your code, shouldn't be a Error (IOException e)");
         } catch (ClassNotFoundException e) {
-            fail("You messed up your code, shouldn't be a Error");
+            fail("You messed up your code, shouldn't be a Error(ClassNotFoundException e)");
         }
 
     }
 
     @Test
-    public void addComment() throws InvalidInputException, IOException {
-//
-//        testinteractor.addComment(" ");
-//        assertEquals(testinteractor.addComment(" ", true);
+    public void addComment() throws InvalidInputException, IOException, ClassNotFoundException {
+
+
+        CommentList cl = testGateway.importComment();
+        assertEquals(cl.getComment(0)," " );
 
 
     }
