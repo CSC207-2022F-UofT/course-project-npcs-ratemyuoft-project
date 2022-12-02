@@ -17,14 +17,14 @@ public class Presenter implements OutputBoundary {
     }
 
 
-
-    @Override
-    public boolean confirmComment(String comment) {
-        return false;
-    }
-
     // send to UI
 
+    /**
+     * @param s
+     *
+     * make a new UI class which will show the message.
+     *
+     */
     @Override
     public void outputMessage(String s) {
         uiMessage = new ShowMessageUI();

@@ -4,11 +4,13 @@ plugins {
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
     implementation 'junit:junit:4.13.2'
     testImplementation('org.junit.jupiter:junit-jupiter:5.9.0')
+    implementation 'org.mockito:mockito-core:4.9.0'
 }
 
 test {

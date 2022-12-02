@@ -44,13 +44,6 @@ public class AddCommentFrame extends JFrame  {
                     controller.addComment(newComment);
                     controller.outPutMessage("Comment Saved!");
                     AddCommentFrame.super.dispose();
-                    try {
-                        new MainFrame(controller);
-
-                    } catch (ClassNotFoundException ex) {
-                        controller.outPutMessage("Class Not Found!");
-
-                    }
                 } catch (InvalidInputException ex) {
                     controller.outPutMessage("Comment Invalid!");
 
@@ -66,11 +59,6 @@ public class AddCommentFrame extends JFrame  {
             @Override
             public void actionPerformed(ActionEvent e) {
                 AddCommentFrame.super.dispose();
-                try {
-                    new MainFrame(controller);
-                } catch (IOException | ClassNotFoundException ex) {
-                    throw new RuntimeException(ex);
-                }
 
             }
         });

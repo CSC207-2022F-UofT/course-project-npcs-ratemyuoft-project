@@ -1,12 +1,14 @@
 package UseCase;
 
+import DataStructures.OutPutData;
 import Entities.Comment;
 import Entities.CommentList;
 
+import java.util.ArrayList;
+
 public interface OutputBoundary {
 
-    void showComments(CommentList commentList);
+    void showComments(OutPutData outPutData);
 
-    boolean confirmComment(Comment comment);
     void outputMessage(String s);
 }

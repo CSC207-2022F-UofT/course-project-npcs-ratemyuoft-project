@@ -1,55 +1,47 @@
 package Entities;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 import static org.junit.Assert.*;
 
 public class CommentTest {
 
-    Comment c;
-    Comment c1;
+    static Comment c1;
+    static Comment c2;
 
-
-    @Before
-    public void setUp() throws Exception {
-
-         c = new Comment("hi");
-         c1 = new Comment("bye");
-        System.out.println("new");
-
-
+    @BeforeClass
+    public static void setUp()  {
+        Comment.resetCount();
+        c1 = new Comment("hi");
+        c2 = new Comment("bye");
     }
 
-    @After
-    public void tearDown() throws Exception {
-        c = null;
-        c1 = null;
+    @AfterClass
+    public static void tearDown()  {
+         c1 = null;
+         c2 = null;
     }
 
     @Test
     public void testToString() {
-        assertEquals( "ID :1 Comment: hi", c.toString());
-        assertEquals( "ID :1 Comment: bye", c1.toString());
+        assertEquals( "ID :1 Comment: hi", c1.toString());
+        assertEquals( "ID :2 Comment: bye", c2.toString());
     }
 
     @Test
     public void testGetCommentNum() {
-
-        assertEquals(1,c.getCommentNum());
-        assertEquals(2,c1.getCommentNum());
+        assertEquals(1,c1.getCommentNum());
+        assertEquals(2,c2.getCommentNum());
     }
 
     @Test
     public void testGetComment() {
-        assertEquals(c.getComment(),"hi");
+        assertEquals("hi", c1.getComment());
     }
 
     @Test
     public void testSetComment() {
-        c.setComment("bye");
-        assertEquals(c.getComment(),"bye") ;
+        assertEquals("bye",c2.getComment()) ;
     }
 
 }

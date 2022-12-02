@@ -1,6 +1,6 @@
 package DataBase;
 
-import Entities.Comment;
+
 import Entities.CommentList;
 import UseCase.Gateway;
 
@@ -15,7 +15,14 @@ public class DataAccess implements Gateway ,Serializable{
     }
 
 
-
+    /**
+     * @return CommentList
+     * @throws IOException
+     * @throws ClassNotFoundException
+     *
+     * read file and return a Comment to interactor if there is already comment list saved.
+     * else make a empty comment list and return that.
+     */
     @Override
 
     public CommentList importComment() throws IOException, ClassNotFoundException {
@@ -34,12 +41,16 @@ public class DataAccess implements Gateway ,Serializable{
             ObjectOutputStream outputStream = new ObjectOutputStream(fileOut);
             outputStream.writeObject(new CommentList());
         }
-
         CommentList newComments = (CommentList) inputStream.readObject();
         return newComments;
 
     }
 
+    /**
+     * @param commentList
+     * @throws IOException
+     * Save any changes to the file as a binary code
+     */
     @Override
     public void saveComment(CommentList commentList) throws IOException {
 
@@ -51,4 +62,6 @@ public class DataAccess implements Gateway ,Serializable{
 
 
     }
+
+
 }

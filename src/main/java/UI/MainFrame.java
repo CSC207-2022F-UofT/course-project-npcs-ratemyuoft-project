@@ -20,19 +20,20 @@ public class MainFrame extends JFrame{
     JPanel buttonPanel = new JPanel();
 
 
+
     /**
      * Main Frame Controller
      * @param controller
      * @throws IOException
      * @throws ClassNotFoundException
+     *
+     * Creat the main frame with buttons.
      */
-    public MainFrame(Controller controller) throws IOException, ClassNotFoundException {
+    public MainFrame(Controller controller,String reviewName) throws IOException, ClassNotFoundException {
 
-        label= new JLabel("Comments:");
-        label.setBounds(50, 50, 100, 30);
+        label = new JLabel(reviewName + ":");
         label.setFont(new Font("Courier New", Font.BOLD, 20));
-
-        JLabel userlabel = new JLabel(" User");
+        userlabel = new JLabel(" User");
         userlabel.setFont(new Font("Courier New", Font.PLAIN, 18));
 
         buttonPanel.setLayout(new BorderLayout());
@@ -81,7 +82,6 @@ public class MainFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 new AddCommentFrame(controller);
-
             }
 
         });

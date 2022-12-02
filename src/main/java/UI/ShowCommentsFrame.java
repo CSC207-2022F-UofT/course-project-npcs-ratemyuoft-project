@@ -19,6 +19,10 @@ public class ShowCommentsFrame extends JFrame implements UIShow {
     JButton backButton = new JButton("Back");
 
 
+    /**
+     * @param listOfComments
+     * add the arraylist on to the view and show.
+     */
     public void showComments(ArrayList<String> listOfComments) {
         list.setModel(model);
         for (String s : listOfComments) {

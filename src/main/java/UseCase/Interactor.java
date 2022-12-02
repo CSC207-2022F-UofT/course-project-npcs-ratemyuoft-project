@@ -1,9 +1,12 @@
 package UseCase;
 
+import DataStructures.InPutData;
+import DataStructures.OutPutData;
 import Entities.Comment;
 import Entities.CommentList;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Interactor implements InputBoundary  {
     private final OutputBoundary outputBoundary;
@@ -11,17 +14,22 @@ public class Interactor implements InputBoundary  {
     private final Gateway gateway ;
 
 
-
-
+    /**
+     * @param outputBoundary
+     * @param gateway
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * Constructor for Interactor
+     */
     public Interactor(OutputBoundary outputBoundary,Gateway gateway) throws IOException, ClassNotFoundException {
         this.outputBoundary = outputBoundary;
         this.gateway = gateway;
         // import file and set as iterable commentList
         try{
-            commentList = gateway.importComment();
+            this.commentList = gateway.importComment();
 
         } catch (IOException e ){
-            commentList = new CommentList();
+            this.commentList = new CommentList();
             this.outputBoundary.outputMessage("Importation failed");
         }
 
@@ -29,10 +37,21 @@ public class Interactor implements InputBoundary  {
     }
 
 
-
-    // helper function for add Comment
+    /**
+     * helper function for add Comment
+     * @param comment
+     * @return
+     */
     private boolean checkInput(String comment) {
         int count = comment.length();
+        char[] chars = comment.toCharArray();
+        int i = 0;
+        while (chars[i] == ' ') {
+            i ++;
+            if (i == count){
+                return false;
+            }
+        }
         if (count <= 1500 && count > 0){
             return true;
         }
@@ -40,21 +59,32 @@ public class Interactor implements InputBoundary  {
     }
 
 
+    /**convert CommentList to List
+     * @param commentList
+     * @return
+     */
+    private ArrayList<String> listConvert(CommentList commentList){
+        ArrayList<String> listOfComment = new ArrayList<String>();
+
+        for(Comment c : commentList){
+            listOfComment.add(c.getComment());
+        }
+        return listOfComment;
+    }
+
+
+
     /**
      * Send CommentList to Output Boundary
-     * if something is wrong when import Commentlist from database
      *
-     * @throws IOException
-     * @throws ClassNotFoundException
      */
     @Override
-    public void showComments() throws IOException, ClassNotFoundException {
-        commentList = gateway.importComment();
-        this.outputBoundary.showComments(commentList);
+    public void showComments()  {
+        this.outputBoundary.showComments(new OutPutData(listConvert(this.commentList)));
     }
 
     /**
-     * @param commentString
+     *
      * @throws InvalidInputException
      * @throws IOException
      * Check for valid input and turn in to a new Common class send to database
@@ -62,9 +92,10 @@ public class Interactor implements InputBoundary  {
      */
 
     @Override
-    public void addComment(String commentString) throws InvalidInputException, IOException {
-        if (checkInput(commentString)) {
-            Comment commentClass = new Comment(commentString);
+    public void addComment(InPutData inPutData) throws InvalidInputException, IOException {
+
+        if (checkInput(inPutData.getComments())) {
+            Comment commentClass = new Comment(inPutData.getComments());
             commentList.addComment(commentClass);
             try {
                 //save new comments
@@ -72,7 +103,6 @@ public class Interactor implements InputBoundary  {
             } catch (IOException e) {
                 throw new IOException();
             }
-            this.outputBoundary.confirmComment(commentClass);
         }else {
             throw new InvalidInputException();
             
@@ -84,29 +114,33 @@ public class Interactor implements InputBoundary  {
 
 
     @Override
-    public void editComment(int commentNum, String s) throws CommentNotInListException, InvalidInputException {
-        if(checkInput(s)){
-            for( Comment c : commentList) {
-                if (c.getCommentNum() == commentNum) {
-                    try {
-                        //save new comments
-                        gateway.saveComment(commentList);
-                        c.setComment(s);
-                        this.outputBoundary.outputMessage("Comment Changed");
-
-                    } catch (IOException e) {
-                        this.outputBoundary.outputMessage("edit and save new comment to file failed");
-                    }
-                }
-            }
-        }
-        else {
-            throw new CommentNotInListException();
-        }
+    public void editComment(int commentNum, String s) throws CommentNotInListException {
+//        if(checkInput(s)){
+//            for( Comment c : commentList) {
+//                if (c.getCommentNum() == commentNum) {
+//                    try {
+//                        //save new comments
+//                        gateway.saveComment(commentList);
+//                        c.setComment(s);
+//                        this.outputBoundary.outputMessage("Comment Changed");
+//
+//                    } catch (IOException e) {
+//                        this.outputBoundary.outputMessage("edit and save new comment to file failed");
+//                    }
+//                }
+//            }
+//        }
+//        else {
+//            throw new CommentNotInListException();
+//        }
 
     }
 
 
+    /**
+     * @param s
+     *Send message to output boundary to present.
+     */
     @Override
     public void outputMessage(String s){
         this.outputBoundary.outputMessage(s);
