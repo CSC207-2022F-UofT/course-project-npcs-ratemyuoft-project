@@ -8,7 +8,7 @@
     
     Frameworks & Drivers (Blue)
     cli
-    dataBase
+    userDataBase
     
     **********************************************************************
     
@@ -18,7 +18,7 @@
     **********************************************************************
 
     Application Business Rules (Red)
-    useCase
+    logInuseCase
 
     **********************************************************************
 
@@ -31,9 +31,9 @@
     
     Packages that were documented using JavaDoc:
 
-    dataBase
+    userDataBase
     interfaceAdapters
-    useCase
+    logInuseCase
     entities
     
     **********************************************************************
@@ -78,7 +78,7 @@
 
     **********************************************************************
 
-    3.MVC design pattern was implemented. Before, if controller wanted to
+    3.MVC design pattern was implemented. Before, if logInController wanted to
     output a message to CLI it had to send it to InputBoundary->Interactor->
     OutputBoundary->Presenter. Now this path is: ViewModel->Presenter.
 
@@ -95,4 +95,10 @@
     as showUsers() and outputMessage(string s) were not tested. However,
     this methods only pass the information to outputBoundary, without
     modifying it in any way, hence doesn't need to be tested.
+
+
+## 5. Update 12/02/2022
+
+    All the classes and packages were refractored, to make connecting 
+    UseCase more efficient.
 

@@ -1,4 +1,4 @@
-package useCase;
+package logInuseCase;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * Tests for outputMessage and showUsers were not made as they have the only task is to send the information
  * forward to outputBoundary which sends it to Presenter.
  */
-class InteractorTest {
+class LogInInteractorTest {
 
-    Interactor interactor;
+    LogInInteractor logInInteractor;
 
     {
         try {
-            interactor = new Interactor();
+            logInInteractor = new LogInInteractor();
         } catch (ClassNotFoundException e) {
             System.out.println("interactor is not constructed");
         }
@@ -28,10 +28,10 @@ class InteractorTest {
     void checkIfUserExistsTest() {
 
         try {
-            interactor.userRegister("mykola", "mykola123", "math",2020);
-            interactor.userLogOut();
-            assertTrue(interactor.checkIfUserExists("mykola"),"checkIfUserExists didn't work properly");
-            assertFalse(interactor.checkIfUserExists("mykola1"),"checkIfUserExists didn't work properly");
+            logInInteractor.userRegister("mykola", "mykola123", "math",2020);
+            logInInteractor.userLogOut();
+            assertTrue(logInInteractor.checkIfUserExists("mykola"),"checkIfUserExists didn't work properly");
+            assertFalse(logInInteractor.checkIfUserExists("mykola1"),"checkIfUserExists didn't work properly");
         } catch (InvalidInputException | IOException e) {
             System.out.println("wrong input");
         }
@@ -42,10 +42,10 @@ class InteractorTest {
     @Test
     void checkUserStatusTest() {
         try {
-            interactor.userRegister("username100","tired","ofTesting", 2002);
-            assertTrue(interactor.checkUserStatus("username100"), "checkUserStatus didn't work properly");
-            interactor.userLogOut();
-            assertFalse(interactor.checkUserStatus("username100"), "checkUserStatus didn't work properly");
+            logInInteractor.userRegister("username100","tired","ofTesting", 2002);
+            assertTrue(logInInteractor.checkUserStatus("username100"), "checkUserStatus didn't work properly");
+            logInInteractor.userLogOut();
+            assertFalse(logInInteractor.checkUserStatus("username100"), "checkUserStatus didn't work properly");
         } catch (InvalidInputException | IOException e) {
             System.out.println("wrong input");
         }
@@ -57,11 +57,11 @@ class InteractorTest {
     @Test
     void checkPasswordTest() {
         try {
-            interactor.userRegister("username10","tired","ofTesting", 2002);
-            interactor.userLogOut();
-            assertTrue(interactor.checkPassword("username10","tired"),
+            logInInteractor.userRegister("username10","tired","ofTesting", 2002);
+            logInInteractor.userLogOut();
+            assertTrue(logInInteractor.checkPassword("username10","tired"),
                     "checkPassword didn't work properly");
-            assertFalse(interactor.checkPassword("username10","notTired"),
+            assertFalse(logInInteractor.checkPassword("username10","notTired"),
                     "checkPassword didn't work properly");
         } catch (InvalidInputException | IOException e) {
             System.out.println("wrong input");
@@ -70,11 +70,11 @@ class InteractorTest {
 @Test
     void userLoginTest() {
         try {
-            interactor.userRegister("username30","tired","ofTesting", 2002);
-            interactor.userLogOut();
-            assertFalse(interactor.checkUserStatus("username30"));
-            interactor.userLogin("username","tired");
-            assertTrue(interactor.checkUserStatus("username30"));
+            logInInteractor.userRegister("username30","tired","ofTesting", 2002);
+            logInInteractor.userLogOut();
+            assertFalse(logInInteractor.checkUserStatus("username30"));
+            logInInteractor.userLogin("username","tired");
+            assertTrue(logInInteractor.checkUserStatus("username30"));
         } catch (InvalidInputException e) {
             System.out.println("wrong input");
         } catch (IOException | ClassNotFoundException e) {
@@ -89,14 +89,14 @@ class InteractorTest {
         String password = "ndhashdhaskdhl";
         String major ="sdkjahskjdbkjsad";
         int year = 2000;
-        assertFalse(interactor.checkIfUserExists(username));
+        assertFalse(logInInteractor.checkIfUserExists(username));
         try {
-            interactor.userRegister(username,password,major,year);
-            interactor.userLogOut();
+            logInInteractor.userRegister(username,password,major,year);
+            logInInteractor.userLogOut();
         } catch (InvalidInputException | IOException e) {
             System.out.println("wrong input");
         }
-        assertTrue(interactor.checkIfUserExists(username));
+        assertTrue(logInInteractor.checkIfUserExists(username));
 
 
     }
@@ -104,10 +104,10 @@ class InteractorTest {
     @Test
     void userLogOutTest() {
         try {
-            interactor.userRegister("sdasdasd","ueioqwuyeuiyr","msdklmasoikvi",2000);
-            assertTrue(interactor.checkUserStatus("sdasdasd"));
-            interactor.userLogOut();
-            assertFalse(interactor.checkUserStatus("sdasdasd"));
+            logInInteractor.userRegister("sdasdasd","ueioqwuyeuiyr","msdklmasoikvi",2000);
+            assertTrue(logInInteractor.checkUserStatus("sdasdasd"));
+            logInInteractor.userLogOut();
+            assertFalse(logInInteractor.checkUserStatus("sdasdasd"));
         } catch (InvalidInputException | IOException e) {
             System.out.println("wrong input");
         }

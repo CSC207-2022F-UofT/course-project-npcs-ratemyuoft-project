@@ -1,8 +1,8 @@
 package cli;
 
-import interfaceAdapter.Controller;
-import interfaceAdapter.Presenter;
-import useCase.InvalidInputException;
+import logInInterfaceAdapter.LogInController;
+import logInInterfaceAdapter.LogInPresenter;
+import logInuseCase.InvalidInputException;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -16,15 +16,15 @@ public class BootCLI implements BootCLIInterface {
     public void boot() throws IOException, ClassNotFoundException, InvalidInputException {
 
         Scanner scanner = new Scanner(System.in);
-        Presenter presenter = new Presenter();
-        Controller controller = new Controller();
+        LogInPresenter logInPresenter = new LogInPresenter();
+        LogInController logInController = new LogInController();
 
         WelcomeMenuInterface welcomeMenuInterface = new WelcomeMenu();
 
-        controller.userLogOut(); //this call is needed in case some users stayed logged in, when program was crashed.
+        logInController.userLogOut(); //this call is needed in case some users stayed logged in, when program was crashed.
 
-        welcomeMenuInterface.displayWelcomeMenu(presenter);
-        welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter);
+        welcomeMenuInterface.displayWelcomeMenu(logInPresenter);
+        welcomeMenuInterface.choseLoginOrRegister(scanner, logInController, logInPresenter);
 
 
     }

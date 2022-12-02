@@ -1,4 +1,4 @@
-package useCase;
+package logInuseCase;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import java.io.IOException;
  * <p>
  *
  */
-public interface InputBoundary {
+public interface LogInInputBoundary {
     void showUsers() throws IOException, ClassNotFoundException;
     void userRegister(String username, String password, String major, int startYearOfStudy) throws
             InvalidInputException, IOException, ClassNotFoundException;

@@ -1,19 +1,19 @@
 package cli;
 
-import interfaceAdapter.Controller;
-import interfaceAdapter.Presenter;
+import logInInterfaceAdapter.LogInController;
+import logInInterfaceAdapter.LogInPresenter;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class ShowUsers implements ShowUsersInterface{
     @Override
-    public void showUsers(Scanner scanner, Presenter presenter, Controller controller)
+    public void showUsers(Scanner scanner, LogInPresenter logInPresenter, LogInController logInController)
             throws IOException, ClassNotFoundException {
-        presenter.outputMessage("Here is the list of users of our project"+ "\n");
-        controller.showUsers();
+        logInPresenter.outputMessage("Here is the list of users of our project"+ "\n");
+        logInController.showUsers();
         MainMenuInterface mainMenuInterface = new MainMenu();
-        mainMenuInterface.displayMainMenu(presenter);
-        mainMenuInterface.choseOption(scanner,presenter,controller);
+        mainMenuInterface.displayMainMenu(logInPresenter);
+        mainMenuInterface.choseOption(scanner, logInPresenter, logInController);
     }
 }

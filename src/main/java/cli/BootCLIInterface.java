@@ -1,6 +1,6 @@
 package cli;
 
-import useCase.InvalidInputException;
+import logInuseCase.InvalidInputException;
 
 import java.io.IOException;
 

@@ -1,7 +1,7 @@
-package interfaceAdapter;
-import useCase.InputBoundary;
-import useCase.Interactor; // this import can't be accessed, only used to initialize input boundary
-import useCase.InvalidInputException;
+package logInInterfaceAdapter;
+import logInuseCase.LogInInputBoundary;
+import logInuseCase.LogInInteractor; // this import can't be accessed, only used to initialize input boundary
+import logInuseCase.InvalidInputException;
 
 
 import java.io.IOException;
@@ -30,61 +30,61 @@ import java.io.IOException;
  * <p>
  *
  */
-public class Controller {
-    private final InputBoundary inputBoundary;
-    private final ViewModel viewModel;
+public class LogInController {
+    private final LogInInputBoundary logInInputBoundary;
+    private final LogInViewModel logInViewModel;
 
-    public Controller() throws ClassNotFoundException {
-        this.inputBoundary = new Interactor();
-        this.viewModel = new ViewModel();
+    public LogInController() throws ClassNotFoundException {
+        this.logInInputBoundary = new LogInInteractor();
+        this.logInViewModel = new LogInViewModel();
     }
 
     public void showUsers() {
         try {
-            inputBoundary.showUsers();
-            viewModel.outputFromController("All Users are displayed"+ "\n");
+            logInInputBoundary.showUsers();
+            logInViewModel.outputFromController("All Users are displayed"+ "\n");
         }catch (IOException | ClassNotFoundException e){
-            viewModel.outputFromController("Invalid input"+ "\n");
+            logInViewModel.outputFromController("Invalid input"+ "\n");
 
         }
     }
 
     public void userRegister(String username, String password, String major, int startYearOfStudy) throws ClassNotFoundException, IOException, InvalidInputException {
         try{
-            inputBoundary.userRegister(username,password,major,startYearOfStudy);
-            viewModel.outputFromController("Registration Successful!"+ "\n");
+            logInInputBoundary.userRegister(username,password,major,startYearOfStudy);
+            logInViewModel.outputFromController("Registration Successful!"+ "\n");
 
         }catch(InvalidInputException e){
-            viewModel.outputFromController("Invalid input"+ "\n");
+            logInViewModel.outputFromController("Invalid input"+ "\n");
             throw new InvalidInputException();
         } catch (IOException e) {
-            viewModel.outputFromController("Invalid input"+ "\n");
+            logInViewModel.outputFromController("Invalid input"+ "\n");
             throw new IOException();
         } catch (ClassNotFoundException e) {
-            viewModel.outputFromController("Invalid input"+ "\n");
+            logInViewModel.outputFromController("Invalid input"+ "\n");
             throw new ClassNotFoundException();
         }
     }
 
     public void userLogin(String username, String password) throws ClassNotFoundException, IOException, InvalidInputException {
         try{
-            inputBoundary.userLogin(username,password);
-            viewModel.outputFromController("Login Successful!"+ "\n");
+            logInInputBoundary.userLogin(username,password);
+            logInViewModel.outputFromController("Login Successful!"+ "\n");
         }catch(InvalidInputException e){
-            viewModel.outputFromController("Invalid input"+ "\n");
+            logInViewModel.outputFromController("Invalid input"+ "\n");
             throw new InvalidInputException();
         } catch (IOException e) {
-            viewModel.outputFromController("Invalid input"+ "\n");
+            logInViewModel.outputFromController("Invalid input"+ "\n");
             throw new IOException();
         } catch (ClassNotFoundException e) {
-            viewModel.outputFromController("Invalid input"+ "\n");
+            logInViewModel.outputFromController("Invalid input"+ "\n");
             throw new ClassNotFoundException();
         }
     }
 
     public void userLogOut() throws IOException  {
-        inputBoundary.userLogOut();
-        viewModel.outputFromController("Log out successful!"+ "\n");
+        logInInputBoundary.userLogOut();
+        logInViewModel.outputFromController("Log out successful!"+ "\n");
 
 
     }

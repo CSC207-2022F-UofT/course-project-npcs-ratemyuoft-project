@@ -1,8 +1,8 @@
-package dataBase;
+package userDataBase;
 
 import java.io.*;
 
-import useCase.DataAccess;
+import logInuseCase.UserDataAccess;
 import entities.UserList;
 
 /**
@@ -11,7 +11,7 @@ import entities.UserList;
  * Its task is to create .sav file which is used as a database. Update the database and pass the data from it
  * to a UserList.
  */
-public class DataBase implements DataAccess {
+public class UserDataBase implements UserDataAccess {
 
     private final String fileName = "userFile.sav";
 

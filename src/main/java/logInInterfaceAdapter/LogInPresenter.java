@@ -1,6 +1,6 @@
-package interfaceAdapter;
+package logInInterfaceAdapter;
 
-import useCase.OutputBoundary;
+import logInuseCase.LogInOutputBoundary;
 import entities.User;
 import entities.UserList;
 
@@ -19,7 +19,7 @@ import entities.UserList;
  * UPDATE: Presenter class is also used by ViewModel class for sake of implementing the MVC design pattern
  * and optimizing the use of recourses when running the project.
  */
-public class Presenter implements OutputBoundary{
+public class LogInPresenter implements LogInOutputBoundary {
 
 
     /**

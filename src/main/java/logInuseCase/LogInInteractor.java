@@ -1,9 +1,9 @@
-package useCase;
+package logInuseCase;
 
-import dataBase.DataBase; // the import can not be used directly. it is used only through DataAccess interface
+import userDataBase.UserDataBase; // the import can not be used directly. it is used only through DataAccess interface
 import entities.User;
 import entities.UserList;
-import interfaceAdapter.Presenter; //  can not be used directly. only through outputBoundary
+import logInInterfaceAdapter.LogInPresenter; //  can not be used directly. only through outputBoundary
 
 import java.io.IOException;
 
@@ -14,10 +14,10 @@ import java.io.IOException;
  * <p>
  * It does all the work and passes is to OutputBoundary.
  */
-public class Interactor implements InputBoundary {
-    private final OutputBoundary outputBoundary;
+public class LogInInteractor implements LogInInputBoundary {
+    private final LogInOutputBoundary logInOutputBoundary;
     public static UserList users;
-    private final DataAccess dataAccess;
+    private final UserDataAccess userDataAccess;
 
 
     /**
@@ -28,14 +28,14 @@ public class Interactor implements InputBoundary {
      *  goes wrong(Exception thrown) it just creates a new Userlist and indicates that the importation from the
      *  DataBase failed.
      */
-    public Interactor() throws ClassNotFoundException{
-        this.outputBoundary = new Presenter();
-        this.dataAccess = new DataBase();
+    public LogInInteractor() throws ClassNotFoundException{
+        this.logInOutputBoundary = new LogInPresenter();
+        this.userDataAccess = new UserDataBase();
         try{
-            users = dataAccess.importUsers();
+            users = userDataAccess.importUsers();
         }catch (IOException e){
             users = new UserList();
-            this.outputBoundary.outputMessage("Importation Failed"+ "\n");
+            this.logInOutputBoundary.outputMessage("Importation Failed"+ "\n");
         }
 
     }
@@ -104,8 +104,8 @@ public class Interactor implements InputBoundary {
      */
     @Override
     public void showUsers() throws IOException, ClassNotFoundException {
-        users = dataAccess.importUsers();
-        this.outputBoundary.showUsers(users);
+        users = userDataAccess.importUsers();
+        this.logInOutputBoundary.showUsers(users);
 
     }
 
@@ -124,7 +124,7 @@ public class Interactor implements InputBoundary {
      */
      @Override
     public void userLogin(String username, String password) throws InvalidInputException, IOException, ClassNotFoundException {
-        users = dataAccess.importUsers();
+        users = userDataAccess.importUsers();
         if(checkInput(username)&& checkInput(password) && checkIfUserExists(username)&& !checkUserStatus(username) &&
                 checkPassword(username,password)){
             try{
@@ -133,10 +133,10 @@ public class Interactor implements InputBoundary {
                         user.setLogInStatus(true);
                     }
                 }
-                dataAccess.saveUser(users);
+                userDataAccess.saveUser(users);
 
             }catch(IOException e){
-                this.outputBoundary.outputMessage("Log in failed"+ "\n");
+                this.logInOutputBoundary.outputMessage("Log in failed"+ "\n");
             }
         }else{
             throw new InvalidInputException();
@@ -171,13 +171,13 @@ public class Interactor implements InputBoundary {
             user1.setLogInStatus(true);
             users.addUser(user1);
             try {
-                dataAccess.saveUser(users);
+                userDataAccess.saveUser(users);
             } catch (IOException e) {
-                this.outputBoundary.outputMessage("Registration failed"+ "\n");
+                this.logInOutputBoundary.outputMessage("Registration failed"+ "\n");
             }
 
         } else if (checkIfUserExists(username)) {
-            outputBoundary.outputMessage("User with this username already exists"+ "\n");
+            logInOutputBoundary.outputMessage("User with this username already exists"+ "\n");
             throw new InvalidInputException();
 
 
@@ -202,10 +202,10 @@ public class Interactor implements InputBoundary {
                     user.setLogInStatus(false);
                 }
             }
-            dataAccess.saveUser(users);
+            userDataAccess.saveUser(users);
 
         }catch(IOException e){
-            this.outputBoundary.outputMessage("Log out failed"+ "\n");
+            this.logInOutputBoundary.outputMessage("Log out failed"+ "\n");
         }
 
 
@@ -217,7 +217,7 @@ public class Interactor implements InputBoundary {
      */
     @Override
     public void outputMessage(String message){
-        this.outputBoundary.outputMessage(message);
+        this.logInOutputBoundary.outputMessage(message);
     }
 
 }

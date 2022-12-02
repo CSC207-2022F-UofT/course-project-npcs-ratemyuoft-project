@@ -1,17 +1,17 @@
-package interfaceAdapter;
+package logInInterfaceAdapter;
 
 /**
  * ViewModel is the class that allows us not to cycle messages we want to display from Controller through the whole
  * project. Instead, it becomes Controller->ViewModel->Presenter
  */
-public class ViewModel {
+public class LogInViewModel {
 
 
 
-    Presenter presenter = new Presenter();
+    LogInPresenter logInPresenter = new LogInPresenter();
 
     void outputFromController(String s){
-        presenter.outputMessage(s);
+        logInPresenter.outputMessage(s);
     }
 
 

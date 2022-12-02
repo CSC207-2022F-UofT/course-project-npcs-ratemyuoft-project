@@ -1,48 +1,48 @@
 package cli;
 
-import interfaceAdapter.Controller;
-import interfaceAdapter.Presenter;
-import useCase.InvalidInputException;
+import logInInterfaceAdapter.LogInController;
+import logInInterfaceAdapter.LogInPresenter;
+import logInuseCase.InvalidInputException;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class WelcomeMenu implements WelcomeMenuInterface{
     @Override
-    public void displayWelcomeMenu(Presenter presenter) {
-        presenter.outputMessage("\n" + "Avaliable Actions" + "\n" + "1. Register as new User" + "\n" +
+    public void displayWelcomeMenu(LogInPresenter logInPresenter) {
+        logInPresenter.outputMessage("\n" + "Avaliable Actions" + "\n" + "1. Register as new User" + "\n" +
                 "2. Log in (if you already have an account)" + "\n");
-        presenter.outputMessage("Please, enter the number of the option to proceed"+ "\n");
+        logInPresenter.outputMessage("Please, enter the number of the option to proceed"+ "\n");
     }
 
     @Override
-    public void choseLoginOrRegister(Scanner scanner, Controller controller, Presenter presenter){
+    public void choseLoginOrRegister(Scanner scanner, LogInController logInController, LogInPresenter logInPresenter){
         String choice = scanner.nextLine();
         if(choice.contains("1")){
 
             RegisterInterface registerInterface = new Register();
             try {
-                registerInterface.register(scanner,controller,presenter);
+                registerInterface.register(scanner, logInController, logInPresenter);
             } catch (IOException | ClassNotFoundException | InvalidInputException e) {
-                displayWelcomeMenu(presenter);
-                choseLoginOrRegister(scanner,controller,presenter);
+                displayWelcomeMenu(logInPresenter);
+                choseLoginOrRegister(scanner, logInController, logInPresenter);
             }
 
 
         } else if (choice.contains("2")) {
             LogInInterface logInInterface = new Login();
             try {
-                logInInterface.login(scanner,controller,presenter);
+                logInInterface.login(scanner, logInController, logInPresenter);
             } catch (IOException | InvalidInputException | ClassNotFoundException e) {
-                displayWelcomeMenu(presenter);
-                choseLoginOrRegister(scanner,controller,presenter);
+                displayWelcomeMenu(logInPresenter);
+                choseLoginOrRegister(scanner, logInController, logInPresenter);
             }
 
         } else{
             WelcomeMenuInterface welcomeMenuInterface = new WelcomeMenu();
-            welcomeMenuInterface.displayWelcomeMenu(presenter);
+            welcomeMenuInterface.displayWelcomeMenu(logInPresenter);
             try {
-                welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter);
+                welcomeMenuInterface.choseLoginOrRegister(scanner, logInController, logInPresenter);
             } catch (IOException | InvalidInputException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }

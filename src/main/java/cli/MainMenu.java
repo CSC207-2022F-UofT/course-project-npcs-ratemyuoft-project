@@ -1,22 +1,22 @@
 package cli;
 
-import interfaceAdapter.Controller;
-import interfaceAdapter.Presenter;
-import useCase.InvalidInputException;
+import logInInterfaceAdapter.LogInController;
+import logInInterfaceAdapter.LogInPresenter;
+import logInuseCase.InvalidInputException;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class MainMenu implements MainMenuInterface{
     @Override
-    public void displayMainMenu(Presenter presenter) {
-        presenter.outputMessage("Avaliable Actions" + "\n" + "1. Show all the Users on our forum" + "\n" +
+    public void displayMainMenu(LogInPresenter logInPresenter) {
+        logInPresenter.outputMessage("Avaliable Actions" + "\n" + "1. Show all the Users on our forum" + "\n" +
                 "2. Log out" + "\n" + "Another features will be avaliable later..." + "\n");
-        presenter.outputMessage("Please, enter the number of the option to proceed"+ "\n");
+        logInPresenter.outputMessage("Please, enter the number of the option to proceed"+ "\n");
     }
 
     @Override
-    public void choseOption(Scanner scanner,Presenter presenter, Controller controller)
+    public void choseOption(Scanner scanner, LogInPresenter logInPresenter, LogInController logInController)
             throws  ClassNotFoundException {
         int choice = scanner.nextInt();
 
@@ -24,28 +24,28 @@ public class MainMenu implements MainMenuInterface{
 
             try {
                 ShowUsersInterface showUsersInterface =new ShowUsers();
-                showUsersInterface.showUsers(scanner,presenter,controller);
+                showUsersInterface.showUsers(scanner, logInPresenter, logInController);
             } catch (IOException e) {
-                displayMainMenu(presenter);
-                choseOption(scanner,presenter,controller);
+                displayMainMenu(logInPresenter);
+                choseOption(scanner, logInPresenter, logInController);
             }
 
 
         } else if (choice == 2) {
             try{
-                controller.userLogOut();
+                logInController.userLogOut();
                 WelcomeMenuInterface welcomeMenuInterface =new WelcomeMenu();
-                welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter);
+                welcomeMenuInterface.choseLoginOrRegister(scanner, logInController, logInPresenter);
             }  catch (IOException  e) {
-                displayMainMenu(presenter);
-                choseOption(scanner,presenter,controller);
+                displayMainMenu(logInPresenter);
+                choseOption(scanner, logInPresenter, logInController);
             } catch (InvalidInputException e) {
                 throw new RuntimeException(e);
             }
 
         }else{
-            displayMainMenu(presenter);
-            choseOption(scanner,presenter,controller);
+            displayMainMenu(logInPresenter);
+            choseOption(scanner, logInPresenter, logInController);
         }
 
     }
