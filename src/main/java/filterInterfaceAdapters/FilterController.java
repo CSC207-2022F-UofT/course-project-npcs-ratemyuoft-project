@@ -7,8 +7,14 @@ import filterUseCases.FilterInputBoundary;
 
 public class FilterController {
 
-    final FilterInputBoundary filterInputBoundary;
+    /**
+     *
+     *
+     *
+     *
+     */
 
+    final FilterInputBoundary filterInputBoundary;
 
     public FilterController(FilterInputBoundary filterInputBoundary) {
         this.filterInputBoundary = filterInputBoundary;
