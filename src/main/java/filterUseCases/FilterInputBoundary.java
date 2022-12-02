@@ -1,5 +1,6 @@
 package filterUseCases;
 
+
 public interface FilterInputBoundary {
 
     void filterByName(FilterByNameRequestModel filterByNameRequestModel);
