@@ -30,7 +30,6 @@ public class LikeReview implements InputBoundaryL {
 
         for (Course i : courseList) {
             int iterator = -1;
-            System.out.println(i.reviews);
             for (Review r : i.GetReviews()) {
                 iterator += 1;
                 if (Objects.equals(r.Name, ReviewName)) {

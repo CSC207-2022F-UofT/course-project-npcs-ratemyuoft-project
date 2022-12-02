@@ -3,7 +3,6 @@ package cli;
 import interfaceAdapter.Controller;
 import interfaceAdapter.Presenter;
 import useCase.InvalidInputException;
-
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -11,7 +10,7 @@ public class MainMenu implements MainMenuInterface{
     @Override
     public void displayMainMenu(Presenter presenter) {
         presenter.outputMessage("Avaliable Actions" + "\n" + "1. Show all the Users on our forum" + "\n" +
-                "2. Log out" + "\n" + "Another features will be avaliable later..." + "\n");
+                "2. Log out" + "\n" + "3. Search Course" + "\n");
         presenter.outputMessage("Please, enter the number of the option to proceed"+ "\n");
     }
 
@@ -44,7 +43,20 @@ public class MainMenu implements MainMenuInterface{
                         logInInterface,showUsersInterface);
             }
 
-        }else{
+        } else if (choice == 3) {
+            try {
+                controller.userLogOut();
+                ViewCourseCLI vc = new ViewCourseCLI();
+                vc.viewcourse(scanner);
+
+            } catch (IOException | InvalidInputException e) {
+                displayMainMenu(presenter);
+                this.choseOption(scanner, presenter, controller, welcomeMenuInterface, registerInterface,
+                        logInInterface, showUsersInterface);
+            }
+
+
+        } else{
             displayMainMenu(presenter);
             this.choseOption(scanner,presenter,controller,welcomeMenuInterface,registerInterface,
                     logInInterface,showUsersInterface);

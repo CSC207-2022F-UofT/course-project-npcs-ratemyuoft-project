@@ -26,11 +26,14 @@ public class ViewCourse implements InputBoundary{
             }
         }
 
-        if (this.course == null){
-            this.course = new Course("dfd", "fd");
+        if (this.course != null){
+            this.reviews = this.course.GetReviews();
         }
 
-        this.reviews = this.course.GetReviews();
+        else{
+            this.reviews = new ArrayList<Review>();
+        }
+
         this.output = output;
     }
 

@@ -12,15 +12,13 @@ public class Controller {
 
     private OutputBoundary outputBoundary;
 
-    public Controller(String coursename, Gateway gateway, OutputBoundary outputBoundary){
+    public void Display(String coursename, Gateway gateway, OutputBoundary outputBoundary){
+        InputBoundary ip = new ViewCourse(coursename, gateway, outputBoundary);
+        try {
+            ip.Displayinformation();
+        } catch (Exception e){
+            outputBoundary.outputMessage("No Course with This Name");
+        }
 
-        this.coursename = coursename;
-        this.gateway = gateway;
-        this.outputBoundary = outputBoundary;
-    }
-
-    public void Display(){
-        InputBoundary ip = new ViewCourse(this.coursename, this.gateway, this.outputBoundary);
-        ip.Displayinformation();
     }
 }

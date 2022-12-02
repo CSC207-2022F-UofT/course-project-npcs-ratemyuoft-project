@@ -26,6 +26,7 @@ public class BootCLI implements BootCLIInterface {
         DataAccess dataAccess = new DataBase();
         InputBoundary inputBoundary =new Interactor(presenter,dataAccess);
         Controller controller = new Controller(inputBoundary);
+        ViewCourseCLI vcli = new ViewCourseCLI();
 
         welcomeMenuInterface.displayWelcomeMenu(presenter);
         welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter, registerInterface,

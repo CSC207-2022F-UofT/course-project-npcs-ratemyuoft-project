@@ -23,7 +23,6 @@ public class Presenter implements UsecaseShawn.OutputBoundary {
             System.out.println("Rating: " + r.Rating);
             System.out.println("Comment: " + r.Comment);
             System.out.println("Likes: " + r.numberOfLikes);
-            System.out.println(r);
         }
     }
 

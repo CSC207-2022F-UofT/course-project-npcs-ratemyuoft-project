@@ -13,10 +13,10 @@ public class MainShawn {
         Presenter p = new Presenter();
         PresenterL pL = new PresenterL();
 
-        ControllerL controllaL = new ControllerL("Review4", d1, pL);
-        Controller controla = new Controller("Mat137", d, p);
+        ControllerL controllaL = new ControllerL("Review1", d1, pL);
+        Controller controla = new Controller();
 
         controllaL.Like();
-        controla.Display();
+        controla.Display("Mat137", d, p);
     }
 }
