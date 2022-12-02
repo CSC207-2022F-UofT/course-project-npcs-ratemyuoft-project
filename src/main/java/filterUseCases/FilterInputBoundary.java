@@ -2,9 +2,9 @@ package filterUseCases;
 
 public interface FilterInputBoundary {
 
-    FilterResponseModel filterByName(FilterByNameRequestModel filterByNameRequestModel);
+    void filterByName(FilterByNameRequestModel filterByNameRequestModel);
 
-    FilterResponseModel filterByFOS(FilterByFOSRequestModel filterByFOSRequestModel);
+    void filterByFOS(FilterByFOSRequestModel filterByFOSRequestModel);
 
-    FilterResponseModel filterByRating(FilterByRatingRequestModel filterByRatingRequestModel);
+    void filterByRating(FilterByRatingRequestModel filterByRatingRequestModel);
 }

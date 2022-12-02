@@ -1,5 +1,5 @@
 package viewCourseUsecase;
-import courseDataBase.CourseDataBaseGateway;
+import filterUseCases.CourseDataAccessInterface;
 import entities.Course;
 import entities.CourseList;
 import entities.Review;
@@ -13,7 +13,7 @@ public class ViewCourseInteracter implements ViewCourseInputBoundary{
     private Course course;
     private ArrayList<Review> reviews;
     private ViewCourseOutputBoundary output;
-    public ViewCourseInteracter(String coursename, CourseDataBaseGateway gateway, ViewCourseOutputBoundary output){
+    public ViewCourseInteracter(String coursename, CourseDataAccessInterface gateway, ViewCourseOutputBoundary output){
         try{
             courseList = gateway.importCourses();
         } catch (IOException | ClassNotFoundException e){

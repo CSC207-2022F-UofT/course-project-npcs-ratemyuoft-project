@@ -1,6 +1,6 @@
 package likeReviewUsecase;
 
-import courseDataBase.CourseDataBaseGateway;
+import filterUseCases.CourseDataAccessInterface;
 
 import entities.Course;
 import entities.CourseList;
@@ -13,19 +13,19 @@ import java.util.Objects;
 public class LikeReviewInteracter implements LikeReviewInputBoundary {
     public Review review;
     public CourseList courseList;
-    public CourseDataBaseGateway courseDataBaseGateway;
+    public CourseDataAccessInterface courseDataAccessInterface;
     public LikeReviewOutputBoundary output;
 
     public int iter;
     public Course cs;
 
-    public LikeReviewInteracter(String reviewName, CourseDataBaseGateway courseDataBaseGateway, LikeReviewOutputBoundary output) {
+    public LikeReviewInteracter(String reviewName, CourseDataAccessInterface courseDataAccessInterface, LikeReviewOutputBoundary output) {
 
-        this.courseDataBaseGateway = courseDataBaseGateway;
+        this.courseDataAccessInterface = courseDataAccessInterface;
         this.output = output;
 
         try {
-            this.courseList = this.courseDataBaseGateway.importCourses();
+            this.courseList = this.courseDataAccessInterface.importCourses();
         } catch (IOException | ClassNotFoundException e) {
             this.courseList = new CourseList();
         }
@@ -52,7 +52,7 @@ public class LikeReviewInteracter implements LikeReviewInputBoundary {
     @Override
     public void AddLike () throws IOException, ClassNotFoundException {
         cs.reviews.get(iter).Like();
-        this.courseDataBaseGateway.saveCourse(this.courseList);
+        this.courseDataAccessInterface.saveCourse(this.courseList);
 
         //this.output.outputMessage("Course Liked");
             //System.out.println(this.review.numberOfLikes);

@@ -1,20 +1,18 @@
 package viewCourseInterfaceAdapters;
 
-import courseDataBase.CourseDataBaseGateway;
+import filterUseCases.CourseDataAccessInterface;
 import viewCourseUsecase.ViewCourseInputBoundary;
 import viewCourseUsecase.ViewCourseInteracter;
 import viewCourseUsecase.ViewCourseOutputBoundary;
 
-import java.util.ArrayList;
-
 public class ViewCourseController {
     private String coursename;
 
-    private CourseDataBaseGateway gateway;
+    private CourseDataAccessInterface gateway;
 
     private ViewCourseOutputBoundary outputBoundary;
 
-    public ViewCourseController(String coursename, CourseDataBaseGateway gateway, ViewCourseOutputBoundary outputBoundary){
+    public ViewCourseController(String coursename, CourseDataAccessInterface gateway, ViewCourseOutputBoundary outputBoundary){
 
         this.coursename = coursename;
         this.gateway = gateway;

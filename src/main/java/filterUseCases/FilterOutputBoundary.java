@@ -1,11 +1,10 @@
 package filterUseCases;
-import entities.Course;
-import entities.CourseList;
-import filterInterfaceAdapters.FilterFailError;
+
+import dataStructures.FilterResponseModel;
 
 public interface FilterOutputBoundary {
 
-    FilterResponseModel filterSuccessView(CourseList courseList);
+    void filterView(FilterResponseModel filterResponseModel);
 
-    FilterResponseModel filterFailView (String s) throws FilterFailError;
+    void filterFailView (String s);
 }

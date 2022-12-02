@@ -1,20 +1,17 @@
 package filterInterfaceAdapters;
 
-import entities.CourseList;
 import filterUseCases.FilterOutputBoundary;
-import filterUseCases.FilterResponseModel;
+import dataStructures.FilterResponseModel;
 
 public class FilterPresenter implements FilterOutputBoundary {
 
     @Override
-    public FilterResponseModel filterSuccessView(CourseList courseList) {
-        FilterResponseModel frs = new FilterResponseModel(courseList);
-        System.out.println(frs);
-        return frs;
+    public void filterView(FilterResponseModel filterResponseModel){
+        System.out.println(filterResponseModel);
     }
 
     @Override
-    public FilterResponseModel filterFailView(String error) {
-        throw new FilterFailError(error);
+    public void filterFailView(String error) {
+        throw new FilterFailException(error);
     }
 }

@@ -1,6 +1,6 @@
 package viewCourseUsecase;
 
-import courseDataBase.CourseDataBaseGateway;
+import filterUseCases.CourseDataAccessInterface;
 import entities.Course;
 import entities.CourseList;
 
@@ -9,7 +9,7 @@ import java.io.IOException;
 public class RegisterCourse {
     public Course C;
 
-    public RegisterCourse(Course C, CourseDataBaseGateway gateway) throws IOException, ClassNotFoundException {
+    public RegisterCourse(Course C, CourseDataAccessInterface gateway) throws IOException, ClassNotFoundException {
         try{
             CourseList courselist = gateway.importCourses();
             for (Course c: courselist){

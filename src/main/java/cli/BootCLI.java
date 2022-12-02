@@ -4,10 +4,10 @@ import courseDataBase.CourseDataAccess;
 import userDataBase.UserDataBase;
 import filterInterfaceAdapters.FilterController;
 import filterInterfaceAdapters.FilterPresenter;
-import courseDataBase.CourseDataBaseGateway;
+import filterUseCases.CourseDataAccessInterface;
 import filterUseCases.FilterInputBoundary;
 import filterUseCases.FilterOutputBoundary;
-import filterUseCases.FilterUseCaseInteractor;
+import filterUseCases.FilterUseCaseInteracter;
 import loginInterfaceAdapter.LoginController;
 import loginInterfaceAdapter.LoginPresenter;
 import loginUseCase.LoginDataAccess;
@@ -44,8 +44,8 @@ public class BootCLI implements BootCLIInterface {
         LoginController loginController = new LoginController(loginInputBoundary);
 
         FilterOutputBoundary filterPresenter = new FilterPresenter();
-        CourseDataBaseGateway filterDataBase = new CourseDataAccess();
-        FilterInputBoundary filterUseCaseInteracter = new FilterUseCaseInteractor(filterDataBase, filterPresenter);
+        CourseDataAccessInterface filterDataBase = new CourseDataAccess();
+        FilterInputBoundary filterUseCaseInteracter = new FilterUseCaseInteracter(filterDataBase, filterPresenter);
         FilterController filterController = new FilterController(filterUseCaseInteracter);
 
         welcomeMenuInterface.displayWelcomeMenu(loginPresenter);

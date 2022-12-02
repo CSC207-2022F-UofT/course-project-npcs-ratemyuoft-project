@@ -25,6 +25,7 @@ public class ViewCourse {
             LoginPresenter loginPresenter = new LoginPresenter();
             mainMenuInterface.displayMainMenu(loginPresenter);
 
+
         }
     }
 }

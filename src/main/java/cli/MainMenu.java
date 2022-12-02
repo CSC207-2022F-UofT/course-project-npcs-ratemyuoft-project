@@ -2,12 +2,12 @@ package cli;
 
 import courseDataBase.CourseDataAccess;
 import filterInterfaceAdapters.FilterController;
-import filterInterfaceAdapters.FilterFailError;
+import filterInterfaceAdapters.FilterFailException;
 import filterInterfaceAdapters.FilterPresenter;
-import courseDataBase.CourseDataBaseGateway;
+import filterUseCases.CourseDataAccessInterface;
 import filterUseCases.FilterInputBoundary;
 import filterUseCases.FilterOutputBoundary;
-import filterUseCases.FilterUseCaseInteractor;
+import filterUseCases.FilterUseCaseInteracter;
 import loginInterfaceAdapter.LoginController;
 import loginInterfaceAdapter.LoginPresenter;
 import loginUseCase.InvalidInputException;
@@ -64,7 +64,7 @@ public class MainMenu implements MainMenuInterface{
 //    }
 
     @Override
-    public void choseOption(Scanner scanner, LoginPresenter loginPresenter, LoginController loginController, WelcomeMenuInterface welcomeMenuInterface, RegisterInterface registerInterface, LogInInterface logInInterface, ShowUsersInterface showUsersInterface, Filter filter) throws ClassNotFoundException, FilterFailError {
+    public void choseOption(Scanner scanner, LoginPresenter loginPresenter, LoginController loginController, WelcomeMenuInterface welcomeMenuInterface, RegisterInterface registerInterface, LogInInterface logInInterface, ShowUsersInterface showUsersInterface, Filter filter) throws ClassNotFoundException, FilterFailException {
         int choice = scanner.nextInt();
 
         if(choice == 1){
@@ -93,8 +93,8 @@ public class MainMenu implements MainMenuInterface{
         } else if (choice == 3){
 
             FilterOutputBoundary filterPresenter = new FilterPresenter();
-            CourseDataBaseGateway filterDataBase = new CourseDataAccess();
-            FilterInputBoundary filterUseCaseInteracter = new FilterUseCaseInteractor(filterDataBase, filterPresenter);
+            CourseDataAccessInterface filterDataBase = new CourseDataAccess();
+            FilterInputBoundary filterUseCaseInteracter = new FilterUseCaseInteracter(filterDataBase, filterPresenter);
             FilterController filterController = new FilterController(filterUseCaseInteracter);
             filter.chooseFilterOptions(scanner, filterController, filterPresenter, this);
 

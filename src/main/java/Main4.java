@@ -1,5 +1,5 @@
 import courseDataBase.CourseDataAccess;
-import courseDataBase.CourseDataBaseGateway;
+import filterUseCases.CourseDataAccessInterface;
 import viewCourseInterfaceAdapters.ViewCourseController;
 import viewCourseInterfaceAdapters.ViewCoursePresenter;
 import likeReviewInterfaceAdapters.LikeReviewController;
@@ -7,14 +7,12 @@ import likeReviewInterfaceAdapters.LikeReviewPresenter;
 import entities.Course;
 import entities.CourseList;
 import entities.Review;
-import viewCourseUsecase.ViewCourseInputBoundary;
-import viewCourseUsecase.ViewCourseInteracter;
 
 import java.io.IOException;
 
 public class Main4 {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        CourseDataBaseGateway d = new CourseDataAccess();
+        CourseDataAccessInterface d = new CourseDataAccess();
         LikeReviewPresenter pL = new LikeReviewPresenter();
         ViewCoursePresenter p = new ViewCoursePresenter();
 

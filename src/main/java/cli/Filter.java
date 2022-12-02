@@ -1,10 +1,9 @@
 package cli;
 
 import courseDataBase.CourseDataAccess;
-import courseDataBase.CourseDataBaseGateway;
+import filterUseCases.CourseDataAccessInterface;
 import filterInterfaceAdapters.FilterController;
-import filterInterfaceAdapters.FilterFailError;
-import filterInterfaceAdapters.FilterPresenter;
+import filterInterfaceAdapters.FilterFailException;
 import filterUseCases.FilterOutputBoundary;
 import viewCourseInterfaceAdapters.ViewCourseController;
 import viewCourseInterfaceAdapters.ViewCoursePresenter;
@@ -16,32 +15,31 @@ public class Filter {
 
 
     public void chooseFilterOptions(Scanner scanner, FilterController filterController, FilterOutputBoundary filterPresenter,
-                                    MainMenuInterface mainMenuInterface) throws FilterFailError {
+                                    MainMenuInterface mainMenuInterface) throws FilterFailException {
         System.out.println("Choose filter options:" + "\n" + "1, Filter by field of studies" + "\n" +
                 "2, Filter by ratings" + '\n' + "3, Search by course name" + '\n');
         int choice = scanner.nextInt();
         ViewCourse viewCourse = new ViewCourse();
         ViewCourseOutputBoundary viewCourseOutputBoundary = new ViewCoursePresenter();
-        CourseDataBaseGateway courseDataBaseGateway = new CourseDataAccess();
-        ViewCourseController viewCourseController = new ViewCourseController("s", courseDataBaseGateway, viewCourseOutputBoundary);
+        CourseDataAccessInterface courseDataAccessInterface = new CourseDataAccess();
+        ViewCourseController viewCourseController = new ViewCourseController("s", courseDataAccessInterface, viewCourseOutputBoundary);
         ViewCoursePresenter viewCoursePresenter = new ViewCoursePresenter();
 
         if (choice == 1){
             System.out.println("What is the field of study of interest?");
-            try {filterController.filterByFOS(scanner.next());
+            filterController.filterByFOS(scanner.next());
 
 
-                System.out.println("Insert the number of the course you want to view. " +'\n' + "Press 100 to go back to main menu" +
-                        '\n' + "Press 0 to filter again" + '\n');
+            System.out.println("Insert the number of the course you want to view. " +'\n' + "Press 100 to go back to main menu" +
+                    '\n' + "Press 0 to filter again" + '\n');
 
-                viewCourse.viewCourse(scanner, viewCourseController, viewCoursePresenter, this, mainMenuInterface,
-                        filterController, filterPresenter);
+            viewCourse.viewCourse(scanner, viewCourseController, viewCoursePresenter, this, mainMenuInterface,
+                    filterController, filterPresenter);
 
 
-            }
-            catch(FilterFailError f) {
-                System.out.println("filterfail");
-            }
+
+
+
 
         }
         else if (choice == 2) {
@@ -53,7 +51,7 @@ public class Filter {
                 viewCourse.viewCourse(scanner, viewCourseController, viewCoursePresenter, this, mainMenuInterface,
                         filterController, filterPresenter);
             }
-            catch(FilterFailError f) {
+            catch(FilterFailException f) {
                 System.out.println("filterfail");
             }
         }
@@ -66,7 +64,7 @@ public class Filter {
                 viewCourse.viewCourse(scanner, viewCourseController, viewCoursePresenter, this, mainMenuInterface,
                         filterController, filterPresenter);
             }
-            catch(FilterFailError f) {
+            catch(FilterFailException f) {
                 System.out.println("filterfail");
             }
         }

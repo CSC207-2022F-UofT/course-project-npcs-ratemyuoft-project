@@ -5,6 +5,7 @@ import java.io.*;
 import entities.Course;
 import entities.CourseList;
 import entities.Review;
+import filterUseCases.CourseDataAccessInterface;
 import viewCourseUsecase.ViewCourseRegisterCourse2;
 
 /**
@@ -13,7 +14,7 @@ import viewCourseUsecase.ViewCourseRegisterCourse2;
  * Its task is to create .sav file which is used as a database. Update the database and pass the data from it
  * to a CourseList.
  */
-public class CourseDataAccess implements CourseDataBaseGateway {
+public class CourseDataAccess implements CourseDataAccessInterface {
 
     private final String fileName = "courseFile.sav";
 
@@ -60,9 +61,7 @@ public class CourseDataAccess implements CourseDataBaseGateway {
             ObjectOutputStream outputStream = new ObjectOutputStream(fileOut);
             outputStream.writeObject(new CourseList());
         }
-
         return (CourseList) inputStream.readObject();
-
     }
 
     public void generateTempCourses() throws IOException, NullPointerException{
@@ -73,7 +72,6 @@ public class CourseDataAccess implements CourseDataBaseGateway {
         }
         this.saveCourse(cl);
     }
-
 
 
     public void generateTempCourses2() throws IOException, NullPointerException {
@@ -107,7 +105,7 @@ public class CourseDataAccess implements CourseDataBaseGateway {
     }
 
     public void CreateInstance() throws IOException, ClassNotFoundException {
-        CourseDataBaseGateway d = new CourseDataAccess();
+        CourseDataAccessInterface d = new CourseDataAccess();
         Review r = new Review(4, "I hate this Course", "Review1");
         Review r1 = new Review(3, "This course is cool", "Review2");
         Review r2 = new Review(1, "This course is bird", "Review3");

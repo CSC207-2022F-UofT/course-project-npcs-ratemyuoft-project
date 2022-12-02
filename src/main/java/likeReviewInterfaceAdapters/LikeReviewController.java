@@ -1,18 +1,17 @@
 package likeReviewInterfaceAdapters;
 
-import courseDataBase.CourseDataBaseGateway;
-import courseDataBase.CourseDataBaseGateway;
+import filterUseCases.CourseDataAccessInterface;
 
 import java.io.IOException;
 
 public class LikeReviewController {
     String s;
 
-    CourseDataBaseGateway d;
+    CourseDataAccessInterface d;
 
     LikeReviewPresenter p;
 
-    public LikeReviewController(String s, CourseDataBaseGateway d, LikeReviewPresenter p){
+    public LikeReviewController(String s, CourseDataAccessInterface d, LikeReviewPresenter p){
 
 
     }

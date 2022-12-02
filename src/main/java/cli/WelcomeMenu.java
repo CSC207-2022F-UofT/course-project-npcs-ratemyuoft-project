@@ -1,6 +1,6 @@
 package cli;
 
-import filterInterfaceAdapters.FilterFailError;
+import filterInterfaceAdapters.FilterFailException;
 import loginInterfaceAdapter.LoginController;
 import loginInterfaceAdapter.LoginPresenter;
 import loginUseCase.InvalidInputException;
@@ -21,7 +21,7 @@ public class WelcomeMenu implements WelcomeMenuInterface{
                                      RegisterInterface registerInterface, LogInInterface logInInterface,
                                      MainMenuInterface mainMenuInterface,
                                      ShowUsersInterface showUsersInterface, Filter filter)
-            throws IOException, ClassNotFoundException, InvalidInputException, FilterFailError {
+            throws IOException, ClassNotFoundException, InvalidInputException, FilterFailException {
 
         String choice = scanner.nextLine();
         if(choice.contains("1")){

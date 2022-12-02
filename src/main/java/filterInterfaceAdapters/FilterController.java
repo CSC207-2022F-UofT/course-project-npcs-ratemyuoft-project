@@ -1,28 +1,31 @@
 package filterInterfaceAdapters;
 
-import filterUseCases.*;
+import filterUseCases.FilterByFOSRequestModel;
+import filterUseCases.FilterByNameRequestModel;
+import filterUseCases.FilterByRatingRequestModel;
+import filterUseCases.FilterInputBoundary;
 
 public class FilterController {
 
-    final FilterInputBoundary interactor;
+    final FilterInputBoundary filterInputBoundary;
 
 
-    public FilterController(FilterInputBoundary interactor) {
-        this.interactor = interactor;
+    public FilterController(FilterInputBoundary filterInputBoundary) {
+        this.filterInputBoundary = filterInputBoundary;
     }
 
-    public FilterResponseModel filterByName(String name) {
-         return interactor.filterByName(new FilterByNameRequestModel(name));
+    public void filterByName(String name) {
+        try{filterInputBoundary.filterByName(new FilterByNameRequestModel(name));}
+        catch(FilterFailException f){System.out.println(f.getMessage());}
     }
 
-    public FilterResponseModel filterByFOS(String FOS) {
-        FilterByFOSRequestModel filterByFOSRequestModel = new FilterByFOSRequestModel(FOS);
-        return interactor.filterByFOS(filterByFOSRequestModel);
+    public void filterByFOS(String FOS) {
+        try{filterInputBoundary.filterByFOS(new FilterByFOSRequestModel(FOS));}
+        catch(FilterFailException f){System.out.println(f.getMessage());}
     }
 
-    public FilterResponseModel filterByRating(double rating) {
-        FilterByRatingRequestModel filterByRatingRequestModel = new FilterByRatingRequestModel(rating);
-        return interactor.filterByRating(filterByRatingRequestModel);
+    public void filterByRating(double rating) {
+        try{filterInputBoundary.filterByRating(new FilterByRatingRequestModel(rating));}
+        catch(FilterFailException f){System.out.println(f.getMessage());}
     }
-
 }
