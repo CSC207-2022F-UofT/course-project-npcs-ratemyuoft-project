@@ -10,23 +10,21 @@ import java.io.IOException;
 import java.io.*;
 
 public class DataAccess implements viewCourseReviewUseCase.Gateway {
+    // Contains a Database, Saves to it and imports from it
     private static final String fileName = "Database18.sav";
 
     @Override
     public CourseList importcourselist() throws IOException, ClassNotFoundException {
+        // Imports from the Database and outputs a Courselist Data type
         FileInputStream fileIn = new FileInputStream(fileName);
         ObjectInputStream inputStream = new ObjectInputStream(fileIn);
-       //BufferedReader br = new BufferedReader(new FileReader(fileName));
-        //if (br.readLine() == null){
-          //  FileOutputStream fileOut = new FileOutputStream(fileName);
-            //ObjectOutputStream outputStream = new ObjectOutputStream(fileOut);
-           // outputStream.writeObject(new CourseList());
 
         CourseList newCourseList = (CourseList) inputStream.readObject();
         return newCourseList;
     }
 
     public void SaveCourse(CourseList commentList) throws IOException, ClassNotFoundException {
+        // Takes in a courselist and saves it to our Database.
         FileOutputStream fileOut = new FileOutputStream(fileName);
         ObjectOutputStream outputStream = new ObjectOutputStream(fileOut);
         outputStream.writeObject(commentList);

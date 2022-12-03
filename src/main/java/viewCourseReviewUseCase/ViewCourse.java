@@ -14,6 +14,7 @@ public class ViewCourse implements InputBoundary{
     private OutputBoundary output;
 
     public ViewCourse(Gateway gateway, OutputBoundary output){
+        // Takes in a gateway and output boundary, instantiates a courselist.
         try{
             courseList = gateway.importcourselist();
         } catch (IOException | ClassNotFoundException e){
@@ -23,6 +24,7 @@ public class ViewCourse implements InputBoundary{
     }
 
     public void Displayinformation(CourseNameRequestModel coursenamereq){
+        // takes in a coursenameRequestModel and iterates through the courselist to find the Course that Matches, gives CourseListRequestModel to OutputBoundary
         String courseName = coursenamereq.getCoursename();
 
         for (Course i: courseList){
