@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 
 public class Course implements Serializable{
+    // A Course with a name, list of reviews, rating, and field of study.
     public String courseName;
 
     public ArrayList<Review> reviews= new ArrayList<>();

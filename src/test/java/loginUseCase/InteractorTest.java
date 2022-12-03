@@ -67,8 +67,6 @@ class InteractorTest {
         } catch (InvalidInputException | IOException e) {
             System.out.println("wrong input");
         }
-
-
     }
 
 

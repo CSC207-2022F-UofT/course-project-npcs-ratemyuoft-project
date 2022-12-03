@@ -9,10 +9,12 @@ import java.util.Objects;
 
 
 public class LikeReview implements InputBoundaryL {
-    public Review review;
+    // implements the Input Boundary, takes in a Gateway and OutputBoundary
     public CourseList courseList;
     public viewCourseReviewUseCase.Gateway gatewayView;
     public OutputBoundaryL output;
+
+    public Review rev;
 
     public int iter;
     public Course cs;
@@ -30,7 +32,9 @@ public class LikeReview implements InputBoundaryL {
 
     }
     @Override
-    public void AddLike (String reviewname) throws IOException, ClassNotFoundException {
+    public void AddLike (ReviewNameRequestModel revname) throws IOException, ClassNotFoundException {
+        // Takes in Review Name model, finds the review in the courselist if it exists, adds a like, and gives outputmessage
+        String reviewname = revname.getReviewName();
         Boolean liked = Boolean.FALSE;
         for (Course i : this.courseList) {
             int iterator = -1;
@@ -40,13 +44,16 @@ public class LikeReview implements InputBoundaryL {
                     cs = i;
                     iter = iterator;
                     liked = Boolean.TRUE;
+                    this.rev = r;
                     break;
                 }
             }
         }
 
-        cs.reviews.get(iter).Like();
-        this.gatewayView.SaveCourse(this.courseList);
+        if (this.rev != null){
+            cs.reviews.get(iter).Like();
+            this.gatewayView.SaveCourse(this.courseList);
+        }
 
         if (liked == Boolean.TRUE){
             this.output.outputMessage(new LikeMessageRequestModel(reviewname));

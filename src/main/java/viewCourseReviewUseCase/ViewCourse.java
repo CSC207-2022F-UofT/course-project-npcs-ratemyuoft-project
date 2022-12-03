@@ -8,10 +8,11 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class ViewCourse implements InputBoundary{
-    private  CourseList courseList;
-    private Course course;
+    public  CourseList courseList;
+    public Course course;
     private ArrayList<Review> reviews;
     private OutputBoundary output;
+
     public ViewCourse(Gateway gateway, OutputBoundary output){
         try{
             courseList = gateway.importcourselist();

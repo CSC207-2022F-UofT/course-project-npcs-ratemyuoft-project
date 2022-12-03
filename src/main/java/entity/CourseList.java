@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class CourseList implements Serializable, Iterable<Course> {
+    // Contains an ArrayList of Courses
     public ArrayList<Course> Courses = new ArrayList<>();
     public void AddCourse(Course course){
         this.Courses.add(course);
