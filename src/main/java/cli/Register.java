@@ -2,9 +2,9 @@ package cli;
 
 import java.io.IOException;
 import java.util.Scanner;
-import interfaceAdapter.Controller;
-import interfaceAdapter.Presenter;
-import useCase.InvalidInputException;
+import loginInterfaceAdapter.Controller;
+import loginInterfaceAdapter.Presenter;
+import loginUseCase.InvalidInputException;
 
 public class Register implements RegisterInterface{
 

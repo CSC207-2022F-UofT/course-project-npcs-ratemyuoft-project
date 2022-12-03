@@ -1,9 +1,9 @@
 package cli;
 
-import dataBase.DataBase;
-import interfaceAdapter.Controller;
-import interfaceAdapter.Presenter;
-import useCase.*;
+import userDatabase.DataBase;
+import loginInterfaceAdapter.Controller;
+import loginInterfaceAdapter.Presenter;
+import loginUseCase.*;
 
 import java.io.IOException;
 import java.util.Scanner;

@@ -8,7 +8,7 @@
     
     Frameworks & Drivers (Blue)
     cli
-    dataBase
+    userDatabase
     
     **********************************************************************
     
@@ -18,12 +18,12 @@
     **********************************************************************
 
     Application Business Rules (Red)
-    useCase
+    loginUseCase
 
     **********************************************************************
 
     Enterprise Business Rules (Yellow)
-    entities
+    loginEntities
     
 
 
@@ -31,10 +31,10 @@
     
     Packages that were documented using JavaDoc:
 
-    dataBase
+    userDatabase
     interfaceAdapters
-    useCase
-    entities
+    loginUseCase
+    loginEntities
     
     **********************************************************************
     Documenting cli was omittied, is it only uses Presenter and Controller

@@ -1,7 +1,7 @@
 package cli;
 
-import interfaceAdapter.Controller;
-import interfaceAdapter.Presenter;
+import loginInterfaceAdapter.Controller;
+import loginInterfaceAdapter.Presenter;
 
 import java.io.IOException;
 import java.util.Scanner;
