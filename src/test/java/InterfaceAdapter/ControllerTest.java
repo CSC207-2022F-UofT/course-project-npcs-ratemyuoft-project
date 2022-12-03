@@ -1,19 +1,17 @@
 package InterfaceAdapter;
 
 import DataStructures.InPutData;
-import UI.AddCommentFrame;
-import UI.MainFrame;
 import UseCase.InputBoundary;
 import UseCase.InvalidInputException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
+
 
 import java.io.IOException;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
+
 
 public class ControllerTest {
     Controller testController;
@@ -31,7 +29,7 @@ public class ControllerTest {
              */
             @Override
             public void showComments()  {
-                assertEquals(true,true);
+                assertTrue(true);
 
             }
 
@@ -64,7 +62,6 @@ public class ControllerTest {
     }
 
     /**
-     * @throws Exception
      * Change everything into Null
      */
     @After

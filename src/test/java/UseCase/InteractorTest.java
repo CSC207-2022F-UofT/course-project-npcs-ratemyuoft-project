@@ -15,13 +15,13 @@ import java.io.PrintWriter;
 import static org.junit.Assert.*;
 
 public class InteractorTest {
-    InputBoundary testinteractor;
+    InputBoundary testInteractor;
     OutputBoundary testOutputBoundary;
     Gateway testGateway;
     CommentList testCommentList;
     CommentList temp;
     Gateway testGateway2;
-    Interactor testinteractor2;
+    Interactor testInteractor2;
 
 
     /**
@@ -66,9 +66,7 @@ public class InteractorTest {
             public void showComments(OutPutData outPutData) {
                 try {
                     testCommentList = testGateway.importComment();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                } catch (ClassNotFoundException e) {
+                } catch (IOException  | ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
 
@@ -89,19 +87,15 @@ public class InteractorTest {
 
         };
         try {
-            testinteractor = new Interactor(testOutputBoundary,testGateway);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+            testInteractor = new Interactor(testOutputBoundary,testGateway);
+        } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
         testGateway2 = new DataAccess("commentFileTest2.sav");
         try {
-            testinteractor2= new Interactor(testOutputBoundary,testGateway2);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+            testInteractor2 = new Interactor(testOutputBoundary,testGateway2);
+        } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
@@ -118,10 +112,10 @@ public class InteractorTest {
 
         testOutputBoundary = null;
         testGateway = null;
-        testinteractor = null;
+        testInteractor = null;
         testCommentList = null;
         testGateway2 = null;
-        testinteractor2 = null;
+        testInteractor2 = null;
         PrintWriter pw = new PrintWriter("commentFileTest.sav");
         pw.close();
         PrintWriter pw2 = new PrintWriter("commentFileTest2.sav");
@@ -130,59 +124,59 @@ public class InteractorTest {
 
 
     /**
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws IOException import fail
+     * @throws ClassNotFoundException class not found
      * Simply checks if the method at output boundary can be called.
      */
     @Test
     public  void testShowComments() throws IOException, ClassNotFoundException {
-        testinteractor.showComments();
+        testInteractor.showComments();
     }
 
 
     /**
-     * @throws InvalidInputException
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws InvalidInputException invalid input
+     * @throws IOException import failed
+     * @throws ClassNotFoundException class not found
      * Test if the comments can to be added to the testing database
      */
     @Test
     public void addComment() throws InvalidInputException, IOException, ClassNotFoundException {
         InPutData inPutData = new InPutData("third test comment");
-        testinteractor.addComment(inPutData);
+        testInteractor.addComment(inPutData);
         CommentList tempList = testGateway.importComment();
         assertEquals("third test comment",tempList.getComment(0));
 
     }
 
     /**
-     * @throws InvalidInputException
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws InvalidInputException invalid input
+     * @throws IOException import fail
+     * @throws ClassNotFoundException class not found
      *
      * Shows error if you enter invalid input.
      */
     @Test(expected = InvalidInputException.class)
     public void invalidAddComment() throws InvalidInputException, IOException, ClassNotFoundException {
         InPutData inPutData = new InPutData(" ");
-        testinteractor.addComment(inPutData);
+        testInteractor.addComment(inPutData);
         CommentList tempList =testGateway.importComment();
         tempList.getComment(4);
 
     }
 
     /**
-     * @throws InvalidInputException
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws InvalidInputException invalid input
+     * @throws IOException import fail
+     * @throws ClassNotFoundException class not found
      * Assert error for improper importation.
      */
     @Test
     public void iOExceptionAddComment() throws InvalidInputException, IOException, ClassNotFoundException {
         Gateway testGateway2 = new DataAccess("commentFileTest2.sav");
-        Interactor testinteractor2 = new Interactor(testOutputBoundary,testGateway2);
+        testInteractor2 = new Interactor(testOutputBoundary,testGateway2);
         InPutData inPutData2 = new InPutData("bye");
-        testinteractor2.addComment(inPutData2);
+        testInteractor2.addComment(inPutData2);
         CommentList tempList2 =testGateway2.importComment();
         tempList2.getComment(0);
 
@@ -192,8 +186,8 @@ public class InteractorTest {
     @Test
     public void editComment() {
         try {
-            testinteractor.editComment(0,"hi");
-            assertEquals(true,true);
+            testInteractor.editComment(0,"hi");
+            assertTrue(true);
         } catch (InvalidInputException e) {
             throw new RuntimeException(e);
         }
@@ -204,7 +198,7 @@ public class InteractorTest {
      */
     @Test
     public void outputMessage(){
-        testinteractor.outputMessage("Importation failed");
+        testInteractor.outputMessage("Importation failed");
     }
 
 

@@ -1,19 +1,14 @@
 package UI;
 
-import Entities.Comment;
-import Entities.CommentList;
-
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
 public class ShowCommentsFrame extends JFrame implements UIShow {
     JPanel mainPanel = new JPanel();
-    JList<String> list = new JList<String>();
+    JList<String> list = new JList<>();
     DefaultListModel<String> model =new DefaultListModel<>();
     JPanel panel = new JPanel();
     JButton backButton = new JButton("Back");
@@ -38,12 +33,7 @@ public class ShowCommentsFrame extends JFrame implements UIShow {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();
         this.setVisible(true);
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ShowCommentsFrame.super.dispose();
-            }
-        });
+        backButton.addActionListener(e -> ShowCommentsFrame.super.dispose());
         }
     }
 

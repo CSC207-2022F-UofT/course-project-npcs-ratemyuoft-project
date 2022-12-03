@@ -5,8 +5,6 @@ import UseCase.InvalidInputException;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class AddCommentFrame extends JFrame  {
@@ -36,32 +34,23 @@ public class AddCommentFrame extends JFrame  {
 
 
 
-        enterButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String newComment = textArea.getText();
-                try {
-                    controller.addComment(newComment);
-                    controller.outPutMessage("Comment Saved!");
-                    AddCommentFrame.super.dispose();
-                } catch (InvalidInputException ex) {
-                    controller.outPutMessage("Comment Invalid!");
-
-                } catch (IOException ex) {
-                    controller.outPutMessage("Can't Save!");
-
-                }
-            }
-        });
-
-
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        enterButton.addActionListener(e -> {
+            String newComment = textArea.getText();
+            try {
+                controller.addComment(newComment);
+                controller.outPutMessage("Comment Saved!");
                 AddCommentFrame.super.dispose();
+            } catch (InvalidInputException ex) {
+                controller.outPutMessage("Comment Invalid!");
+
+            } catch (IOException ex) {
+                controller.outPutMessage("Can't Save!");
 
             }
         });
+
+
+        backButton.addActionListener(e -> AddCommentFrame.super.dispose());
 
     }
 

@@ -1,10 +1,6 @@
 package UseCase;
 
 import DataStructures.OutPutData;
-import Entities.Comment;
-import Entities.CommentList;
-
-import java.util.ArrayList;
 
 public interface OutputBoundary {
 

@@ -38,7 +38,7 @@ public class CommentTest {
     }
 
     /**
-     * Test ccomment number for each comment
+     * Test comment number for each comment
      */
     @Test
     public void testGetCommentNum() {

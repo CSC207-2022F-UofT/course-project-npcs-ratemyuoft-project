@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Comment implements Serializable {
     private final int commentNum  ;
-    private User user;
+    private Review review;
     private String comment;
     private static int count = 1 ;
 
@@ -39,6 +39,7 @@ public class Comment implements Serializable {
 
     /**
      * @param comment
+     * set comment
      */
     public void setComment(String comment) {this.comment = comment;}
 

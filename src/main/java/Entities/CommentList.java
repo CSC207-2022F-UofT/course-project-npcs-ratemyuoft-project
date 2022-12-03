@@ -8,18 +8,20 @@ import java.util.NoSuchElementException;
 
 public class CommentList implements Iterable<Comment>, Serializable {
 
-    private List<Comment> commentlist = new ArrayList<>();
+    private final List<Comment> commentList = new ArrayList<>();
 
     public void addComment(Comment c){
-        commentlist.add(c);
+        commentList.add(c);
     }
     public String getComment(int index){
-            return commentlist.get(index).getComment();
+            return commentList.get(index).getComment();
     }
 
 
-
-
+    /**
+     * @return
+     * Iterator class so I can use for each method
+     */
     @Override
     public Iterator<Comment> iterator() {
         return new CommentIterator();
@@ -32,13 +34,13 @@ public class CommentList implements Iterable<Comment>, Serializable {
 
         @Override
         public boolean hasNext() {
-            return curr < commentlist.size();
+            return curr < commentList.size();
         }
 
         @Override
         public Comment next() {
            if(hasNext()){
-               return commentlist.get(curr ++);
+               return commentList.get(curr ++);
            }
            throw new NoSuchElementException();
         }

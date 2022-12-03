@@ -11,6 +11,9 @@ import static org.junit.Assert.*;
 public class OutPutDataTest {
     OutPutData testOutPutData;
 
+    /**
+     * Create a new list and create a new output data
+     */
     @Before
     public void setUp()  {
         String s = "hi";
@@ -20,11 +23,18 @@ public class OutPutDataTest {
 
     }
 
+    /**
+     * Change output data in to null.
+     */
     @After
     public void tearDown() {
         testOutPutData = null;
     }
 
+
+    /**
+     * assert true faster getter method works
+     */
     @Test
     public void getComments() {
         assertEquals("hi",testOutPutData.getComments().get(0));

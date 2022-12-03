@@ -10,6 +10,10 @@ public class Presenter implements OutputBoundary {
     UIMessage uiMessage;
 
 
+    /**
+     * @param outPutData output data
+     * calls ui and open a frame with output data
+     */
     @Override
     public void showComments(OutPutData outPutData) {
         uiShow = new ShowCommentsFrame();
@@ -21,9 +25,7 @@ public class Presenter implements OutputBoundary {
 
     /**
      * @param s
-     *
      * make a new UI class which will show the message.
-     *
      */
     @Override
     public void outputMessage(String s) {

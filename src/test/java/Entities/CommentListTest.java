@@ -5,17 +5,18 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class CommentListTest {
     CommentList cl;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp()  {
         cl = new CommentList();
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown()  {
         cl =null;
     }
 
@@ -29,6 +30,6 @@ public class CommentListTest {
 
     @Test
     public void iterator() {
-        assertEquals(true,true);
+        assertTrue(true);
     }
 }

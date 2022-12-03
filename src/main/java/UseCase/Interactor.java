@@ -15,10 +15,10 @@ public class Interactor implements InputBoundary  {
 
 
     /**
-     * @param outputBoundary
-     * @param gateway
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @param outputBoundary outputBoundary
+     * @param gateway gateway
+     * @throws IOException import fail
+     * @throws ClassNotFoundException class no found
      * Constructor for Interactor takes an output boundary and a gateway.
      * Import data from the database.
      *
@@ -28,10 +28,10 @@ public class Interactor implements InputBoundary  {
         this.gateway = gateway;
         // import file and set as iterable commentList
         try{
-            this.commentList = gateway.importComment();
+            commentList = gateway.importComment();
 
         } catch (IOException e ){
-            this.commentList = new CommentList();
+            commentList = new CommentList();
             this.outputBoundary.outputMessage("Importation failed");
         }
 
@@ -41,8 +41,8 @@ public class Interactor implements InputBoundary  {
 
     /**
      * helper function for add Comment
-     * @param comment
-     * @return
+     * @param comment comment
+     * @return boolean
      */
     private boolean checkInput(String comment) {
         int count = comment.length();
@@ -54,19 +54,16 @@ public class Interactor implements InputBoundary  {
                 return false;
             }
         }
-        if (count <= 1500 && count > 0){
-            return true;
-        }
-        return false;
+        return count <= 1500;
     }
 
 
     /**convert CommentList to List
-     * @param commentList
-     * @return
+     * @param commentList commentList
+     * @return array list
      */
     private ArrayList<String> listConvert(CommentList commentList){
-        ArrayList<String> listOfComment = new ArrayList<String>();
+        ArrayList<String> listOfComment = new ArrayList<>();
 
         for(Comment c : commentList){
             listOfComment.add(c.getComment());
@@ -81,12 +78,12 @@ public class Interactor implements InputBoundary  {
      */
     @Override
     public void showComments()  {
-        this.outputBoundary.showComments(new OutPutData(listConvert(this.commentList)));
+        this.outputBoundary.showComments(new OutPutData(listConvert(commentList)));
     }
 
     /**
      *
-     * @throws InvalidInputException
+     * @throws InvalidInputException invalid input
      * @throws IOException
      * Check for valid input and turn in to a new Common class send to database
      * if input not valid throw exception.
