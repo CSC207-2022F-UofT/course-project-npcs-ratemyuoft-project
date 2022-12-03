@@ -3,7 +3,7 @@ package userDataBase;
 import entities.User;
 import entities.UserList;
 import org.junit.jupiter.api.Test;
-import logInuseCase.UserDataAccess;
+import logInUseCase.UserDataAccess;
 
 import java.io.IOException;
 import java.util.ArrayList;

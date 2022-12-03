@@ -13,12 +13,12 @@
     **********************************************************************
     
     Interface Adapters (Green)
-    interfaceAdapters
+    logInInterfaceAdapters
 
     **********************************************************************
 
     Application Business Rules (Red)
-    logInuseCase
+    logInUseCase
 
     **********************************************************************
 
@@ -32,8 +32,8 @@
     Packages that were documented using JavaDoc:
 
     userDataBase
-    interfaceAdapters
-    logInuseCase
+    logInInterfaceAdapters
+    logInUseCase
     entities
     
     **********************************************************************
@@ -100,5 +100,29 @@
 ## 5. Update 12/02/2022
 
     All the classes and packages were refractored, to make connecting 
-    UseCase more efficient.
+    UseCases more efficient.
+
+## 6. Update 12/03/2022
+
+    1. All the classes and methods have thorough explanation in JavaDoc,
+    except for the classes in the CLI package as they do not perform
+    any other calls then methods from LogInPresenter or LogInController
+    classes. However, class BootCLI has JavaDoc and comments, for additional
+    clarifications. Concerns regarding the import statement was adressed.
+    Typos in JavaDoc and naming of some variables were also fixed. Warnings
+    were also fixed. However,ther is still a warning in UserDataBase class,
+    please look "WARNING" in the JavaDoc of the corresponding class.
+
+    **********************************************************************
+
+    2. Clarifications regarding testing covarage of the classes that are
+    included in the logInInterfaceAdapter package : 
+
+    please look "NOTE" in LogInPresenter JavaDoc(lines 15-19)
+
+    **********************************************************************
+
+    3. Screenshot of Junit test Report is attached below.
+
+![CAExplanation](images/TestReport.png)
 

@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.util.Scanner;
 import logInInterfaceAdapter.LogInController;
 import logInInterfaceAdapter.LogInPresenter;
-import logInuseCase.InvalidInputException;
+import logInUseCase.InvalidInputException;
 
 public class Register implements RegisterInterface{
 
     @Override
-    public void register(Scanner scanner, LogInController logInController, LogInPresenter logInPresenter) throws IOException,
-            ClassNotFoundException, InvalidInputException {
+    public void register(Scanner scanner, LogInController logInController, LogInPresenter logInPresenter)
+            throws IOException, ClassNotFoundException, InvalidInputException {
 
         logInPresenter.outputMessage(" Enter username please = > "+ "\n");
         String userName = scanner.nextLine();
