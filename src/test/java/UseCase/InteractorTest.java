@@ -24,6 +24,14 @@ public class InteractorTest {
     Interactor testinteractor2;
 
 
+    /**
+     * This method is real before every test.
+     * It will create eight a new file for testing.
+     * It will first add commentList  for reading.
+     * It will create a new outputBoundary for testing which overrides all its method.
+     * This will simplify the test And minimize messing with other methods in other class.
+     * There is a secular testing file for improper importation.
+     */
     @Before
     public void setUp() {
 
@@ -48,6 +56,12 @@ public class InteractorTest {
 
 
         testOutputBoundary = new OutputBoundary() {
+            /**
+             * @param outPutData
+             * It will assert ture if output Boundary is properly called,
+             * And the show comment method that was called in the interactor carries the same object as this
+             *
+             */
             @Override
             public void showComments(OutPutData outPutData) {
                 try {
@@ -63,6 +77,10 @@ public class InteractorTest {
 
             }
 
+            /**
+             * @param s
+             * Nothing much here simply check if the interactor can call the output boundary.
+             */
             @Override
             public void outputMessage(String s) {
                 assertEquals("Importation failed", s);
@@ -90,6 +108,11 @@ public class InteractorTest {
 
     }
 
+    /**
+     * @throws Exception
+     * Turn off all the object I create it until null
+     * and every time a test run it clears all the data that was saved.
+     */
     @After
     public void tearDown() throws Exception {
 
@@ -106,12 +129,23 @@ public class InteractorTest {
     }
 
 
+    /**
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * Simply checks if the method at output boundary can be called.
+     */
     @Test
     public  void testShowComments() throws IOException, ClassNotFoundException {
         testinteractor.showComments();
     }
 
 
+    /**
+     * @throws InvalidInputException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * Test if the comments can to be added to the testing database
+     */
     @Test
     public void addComment() throws InvalidInputException, IOException, ClassNotFoundException {
         InPutData inPutData = new InPutData("third test comment");
@@ -121,6 +155,13 @@ public class InteractorTest {
 
     }
 
+    /**
+     * @throws InvalidInputException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     *
+     * Shows error if you enter invalid input.
+     */
     @Test(expected = InvalidInputException.class)
     public void invalidAddComment() throws InvalidInputException, IOException, ClassNotFoundException {
         InPutData inPutData = new InPutData(" ");
@@ -130,6 +171,12 @@ public class InteractorTest {
 
     }
 
+    /**
+     * @throws InvalidInputException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * Assert error for improper importation.
+     */
     @Test
     public void iOExceptionAddComment() throws InvalidInputException, IOException, ClassNotFoundException {
         Gateway testGateway2 = new DataAccess("commentFileTest2.sav");
@@ -149,11 +196,12 @@ public class InteractorTest {
             assertEquals(true,true);
         } catch (InvalidInputException e) {
             throw new RuntimeException(e);
-        } catch (CommentNotInListException e) {
-            throw new RuntimeException(e);
         }
     }
 
+    /**
+     * Check if it will call the output boundary method.
+     */
     @Test
     public void outputMessage(){
         testinteractor.outputMessage("Importation failed");

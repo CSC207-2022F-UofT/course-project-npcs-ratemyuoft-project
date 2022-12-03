@@ -7,6 +7,10 @@ public class InPutData {
     private final String comments;
 
 
+    /**
+     * @param comments
+     * Constructor for input data
+     */
     public InPutData(String comments) {
         this.comments = comments;
     }

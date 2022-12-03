@@ -19,7 +19,9 @@ public class Interactor implements InputBoundary  {
      * @param gateway
      * @throws IOException
      * @throws ClassNotFoundException
-     * Constructor for Interactor
+     * Constructor for Interactor takes an output boundary and a gateway.
+     * Import data from the database.
+     *
      */
     public Interactor(OutputBoundary outputBoundary,Gateway gateway) throws IOException, ClassNotFoundException {
         this.outputBoundary = outputBoundary;
@@ -76,7 +78,6 @@ public class Interactor implements InputBoundary  {
 
     /**
      * Send CommentList to Output Boundary
-     *
      */
     @Override
     public void showComments()  {
@@ -88,7 +89,8 @@ public class Interactor implements InputBoundary  {
      * @throws InvalidInputException
      * @throws IOException
      * Check for valid input and turn in to a new Common class send to database
-     * if input not valid throw exception
+     * if input not valid throw exception.
+     * If something wrong with importing data it throws exception.
      */
 
     @Override
@@ -114,7 +116,7 @@ public class Interactor implements InputBoundary  {
 
 
     @Override
-    public void editComment(int commentNum, String s) throws CommentNotInListException {
+    public void editComment(int commentNum, String s)  {
 //        if(checkInput(s)){
 //            for( Comment c : commentList) {
 //                if (c.getCommentNum() == commentNum) {

@@ -1,7 +1,6 @@
 package InterfaceAdapter;
 
 import DataStructures.InPutData;
-import UseCase.CommentNotInListException;
 import UseCase.InputBoundary;
 import UseCase.InvalidInputException;
 
@@ -12,34 +11,35 @@ public class Controller {
     private InPutData inPutData;
 
     /**
-     * @param inputBoundary
-     * Constructor
+     * @param inputBoundary Constructor
      */
     // Constructor
-    public Controller(InputBoundary inputBoundary){
+    public Controller(InputBoundary inputBoundary) {
         this.inputBoundary = inputBoundary;
 
     }
 
     /**
-     * @param message
-     * Called by UI and goes to Interact to show message on presenter
+     * @param message Called by UI and goes to Interact to show message on presenter
      */
-    public void outPutMessage(String message){
+    public void outPutMessage(String message) {
         inputBoundary.outputMessage(message);
 
     }
 
     /**
      * Called by UI and goes to Interact to show Output on presenter
+     *
      * @throws IOException
      * @throws ClassNotFoundException
      */
     public void showComments() throws IOException, ClassNotFoundException {
-         inputBoundary.showComments();
+        inputBoundary.showComments();
     }
 
-    /** Called by UI and send a String to Interact
+    /**
+     * Called by UI It will turn a string into an input data and send it to the interactor
+     *
      * @param comment
      * @throws IOException
      * @throws InvalidInputException
@@ -50,23 +50,21 @@ public class Controller {
             inputBoundary.addComment(inPutData);
         } catch (InvalidInputException e) {
             throw new InvalidInputException();
-        }catch (IOException e){
-
+        } catch (IOException e) {
             throw new IOException();
 
         }
 
     }
-    public void editComment(int commentNum, String s){
+
+    public void editComment(int commentNum, String s) {
         try {
-            inputBoundary.editComment(commentNum,s);
+            inputBoundary.editComment(commentNum, s);
         } catch (InvalidInputException e) {
             inputBoundary.outputMessage("Invalid Input");
-        } catch (CommentNotInListException e) {
-            inputBoundary.outputMessage("Comment Not In List");
+
+
         }
 
-
     }
-
 }
