@@ -1,4 +1,4 @@
-package logInuseCase;
+package logInUseCase;
 
 import userDataBase.UserDataBase; // the import can not be used directly. it is used only through DataAccess interface
 import entities.User;
@@ -8,15 +8,27 @@ import logInInterfaceAdapter.LogInPresenter; //  can not be used directly. only 
 import java.io.IOException;
 
 /**
- * Interactor is basically a heart of the project, it's the only class that can interact with entities.
+ * LogInInteractor is the only class that can access and modify entities. It does all the work when methods from the
+ * LogInInputBoundary are being called by LogInController. The only interface that has access to methods from
+ * LogInInteractor class is LogInInputBoundary.
  * <p>
- * UI->Controller->InputBoundary->Interactor->OutputBoundary->Presenter->UI
+ * CLI->LogInController->LogInInputBoundary->LogInInteractor->LogInOutputBoundary->LogInPresenter->CLI
  * <p>
- * It does all the work and passes is to OutputBoundary.
+ * It does all the work and passes is to OutputBoundary.(e.g. registering the user, logging in, logging out etc.)
+ * <p>
+ * NOTE: methods showUsers and outputMessage are not tested as the calls are passed to LogInOutputBoundary and then
+ * LogInPresenter, and methods in LogInPresenter are tested.
+ * <p>
+ * NOTE 2.0:
+ * - users is an instance of UserList which is used as local variable, to import and save users to a
+ * UserDataBase through UserDataAccess interface.
+ * - logInOutputBoundary is an interface that is used to send the results to LogInPresenter.
+ * - userDataAccess is an interface that is used to interact with UserDatabase.
  */
 public class LogInInteractor implements LogInInputBoundary {
-    private final LogInOutputBoundary logInOutputBoundary;
+
     public static UserList users;
+    private final LogInOutputBoundary logInOutputBoundary;
     private final UserDataAccess userDataAccess;
 
 
@@ -25,17 +37,22 @@ public class LogInInteractor implements LogInInputBoundary {
      * <p>
      *
      *  The most important task of the constructor in that case is importing users from database, and in case something
-     *  goes wrong(Exception thrown) it just creates a new Userlist and indicates that the importation from the
+     *  goes wrong(Exception thrown) it just creates a new UserList and indicates that the importation from the
      *  DataBase failed.
+     * <p>
+     *  NOTE: LogInPresenter and UserDatabase can never be accessed directly from LogInInteractor. There is only one
+     *  call that calls the constructor of those classes and assigns them to LogInOutPutBoundary and UserDataAccess,
+     *  which are interfaces.
      */
     public LogInInteractor() throws ClassNotFoundException{
         this.logInOutputBoundary = new LogInPresenter();
         this.userDataAccess = new UserDataBase();
         try{
             users = userDataAccess.importUsers();
-        }catch (IOException e){
+        }catch (IOException e){ //This exception should be thrown when program starts first time
+            // as UserDataBase is empty, therefore we can't import any data.
             users = new UserList();
-            this.logInOutputBoundary.outputMessage("Importation Failed"+ "\n");
+            this.logInOutputBoundary.outputMessage("Importation Failed as UserDataBase is empty"+ "\n");
         }
 
     }
@@ -43,8 +60,10 @@ public class LogInInteractor implements LogInInputBoundary {
   //  functions. The indicated above functions will never be called outside Interactor.
 
     /**
-     * @param s is Any input passed to Intercator
+     * @param s is Any input passed to LogInInteractor
      * @return true if input is following the criteria
+     *
+     * this method checks whether the passed String is > 0 characters long and if it less than 40 characters long
      */
     private boolean checkInput(String s) {
         int count = s.length();
@@ -53,7 +72,9 @@ public class LogInInteractor implements LogInInputBoundary {
 
     /**
      * @param username of the User we want to register or logIn
-     * @return true if user is in database, false if  not
+     * @return true if user is in database, false if not
+     *
+     * this method checks if username passed is already assigned to one of the Users in users
      */
     public boolean checkIfUserExists(String username){
         for(User user: users){
@@ -65,8 +86,10 @@ public class LogInInteractor implements LogInInputBoundary {
     }
 
     /**
-     * @param username used to search the user in the database
+     * @param username used to search the user in users
      * @return user logInStatus.
+     *
+     * this method checks whether User is logged in.
      */
     public boolean checkUserStatus(String username){
         for(User user: users){
@@ -78,13 +101,13 @@ public class LogInInteractor implements LogInInputBoundary {
     }
 
     /**
-     * @param username is used to search for a user in the database
+     * @param passedUsername is used to search for a user in the database
      * @param password is a password we need to verify
-     * @return trues if @param password matches the password under the User with @param username
+     * @return true if password matches the password assigned to a User with username passedUsername.
      */
-    public boolean checkPassword(String username, String password){
+    public boolean checkPassword(String passedUsername, String password){
         for (User u: users){
-            if(u.getUserName().equals(username)){
+            if(u.getUserName().equals(passedUsername)){
                 if(u.getPassword().equals(password)){
                     return true;
                 }
@@ -94,10 +117,11 @@ public class LogInInteractor implements LogInInputBoundary {
     }
 
     /**
-     * @throws ClassNotFoundException
+     * @throws ClassNotFoundException please refer to "NOTE"
+     * @throws IOException
      *
-     * Both Exceptions are used for debugging purposes. If they are being thrown it means something went wrong with
-     * importation.
+     * NOTE:Both Exceptions are used for debugging purposes. If they are being thrown it means something
+     * went wrong with importation.
      *
      * After importation the data is being passed to outputBoundary.
      *
@@ -144,8 +168,12 @@ public class LogInInteractor implements LogInInputBoundary {
      }
 
     /**
-     * @param startYearOfStudy
-     * The following parameters are needed to create a new instance of User (i.e. call User constructor)
+     * @param username please refer to "NOTE"
+     * @param password please refer to "NOTE"
+     * @param major please refer to "NOTE"
+     * @param startYearOfStudy please refer to "NOTE"
+     * <p>
+     * NOTE: The following parameters are needed to create a new instance of User (i.e. call User constructor)
      * <p>
      *
      * @throws InvalidInputException is thrown in case any of the passed parameters to the function
@@ -217,7 +245,7 @@ public class LogInInteractor implements LogInInputBoundary {
      */
     @Override
     public void outputMessage(String message){
-        this.logInOutputBoundary.outputMessage(message);
+        this.logInOutputBoundary.outputMessage(message+ "\n");
     }
 
 }

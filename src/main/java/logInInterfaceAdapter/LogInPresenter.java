@@ -1,29 +1,28 @@
 package logInInterfaceAdapter;
 
-import logInuseCase.LogInOutputBoundary;
+import logInUseCase.LogInOutputBoundary;
 import entities.User;
 import entities.UserList;
 
 
 /**
- * I would describe Presenter class as a brother of Controller class. As I indicated in the explanation of what
- * Controller class does, it is the starting point for data from UI to pass to back end. Accordingly, Presenter class
- * is the last point for data from back end to be passed and displayed in UI.
+ * LogInPresenter is a last class that data from the back end is going through. It's also the only class that is
+ * allowed to display data in the CLI.
  * <p>
- *
- *
- * As I said before. Presenter class can't be tested because it's basically two methods that use System.out.print
- * statements.
- * <p>
- *
- * UPDATE: Presenter class is also used by ViewModel class for sake of implementing the MVC design pattern
+ * UPDATE: LogInPresenter class is also used by LogInViewModel class for sake of implementing the MVC design pattern
  * and optimizing the use of recourses when running the project.
+ * NOTE: I tried to test methods in LogInPresenter. However, I couldn't find and implement the method that would
+ * allow me to read data that is being output by the system. There was only one way, it is by returning boolean,
+ * every time we try to output data in the CLI, but that wouldn't ensure that output data is correct. It would
+ * be only an indicator that allows us to understand whether the data was output at all, and we can check that
+ * just by looking at the CLI.
  */
 public class LogInPresenter implements LogInOutputBoundary {
 
 
     /**
-     * @param userList
+     * @param userList UserList instance that is being passed is the copy of the UserDataBase that has all the current
+     * instances of User inside
      *
      * Uses method outputMessage to printout All the users and their information to UI.
      */

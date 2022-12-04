@@ -4,9 +4,8 @@ import java.io.*;
 
 import entities.Course;
 import entities.CourseList;
-import entities.Review;
 import filterUseCases.CourseDataAccessInterface;
-import viewCourseUsecase.ViewCourseRegisterCourse2;
+
 
 /**
  * Database class is an implementation of the DataAccess interface that is located in package useCase
@@ -48,12 +47,7 @@ public class CourseDataAccess implements CourseDataAccessInterface {
      */
     @Override
     public CourseList importCourses() throws IOException, ClassNotFoundException{
-//        try {
-//            ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName));
-//        }catch (EOFException e){
-//            CourseList newUL = new CourseList();
-//            this.saveCourse(newUL);
-//        }
+
         ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName));
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         if (br.readLine() == null) {
@@ -62,15 +56,6 @@ public class CourseDataAccess implements CourseDataAccessInterface {
             outputStream.writeObject(new CourseList());
         }
         return (CourseList) inputStream.readObject();
-    }
-
-    public void generateTempCourses() throws IOException, NullPointerException{
-        CourseList cl = new CourseList();
-        for (int i = 1; i<=10; i++){
-            Course course = new Course(Integer.toString(i), Integer.toString(i*10));
-            cl.addCourse(course);
-        }
-        this.saveCourse(cl);
     }
 
 
@@ -104,30 +89,5 @@ public class CourseDataAccess implements CourseDataAccessInterface {
         this.saveCourse(cl);
     }
 
-    public void CreateInstance() throws IOException, ClassNotFoundException {
-        CourseDataAccessInterface d = new CourseDataAccess();
-        Review r = new Review(4, "I hate this Course", "Review1");
-        Review r1 = new Review(3, "This course is cool", "Review2");
-        Review r2 = new Review(1, "This course is bird", "Review3");
-        Review r3 = new Review(1, "This course is bird", "Review4");
-        Review r4 = new Review(1, "This course is bird", "Review5");
 
-        Course mat = new Course("Mat137", "Math");
-        Course cs = new Course("CSC108", "Math");
-        Course stats = new Course("Sta257", "Math");
-
-        mat.addReview(r);
-        mat.addReview(r1);
-        mat.addReview(r2);
-
-        cs.addReview(r3);
-        stats.addReview(r4);
-
-        CourseList cl = new CourseList();
-        cl.addCourse(mat);
-        cl.addCourse(cs);
-        cl.addCourse(stats);
-
-        ViewCourseRegisterCourse2 reg = new ViewCourseRegisterCourse2(cl, d);
-    }
 }

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import logInInterfaceAdapter.LogInController;
 import logInInterfaceAdapter.LogInPresenter;
-import logInuseCase.InvalidInputException;
+import logInUseCase.InvalidInputException;
 
 
 public class Login implements LogInInterface  {

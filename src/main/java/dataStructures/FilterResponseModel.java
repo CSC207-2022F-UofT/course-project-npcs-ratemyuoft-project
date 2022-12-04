@@ -12,7 +12,7 @@ public class FilterResponseModel {
 
     /**
      * Constructs an instance of FilterResponseModel by directly passing in the List of FilterResponseSubModels.
-     * @param quartets
+     * @param quartets the FilterResponseSubModel we are passing in as the instance variables for FilterResponseModel
      */
     public FilterResponseModel(List<FilterResponseSubModel> quartets){
         this.quartets = quartets;
@@ -30,7 +30,7 @@ public class FilterResponseModel {
         StringBuilder sb = new StringBuilder();
         int i = 1;
         for (FilterResponseSubModel q : quartets){
-            sb.append("COURSE " + i + ": " + q.toString() + '\n');
+            sb.append("COURSE ").append(i).append(": ").append(q.toString()).append('\n');
             i += 1;
         }
         return sb.toString();
