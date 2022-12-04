@@ -2,11 +2,11 @@ package userDataBase;
 
 import java.io.*;
 
-import logInuseCase.UserDataAccess;
+import logInUseCase.UserDataAccess;
 import entities.UserList;
 
 /**
- * Database class is an implementation of the DataAccess interface that is located in package useCase
+ * UserDatabase class is an implementation of the UserDataAccess interface that is located in package logInUseCase
  * <p>
  * Its task is to create .sav file which is used as a database. Update the database and pass the data from it
  * to a UserList.
@@ -18,10 +18,10 @@ public class UserDataBase implements UserDataAccess {
 
     /**
      * @param users is the UserList that has all the users
-     * @throws IOException .
-     * @throws NullPointerException
-     *
-     * both Exceptions are used for debugging and restricting purposes
+     * @throws IOException please refer to "NOTE"
+     * @throws NullPointerException please refer to "NOTE"
+     * <p>
+     * NOTE: both Exceptions are used for debugging and restricting purposes
      * <p>
      *
      * saveUser accepts users and writes it to userFile.sav
@@ -36,12 +36,18 @@ public class UserDataBase implements UserDataAccess {
     }
 
     /**
-     * importUsers method:
+     * importUsers method makes an exact copy of the UserList that was saved(serialised to "userFile.sav")
+     * and returns it.
      *
      * @return UserList consisting of all users that are currently in userFile.sav
-     * @throws IOException .
-     * @throws ClassNotFoundException
-     * both Exceptions are used for debugging and restricting purposes
+     * @throws IOException please refer to "NOTE"
+     * @throws ClassNotFoundException please refer to "NOTE"
+     * <p>
+     * NOTE: both Exceptions are used for debugging and restricting purposes
+     * <p>
+     * WARNING: IntelliJ indicates that variable "inputStream" is never used, that happens because when program runs
+     * first time database is empty. However, if project already has UserList serialised to "userFile.sav"
+     * (registered users) then the try statement reaches it and reads the data from "userFile.sav".
      */
     @Override
     public UserList importUsers() throws IOException, ClassNotFoundException{
