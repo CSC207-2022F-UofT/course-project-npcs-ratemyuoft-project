@@ -22,7 +22,6 @@ public class ViewCourseInteractor implements ViewCourseInputBoundary {
         } catch (IOException | ClassNotFoundException e){
             courseList = new CourseList();
         }
-        System.out.println(this.courseList.Courses.get(0));
         this.output = output;
     }
 
