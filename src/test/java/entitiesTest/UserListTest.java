@@ -1,5 +1,7 @@
-package entities;
+package entitiesTest;
 
+import entities.User;
+import entities.UserList;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -25,10 +27,6 @@ class UserListTest {
         User[] user = {u,u1,u2,u3};
 
         assertIterableEquals(Arrays.asList(user),users, "Userlist doesn't add users properly");
-
-
-
-
 
     }
 
