@@ -2,7 +2,7 @@ package cli;
 
 import logInInterfaceAdapter.LogInController;
 import logInInterfaceAdapter.LogInPresenter;
-import logInuseCase.InvalidInputException;
+import logInUseCase.InvalidInputException;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -10,6 +10,8 @@ import java.util.Scanner;
 /**
  * This is the class that creates all the needed interfaces and calls the welcome menu. This class is only called
  * by using BootCLI interface in Main class.
+ * <p>
+ * UPDATE: All the dependencies were eliminated, now the class is following Clean Architecture.
  */
 public class BootCLI implements BootCLIInterface {
     @Override
