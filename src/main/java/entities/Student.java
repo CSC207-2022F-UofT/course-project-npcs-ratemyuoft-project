@@ -1,4 +1,4 @@
-package entity;
+package entities;
 public class Student extends User {
 
     public String major;

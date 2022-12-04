@@ -1,8 +1,6 @@
 package viewCourseInterfaceAdapters;
 
-import entity.Review;
 import viewCourseDataStructures.CourseListResponseModel;
-import viewCourseDataStructures.CourseListResponseModelHelp;
 import viewCourseDataStructures.ReviewInformation;
 import viewCourseReviewUseCase.ViewCourseOutputBoundary;
 

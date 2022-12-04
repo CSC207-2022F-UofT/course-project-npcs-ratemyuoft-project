@@ -1,8 +1,8 @@
 package likeReviewUseCase;
 
-import entity.Course;
-import entity.CourseList;
-import entity.Review;
+import entities.Course;
+import entities.CourseList;
+import entities.Review;
 import viewCourseReviewUseCase.CourseDataAccessInterface;
 
 import java.io.IOException;

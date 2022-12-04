@@ -1,4 +1,6 @@
-package loginEntities;
+package entities;
+import entities.User;
+
 import java.io.Serializable;
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package cliShawn;
+package cli;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -10,7 +10,7 @@ import viewCourseReviewUseCase.CourseDataAccessInterface;
 import viewCourseReviewUseCase.ViewCourseInputBoundary;
 import viewCourseReviewUseCase.ViewCourseOutputBoundary;
 import viewCourseReviewUseCase.ViewCourseInteractor;
-import loginUseCase.InvalidInputException;
+import logInUseCase.InvalidInputException;
 
 public class ViewCourseCLI {
     public void viewcourse(Scanner scanner) throws IOException, ClassNotFoundException, InvalidInputException {

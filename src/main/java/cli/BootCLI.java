@@ -1,9 +1,8 @@
-package cliShawn;
+package cli;
 
-import userDatabase.DataBase;
-import loginInterfaceAdapter.Controller;
-import loginInterfaceAdapter.Presenter;
-import loginUseCase.*;
+import userDataBase.DataBase;
+import logInInterfaceAdapter.Controller;
+import logInInterfaceAdapter.Presenter;
 
 import java.io.IOException;
 import java.util.Scanner;

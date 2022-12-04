@@ -1,7 +1,7 @@
 package likeReviewTest;
 
 import courseDatabase.CourseDataAccessShawn;
-import entity.CourseList;
+import entities.CourseList;
 import likeReviewInterfaceAdapters.LikeReviewPresenter;
 import likeReviewUseCase.LikeReviewInteractor;
 import likeReviewUseCase.LikeReviewOutputBoundary;

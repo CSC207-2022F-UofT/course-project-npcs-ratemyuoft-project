@@ -1,6 +1,6 @@
-import cliShawn.BootCLI;
-import cliShawn.BootCLIInterface;
-import loginUseCase.InvalidInputException;
+import cli.BootCLI;
+import cli.BootCLIInterface;
+import logInUseCase.InvalidInputException;
 import java.io.IOException;
 
 /**

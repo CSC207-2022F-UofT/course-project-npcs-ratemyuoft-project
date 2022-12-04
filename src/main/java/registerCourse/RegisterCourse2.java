@@ -1,7 +1,7 @@
 package registerCourse;
 
 import courseDatabase.CourseDataAccessShawn;
-import entity.CourseList;
+import entities.CourseList;
 
 import java.io.IOException;
 

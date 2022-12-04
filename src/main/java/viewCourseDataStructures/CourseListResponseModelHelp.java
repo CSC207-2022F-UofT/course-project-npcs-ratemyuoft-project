@@ -1,7 +1,7 @@
 package viewCourseDataStructures;
 
-import entity.Course;
-import entity.Review;
+import entities.Course;
+import entities.Review;
 
 import java.util.ArrayList;
 

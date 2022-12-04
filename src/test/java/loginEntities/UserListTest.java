@@ -1,5 +1,7 @@
 package loginEntities;
 
+import entities.User;
+import entities.UserList;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

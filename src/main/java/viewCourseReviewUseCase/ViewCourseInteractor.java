@@ -1,7 +1,7 @@
 package viewCourseReviewUseCase;
-import entity.Course;
-import entity.CourseList;
-import entity.Review;
+import entities.Course;
+import entities.CourseList;
+import entities.Review;
 import viewCourseDataStructures.CourseListResponseModel;
 import viewCourseDataStructures.CourseListResponseModelHelp;
 

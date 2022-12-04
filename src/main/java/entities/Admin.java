@@ -1,4 +1,4 @@
-package entity;
+package entities;
 public class Admin extends User{
 
     public boolean isCool = true;

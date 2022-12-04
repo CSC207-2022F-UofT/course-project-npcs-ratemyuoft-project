@@ -1,10 +1,10 @@
-package cliShawn;
+package cli;
 
 import java.io.IOException;
 import java.util.Scanner;
-import loginInterfaceAdapter.Controller;
-import loginInterfaceAdapter.Presenter;
-import loginUseCase.InvalidInputException;
+import logInInterfaceAdapter.Controller;
+import logInInterfaceAdapter.Presenter;
+import logInUseCase.InvalidInputException;
 
 public class Register implements RegisterInterface{
 

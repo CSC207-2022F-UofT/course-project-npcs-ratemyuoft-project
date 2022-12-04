@@ -1,6 +1,6 @@
 package viewCourseReviewUseCase;
 
-import entity.CourseList;
+import entities.CourseList;
 import java.io.IOException;
 
 public interface CourseDataAccessInterface {

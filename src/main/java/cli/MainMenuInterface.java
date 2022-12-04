@@ -1,7 +1,7 @@
-package cliShawn;
+package cli;
 
-import loginInterfaceAdapter.Controller;
-import loginInterfaceAdapter.Presenter;
+import logInInterfaceAdapter.Controller;
+import logInInterfaceAdapter.Presenter;
 
 import java.io.IOException;
 import java.util.Scanner;
