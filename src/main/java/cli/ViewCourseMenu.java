@@ -1,6 +1,5 @@
 package cli;
 
-import com.sun.tools.javac.Main;
 import filterInterfaceAdapters.FilterController;
 import logInInterfaceAdapter.LogInController;
 import logInInterfaceAdapter.LogInPresenter;

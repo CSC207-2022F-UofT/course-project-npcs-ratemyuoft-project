@@ -11,7 +11,6 @@ import entities.UserList;
  * <p>
  * UPDATE: LogInPresenter class is also used by LogInViewModel class for sake of implementing the MVC design pattern
  * and optimizing the use of recourses when running the project.
- *
  * NOTE: I tried to test methods in LogInPresenter. However, I couldn't find and implement the method that would
  * allow me to read data that is being output by the system. There was only one way, it is by returning boolean,
  * every time we try to output data in the CLI, but that wouldn't ensure that output data is correct. It would

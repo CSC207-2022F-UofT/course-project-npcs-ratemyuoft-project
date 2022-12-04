@@ -2,8 +2,6 @@ package entities;
 
 import org.junit.Test;
 
-import java.util.Objects;
-
 import static org.junit.Assert.*;
 
 public class CourseListTest {
@@ -11,24 +9,24 @@ public class CourseListTest {
     @Test
     public void getCourseList() {
         CourseList courseList = new CourseList();
-        assertTrue(courseList.size() == 0);
+        assertEquals(0, courseList.size());
         courseList.addCourse(new Course("MAT137", "Mathematics"));
-        assertTrue(Objects.equals(courseList.getCourseList().get(0).getCourseName(), "MAT137"));
+        assertEquals("MAT137", courseList.getCourseList().get(0).getCourseName());
     }
 
     @Test
     public void addCourse() {
         CourseList courseList = new CourseList();
-        assertTrue(courseList.size() == 0);
+        assertEquals(0, courseList.size());
         courseList.addCourse(new Course("MAT137", "Mathematics"));
-        assertTrue(Objects.equals(courseList.getCourseList().get(0).getCourseName(), "MAT137"));
+        assertEquals("MAT137", courseList.getCourseList().get(0).getCourseName());
     }
 
     @Test
     public void size(){
         CourseList courseList = new CourseList();
-        assertTrue(courseList.size() == 0);
+        assertEquals(0, courseList.size());
         courseList.addCourse(new Course("MAT223", "Mathematics"));
-        assertTrue(courseList.size() == 1);
+        assertEquals(1, courseList.size());
     }
 }

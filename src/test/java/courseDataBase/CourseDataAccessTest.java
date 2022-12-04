@@ -2,11 +2,11 @@ package courseDataBase;
 
 import entities.Course;
 import entities.CourseList;
-import filterUseCases.CourseDataAccessInterface;
+
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.Objects;
+
 
 import static org.junit.Assert.*;
 
@@ -14,7 +14,7 @@ public class CourseDataAccessTest {
 
     private final CourseDataAccess courseDataAccess = new CourseDataAccess();
 
-    public void courseDataFill() throws IOException, ClassNotFoundException{
+    public void courseDataFill() throws IOException {
         CourseList cl = new CourseList();
         Course course1 = new Course("MAT137", "Mathematics");
         Course course2 = new Course("MAT223", "Mathematics");
@@ -47,11 +47,11 @@ public class CourseDataAccessTest {
     @Test
     public void saveCourseTest() throws IOException, ClassNotFoundException {
         courseDataFill();
-        assertTrue(Objects.equals(courseDataAccess.importCourses().getCourseList().get(0).getCourseName(), "STA261"));
+        assertEquals("STA261", courseDataAccess.importCourses().getCourseList().get(0).getCourseName());
     }
 
     @Test
     public void importCourses() throws IOException, ClassNotFoundException {
-        assertTrue(Objects.equals(courseDataAccess.importCourses().getCourseList().get(0).getFieldOfStudy(), "Statistical Science"));
+        assertEquals("Statistical Science", courseDataAccess.importCourses().getCourseList().get(0).getFieldOfStudy());
     }
 }

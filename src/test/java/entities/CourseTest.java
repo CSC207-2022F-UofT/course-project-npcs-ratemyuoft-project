@@ -2,8 +2,6 @@ package entities;
 
 import org.junit.Test;
 
-import java.util.Objects;
-
 import static org.junit.Assert.*;
 
 public class CourseTest {
@@ -11,20 +9,20 @@ public class CourseTest {
     @Test
     public void getCourseName() {
         Course course = new Course("MAT137", "Mathematics");
-        assertTrue(Objects.equals(course.getCourseName(), "MAT137"));
+        assertEquals("MAT137", course.getCourseName());
     }
 
     @Test
     public void getFieldOfStudy() {
         Course course = new Course("STA261", "Statistical Science");
-        assertTrue(Objects.equals(course.getFieldOfStudy(), "Statistical Science"));
+        assertEquals("Statistical Science", course.getFieldOfStudy());
     }
 
     @Test
     public void getCourseRating() {
         Course course = new Course("CSC207", "Computer Science");
         course.setCourseRating(7);
-        assertTrue(course.getCourseRating() == 7);
+        assertEquals(7, course.getCourseRating(), 0.0);
     }
 
 
@@ -33,28 +31,28 @@ public class CourseTest {
         Course course = new Course("CSC207", "Computer Science");
         Review review = new Review(8, "this course is good.", "review 1");
         course.addReview(review);
-        assertTrue(Objects.equals(course.getReviews().get(0), review));
+        assertEquals(course.getReviews().get(0), review);
     }
 
     @Test
     public void setCourseName() {
         Course course = new Course("STA257", "Statistical Science");
         course.setCourseName("STA257 Probabilities and Statistics I");
-        assertTrue(Objects.equals(course.getCourseName(), "STA257 Probabilities and Statistics I"));
+        assertEquals("STA257 Probabilities and Statistics I", course.getCourseName());
     }
 
     @Test
     public void setCourseRating() {
         Course course = new Course("MAT246", "Mathematics");
         course.setCourseRating(3);
-        assertTrue(course.getCourseRating() == 3);
+        assertEquals(3, course.getCourseRating(), 0.0);
     }
 
     @Test
     public void setFieldOfStudy() {
         Course course = new Course("MAT334", "Mathematics");
         course.setFieldOfStudy("Math");
-        assertTrue(Objects.equals(course.getFieldOfStudy(), "Math"));
+        assertEquals("Math", course.getFieldOfStudy());
     }
 
     @Test
@@ -62,6 +60,6 @@ public class CourseTest {
         Course course = new Course("CSC240", "Computer Science");
         Review review = new Review(8, "this course is hard!", "review 2");
         course.addReview(review);
-        assertTrue(Objects.equals(course.getReviews().get(0), review));
+        assertEquals(course.getReviews().get(0), review);
     }
 }

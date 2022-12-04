@@ -8,8 +8,7 @@ import java.util.NoSuchElementException;
 
 
 /**
- * CourseList is the added data structure for Course.
- *
+ * CourseList is the added data structure for Courses
  * In our program, when working with data access and database features, it is usually a list of courses that is dealt with.
  * To better and more conveniently access and manipulate our data. We created a new class composed of Courses
  */
@@ -17,7 +16,7 @@ public class CourseList implements Iterable<Course>, Serializable {
     /**
      * CourseList class has one instance variable of type List<Course>
      */
-    private List<Course> courseList = new ArrayList<>();
+    private final List<Course> courseList = new ArrayList<>();
 
     //Getter
     public List<Course> getCourseList() {

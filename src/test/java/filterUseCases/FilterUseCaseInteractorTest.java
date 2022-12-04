@@ -17,7 +17,7 @@ public class FilterUseCaseInteractorTest {
 
     /**
      * This suite of Java Tests only cover the validator methods.
-     * The reason for this is because the filter methods return void and also do not modify any database data. But the
+     * The reason for this is the filter methods return void and also do not modify any database data. But the
      * functionality of the three filter methods are still directly tested in the command line interface every time the
      * program is run and the filter methods are called.
      *

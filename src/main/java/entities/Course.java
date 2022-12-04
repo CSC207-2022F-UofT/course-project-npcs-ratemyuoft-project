@@ -23,7 +23,7 @@ public class Course implements Serializable {
      * fieldOfStudy: String
      */
     public String courseName;
-    public ArrayList<Review> reviews= new ArrayList<Review>();
+    public ArrayList<Review> reviews= new ArrayList<>();
     public double courseRating = 0.0;
     public String fieldOfStudy;
 
