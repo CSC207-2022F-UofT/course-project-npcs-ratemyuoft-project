@@ -2,17 +2,16 @@ package courseDataBase;
 
 import entities.Course;
 import entities.CourseList;
-
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class CourseDataAccessTest {
 
     private final CourseDataAccess courseDataAccess = new CourseDataAccess();
+    public DataFill dataFill =new DataFill();
 
     public void courseDataFill() throws IOException {
         CourseList cl = new CourseList();
