@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class ViewCourseMenu {
 
     public void displayAfterFilterOptions(){
-        System.out.println("Press 0 to filter again \nEnter -1 to go back to main menu");
+        System.out.println("Press 0 to filter again\nEnter -1 to go back to main menu");
     }
 
     public void chooseOptions(Scanner scanner, FilterController filterController){
