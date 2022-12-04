@@ -126,3 +126,7 @@
 
 ![CAExplanation](images/TestReport.png)
 
+## 7. Update 12/04/2022
+
+    Mason's branch (filter look for course) was merged to main. Some problems
+    occured, but everything was fixed and the project is running without flaws.
