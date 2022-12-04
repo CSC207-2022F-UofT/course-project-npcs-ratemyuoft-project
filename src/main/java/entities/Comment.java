@@ -7,7 +7,7 @@ public class Comment {
     private static int count;
 
 
-    public Comment() {
+    public Comment(String comment) {
         this.commentNum = count ++;
     }
 
@@ -17,8 +17,6 @@ public class Comment {
     public void setUser(User user) {this.user = user;}
 
     public int getCommentNum() {return commentNum;}
-
-    public void setCommentNum(int commentNum) {this.commentNum = commentNum;}
 
     public static int getCount() {return count;}
 
@@ -32,6 +30,7 @@ public class Comment {
     public boolean equals(Object obj) {
         return this.comment.equals(obj);
     }
+
 
 
 

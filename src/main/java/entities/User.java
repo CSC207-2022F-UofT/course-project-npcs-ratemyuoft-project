@@ -58,11 +58,9 @@ public class User implements Serializable {
 
 
 
-    /**
+    /** NOTE:
      *  Methods: getUserName,getPassword,getStartYearOfStudy,getMajor
-     * <p>
-     *  Are getters that are meant to be used inside the program, to access data of particular user
-     * <p>
+     *  are getters that are meant to be used inside the program, to access data of particular user.
      *  They return:  Username, password, startYearOfStudy and major respectively
      */
     public String getUserName() {
@@ -70,16 +68,25 @@ public class User implements Serializable {
     }
 
 
+    /**
+     * @return please refer to the "NOTE" above
+     */
     public String getPassword() {
         return this.password;
     }
 
 
+    /**
+     * @return please refer to the "NOTE" above
+     */
     public int getStartYearOfStudy(){
         return this.startYearOfStudy;
     }
 
 
+    /**
+     * @return please refer to the "NOTE" above
+     */
     public String getMajor() {
         return this.major;
     }

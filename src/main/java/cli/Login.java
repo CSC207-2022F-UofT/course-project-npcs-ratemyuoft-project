@@ -3,8 +3,8 @@ package cli;
 import java.io.IOException;
 import java.util.Scanner;
 
-import logInInterfaceAdapter.Controller;
-import logInInterfaceAdapter.Presenter;
+import logInInterfaceAdapter.LogInController;
+import logInInterfaceAdapter.LogInPresenter;
 import logInUseCase.InvalidInputException;
 
 
@@ -12,31 +12,29 @@ public class Login implements LogInInterface  {
 
 
     @Override
-    public void login(Scanner scanner, Controller controller, Presenter presenter ,
-                      MainMenuInterface mainMenuInterface,
-                      WelcomeMenuInterface welcomeMenuInterface,RegisterInterface registerInterface,
-                      ShowUsersInterface showUsersInterface) throws IOException, ClassNotFoundException, InvalidInputException {
+    public void login(Scanner scanner, LogInController logInController, LogInPresenter logInPresenter)
+            throws IOException, ClassNotFoundException, InvalidInputException {
 
 
-            presenter.outputMessage(" Enter username please => "+ "\n");
+            logInPresenter.outputMessage(" Enter username please => "+ "\n");
             String username = scanner.nextLine();
 
-            presenter.outputMessage(" Enter password please = >"+ "\n");
+            logInPresenter.outputMessage(" Enter password please = >"+ "\n");
             String password = scanner.nextLine();
 
 
 
 
             try{
-                controller.userLogin(username,password);
-                mainMenuInterface.displayMainMenu(presenter);
-                mainMenuInterface.choseOption(scanner,presenter,controller,welcomeMenuInterface,
-                        registerInterface,this,showUsersInterface);
+                logInController.userLogin(username,password);
+                MainMenuInterface mainMenuInterface =new MainMenu();
+                mainMenuInterface.displayMainMenu(logInPresenter);
+                mainMenuInterface.choseOption(scanner, logInPresenter, logInController);
             }catch (InvalidInputException e){
-                presenter.outputMessage("Please try again"+"\n" + "\n");
-                welcomeMenuInterface.displayWelcomeMenu(presenter);
-                welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter,registerInterface,
-                        this,mainMenuInterface,showUsersInterface);
+                logInPresenter.outputMessage("Please try again"+"\n" + "\n");
+                WelcomeMenuInterface welcomeMenuInterface =new WelcomeMenu();
+                welcomeMenuInterface.displayWelcomeMenu(logInPresenter);
+                welcomeMenuInterface.choseLoginOrRegister(scanner, logInController, logInPresenter);
             }
 
 

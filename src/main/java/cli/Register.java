@@ -2,40 +2,37 @@ package cli;
 
 import java.io.IOException;
 import java.util.Scanner;
-import logInInterfaceAdapter.Controller;
-import logInInterfaceAdapter.Presenter;
+import logInInterfaceAdapter.LogInController;
+import logInInterfaceAdapter.LogInPresenter;
 import logInUseCase.InvalidInputException;
 
 public class Register implements RegisterInterface{
 
     @Override
-    public void register(Scanner scanner, Controller controller, Presenter presenter,
-                         MainMenuInterface mainMenuInterface,
-                         WelcomeMenuInterface welcomeMenuInterface,
-                         LogInInterface logInInterface,
-                         ShowUsersInterface showUsersInterface) throws IOException, ClassNotFoundException, InvalidInputException {
+    public void register(Scanner scanner, LogInController logInController, LogInPresenter logInPresenter)
+            throws IOException, ClassNotFoundException, InvalidInputException {
 
-        presenter.outputMessage(" Enter username please = > "+ "\n");
+        logInPresenter.outputMessage(" Enter username please = > "+ "\n");
         String userName = scanner.nextLine();
 
-        presenter.outputMessage(" Enter password please = > "+ "\n");
+        logInPresenter.outputMessage(" Enter password please = > "+ "\n");
         String password = scanner.nextLine();
 
-        presenter.outputMessage(" Enter your Major please = > "+ "\n");
+        logInPresenter.outputMessage(" Enter your Major please = > "+ "\n");
         String major = scanner.nextLine();
 
-        presenter.outputMessage(" Enter the year when you started your studies please = > "+ "\n");
+        logInPresenter.outputMessage(" Enter the year when you started your studies please = > "+ "\n");
         int year = scanner.nextInt();
 
         try{
-            controller.userRegister(userName,password,major,year);
-            mainMenuInterface.displayMainMenu(presenter);
-            mainMenuInterface.choseOption(scanner, presenter, controller,
-                    welcomeMenuInterface,this,logInInterface,showUsersInterface);
+            logInController.userRegister(userName,password,major,year);
+            MainMenuInterface mainMenuInterface = new MainMenu();
+            mainMenuInterface.displayMainMenu(logInPresenter);
+            mainMenuInterface.choseOption(scanner, logInPresenter, logInController);
 
         }catch (InvalidInputException e){
-            welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter,this,
-                    logInInterface,mainMenuInterface,showUsersInterface);
+            WelcomeMenuInterface welcomeMenuInterface = new WelcomeMenu();
+            welcomeMenuInterface.choseLoginOrRegister(scanner, logInController, logInPresenter);
         }
 
 

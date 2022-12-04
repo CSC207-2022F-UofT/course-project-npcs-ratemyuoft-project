@@ -11,14 +11,14 @@ import java.util.*;
 public class UserList implements Iterable<User>, Serializable {
 
 
-    private final List<User> userlist = new ArrayList<>();
+    private final List<User> userList = new ArrayList<>();
 
 
     /**
      * addUser is basically an implementation of List.add()
      */
     public void addUser(User user){
-        userlist.add(user);
+        userList.add(user);
     }
 
 
@@ -39,13 +39,13 @@ public class UserList implements Iterable<User>, Serializable {
 
         @Override
         public boolean hasNext(){
-            return curr < userlist.size();
+            return curr < userList.size();
         }
 
         @Override
         public User next() {
             if(hasNext()){
-                return userlist.get(curr++);
+                return userList.get(curr++);
             }
             throw new NoSuchElementException();
         }

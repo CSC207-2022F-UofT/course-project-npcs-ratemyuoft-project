@@ -1,19 +1,16 @@
 package cli;
 
-import logInInterfaceAdapter.Controller;
-import logInInterfaceAdapter.Presenter;
+import logInInterfaceAdapter.LogInController;
+import logInInterfaceAdapter.LogInPresenter;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public interface MainMenuInterface {
 
-    void displayMainMenu(Presenter presenter);
+    void displayMainMenu(LogInPresenter logInPresenter);
 
-    void choseOption(Scanner scanner,Presenter presenter, Controller controller,
-                      WelcomeMenuInterface welcomeMenuInterface,
-                     RegisterInterface registerInterface,LogInInterface logInInterface,
-                     ShowUsersInterface showUsersInterface)
+    void choseOption(Scanner scanner, LogInPresenter logInPresenter, LogInController logInController)
             throws IOException, ClassNotFoundException;
 
 }

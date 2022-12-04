@@ -1,8 +1,8 @@
 package cli;
 
-import userDataBase.DataBase;
-import logInInterfaceAdapter.Controller;
-import logInInterfaceAdapter.Presenter;
+import logInInterfaceAdapter.LogInController;
+import logInInterfaceAdapter.LogInPresenter;
+import logInUseCase.InvalidInputException;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -10,26 +10,23 @@ import java.util.Scanner;
 /**
  * This is the class that creates all the needed interfaces and calls the welcome menu. This class is only called
  * by using BootCLI interface in Main class.
+ * <p>
+ * UPDATE: All the dependencies were eliminated, now the class is following Clean Architecture.
  */
 public class BootCLI implements BootCLIInterface {
     @Override
     public void boot() throws IOException, ClassNotFoundException, InvalidInputException {
 
         Scanner scanner = new Scanner(System.in);
-        RegisterInterface registerInterface = new Register();
-        LogInInterface logInInterface = new Login();
-        MainMenuInterface mainMenuInterface = new MainMenu();
-        WelcomeMenuInterface welcomeMenuInterface = new WelcomeMenu();
-        ShowUsersInterface showUsersInterface = new ShowUsers();
-        Presenter presenter = new Presenter();
-        DataAccess dataAccess = new DataBase();
-        InputBoundary inputBoundary =new Interactor(presenter,dataAccess);
-        Controller controller = new Controller(inputBoundary);
-        ViewCourseCLI vcli = new ViewCourseCLI();
+        LogInPresenter logInPresenter = new LogInPresenter();
+        LogInController logInController = new LogInController();
 
-        welcomeMenuInterface.displayWelcomeMenu(presenter);
-        welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter, registerInterface,
-                logInInterface,mainMenuInterface,showUsersInterface);
+        WelcomeMenuInterface welcomeMenuInterface = new WelcomeMenu();
+
+        logInController.userLogOut(); //this call is needed in case some users stayed logged in, when program was crashed.
+
+        welcomeMenuInterface.displayWelcomeMenu(logInPresenter);
+        welcomeMenuInterface.choseLoginOrRegister(scanner, logInController, logInPresenter);
 
 
     }

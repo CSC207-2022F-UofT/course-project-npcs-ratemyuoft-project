@@ -1,65 +1,71 @@
 package cli;
 
-import logInInterfaceAdapter.Controller;
-import logInInterfaceAdapter.Presenter;
+import courseDataBase.CourseDataAccess;
+import filterInterfaceAdapters.FilterController;
+import filterInterfaceAdapters.FilterPresenter;
+import filterUseCases.CourseDataAccessInterface;
+import filterUseCases.FilterInputBoundary;
+import filterUseCases.FilterOutputBoundary;
+import filterUseCases.FilterUseCaseInteractor;
+import logInInterfaceAdapter.LogInController;
+import logInInterfaceAdapter.LogInPresenter;
 import logInUseCase.InvalidInputException;
+
 import java.io.IOException;
 import java.util.Scanner;
 
 public class MainMenu implements MainMenuInterface{
     @Override
-    public void displayMainMenu(Presenter presenter) {
-        presenter.outputMessage("Avaliable Actions" + "\n" + "1. Show all the Users on our forum" + "\n" +
-                "2. Log out" + "\n" + "3. Search Course" + "\n");
-        presenter.outputMessage("Please, enter the number of the option to proceed"+ "\n");
+    public void displayMainMenu(LogInPresenter logInPresenter) {
+        logInPresenter.outputMessage("Avaliable Actions" + "\n" + "1. Show all the Users on our forum" + "\n" +
+                "2. Log out" + "\n" + "3. Filter for courses \n" + "Another features will be avaliable later..." + "\n");
+        logInPresenter.outputMessage("Please, enter the number of the option to proceed"+ "\n");
     }
 
     @Override
-    public void choseOption(Scanner scanner,Presenter presenter, Controller controller,
-                             WelcomeMenuInterface welcomeMenuInterface,
-                            RegisterInterface registerInterface,LogInInterface logInInterface,
-                            ShowUsersInterface showUsersInterface)
+    public void choseOption(Scanner scanner, LogInPresenter logInPresenter, LogInController logInController)
             throws  ClassNotFoundException {
         int choice = scanner.nextInt();
 
         if(choice == 1){
 
             try {
-                showUsersInterface.showUsers(scanner,presenter,controller,welcomeMenuInterface,
-                        registerInterface,logInInterface,this);
+                ShowUsersInterface showUsersInterface =new ShowUsers();
+                showUsersInterface.showUsers(scanner, logInPresenter, logInController);
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                displayMainMenu(logInPresenter);
+                choseOption(scanner, logInPresenter, logInController);
             }
 
 
         } else if (choice == 2) {
             try{
-                controller.userLogOut();
-                welcomeMenuInterface.choseLoginOrRegister(scanner,controller,presenter,registerInterface,
-                        logInInterface,this,showUsersInterface);
-            }  catch (IOException | InvalidInputException e) {
-                displayMainMenu(presenter);
-                this.choseOption(scanner,presenter,controller,welcomeMenuInterface,registerInterface,
-                        logInInterface,showUsersInterface);
+                logInController.userLogOut();
+                WelcomeMenuInterface welcomeMenuInterface =new WelcomeMenu();
+                welcomeMenuInterface.choseLoginOrRegister(scanner, logInController, logInPresenter);
+            }  catch (IOException  e) {
+                displayMainMenu(logInPresenter);
+                choseOption(scanner, logInPresenter, logInController);
+            } catch (InvalidInputException e) {
+                throw new RuntimeException(e);
             }
 
-        } else if (choice == 3) {
-            try {
-                controller.userLogOut();
-                ViewCourseCLI vc = new ViewCourseCLI();
-                vc.viewcourse(scanner);
+        } else if (choice == 3){
+            FilterMenu filterMenu = new FilterMenu();
+            filterMenu.displayFilterOptions();
+            CourseDataAccessInterface courseDataAccessInterface = new CourseDataAccess();
+            FilterOutputBoundary filterOutputBoundary = new FilterPresenter();
+            FilterInputBoundary filterInputBoundary = new FilterUseCaseInteractor(courseDataAccessInterface, filterOutputBoundary);
+            FilterController filterController = new FilterController(filterInputBoundary);
 
-            } catch (IOException | InvalidInputException e) {
-                displayMainMenu(presenter);
-                this.choseOption(scanner, presenter, controller, welcomeMenuInterface, registerInterface,
-                        logInInterface, showUsersInterface);
-            }
+            filterMenu.filter(scanner, filterController);
 
 
-        } else{
-            displayMainMenu(presenter);
-            this.choseOption(scanner,presenter,controller,welcomeMenuInterface,registerInterface,
-                    logInInterface,showUsersInterface);
+
+
+        }else{
+            displayMainMenu(logInPresenter);
+            choseOption(scanner, logInPresenter, logInController);
         }
 
     }

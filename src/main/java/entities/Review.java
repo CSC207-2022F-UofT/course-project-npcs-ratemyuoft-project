@@ -15,7 +15,7 @@ public class Review implements Serializable{
 
     public String Comment;
 
-    public Map<Student,String > comments= new HashMap<>();
+    public Map<User,String> comments= new HashMap<>();
 
     //Constructors 1st one for having no comment, just a raiting and the 2nd one is for review with comment
     public Review(int Rating, String Comment, String Name){
