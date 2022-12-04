@@ -1,24 +1,20 @@
 package viewCourseTests;
 
-import courseDatabase.DataAccess;
-import entity.CourseList;
-import loginUseCase.InvalidInputException;
+import courseDatabase.CourseDataAccess;
 import org.junit.jupiter.api.Test;
-import viewCourseInterfaceAdapters.Presenter;
+import viewCourseInterfaceAdapters.ViewCoursePresenter;
 import viewCourseReviewUseCase.CourseNameRequestModel;
-import viewCourseReviewUseCase.Gateway;
-import viewCourseReviewUseCase.OutputBoundary;
-import viewCourseReviewUseCase.ViewCourse;
-
-import java.io.IOException;
+import viewCourseReviewUseCase.CourseDataAccessInterface;
+import viewCourseReviewUseCase.ViewCourseOutputBoundary;
+import viewCourseReviewUseCase.ViewCourseInteractor;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class viewCourseTest {
 
-    OutputBoundary outputBoundary = new Presenter();
-    Gateway gateway = new DataAccess();
-    ViewCourse viewcourse = new ViewCourse(gateway, outputBoundary);
+    ViewCourseOutputBoundary viewCourseOutputBoundary = new ViewCoursePresenter();
+    CourseDataAccessInterface courseDataAccessInterface = new CourseDataAccess();
+    ViewCourseInteractor viewcourse = new ViewCourseInteractor(courseDataAccessInterface, viewCourseOutputBoundary);
 
     @Test
     void checkIfrightinputworks() {

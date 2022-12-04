@@ -1,12 +1,12 @@
 package viewCourseInterfaceAdapters;
 
 import viewCourseReviewUseCase.CourseNameRequestModel;
-import viewCourseReviewUseCase.InputBoundary;
+import viewCourseReviewUseCase.ViewCourseInputBoundary;
 
-public class Controller {
+public class ViewCourseController {
     // Takes in an Input Boundary
-    public InputBoundary ip;
-    public Controller (InputBoundary ip){
+    public ViewCourseInputBoundary ip;
+    public ViewCourseController(ViewCourseInputBoundary ip){
         this.ip = ip;
     }
     public void DisplayReviews(String coursename){

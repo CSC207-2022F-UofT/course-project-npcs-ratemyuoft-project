@@ -3,26 +3,26 @@ package cli;
 import java.io.IOException;
 import java.util.Scanner;
 
-import courseDatabase.DataAccess;
-import viewCourseInterfaceAdapters.Controller;
-import viewCourseInterfaceAdapters.Presenter;
-import viewCourseReviewUseCase.Gateway;
-import viewCourseReviewUseCase.InputBoundary;
-import viewCourseReviewUseCase.OutputBoundary;
-import viewCourseReviewUseCase.ViewCourse;
+import courseDatabase.CourseDataAccess;
+import viewCourseInterfaceAdapters.ViewCourseController;
+import viewCourseInterfaceAdapters.ViewCoursePresenter;
+import viewCourseReviewUseCase.CourseDataAccessInterface;
+import viewCourseReviewUseCase.ViewCourseInputBoundary;
+import viewCourseReviewUseCase.ViewCourseOutputBoundary;
+import viewCourseReviewUseCase.ViewCourseInteractor;
 import loginUseCase.InvalidInputException;
 
 public class ViewCourseCLI {
     public void viewcourse(Scanner scanner) throws IOException, ClassNotFoundException, InvalidInputException {
-        OutputBoundary presenter = new Presenter();
-        Gateway dataaccess = new DataAccess();
-        InputBoundary viewcourse = new ViewCourse(dataaccess, presenter);
-        Controller controller = new Controller(viewcourse);
+        ViewCourseOutputBoundary presenter = new ViewCoursePresenter();
+        CourseDataAccessInterface dataaccess = new CourseDataAccess();
+        ViewCourseInputBoundary viewcourse = new ViewCourseInteractor(dataaccess, presenter);
+        ViewCourseController viewCourseController = new ViewCourseController(viewcourse);
 
         System.out.println("Enter Course Name Please = > " + "\n");
 
         try {
-            controller.DisplayReviews(scanner.next());
+            viewCourseController.DisplayReviews(scanner.next());
 
         } catch (Exception e) {
             System.out.println("Try Again");

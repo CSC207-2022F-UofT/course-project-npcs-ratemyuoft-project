@@ -1,5 +1,6 @@
 package registerCourse;
 
+import courseDatabase.CourseDataAccess;
 import entity.Course;
 import entity.CourseList;
 
@@ -8,7 +9,7 @@ import java.io.IOException;
 public class RegisterCourse {
     public Course C;
 
-    public RegisterCourse(Course C, courseDatabase.DataAccess gateway) throws IOException, ClassNotFoundException {
+    public RegisterCourse(Course C, CourseDataAccess gateway) throws IOException, ClassNotFoundException {
         try{
             CourseList courselist = gateway.importcourselist();
             for (Course c: courselist){

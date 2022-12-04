@@ -1,12 +1,10 @@
 package likeReviewUseCase;
 
-import entity.Review;
-
-public class LikeMessageRequestModel {
+public class LikeMessageResponseModel {
     // Takes in a String and gives an output message
     public String r;
 
-    public LikeMessageRequestModel(String r){
+    public LikeMessageResponseModel(String r){
         this.r = r;
     }
 

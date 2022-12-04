@@ -1,16 +1,15 @@
 package likeReviewInterfaceAdapters;
 
-import entity.Review;
-import likeReviewUseCase.InputBoundaryL;
+import likeReviewUseCase.LikeReviewInputBoundary;
 import likeReviewUseCase.ReviewNameRequestModel;
 
 import java.io.IOException;
 
-public class ControllerL {
+public class LikeReviewController {
     // Like Review Controller, Takes in an Input Boundary
-    final InputBoundaryL ip;
+    final LikeReviewInputBoundary ip;
 
-    public ControllerL(InputBoundaryL ip){
+    public LikeReviewController(LikeReviewInputBoundary ip){
         this.ip = ip;
 
     }

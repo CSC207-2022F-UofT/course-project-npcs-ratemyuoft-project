@@ -3,29 +3,31 @@ package likeReviewUseCase;
 import entity.Course;
 import entity.CourseList;
 import entity.Review;
+import viewCourseReviewUseCase.CourseDataAccessInterface;
 
 import java.io.IOException;
 import java.util.Objects;
 
 
-public class LikeReview implements InputBoundaryL {
+public class LikeReviewInteractor implements LikeReviewInputBoundary {
     // implements the Input Boundary, takes in a Gateway and OutputBoundary
     public CourseList courseList;
-    public viewCourseReviewUseCase.Gateway gatewayView;
-    public OutputBoundaryL output;
+    public CourseDataAccessInterface courseDataAccessInterfaceView;
+    public LikeReviewOutputBoundary output;
 
     public Review rev;
 
     public int iter;
     public Course cs;
 
-    public LikeReview(viewCourseReviewUseCase.Gateway gatewayView, OutputBoundaryL output) {
+    public LikeReviewInteractor(CourseDataAccessInterface courseDataAccessInterfaceView, LikeReviewOutputBoundary output) {
 
-        this.gatewayView = gatewayView;
+        this.courseDataAccessInterfaceView = courseDataAccessInterfaceView;
         this.output = output;
 
         try {
-            this.courseList = this.gatewayView.importcourselist();
+            this.courseList = this.courseDataAccessInterfaceView.importcourselist();
+            System.out.println("Good");
         } catch (IOException | ClassNotFoundException e) {
             this.courseList = new CourseList();
         }
@@ -52,14 +54,14 @@ public class LikeReview implements InputBoundaryL {
 
         if (this.rev != null){
             cs.reviews.get(iter).Like();
-            this.gatewayView.SaveCourse(this.courseList);
+            this.courseDataAccessInterfaceView.SaveCourse(this.courseList);
         }
 
         if (liked == Boolean.TRUE){
-            this.output.outputMessage(new LikeMessageRequestModel(reviewname));
+            this.output.outputMessage(new LikeMessageResponseModel(reviewname));
         }
         else{
-            this.output.outputMessage(new LikeMessageRequestModel("No Review With this Name"));
+            this.output.outputMessage(new LikeMessageResponseModel("No Review With this Name"));
         }
 
     }

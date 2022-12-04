@@ -35,6 +35,10 @@ public class Review implements Serializable{
     public String getComment() {
         return this.Comment;
     }
+
+    public String getName(){
+        return this.Name;
+    }
     //Setters
 
     public void Like() {

@@ -1,40 +1,39 @@
-package viewCourseTests;
+package likeReviewTest;
 
-import courseDatabase.DataAccess;
+import courseDatabase.CourseDataAccess;
 import entity.CourseList;
-import likeReviewInterfaceAdapters.PresenterL;
-import likeReviewUseCase.LikeReview;
-import likeReviewUseCase.OutputBoundaryL;
+import likeReviewInterfaceAdapters.LikeReviewPresenter;
+import likeReviewUseCase.LikeReviewInteractor;
+import likeReviewUseCase.LikeReviewOutputBoundary;
 import likeReviewUseCase.ReviewNameRequestModel;
-import loginUseCase.InvalidInputException;
 import org.junit.jupiter.api.Test;
-import viewCourseReviewUseCase.Gateway;
+import viewCourseReviewUseCase.CourseDataAccessInterface;
 
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class LikeReviewTest {
+public class LikeReviewInteractorTest {
 
-    OutputBoundaryL outputBoundary = new PresenterL();
-    Gateway gateway = new DataAccess();
-    LikeReview likereview = new LikeReview(gateway, outputBoundary);
+    LikeReviewOutputBoundary outputBoundary = new LikeReviewPresenter();
+    CourseDataAccessInterface courseDataAccessInterface = new CourseDataAccess();
+    LikeReviewInteractor likereview = new LikeReviewInteractor(courseDataAccessInterface, outputBoundary);
 
     @Test
     void checkIfrightinputworks() throws IOException, ClassNotFoundException {
         // Want likes of Review with this name to have plus one like
-        CourseList courselist = gateway.importcourselist();
+        CourseList courselist = courseDataAccessInterface.importcourselist();
         int initial = courselist.Courses.get(0).reviews.get(0).numberOfLikes;
         ReviewNameRequestModel revname = new ReviewNameRequestModel(courselist.Courses.get(0).reviews.get(0).Name);
         likereview.AddLike(revname);
-        CourseList courselist2 = gateway.importcourselist();
+        CourseList courselist2 = courseDataAccessInterface.importcourselist();
         assertEquals(courselist2.Courses.get(0).reviews.get(0).numberOfLikes, initial + 1);
     }
 
     @Test
     void checkIfwronginputworks() throws IOException, ClassNotFoundException {
         // Check for No Error
-        CourseList courselist = gateway.importcourselist();
+        CourseList courselist = courseDataAccessInterface.importcourselist();
         ReviewNameRequestModel revname = new ReviewNameRequestModel("Review 20");
         likereview.AddLike(revname);
     }

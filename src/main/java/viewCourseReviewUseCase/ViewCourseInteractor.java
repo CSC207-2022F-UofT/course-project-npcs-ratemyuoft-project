@@ -2,24 +2,27 @@ package viewCourseReviewUseCase;
 import entity.Course;
 import entity.CourseList;
 import entity.Review;
+import viewCourseDataStructures.CourseListResponseModel;
+import viewCourseDataStructures.CourseListResponseModelHelp;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class ViewCourse implements InputBoundary{
+public class ViewCourseInteractor implements ViewCourseInputBoundary {
     public  CourseList courseList;
     public Course course;
     private ArrayList<Review> reviews;
-    private OutputBoundary output;
+    private ViewCourseOutputBoundary output;
 
-    public ViewCourse(Gateway gateway, OutputBoundary output){
+    public ViewCourseInteractor(CourseDataAccessInterface courseDataAccessInterface, ViewCourseOutputBoundary output){
         // Takes in a gateway and output boundary, instantiates a courselist.
         try{
-            courseList = gateway.importcourselist();
+            courseList = courseDataAccessInterface.importcourselist();
         } catch (IOException | ClassNotFoundException e){
             courseList = new CourseList();
         }
+        System.out.println(this.courseList.Courses.get(0));
         this.output = output;
     }
 
@@ -36,23 +39,14 @@ public class ViewCourse implements InputBoundary{
 
         if (this.course != null){
             this.reviews = this.course.GetReviews();
-        }
-
-        else{
-            this.reviews = new ArrayList<Review>();
-        }
-
-        CourseListRequestModel courselistreq = new CourseListRequestModel(this.reviews, this.course);
-
-        if (this.course != null){
-            this.output.Display(courselistreq);
+            CourseListResponseModelHelp courselistreq = new CourseListResponseModelHelp(this.reviews, this.course);
+            CourseListResponseModel courselistresponse = new
+                    CourseListResponseModel(courselistreq.reviewlist, courselistreq.coursename);
+            this.output.Display(courselistresponse);
         }
 
         else {
             this.output.outputMessage("Course not in Directory");
         }
-
-
     }
-
 }
