@@ -1,6 +1,6 @@
 package likeReviewTest;
 
-import courseDatabase.CourseDataAccess;
+import courseDatabase.CourseDataAccessShawn;
 import entity.CourseList;
 import likeReviewInterfaceAdapters.LikeReviewPresenter;
 import likeReviewUseCase.LikeReviewInteractor;
@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LikeReviewInteractorTest {
 
     LikeReviewOutputBoundary outputBoundary = new LikeReviewPresenter();
-    CourseDataAccessInterface courseDataAccessInterface = new CourseDataAccess();
+    CourseDataAccessInterface courseDataAccessInterface = new CourseDataAccessShawn();
     LikeReviewInteractor likereview = new LikeReviewInteractor(courseDataAccessInterface, outputBoundary);
 
     @Test

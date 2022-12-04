@@ -1,6 +1,6 @@
 package viewCourseTests;
 
-import courseDatabase.CourseDataAccess;
+import courseDatabase.CourseDataAccessShawn;
 import org.junit.jupiter.api.Test;
 import viewCourseInterfaceAdapters.ViewCoursePresenter;
 import viewCourseReviewUseCase.CourseNameRequestModel;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class viewCourseTest {
 
     ViewCourseOutputBoundary viewCourseOutputBoundary = new ViewCoursePresenter();
-    CourseDataAccessInterface courseDataAccessInterface = new CourseDataAccess();
+    CourseDataAccessInterface courseDataAccessInterface = new CourseDataAccessShawn();
     ViewCourseInteractor viewcourse = new ViewCourseInteractor(courseDataAccessInterface, viewCourseOutputBoundary);
 
     @Test

@@ -10,7 +10,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.*;
 
-public class CourseDataAccess implements CourseDataAccessInterface {
+public class CourseDataAccessShawn implements CourseDataAccessInterface {
     // Contains a Database, Saves to it and imports from it
     private static final String fileName = "Database18.sav";
 
@@ -33,7 +33,7 @@ public class CourseDataAccess implements CourseDataAccessInterface {
     }
 
     public void CreateInstance() throws IOException, ClassNotFoundException {
-        CourseDataAccess d = new CourseDataAccess();
+        CourseDataAccessShawn d = new CourseDataAccessShawn();
         Review r = new Review(4, "I hate this Course", "Review1");
         Review r1 = new Review(3, "This course is cool", "Review2");
         Review r2 = new Review(1, "This course is bird", "Review3");

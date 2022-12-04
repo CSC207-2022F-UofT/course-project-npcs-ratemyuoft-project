@@ -7,7 +7,7 @@
     I devided my Use case into 5 packages.
     
     Frameworks & Drivers (Blue)
-    cli
+    cliShawn
     userDatabase
     
     **********************************************************************
@@ -37,11 +37,11 @@
     loginEntities
     
     **********************************************************************
-    Documenting cli was omittied, is it only uses Presenter and Controller
+    Documenting cliShawn was omittied, is it only uses Presenter and Controller
     classes from interfaceAdapters package.
 
     **********************************************************************
-    Tests are provided for every class and method except for the cli
+    Tests are provided for every class and method except for the cliShawn
     package, as testing it would be unconvinient, because the only function
     of this package is to display output and accept input from the user.
 

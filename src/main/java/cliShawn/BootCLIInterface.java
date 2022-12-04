@@ -1,4 +1,4 @@
-package cli;
+package cliShawn;
 
 import loginUseCase.InvalidInputException;
 

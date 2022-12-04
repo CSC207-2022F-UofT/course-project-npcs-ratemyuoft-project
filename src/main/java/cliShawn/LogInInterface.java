@@ -1,4 +1,4 @@
-package cli;
+package cliShawn;
 
 import java.io.IOException;
 import java.util.Scanner;

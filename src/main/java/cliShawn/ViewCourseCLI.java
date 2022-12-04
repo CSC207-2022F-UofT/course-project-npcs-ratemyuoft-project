@@ -1,9 +1,9 @@
-package cli;
+package cliShawn;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-import courseDatabase.CourseDataAccess;
+import courseDatabase.CourseDataAccessShawn;
 import viewCourseInterfaceAdapters.ViewCourseController;
 import viewCourseInterfaceAdapters.ViewCoursePresenter;
 import viewCourseReviewUseCase.CourseDataAccessInterface;
@@ -15,7 +15,7 @@ import loginUseCase.InvalidInputException;
 public class ViewCourseCLI {
     public void viewcourse(Scanner scanner) throws IOException, ClassNotFoundException, InvalidInputException {
         ViewCourseOutputBoundary presenter = new ViewCoursePresenter();
-        CourseDataAccessInterface dataaccess = new CourseDataAccess();
+        CourseDataAccessInterface dataaccess = new CourseDataAccessShawn();
         ViewCourseInputBoundary viewcourse = new ViewCourseInteractor(dataaccess, presenter);
         ViewCourseController viewCourseController = new ViewCourseController(viewcourse);
 
