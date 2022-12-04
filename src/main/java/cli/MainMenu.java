@@ -9,7 +9,7 @@ import filterUseCases.FilterOutputBoundary;
 import filterUseCases.FilterUseCaseInteractor;
 import logInInterfaceAdapter.LogInController;
 import logInInterfaceAdapter.LogInPresenter;
-import logInuseCase.InvalidInputException;
+import logInUseCase.InvalidInputException;
 
 import java.io.IOException;
 import java.util.Scanner;
