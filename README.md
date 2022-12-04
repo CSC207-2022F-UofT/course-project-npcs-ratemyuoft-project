@@ -1,39 +1,128 @@
-# Project Template
+# Register/LogIn/ShowUsers/LogOut Use Case
 
-This is a template repository for CSC 207 projects. 
-This repository contains starter code for a gradle project.
-It also contains workflow documents that give instructions on how to manage your Github repository and how to use Github Projects for efficient collaboration.
+![CAExplanation](images/CAExplanation.png)
 
-## Checklist For Your Project
-- [ ] Verify the correct settings for your project repository
-- [ ] Set up Github Projects
-- [ ] Create the implementation plan using issues and Github Projects
-- [ ] Create deveopment branches for your features
-- [ ] Use pull requests to merge finished features into main branch
-- [ ] Conduct code reviews
+ ## 1.Packaging
 
-**If your team has trouble with any of these steps, please ask on Piazza. For example, with how GitHub Classroom works, your team *may* not have permissions to do some of the first few steps, in which case we'll post alternative instructions as needed.**
+    I devided my Use case into 5 packages.
+    
+    Frameworks & Drivers (Blue)
+    cli
+    userDataBase
+    
+    **********************************************************************
+    
+    Interface Adapters (Green)
+    logInInterfaceAdapters
 
-## Workflow Documents
+    **********************************************************************
 
-* Github Workflow: Please refer to the workflow that was introduced in the first lab. You should follow this when working on your code. The following document provides additional details too.
+    Application Business Rules (Red)
+    logInUseCase
 
-* [Project Planning and Development Guide](project_plan_dev.md): This document helps you to understand how to create and maintain a project plan for your class project. **This document helps you to complete the Implementation Plan Milestone.**
+    **********************************************************************
 
-## Gradle Project
-Import this project into your Intellij editor. It should automatically recognise this as a gradle repository.
-The starter code was built using SDK version 11.0.1. Ensure that you are using this version for this project. (You can, of course, change the SDK version as per your requirement if your team has all agreed to use a different version)
+    Enterprise Business Rules (Yellow)
+    entities
+    
 
-You have been provided with two starter files for demonstration: HelloWorld and HelloWorldTest.
 
-You will find HelloWorld in `src/main/java/tutorial` directory. Right click on the HelloWorld file and click on `Run HelloWorld.main()`.
-This should run the program and print on your console.
+## 2.Javadoc and Testing
+    
+    Packages that were documented using JavaDoc:
 
-You will find HelloWorldTest in `src/test/java/tutorial` directory. Right click on the HelloWorldTest file and click on `Run HelloWorldTest`.
-All tests should pass. Your team can remove this sample of how testing works once you start adding your project code to the repo.
+    userDataBase
+    logInInterfaceAdapters
+    logInUseCase
+    entities
+    
+    **********************************************************************
+    Documenting cli was omittied, is it only uses Presenter and Controller
+    classes from interfaceAdapters package.
 
-Moving forward, we expect you to maintain this project structure. You *should* use Gradle as the build environment, but it is fine if your team prefers to use something else -- just remove the gradle files and push your preferred project setup. Assuming you stick with Gradle, your source code should go into `src/main/java` (you can keep creating more subdirectories as per your project requirement). Every source class can auto-generate a test file for you. For example, open HelloWorld.java file and click on the `HelloWorld` variable as shown in the image below. You should see an option `Generate` and on clicking this your should see an option `Test`. Clicking on this will generate a JUnit test file for `HelloWorld` class. This was used to generate the `HelloWorldTest`.
+    **********************************************************************
+    Tests are provided for every class and method except for the cli
+    package, as testing it would be unconvinient, because the only function
+    of this package is to display output and accept input from the user.
 
-![image](https://user-images.githubusercontent.com/5333020/196066655-d3c97bf4-fdbd-46b0-b6ae-aeb8dbcf351d.png)
+    **********************************************************************
+    Unfortunately, I didn't figure out how to generate the test report, but
+    all tests are runnable, and can be run by running NameOfClassTest.java.
+    
 
-You can create another simple class and try generating a test for this class.
+
+
+## 3. CLI
+
+![CLIExplanation](images/CLIExplanation.png)
+
+    The following diagram explains how the CLI works.
+
+    **********************************************************************
+
+    I would also like to note that I made CLI the way it is open for 
+    extention. For instance, and infinte amount of other options can
+    be added to MainMenu, by just adding one more if statement and
+    making a call of other interface that will lead user further.
+    
+## 4. Updates 11/29/2022
+
+    1.CLI was simplified, by getting rid of unneeded Interfaces that 
+    were passed to interfaces they call, creating a lot of 
+    misunderstanding in a team regarding the use of CLI.
+
+    **********************************************************************
+
+    2. I also got rid of unneeded dependesies inside the project,
+    so that it would follow CA more.
+
+    **********************************************************************
+
+    3.MVC design pattern was implemented. Before, if logInController wanted to
+    output a message to CLI it had to send it to InputBoundary->Interactor->
+    OutputBoundary->Presenter. Now this path is: ViewModel->Presenter.
+
+    **********************************************************************
+
+    4. The bug that in case that program crashes users that didn't log out
+    stay logged in and it was impossible to log in using that account was
+    also fixed by logging out all the users that were logged in as project
+    being started.
+
+    **********************************************************************
+
+    5. Regarding test covrage, Interactor class was showing only 80% covrage
+    as showUsers() and outputMessage(string s) were not tested. However,
+    this methods only pass the information to outputBoundary, without
+    modifying it in any way, hence doesn't need to be tested.
+
+
+## 5. Update 12/02/2022
+
+    All the classes and packages were refractored, to make connecting 
+    UseCases more efficient.
+
+## 6. Update 12/03/2022
+
+    1. All the classes and methods have thorough explanation in JavaDoc,
+    except for the classes in the CLI package as they do not perform
+    any other calls then methods from LogInPresenter or LogInController
+    classes. However, class BootCLI has JavaDoc and comments, for additional
+    clarifications. Concerns regarding the import statement was adressed.
+    Typos in JavaDoc and naming of some variables were also fixed. Warnings
+    were also fixed. However,ther is still a warning in UserDataBase class,
+    please look "WARNING" in the JavaDoc of the corresponding class.
+
+    **********************************************************************
+
+    2. Clarifications regarding testing covarage of the classes that are
+    included in the logInInterfaceAdapter package : 
+
+    please look "NOTE" in LogInPresenter JavaDoc(lines 15-19)
+
+    **********************************************************************
+
+    3. Screenshot of Junit test Report is attached below.
+
+![CAExplanation](images/TestReport.png)
+
