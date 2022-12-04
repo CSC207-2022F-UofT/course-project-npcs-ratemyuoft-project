@@ -3,7 +3,7 @@ package courseDataBase;
 import entities.Course;
 import entities.CourseList;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
