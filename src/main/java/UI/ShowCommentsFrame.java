@@ -10,8 +10,9 @@ public class ShowCommentsFrame extends JFrame implements UIShow {
     JPanel mainPanel = new JPanel();
     JList<String> list = new JList<>();
     DefaultListModel<String> model =new DefaultListModel<>();
-    JPanel panel = new JPanel();
     JButton backButton = new JButton("Back");
+    JScrollPane scrollPane =new JScrollPane(list);
+
 
 
     /**
@@ -20,14 +21,13 @@ public class ShowCommentsFrame extends JFrame implements UIShow {
      */
     public void showComments(ArrayList<String> listOfComments) {
         list.setModel(model);
+        int count = 1;
         for (String s : listOfComments) {
-            model.addElement(s);
+            model.addElement(count++ +": "+s);
         }
-
-        panel.add(new JScrollPane(list));
         mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(panel, BorderLayout.NORTH);
-        mainPanel.add(backButton, BorderLayout.CENTER);
+        mainPanel.add(scrollPane, BorderLayout.CENTER);
+        mainPanel.add(backButton, BorderLayout.SOUTH);
 
         this.add(mainPanel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

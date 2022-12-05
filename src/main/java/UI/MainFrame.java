@@ -12,7 +12,6 @@ public class MainFrame extends JFrame{
     JPanel mainPanel = new JPanel();
     JButton viewCommentButton = new JButton("View All Comments");
     JButton newComment = new JButton("Comment");
-    JButton editComment = new JButton("Edit Comment");
     JPanel labelPanel = new JPanel();
     JLabel userLabel;
     JLabel label ;
@@ -35,8 +34,7 @@ public class MainFrame extends JFrame{
 
         buttonPanel.setLayout(new BorderLayout());
         buttonPanel.add(viewCommentButton ,BorderLayout.WEST);
-        buttonPanel.add(newComment ,BorderLayout.CENTER);
-        buttonPanel.add(editComment ,BorderLayout.EAST);
+        buttonPanel.add(newComment ,BorderLayout.EAST);
 
         labelPanel.setLayout(new BorderLayout());
         labelPanel.add(label,BorderLayout.WEST);
@@ -50,6 +48,8 @@ public class MainFrame extends JFrame{
 
         this.add(mainPanel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setBounds(585,500,500,500);
+        this.setSize(1000,1000);
         this.pack();
         this.setVisible(true);
 
@@ -72,9 +72,6 @@ public class MainFrame extends JFrame{
 
         newComment.addActionListener(e -> new AddCommentFrame(controller));
 
-        editComment.addActionListener(e -> {
-
-        });
 
     }
 
