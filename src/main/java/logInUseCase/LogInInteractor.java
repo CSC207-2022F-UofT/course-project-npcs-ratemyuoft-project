@@ -5,6 +5,7 @@ import entities.User;
 import entities.UserList;
 import logInInterfaceAdapter.LogInPresenter; //  can not be used directly. only through outputBoundary
 
+
 import java.io.IOException;
 
 /**
