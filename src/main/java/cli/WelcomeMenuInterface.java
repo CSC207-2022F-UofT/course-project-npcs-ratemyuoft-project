@@ -1,17 +1,21 @@
 package cli;
 
-import logInInterfaceAdapter.LogInController;
-import logInInterfaceAdapter.LogInPresenter;
-import logInUseCase.InvalidInputException;
+import interfaceadapter.Controller;
+import interfaceadapter.Presenter;
+import usecase.CourseDataAccessInterface;
+import usecase.InvalidInputException;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public interface WelcomeMenuInterface {
 
-    void displayWelcomeMenu(LogInPresenter logInPresenter);
+    void displayCoursesToReview(Presenter presenter, CourseDataAccessInterface courseDataAccessInterface)
+            throws IOException, ClassNotFoundException;
 
-    void choseLoginOrRegister(Scanner scanner, LogInController logInController, LogInPresenter logInPresenter)
+    void chooseCourseToReview(Scanner scanner, Scanner scanner2, Controller controller, Presenter presenter,
+                                     AddReviewInterface addReviewInterface,
+                              CourseDataAccessInterface courseDataAccessInterface)
             throws IOException, ClassNotFoundException, InvalidInputException;
 
 }

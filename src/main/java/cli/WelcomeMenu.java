@@ -1,51 +1,45 @@
 package cli;
 
-import logInInterfaceAdapter.LogInController;
-import logInInterfaceAdapter.LogInPresenter;
-import logInUseCase.InvalidInputException;
+import entities.Course;
+import entities.CourseList;
+import interfaceadapter.Controller;
+import interfaceadapter.Presenter;
+import usecase.InvalidInputException;
+import usecase.CourseDataAccessInterface;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public class WelcomeMenu implements WelcomeMenuInterface{
-    @Override
-    public void displayWelcomeMenu(LogInPresenter logInPresenter) {
-        logInPresenter.outputMessage("\n" + "Available Actions" + "\n" + "1. Register as new User" + "\n" +
-                "2. Log in (if you already have an account)" + "\n");
-        logInPresenter.outputMessage("Please, enter the number of the option to proceed"+ "\n");
+
+    public void displayCoursesToReview(Presenter presenter, CourseDataAccessInterface courseDataAccessInterface) {
+        List<String> courseNames = courseDataAccessInterface.getCourseNames();
+        presenter.outputMessage("\n" + "Available Courses:" + "\n");
+        for (String c: courseNames) {
+            System.out.println(c); }
+        presenter.outputMessage("Please enter the name of the course you want to review");
     }
-
     @Override
-    public void choseLoginOrRegister(Scanner scanner, LogInController logInController, LogInPresenter logInPresenter){
+    public void chooseCourseToReview(Scanner scanner, Scanner scanner2, Controller controller, Presenter presenter,
+                                     AddReviewInterface addReviewInterface,
+                                     CourseDataAccessInterface courseDataAccessInterface)
+            throws IOException, ClassNotFoundException, InvalidInputException {
+
         String choice = scanner.nextLine();
-        if(choice.contains("1")){
-
-            RegisterInterface registerInterface = new Register();
-            try {
-                registerInterface.register(scanner, logInController, logInPresenter);
-            } catch (IOException | ClassNotFoundException | InvalidInputException e) {
-                displayWelcomeMenu(logInPresenter);
-                choseLoginOrRegister(scanner, logInController, logInPresenter);
-            }
-
-
-        } else if (choice.contains("2")) {
-            LogInInterface logInInterface = new Login();
-            try {
-                logInInterface.login(scanner, logInController, logInPresenter);
-            } catch (IOException | InvalidInputException | ClassNotFoundException e) {
-                displayWelcomeMenu(logInPresenter);
-                choseLoginOrRegister(scanner, logInController, logInPresenter);
-            }
+        List<String> courseNames = courseDataAccessInterface.getCourseNames();
+        if(courseNames.contains(choice)){
+            Course course = courseDataAccessInterface.getCourseWithName(choice);
+            ChooseToCommentInterface chooseToCommentInterface = new ChooseToComment();
+            chooseToCommentInterface.displayChooseComment(presenter);
+            chooseToCommentInterface.addReviewChooser(scanner, scanner2, course, controller, presenter,
+                    courseDataAccessInterface, this);
 
         } else{
-            WelcomeMenuInterface welcomeMenuInterface = new WelcomeMenu();
-            welcomeMenuInterface.displayWelcomeMenu(logInPresenter);
-            try {
-                welcomeMenuInterface.choseLoginOrRegister(scanner, logInController, logInPresenter);
-            } catch (IOException | InvalidInputException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
+            presenter.outputMessage("Invalid Input, please choose a course in the list!");
+            this.displayCoursesToReview(presenter, courseDataAccessInterface);
+            this.chooseCourseToReview(scanner, scanner2, controller, presenter, addReviewInterface,
+                    courseDataAccessInterface);
         }
     }
 }

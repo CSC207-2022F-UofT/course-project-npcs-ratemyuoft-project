@@ -1,52 +1,73 @@
 package entities;
-import java.io.Serializable;
-
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Review implements Serializable{
 
-    public String Name;
+public class Review {
 
-    public int Rating;
+    public Course course_reviewed;
+    public int rating;
 
-    public int numberOfLikes;
+    public int numberOfLikes = 0;
 
-    public String Comment;
+    public String optionalComment;
 
-    public Map<User,String> comments= new HashMap<>();
+    public int numberOfDislikes= 0 ;
 
+    public Map<User,Comment > comments= new HashMap<>();
 
-    //Constructors 1st one for having no comment, just a raiting and the 2nd one is for review with comment
-    public Review(int Rating, String Comment, String Name){
-        this.Rating = Rating;
-        this.Comment = Comment;
-        this.Name = Name;
-        this.numberOfLikes = 0;
+    public Review(int rating){
+        this.rating = rating;
+    }
+
+    //Constructors 1st one for having no comment, just a rating and the 2nd one is for review with comment
+    public Review(Course c, int rating){
+        this.course_reviewed = c;
+        this.rating = rating;
+    }
+
+    public Review(Course c, int rating, String optionalComment){
+        this.course_reviewed = c;
+        this.rating = rating;
+        this.optionalComment = optionalComment;
     }
     //Getters
+
+    public Course getCourse_reviewed(){
+        return this.course_reviewed;
+    }
+
     public int getRating(){
-        return this.Rating;
+        return this.rating;
+
     }
     public int getNumberOfLikes(){
         return this.numberOfLikes;
     }
+    public int getNumberOfDislikes(){
+        return this.numberOfDislikes;
+    }
 
-    public String getComment() {
-        return this.Comment;
+    public String getOptionalComment() {
+        return this.optionalComment;
+
     }
     //Setters
 
-    public void Like() {
-        this.numberOfLikes += 1;
+    public void setNumberOfDislikes(int numberOfDislikes) {
+        this.numberOfDislikes = numberOfDislikes;
+    }
+
+    public void setNumberOfLikes(int numberOfLikes) {
+        this.numberOfLikes = numberOfLikes;
     }
 
     public void setRating(int rating) {
-        this.Rating = rating;
+        this.rating = rating;
     }
 
-    public void setComment(String comment) {
-        this.Comment = comment;
+    public void setOptionalComment(String optionalComment) {
+        this.optionalComment = optionalComment;
     }
 }
