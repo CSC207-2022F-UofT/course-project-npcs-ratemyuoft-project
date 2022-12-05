@@ -19,7 +19,6 @@ public class BootCLI implements BootCLIInterface {
     @Override
     public void boot() throws IOException, ClassNotFoundException, InvalidInputException {
 
-        System.out.println("Im here");
         Scanner scanner = new Scanner(System.in);
         Scanner scanner2 = new Scanner(System.in);
         AddReviewInterface registerInterface = new AddReview();

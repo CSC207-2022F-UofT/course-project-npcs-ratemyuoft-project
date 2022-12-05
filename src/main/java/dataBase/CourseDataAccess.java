@@ -108,7 +108,12 @@ public class CourseDataAccess implements CourseDataAccessInterface {
             c.setCourseRating(i);
             i += 1;
         }
-        this.saveCourse(cl);
+        try {
+            this.saveCourse(cl);
+        }catch (NullPointerException e ) {
+            System.out.println("NullPointerException raised when generating temp courses");
+
+        }
     }
 
     public List<Course> getCourses() {

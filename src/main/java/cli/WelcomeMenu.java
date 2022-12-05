@@ -13,12 +13,18 @@ import java.util.Scanner;
 
 public class WelcomeMenu implements WelcomeMenuInterface{
 
-    public void displayCoursesToReview(Presenter presenter, CourseDataAccessInterface courseDataAccessInterface) {
-        List<String> courseNames = courseDataAccessInterface.getCourseNames();
+    public void displayCoursesToReview(Presenter presenter, CourseDataAccessInterface courseDataAccessInterface) throws NullPointerException, IOException {
+        courseDataAccessInterface.generateTempCourses2();
+        try {
+            List<String> courseNames = courseDataAccessInterface.getCourseNames();
+            if (courseNames.size() == 0) {
+                presenter.outputMessage("There are no courses to review at this time");
+            }else {
         presenter.outputMessage("\n" + "Available Courses:" + "\n");
         for (String c: courseNames) {
             System.out.println(c); }
-        presenter.outputMessage("Please enter the name of the course you want to review");
+        presenter.outputMessage("Please enter the name of the course you want to review");}}
+        catch (NullPointerException e) {presenter.outputMessage("Null pointer exception raised when displaying courses to review!");}
     }
     @Override
     public void chooseCourseToReview(Scanner scanner, Scanner scanner2, Controller controller, Presenter presenter,
