@@ -1,8 +1,6 @@
 package leaveReviewInterfaceAdapter;
 
-import leaveReviewUseCase.InvalidCommentLengthException;
-import leaveReviewUseCase.InvalidInputException;
-import leaveReviewUseCase.LeaveReviewInputBoundary;
+import leaveReviewUseCase.*;
 
 import java.io.IOException;
 
@@ -26,7 +24,7 @@ public class LeaveReviewController {
      */
     public void addReview(String c, String r) throws IOException, InvalidInputException {
         try {
-            leaveReviewInputBoundary.addReview(c, r);
+            leaveReviewInputBoundary.addReview(new LeaveReviewCourseRequestModel(c), new LeaveReviewRatingRequestModel(r));
         } catch (InvalidInputException | ClassNotFoundException e) {
             throw new InvalidInputException();
         } catch (IOException e) {
@@ -40,7 +38,8 @@ public class LeaveReviewController {
      */
     public void addReview(String c, String n, String s) throws IOException, InvalidInputException, InvalidCommentLengthException {
         try {
-            leaveReviewInputBoundary.addReview(c, n, s);
+            leaveReviewInputBoundary.addReview(new LeaveReviewCourseRequestModel(c), new LeaveReviewRatingRequestModel(n),
+                    new LeaveReviewCommentRequestModel(s));
         } catch (InvalidInputException | ClassNotFoundException e) {
             throw new InvalidInputException();
         } catch (IOException e) {

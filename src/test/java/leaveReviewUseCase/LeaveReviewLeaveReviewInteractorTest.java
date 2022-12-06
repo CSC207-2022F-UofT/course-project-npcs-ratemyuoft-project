@@ -43,7 +43,9 @@ class LeaveReviewLeaveReviewInteractorTest {
     @Test
     void testAddReviewComment(){
         try {
-            leaveReviewInteractor.addReview("STA261", "4", "This course was okay");
+            leaveReviewInteractor.addReview(new LeaveReviewCourseRequestModel("STA261"),
+                    new LeaveReviewRatingRequestModel("4"),
+                    new LeaveReviewCommentRequestModel("This course was okay"));
             assertEquals(1, database.importCourses().getCourseList().get(0).getReviewCount());
         } catch (IOException | InvalidInputException | ClassNotFoundException | InvalidCommentLengthException e) {
             System.out.println("testAddReview1 is not working");
@@ -58,7 +60,9 @@ class LeaveReviewLeaveReviewInteractorTest {
     @Test
     void testReviewIDComment() {
         try {
-            leaveReviewInteractor.addReview("STA257", "4", "This course was okay");
+            leaveReviewInteractor.addReview(new LeaveReviewCourseRequestModel("STA257"),
+                    new LeaveReviewRatingRequestModel("4"),
+                    new LeaveReviewCommentRequestModel("This course was okay"));
             assertEquals("STA257Review1",
                     database.importCourses().getCourseWithName("STA257").getReviews().get(0).getReviewID());
         }catch (IOException | InvalidInputException | ClassNotFoundException | InvalidCommentLengthException e) {
@@ -74,7 +78,8 @@ class LeaveReviewLeaveReviewInteractorTest {
     @Test
     void testReviewIDNoComment() {
         try {
-            leaveReviewInteractor.addReview("MAT157", "5");
+            leaveReviewInteractor.addReview(new LeaveReviewCourseRequestModel("MAT157"),
+                    new LeaveReviewRatingRequestModel("5"));
             assertEquals("MAT157Review1",
                     database.importCourses().getCourseWithName("MAT157").getReviews().get(0).getReviewID());
         } catch (IOException | InvalidInputException | ClassNotFoundException e) {
@@ -89,7 +94,8 @@ class LeaveReviewLeaveReviewInteractorTest {
     @Test
     void testInvalidInputOutOfRange() {
         try {
-            leaveReviewInteractor.addReview("MAT157", "6");
+            leaveReviewInteractor.addReview(new LeaveReviewCourseRequestModel("MAT157"),
+                    new LeaveReviewRatingRequestModel("6"));
         } catch (IOException | InvalidInputException | ClassNotFoundException | InputMismatchException e) {
             System.out.println("testInvalidInputOutOfRange is working");
         }
@@ -102,7 +108,8 @@ class LeaveReviewLeaveReviewInteractorTest {
     @Test
     void testInvalidInputNotInt() {
         try {
-            leaveReviewInteractor.addReview("MAT157", "4.6");
+            leaveReviewInteractor.addReview(new LeaveReviewCourseRequestModel("MAT157"),
+                    new LeaveReviewRatingRequestModel("4.6"));
         } catch (IOException | InvalidInputException | ClassNotFoundException | InputMismatchException e) {
             System.out.println("testInvalidInputNotInt is working");
         }
@@ -114,7 +121,8 @@ class LeaveReviewLeaveReviewInteractorTest {
     @Test
     void testInvalidInputCourseNotInDatabase() {
         try {
-            leaveReviewInteractor.addReview("MAT158", "4");
+            leaveReviewInteractor.addReview(new LeaveReviewCourseRequestModel("MAT158"),
+                    new LeaveReviewRatingRequestModel("4"));
         } catch (IOException | InvalidInputException | ClassNotFoundException | InputMismatchException e) {
             System.out.println("testInvalidInputCourseNotInDatabase is working");
         }
@@ -127,7 +135,9 @@ class LeaveReviewLeaveReviewInteractorTest {
     @Test
     void testInvalidInputCommentLength(){
         try {
-            leaveReviewInteractor.addReview("MAT158", "4", "");
+            leaveReviewInteractor.addReview(new LeaveReviewCourseRequestModel("MAT157"),
+                    new LeaveReviewRatingRequestModel("4"),
+                    new LeaveReviewCommentRequestModel(""));
         } catch (IOException | InvalidInputException | ClassNotFoundException |
                  InputMismatchException | InvalidCommentLengthException e) {
             System.out.println("testInvalidInputCommentLength is working");
