@@ -1,16 +1,16 @@
-package DataBase;
+package commentDataBase;
 
 
-import Entities.CommentList;
-import UseCase.Gateway;
+import entities.CommentList;
+import commentUseCase.commentGateway;
 
 import java.io.*;
 
-public class DataAccess implements Gateway ,Serializable{
+public class commentDataAccess implements commentGateway,Serializable{
     ObjectInputStream inputStream;
     private final String fileName;
 
-    public DataAccess(String fileName){
+    public commentDataAccess(String fileName){
         this.fileName = fileName;
 
     }

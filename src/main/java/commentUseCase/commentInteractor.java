@@ -1,38 +1,38 @@
-package UseCase;
+package commentUseCase;
 
-import DataStructures.InPutData;
-import DataStructures.OutPutData;
-import Entities.Comment;
-import Entities.CommentList;
+import commentDataStructures.commentInPutData;
+import commentDataStructures.commentOutPutData;
+import entities.Comment;
+import entities.CommentList;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Interactor implements InputBoundary  {
-    private final OutputBoundary outputBoundary;
+public class commentInteractor implements commentInputBoundary {
+    private final commentOutputBoundary commentOutputBoundary;
     private static CommentList commentList = new CommentList();
-    private final Gateway gateway ;
+    private final commentGateway commentGateway;
 
 
     /**
-     * @param outputBoundary outputBoundary
-     * @param gateway gateway
+     * @param commentOutputBoundary outputBoundary
+     * @param commentGateway gateway
      * @throws IOException import fail
      * @throws ClassNotFoundException class no found
      * Constructor for Interactor takes an output boundary and a gateway.
      * Import data from the database.
      *
      */
-    public Interactor(OutputBoundary outputBoundary,Gateway gateway) throws IOException, ClassNotFoundException {
-        this.outputBoundary = outputBoundary;
-        this.gateway = gateway;
+    public commentInteractor(commentOutputBoundary commentOutputBoundary, commentGateway commentGateway) throws IOException, ClassNotFoundException {
+        this.commentOutputBoundary = commentOutputBoundary;
+        this.commentGateway = commentGateway;
         // import file and set as iterable commentList
         try{
-            commentList = gateway.importComment();
+            commentList = commentGateway.importComment();
 
         } catch (IOException e ){
             commentList = new CommentList();
-            this.outputBoundary.outputMessage("Importation failed");
+            this.commentOutputBoundary.outputMessage("Importation failed");
         }
 
 
@@ -78,7 +78,7 @@ public class Interactor implements InputBoundary  {
      */
     @Override
     public void showComments()  {
-        this.outputBoundary.showComments(new OutPutData(listConvert(commentList)));
+        this.commentOutputBoundary.showComments(new commentOutPutData(listConvert(commentList)));
     }
 
     /**
@@ -91,14 +91,14 @@ public class Interactor implements InputBoundary  {
      */
 
     @Override
-    public void addComment(InPutData inPutData) throws InvalidInputException, IOException {
+    public void addComment(commentInPutData commentInPutData) throws InvalidInputException, IOException {
 
-        if (checkInput(inPutData.getComments())) {
-            Comment commentClass = new Comment(inPutData.getComments());
+        if (checkInput(commentInPutData.getComments())) {
+            Comment commentClass = new Comment(commentInPutData.getComments());
             commentList.addComment(commentClass);
             try {
                 //save new comments
-                gateway.saveComment(commentList);
+                commentGateway.saveComment(commentList);
             } catch (IOException e) {
                 throw new IOException();
             }
@@ -142,6 +142,6 @@ public class Interactor implements InputBoundary  {
      */
     @Override
     public void outputMessage(String s){
-        this.outputBoundary.outputMessage(s);
+        this.commentOutputBoundary.outputMessage(s);
     }
 }

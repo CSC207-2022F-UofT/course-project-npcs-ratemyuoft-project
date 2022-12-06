@@ -1,4 +1,4 @@
-package UI;
+package commentUI;
 
 
 import javax.swing.*;
@@ -6,7 +6,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 
-public class ShowCommentsFrame extends JFrame implements UIShow {
+public class commentShowCommentsFrame extends JFrame implements commentUIShow {
     JPanel mainPanel = new JPanel();
     JList<String> list = new JList<>();
     DefaultListModel<String> model =new DefaultListModel<>();
@@ -33,7 +33,7 @@ public class ShowCommentsFrame extends JFrame implements UIShow {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.pack();
         this.setVisible(true);
-        backButton.addActionListener(e -> ShowCommentsFrame.super.dispose());
+        backButton.addActionListener(e -> commentShowCommentsFrame.super.dispose());
         }
     }
 

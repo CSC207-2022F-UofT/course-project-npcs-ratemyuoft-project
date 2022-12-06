@@ -1,21 +1,21 @@
-package InterfaceAdapter;
+package commentInterfaceAdapter;
 
-import DataStructures.InPutData;
-import UseCase.InputBoundary;
-import UseCase.InvalidInputException;
+import commentDataStructures.commentInPutData;
+import commentUseCase.commentInputBoundary;
+import commentUseCase.InvalidInputException;
 
 import java.io.IOException;
 
-public class Controller {
-    private final InputBoundary inputBoundary;
+public class commentController {
+    private final commentInputBoundary commentInputBoundary;
 
 
     /**
-     * @param inputBoundary Constructor
+     * @param commentInputBoundary Constructor
      */
     // Constructor
-    public Controller(InputBoundary inputBoundary) {
-        this.inputBoundary = inputBoundary;
+    public commentController(commentInputBoundary commentInputBoundary) {
+        this.commentInputBoundary = commentInputBoundary;
 
     }
 
@@ -23,7 +23,7 @@ public class Controller {
      * @param message Called by UI and goes to Interact to show message on presenter
      */
     public void outPutMessage(String message) {
-        inputBoundary.outputMessage(message);
+        commentInputBoundary.outputMessage(message);
 
     }
 
@@ -33,7 +33,7 @@ public class Controller {
      * @throws ClassNotFoundException class no found
      */
     public void showComments() throws IOException, ClassNotFoundException {
-        inputBoundary.showComments();
+        commentInputBoundary.showComments();
     }
 
     /**
@@ -45,8 +45,8 @@ public class Controller {
      */
     public void addComment(String comment) throws IOException, InvalidInputException {
         try {
-            InPutData inPutData = new InPutData(comment);
-            inputBoundary.addComment(inPutData);
+            commentInPutData commentInPutData = new commentInPutData(comment);
+            commentInputBoundary.addComment(commentInPutData);
         } catch (InvalidInputException e) {
             throw new InvalidInputException();
         } catch (IOException e) {
@@ -58,9 +58,9 @@ public class Controller {
 
     public void editComment(int commentNum, String s) {
         try {
-            inputBoundary.editComment(commentNum, s);
+            commentInputBoundary.editComment(commentNum, s);
         } catch (InvalidInputException e) {
-            inputBoundary.outputMessage("Invalid Input");
+            commentInputBoundary.outputMessage("Invalid Input");
 
 
         }

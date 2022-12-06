@@ -1,8 +1,8 @@
-package InterfaceAdapter;
+package commentInterfaceAdapter;
 
-import DataStructures.InPutData;
-import UseCase.InputBoundary;
-import UseCase.InvalidInputException;
+import commentDataStructures.commentInPutData;
+import commentUseCase.commentInputBoundary;
+import commentUseCase.InvalidInputException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,8 +14,8 @@ import static org.junit.Assert.*;
 
 
 public class ControllerTest {
-    Controller testController;
-    InputBoundary testInputBoundary;
+    commentController testController;
+    commentInputBoundary testCommentInputBoundary;
 
     /**
      * Override all interactor method, simplify testing from controller to interactor.
@@ -23,7 +23,7 @@ public class ControllerTest {
      */
     @Before
     public void setUp() {
-        testInputBoundary =new InputBoundary() {
+        testCommentInputBoundary =new commentInputBoundary() {
             /**
              * There is not much to test it will assert true when this method is called
              */
@@ -34,12 +34,12 @@ public class ControllerTest {
             }
 
             /**
-             * @param inPutData
+             * @param commentInPutData
              * It will assert true when this method was called.
              */
             @Override
-            public void addComment(InPutData inPutData)  {
-                assertEquals("testing",inPutData.getComments());
+            public void addComment(commentInPutData commentInPutData)  {
+                assertEquals("testing", commentInPutData.getComments());
             }
 
             @Override
@@ -57,7 +57,7 @@ public class ControllerTest {
             }
         };
 
-        testController = new Controller(testInputBoundary);
+        testController = new commentController(testCommentInputBoundary);
 
     }
 
@@ -67,7 +67,7 @@ public class ControllerTest {
     @After
     public void tearDown()  {
         testController = null;
-        testInputBoundary = null;
+        testCommentInputBoundary = null;
     }
 
     /**

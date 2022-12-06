@@ -1,8 +1,8 @@
-package UI;
+package commentUI;
 
 import javax.swing.*;
 
-public class ShowMessageUI extends JFrame implements UIMessage {
+public class commentShowMessageUI extends JFrame implements commentUIMessage {
 
 
     /**

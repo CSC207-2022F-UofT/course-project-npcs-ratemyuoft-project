@@ -1,6 +1,6 @@
-package UI;
+package commentUI;
 import java.util.ArrayList;
 
-public interface UIShow {
+public interface commentUIShow {
      void showComments(ArrayList<String> listOfComments);
 }

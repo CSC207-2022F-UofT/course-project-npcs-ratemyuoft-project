@@ -1,14 +1,14 @@
-package UI;
+package commentUI;
 
 
-import InterfaceAdapter.Controller;
+import commentInterfaceAdapter.commentController;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class MainFrame extends JFrame{
+public class commentMainFrame extends JFrame{
     JPanel mainPanel = new JPanel();
     JButton viewCommentButton = new JButton("View All Comments");
     JButton newComment = new JButton("Comment");
@@ -25,7 +25,7 @@ public class MainFrame extends JFrame{
      * @param controller controller
      * Creat the main frame with buttons.
      */
-    public MainFrame(Controller controller,String reviewName) {
+    public commentMainFrame(commentController controller, String reviewName) {
 
         label = new JLabel(reviewName + ":");
         label.setFont(new Font("Courier New", Font.BOLD, 20));
@@ -70,7 +70,7 @@ public class MainFrame extends JFrame{
 
         });
 
-        newComment.addActionListener(e -> new AddCommentFrame(controller));
+        newComment.addActionListener(e -> new commentAddCommentFrame(controller));
 
 
     }

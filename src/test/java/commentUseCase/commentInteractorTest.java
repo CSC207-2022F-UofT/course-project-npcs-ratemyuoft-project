@@ -1,10 +1,10 @@
-package UseCase;
+package commentUseCase;
 
-import DataBase.DataAccess;
-import DataStructures.InPutData;
-import DataStructures.OutPutData;
-import Entities.Comment;
-import Entities.CommentList;
+import commentDataBase.commentDataAccess;
+import commentDataStructures.commentInPutData;
+import commentDataStructures.commentOutPutData;
+import entities.Comment;
+import entities.CommentList;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,14 +14,14 @@ import java.io.PrintWriter;
 
 import static org.junit.Assert.*;
 
-public class InteractorTest {
-    InputBoundary testInteractor;
-    OutputBoundary testOutputBoundary;
-    Gateway testGateway;
+public class commentInteractorTest {
+    commentInputBoundary testInteractor;
+    commentOutputBoundary testCommentOutputBoundary;
+    commentGateway testCommentGateway;
     CommentList testCommentList;
     CommentList temp;
-    Gateway testGateway2;
-    Interactor testInteractor2;
+    commentGateway testCommentGateway2;
+    commentInteractor testInteractor2;
 
 
     /**
@@ -35,9 +35,9 @@ public class InteractorTest {
     @Before
     public void setUp() {
 
-        testGateway = new DataAccess("commentFileTest.sav");
+        testCommentGateway = new commentDataAccess("commentFileTest.sav");
         try {
-            testGateway.saveComment(null);
+            testCommentGateway.saveComment(null);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -49,23 +49,23 @@ public class InteractorTest {
 
 
         try {
-            testGateway.saveComment(temp);
+            testCommentGateway.saveComment(temp);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
 
-        testOutputBoundary = new OutputBoundary() {
+        testCommentOutputBoundary = new commentOutputBoundary() {
             /**
-             * @param outPutData
+             * @param commentOutPutData
              * It will assert ture if output Boundary is properly called,
              * And the show comment method that was called in the interactor carries the same object as this
              *
              */
             @Override
-            public void showComments(OutPutData outPutData) {
+            public void showComments(commentOutPutData commentOutPutData) {
                 try {
-                    testCommentList = testGateway.importComment();
+                    testCommentList = testCommentGateway.importComment();
                 } catch (IOException  | ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
@@ -87,14 +87,14 @@ public class InteractorTest {
 
         };
         try {
-            testInteractor = new Interactor(testOutputBoundary,testGateway);
+            testInteractor = new commentInteractor(testCommentOutputBoundary, testCommentGateway);
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
-        testGateway2 = new DataAccess("commentFileTest2.sav");
+        testCommentGateway2 = new commentDataAccess("commentFileTest2.sav");
         try {
-            testInteractor2 = new Interactor(testOutputBoundary,testGateway2);
+            testInteractor2 = new commentInteractor(testCommentOutputBoundary, testCommentGateway2);
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -110,11 +110,11 @@ public class InteractorTest {
     @After
     public void tearDown() throws Exception {
 
-        testOutputBoundary = null;
-        testGateway = null;
+        testCommentOutputBoundary = null;
+        testCommentGateway = null;
         testInteractor = null;
         testCommentList = null;
-        testGateway2 = null;
+        testCommentGateway2 = null;
         testInteractor2 = null;
         PrintWriter pw = new PrintWriter("commentFileTest.sav");
         pw.close();
@@ -142,9 +142,9 @@ public class InteractorTest {
      */
     @Test
     public void addComment() throws InvalidInputException, IOException, ClassNotFoundException {
-        InPutData inPutData = new InPutData("third test comment");
-        testInteractor.addComment(inPutData);
-        CommentList tempList = testGateway.importComment();
+        commentInPutData commentInPutData = new commentInPutData("third test comment");
+        testInteractor.addComment(commentInPutData);
+        CommentList tempList = testCommentGateway.importComment();
         assertEquals("third test comment",tempList.getComment(0));
 
     }
@@ -158,9 +158,9 @@ public class InteractorTest {
      */
     @Test(expected = InvalidInputException.class)
     public void invalidAddComment() throws InvalidInputException, IOException, ClassNotFoundException {
-        InPutData inPutData = new InPutData(" ");
-        testInteractor.addComment(inPutData);
-        CommentList tempList =testGateway.importComment();
+        commentInPutData commentInPutData = new commentInPutData(" ");
+        testInteractor.addComment(commentInPutData);
+        CommentList tempList = testCommentGateway.importComment();
         tempList.getComment(4);
 
     }
@@ -173,11 +173,11 @@ public class InteractorTest {
      */
     @Test
     public void iOExceptionAddComment() throws InvalidInputException, IOException, ClassNotFoundException {
-        Gateway testGateway2 = new DataAccess("commentFileTest2.sav");
-        testInteractor2 = new Interactor(testOutputBoundary,testGateway2);
-        InPutData inPutData2 = new InPutData("bye");
-        testInteractor2.addComment(inPutData2);
-        CommentList tempList2 =testGateway2.importComment();
+        commentGateway testCommentGateway2 = new commentDataAccess("commentFileTest2.sav");
+        testInteractor2 = new commentInteractor(testCommentOutputBoundary, testCommentGateway2);
+        commentInPutData commentInPutData2 = new commentInPutData("bye");
+        testInteractor2.addComment(commentInPutData2);
+        CommentList tempList2 = testCommentGateway2.importComment();
         tempList2.getComment(0);
 
     }
@@ -186,7 +186,7 @@ public class InteractorTest {
     @Test
     public void editComment() {
         try {
-            testInteractor.editComment(0,"hi");
+            testInteractor.editComment(0, "entities");
             assertTrue(true);
         } catch (InvalidInputException e) {
             throw new RuntimeException(e);

@@ -1,13 +1,13 @@
-package UI;
+package commentUI;
 
-import InterfaceAdapter.Controller;
-import UseCase.InvalidInputException;
+import commentInterfaceAdapter.commentController;
+import commentUseCase.InvalidInputException;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-public class AddCommentFrame extends JFrame  {
+public class commentAddCommentFrame extends JFrame  {
     JPanel mainPanel = new JPanel();
     JLabel label = new JLabel("Write Comment:");
     JTextArea textArea = new JTextArea();
@@ -18,7 +18,7 @@ public class AddCommentFrame extends JFrame  {
 
 
 
-    public AddCommentFrame(Controller controller){
+    public commentAddCommentFrame(commentController controller){
 
         buttonPanel.setLayout(new BorderLayout());
         buttonPanel.add(enterButton, BorderLayout.WEST);
@@ -39,7 +39,7 @@ public class AddCommentFrame extends JFrame  {
             try {
                 controller.addComment(newComment);
                 controller.outPutMessage("Comment Saved!");
-                AddCommentFrame.super.dispose();
+                commentAddCommentFrame.super.dispose();
             } catch (InvalidInputException ex) {
                 controller.outPutMessage("Comment Invalid!");
 
@@ -50,7 +50,7 @@ public class AddCommentFrame extends JFrame  {
         });
 
 
-        backButton.addActionListener(e -> AddCommentFrame.super.dispose());
+        backButton.addActionListener(e -> commentAddCommentFrame.super.dispose());
 
     }
 

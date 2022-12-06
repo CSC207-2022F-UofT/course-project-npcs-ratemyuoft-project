@@ -1,4 +1,4 @@
-package Entities;
+package entities;
 
 import org.junit.*;
 
@@ -15,7 +15,7 @@ public class CommentTest {
     @BeforeClass
     public static void setUp()  {
         Comment.resetCount();
-        c1 = new Comment("hi");
+        c1 = new Comment("entities");
         c2 = new Comment("bye");
     }
 
@@ -51,7 +51,7 @@ public class CommentTest {
      */
     @Test
     public void testGetComment() {
-        assertEquals("hi", c1.getComment());
+        assertEquals("entities", c1.getComment());
         assertEquals("bye", c2.getComment());
     }
 

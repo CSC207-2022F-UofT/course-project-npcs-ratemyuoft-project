@@ -1,11 +1,11 @@
-import DataBase.DataAccess;
-import InterfaceAdapter.Controller;
-import InterfaceAdapter.Presenter;
-import UI.MainFrame;
-import UseCase.Gateway;
-import UseCase.InputBoundary;
-import UseCase.Interactor;
-import UseCase.OutputBoundary;
+import commentDataBase.commentDataAccess;
+import commentInterfaceAdapter.commentController;
+import commentInterfaceAdapter.commentPresenter;
+import commentUI.commentMainFrame;
+import commentUseCase.commentGateway;
+import commentUseCase.commentInputBoundary;
+import commentUseCase.commentInteractor;
+import commentUseCase.commentOutputBoundary;
 
 import java.io.IOException;
 
@@ -13,11 +13,11 @@ public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
 
-        Gateway gateway = new DataAccess("commentsFile.sav");
-        OutputBoundary outputBoundary = new Presenter();
-        InputBoundary inputBoundary = new Interactor(outputBoundary,gateway);
-        Controller controller = new Controller(inputBoundary);
-        new MainFrame(controller,"Review Name");
+        commentGateway commentGateway = new commentDataAccess("commentsFile.sav");
+        commentOutputBoundary commentOutputBoundary = new commentPresenter();
+        commentInputBoundary commentInputBoundary = new commentInteractor(commentOutputBoundary, commentGateway);
+        commentController controller = new commentController(commentInputBoundary);
+        new commentMainFrame(controller,"Review Name");
 
 
     }

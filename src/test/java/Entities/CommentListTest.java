@@ -1,4 +1,4 @@
-package Entities;
+package entities;
 
 import org.junit.After;
 import org.junit.Before;
@@ -22,9 +22,9 @@ public class CommentListTest {
 
     @Test
     public void addComment() {
-        cl.addComment(new Comment("hi"));
+        cl.addComment(new Comment("entities"));
         for(Comment c : cl) {
-            assertEquals(c.getComment(),"hi");
+            assertEquals(c.getComment(), "entities");
         }
     }
 

@@ -1,13 +1,13 @@
-package UseCase;
+package commentUseCase;
 
-import DataStructures.InPutData;
+import commentDataStructures.commentInPutData;
 
 import java.io.IOException;
 
-public interface InputBoundary {
+public interface commentInputBoundary {
 
     void showComments() throws IOException, ClassNotFoundException;
-    void addComment(InPutData inPutData) throws InvalidInputException, IOException;
+    void addComment(commentInPutData commentInPutData) throws InvalidInputException, IOException;
     void editComment(int commentNum, String s) throws InvalidInputException;
     void outputMessage(String s);
 

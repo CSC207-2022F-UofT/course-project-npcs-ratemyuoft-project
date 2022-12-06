@@ -1,10 +1,10 @@
-package UseCase;
+package commentUseCase;
 
-import Entities.CommentList;
+import entities.CommentList;
 
 import java.io.IOException;
 
-public interface Gateway {
+public interface commentGateway {
 
     CommentList importComment() throws IOException, ClassNotFoundException;
 
