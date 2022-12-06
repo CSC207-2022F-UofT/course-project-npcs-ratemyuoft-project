@@ -1,6 +1,6 @@
 package cli;
 
-import dataBase.CourseDataAccess;
+import courseDataBase.CourseDataAccess;
 import interfaceadapter.Controller;
 import interfaceadapter.Presenter;
 import usecase.CourseDataAccessInterface;

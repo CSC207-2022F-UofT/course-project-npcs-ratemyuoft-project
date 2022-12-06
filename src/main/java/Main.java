@@ -16,7 +16,5 @@ public class Main {
         BootCLIInterface bootCLIInterface = new BootCLI();
         bootCLIInterface.boot();
 
-
-
     }
 }

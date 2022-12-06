@@ -14,7 +14,7 @@ public interface ChooseToCommentInterface {
 
     void displayChooseComment(Presenter presenter);
 
-    void addReviewChooser(Scanner scanner, Scanner scanner2, Course course, Controller controller, Presenter presenter,
+    void addReviewChooser(Scanner scanner, Scanner scanner2, String course, Controller controller, Presenter presenter,
                           CourseDataAccessInterface database, WelcomeMenuInterface welcomeMenuInterface)
             throws IOException, ClassNotFoundException, InvalidInputException;
 }

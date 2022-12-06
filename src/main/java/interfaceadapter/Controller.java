@@ -24,15 +24,12 @@ public class Controller {
      * This method tries to pass the addReview method call to inputBoundary if no comment made with the review,
      * and catches Exceptions if they are thrown.
      */
-    public void addReview(Course c, int r) throws IOException, InvalidInputException {
+    public void addReview(String c, int r) throws IOException, InvalidInputException {
         try {
             inputBoundary.addReview(c, r);
-            inputBoundary.outputMessage("Review added successfully!" + "\n");
-        } catch (InvalidInputException e) {
-            inputBoundary.outputMessage("Invalid input" + "\n");
+        } catch (InvalidInputException | ClassNotFoundException e) {
             throw new InvalidInputException();
         } catch (IOException e) {
-            inputBoundary.outputMessage("Invalid input" + "\n");
             throw new IOException();
         }
     }
@@ -41,15 +38,12 @@ public class Controller {
      * This method tries to pass the addReview method call to inputBoundary if there is a comment made with the review,
      * and catches Exceptions if they are thrown.
      */
-    public void addReview(Course c, int n, String s) throws IOException, InvalidInputException {
+    public void addReview(String c, int n, String s) throws IOException, InvalidInputException {
         try {
             inputBoundary.addReview(c, n, s);
-            inputBoundary.outputMessage("Review added successfully!" + "\n");
-        } catch (InvalidInputException e) {
-            inputBoundary.outputMessage("Invalid input" + "\n");
+        } catch (InvalidInputException | ClassNotFoundException e) {
             throw new InvalidInputException();
         } catch (IOException e) {
-            inputBoundary.outputMessage("Invalid input" + "\n");
             throw new IOException();
         }
     }

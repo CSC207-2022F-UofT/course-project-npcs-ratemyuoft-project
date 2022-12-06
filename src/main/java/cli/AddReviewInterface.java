@@ -11,10 +11,10 @@ import usecase.InvalidInputException;
 
 public interface AddReviewInterface {
 
-    void addReviewComment(Scanner scanner, Scanner scanner2, Course course, Controller controller, Presenter presenter, CourseDataAccessInterface dataaccess,
+    void addReviewComment(Scanner scanner, Scanner scanner2, String course, Controller controller, Presenter presenter, CourseDataAccessInterface dataaccess,
                           WelcomeMenuInterface welcomeMenuInterface) throws IOException, ClassNotFoundException, InvalidInputException;
 
-    void addReview(Scanner scanner, Course course, Controller controller, Presenter presenter, CourseDataAccessInterface dataaccess,
+    void addReview(Scanner scanner, Scanner scanner2,String course, Controller controller, Presenter presenter, CourseDataAccessInterface dataaccess,
                    WelcomeMenuInterface welcomeMenuInterface) throws IOException, ClassNotFoundException, InvalidInputException;
 
 }

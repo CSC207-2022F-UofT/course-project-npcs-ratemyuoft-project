@@ -1,15 +1,11 @@
-package dataBase;
+package courseDataBase;
 
 import java.io.*;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 import entities.Course;
 import entities.CourseList;
 import usecase.CourseDataAccessInterface;
-import usecase.InvalidInputException;
+
 
 /**
  * Database class is an implementation of the DataAccess interface that is located in package useCase
@@ -20,9 +16,6 @@ import usecase.InvalidInputException;
 public class CourseDataAccess implements CourseDataAccessInterface {
 
     private final String fileName = "courseFile.sav";
-    private List<Course> courses;
-
-    private List<String> courseNames;
 
 
     /**
@@ -41,14 +34,8 @@ public class CourseDataAccess implements CourseDataAccessInterface {
         ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
         outputStream.writeObject(courses);
         outputStream.close();
-        for(Course c: courses) {
-            this.courses.add(c);
-            this.courseNames.add(c.getCourseName());
-        }
 
     }
-
-
 
     /**
      * importUsers method:
@@ -59,7 +46,7 @@ public class CourseDataAccess implements CourseDataAccessInterface {
      * both Exceptions are used for debugging and restricting purposes
      */
     @Override
-    public CourseList importCourseList() throws IOException, ClassNotFoundException{
+    public CourseList importCourses() throws IOException, ClassNotFoundException{
 
         ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName));
         BufferedReader br = new BufferedReader(new FileReader(fileName));
@@ -69,15 +56,6 @@ public class CourseDataAccess implements CourseDataAccessInterface {
             outputStream.writeObject(new CourseList());
         }
         return (CourseList) inputStream.readObject();
-    }
-
-    public void generateTempCourses() throws IOException, NullPointerException{
-        CourseList cl = new CourseList();
-        for (int i = 1; i<=10; i++){
-            Course course = new Course(Integer.toString(i), Integer.toString(i*10));
-            cl.addCourse(course);
-        }
-        this.saveCourse(cl);
     }
 
 
@@ -108,29 +86,8 @@ public class CourseDataAccess implements CourseDataAccessInterface {
             c.setCourseRating(i);
             i += 1;
         }
-        try {
-            this.saveCourse(cl);
-        }catch (NullPointerException e ) {
-            System.out.println("NullPointerException raised when generating temp courses");
-
-        }
+        this.saveCourse(cl);
     }
 
-    public List<Course> getCourses() {
-        return this.courses;
-    }
 
-    public List<String> getCourseNames() {
-        return this.courseNames;
-    }
-
-    @Override
-    public Course getCourseWithName(String s) throws InvalidInputException {
-        for (Course c : courses) {
-            if (c.courseName.equals(s)) {
-                return c;
-            }
-        } throw new InvalidInputException();
-
-    }
 }

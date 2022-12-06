@@ -1,13 +1,16 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class Review {
+public class Review implements Serializable {
 
     public Course course_reviewed;
     public int rating;
+
+    public String reviewID;
 
     public int numberOfLikes = 0;
 
@@ -51,7 +54,10 @@ public class Review {
 
     public String getOptionalComment() {
         return this.optionalComment;
+    }
 
+    public String getReviewID() {
+        return this.reviewID;
     }
     //Setters
 
@@ -70,4 +76,6 @@ public class Review {
     public void setOptionalComment(String optionalComment) {
         this.optionalComment = optionalComment;
     }
+
+    public void setReviewID(int i) {this.reviewID = course_reviewed.courseName + "Review" + Integer.toString(i);}
 }
