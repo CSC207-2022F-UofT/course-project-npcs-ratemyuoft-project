@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import usecase.*;
 
 import java.io.IOException;
+import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,59 +29,115 @@ class LeaveReviewInteractorTest {
 
     private final CourseList courseList = new CourseList();
 
-    private final Course course1 = new Course("STA400", "Statistical Sciences");
-
     private final Interactor interactor = new Interactor(outputBoundary, database);
 
     /**
-     * This test tests if the course is correctly added to the database
-     * @throws InvalidInputException
-     * @throws IOException
-     * @throws ClassNotFoundException
+     *
+     * This method just populates the database with courses.
      */
     @Test
-    public void testAddReview1() throws InvalidInputException, IOException, ClassNotFoundException {
-        CourseList cl = new CourseList();
-        CourseList c2 = new CourseList();
-        cl.addCourse(course1);
-        database.saveCourse(cl);
-        assertEquals("STA400", database.importCourses().getCourseNameList().get(0));
+    public void populateDatabase() throws IOException {
+        database.generateTempCourses2();
     }
 
     /**
-     * This method tests if the LeaveReview Interactor correctly updates the database if the review does not have comment.
-     * It also tests if the reviewID of the review is correctly updated if the review is the first review of the course.
-     * @throws InvalidInputException Exceptions are thrown for debugging purposes
-     * @throws IOException Exceptions are thrown for debugging purposes
-     * @throws ClassNotFoundException Exceptions are thrown for debugging purposes
+     * This method checks that the interactor actually adds the review with a comment to the course in the database.
      *
      */
 
     @Test
-    public void testInteractor1() throws InvalidInputException, IOException, ClassNotFoundException {
-        interactor.addReview("STA400", 4);
-        assertEquals("STA400Review0", database.importCourses().getCourseWithName("STA400").getReviews().get(0).getReviewID());
-        interactor.addReview("STA400", 4, "this course sucks");
-        assertEquals("STA400Review1", database.importCourses().getCourseWithName("STA400").getReviews().get(1).getReviewID());
-
+    void testAddReviewComment(){
+        try {
+            interactor.addReview("STA261", "4", "This course was okay");
+            assertEquals(1, database.importCourses().getCourseList().get(0).reviewCount);
+        } catch (IOException | InvalidInputException | ClassNotFoundException | InvalidCommentLengthException e) {
+            System.out.println("testAddReview1 is not working");
+        }
     }
 
     /**
-     * This method tests if the LeaveReview Interactor correctly updates the database if the review has a comment.
-     * It also test that the reviewID of the review is correctly updated if the review is not the first review of the
+     * This method tests if the Interactor correctly creates the reviewID of a review with a comment is added to the
      * course.
-     * @throws InvalidInputException Exceptions are thrown for debugging purposes
-     * @throws IOException Exceptions are thrown for debugging purposes
-     * @throws ClassNotFoundException Exceptions are thrown for debugging purposes
-     *
      */
 
-//    @Test
-//    public void testInteractorComment2() throws InvalidInputException, IOException, ClassNotFoundException {
-//        interactor.addReview("STA400", 4, "this course sucks");
-//        assertEquals("STA400Review1", database.importCourses().getCourseWithName("STA400").getReviews().get(1).getReviewID());
-//
-//    }
+    @Test
+    void testReviewIDComment() {
+        try {
+            interactor.addReview("STA257", "4", "This course was okay");
+            assertEquals("STA257Review1",
+                    database.importCourses().getCourseWithName("STA257").getReviews().get(0).getReviewID());
+        }catch (IOException | InvalidInputException | ClassNotFoundException | InvalidCommentLengthException e) {
+            System.out.println("testReviewIDComment is not working");
+        }
+    }
+
+    /**
+     * This test checks the reviewID of a review with no comment is created correctly in the database and in the course
+     * reviewList.
+     */
+
+    @Test
+    void testReviewIDNoComment() {
+        try {
+            interactor.addReview("MAT157", "5");
+            assertEquals("MAT157Review1",
+                    database.importCourses().getCourseWithName("MAT157").getReviews().get(0).getReviewID());
+        } catch (IOException | InvalidInputException | ClassNotFoundException e) {
+            System.out.println("testReviewIDComment is not working");
+        }
+    }
+
+    /**
+     * This test checks that an Interactor with an invalid input of a rating that is outside the range of 0 to 5
+     * does not add the review to the course.
+     */
+    @Test
+    void testInvalidInputOutOfRange() {
+        try {
+            interactor.addReview("MAT157", "6");
+        } catch (IOException | InvalidInputException | ClassNotFoundException | InputMismatchException e) {
+            System.out.println("testInvalidInputOutOfRange is working");
+        }
+    }
+
+    /**
+     * This test checks that an interactor with an invalid input of a decimal number instead of an int does not create
+     * a review.
+     */
+    @Test
+    void testInvalidInputNotInt() {
+        try {
+            interactor.addReview("MAT157", "4.6");
+        } catch (IOException | InvalidInputException | ClassNotFoundException | InputMismatchException e) {
+            System.out.println("testInvalidInputNotInt is working");
+        }
+    }
+
+    /**
+     * This method test that an exception is raised if a CourseName of a course that is not in the database is input/
+     */
+    @Test
+    void testInvalidInputCourseNotInDatabase() {
+        try {
+            interactor.addReview("MAT158", "4");
+        } catch (IOException | InvalidInputException | ClassNotFoundException | InputMismatchException e) {
+            System.out.println("testInvalidInputCourseNotInDatabase is working");
+        }
+    }
+
+    /**
+     * This method tests that a review is not created if the argument of the Interactor contains a comment is
+     * that is of length 0.
+     */
+    @Test
+    void testInvalidInputCommentLength(){
+        try {
+            interactor.addReview("MAT158", "4", "");
+        } catch (IOException | InvalidInputException | ClassNotFoundException |
+                 InputMismatchException | InvalidCommentLengthException e) {
+            System.out.println("testInvalidInputCommentLength is working");
+        }
+    }
 
 
 }

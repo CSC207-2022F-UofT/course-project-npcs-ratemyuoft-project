@@ -1,6 +1,7 @@
 package interfaceadapter;
 
 import entities.Course;
+import usecase.InvalidCommentLengthException;
 import usecase.InvalidInputException;
 import usecase.InputBoundary;
 
@@ -24,7 +25,7 @@ public class Controller {
      * This method tries to pass the addReview method call to inputBoundary if no comment made with the review,
      * and catches Exceptions if they are thrown.
      */
-    public void addReview(String c, int r) throws IOException, InvalidInputException {
+    public void addReview(String c, String r) throws IOException, InvalidInputException {
         try {
             inputBoundary.addReview(c, r);
         } catch (InvalidInputException | ClassNotFoundException e) {
@@ -38,7 +39,7 @@ public class Controller {
      * This method tries to pass the addReview method call to inputBoundary if there is a comment made with the review,
      * and catches Exceptions if they are thrown.
      */
-    public void addReview(String c, int n, String s) throws IOException, InvalidInputException {
+    public void addReview(String c, String n, String s) throws IOException, InvalidInputException, InvalidCommentLengthException {
         try {
             inputBoundary.addReview(c, n, s);
         } catch (InvalidInputException | ClassNotFoundException e) {

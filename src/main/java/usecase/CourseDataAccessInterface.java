@@ -27,4 +27,5 @@ public interface CourseDataAccessInterface {
 
     void generateTempCourses2() throws IOException, NullPointerException;
 
+
 }

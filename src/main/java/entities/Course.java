@@ -64,6 +64,7 @@ public class Course implements Serializable {
     }
     public void addReview(Review r) {
         reviewCount += 1;
+        r.setReviewID(reviewCount);
         reviews.add(r);
     }
 

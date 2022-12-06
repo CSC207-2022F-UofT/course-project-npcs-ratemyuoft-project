@@ -45,7 +45,7 @@ public class WelcomeMenu implements WelcomeMenuInterface{
                     courseDataAccessInterface, this);
 
         } else{
-            presenter.outputMessage("Invalid Input, please choose a course in the list!" + "\n");
+            presenter.outputMessage("Invalid Input! Please choose a course in the list!" + "\n");
             this.displayCoursesToReview(presenter, courseDataAccessInterface);
             this.chooseCourseToReview(scanner, scanner2, controller, presenter, addReviewInterface,
                     courseDataAccessInterface);

@@ -7,22 +7,23 @@ import java.util.Map;
 
 public class Review implements Serializable {
 
-    public Course course_reviewed;
-    public int rating;
+    /**
+     * This is the review class with is a review object that is made to critisize or praise a course within our database
+     */
 
-    public String reviewID;
+    private final Course course_reviewed;
+    private int rating;
 
-    public int numberOfLikes = 0;
+    private String reviewID;
 
-    public String optionalComment;
+    private int numberOfLikes = 0;
 
-    public int numberOfDislikes= 0 ;
+    private String optionalComment;
 
-    public Map<User,Comment > comments= new HashMap<>();
+    private int numberOfDislikes= 0 ;
 
-    public Review(int rating){
-        this.rating = rating;
-    }
+    private Map<User,Comment > comments= new HashMap<>();
+
 
     //Constructors 1st one for having no comment, just a rating and the 2nd one is for review with comment
     public Review(Course c, int rating){
@@ -69,13 +70,7 @@ public class Review implements Serializable {
         this.numberOfLikes = numberOfLikes;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    public void setOptionalComment(String optionalComment) {
-        this.optionalComment = optionalComment;
-    }
+    public void setRating(int r) {this.rating = r;}
 
     public void setReviewID(int i) {this.reviewID = course_reviewed.courseName + "Review" + Integer.toString(i);}
 }
