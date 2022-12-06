@@ -49,7 +49,7 @@ class LeaveReviewInteractorTest {
     void testAddReviewComment(){
         try {
             interactor.addReview("STA261", "4", "This course was okay");
-            assertEquals(1, database.importCourses().getCourseList().get(0).reviewCount);
+            assertEquals(1, database.importCourses().getCourseList().get(0).getReviewCount());
         } catch (IOException | InvalidInputException | ClassNotFoundException | InvalidCommentLengthException e) {
             System.out.println("testAddReview1 is not working");
         }

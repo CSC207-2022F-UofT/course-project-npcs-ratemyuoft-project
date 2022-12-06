@@ -24,7 +24,7 @@ public class CourseList implements Iterable<Course>, Serializable {
     //Setter
     public void addCourse(Course course) {
         courseList.add(course);
-        courseNameList.add(course.courseName);
+        courseNameList.add(course.getCourseName());
     }
 
     /**
@@ -103,7 +103,7 @@ public class CourseList implements Iterable<Course>, Serializable {
     public Course getCourseWithName(String s) throws ClassNotFoundException {
         if (this.containsCourseWithName(s)){
             for (Course c: courseList) {
-                if (c.courseName.equals(s)) {
+                if (c.getCourseName().equals(s)) {
                     return c;
                 }
             }

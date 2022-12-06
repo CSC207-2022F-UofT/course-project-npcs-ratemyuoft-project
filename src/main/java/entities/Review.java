@@ -72,5 +72,5 @@ public class Review implements Serializable {
 
     public void setRating(int r) {this.rating = r;}
 
-    public void setReviewID(int i) {this.reviewID = course_reviewed.courseName + "Review" + Integer.toString(i);}
+    public void setReviewID(int i) {this.reviewID = course_reviewed.getCourseName() + "Review" + Integer.toString(i);}
 }
