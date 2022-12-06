@@ -1,12 +1,12 @@
 package cli;
 
 import courseDataBase.CourseDataAccess;
-import interfaceadapter.Controller;
-import interfaceadapter.Presenter;
-import usecase.CourseDataAccessInterface;
-import usecase.InputBoundary;
-import usecase.Interactor;
-import usecase.InvalidInputException;
+import leaveReviewInterfaceAdapter.LeaveReviewController;
+import leaveReviewInterfaceAdapter.LeaveReviewPresenter;
+import leaveReviewUseCase.CourseDataAccessInterface;
+import leaveReviewUseCase.LeaveReviewInputBoundary;
+import leaveReviewUseCase.LeaveReviewInteractor;
+import leaveReviewUseCase.InvalidInputException;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -21,16 +21,16 @@ public class BootCLI implements BootCLIInterface {
 
         Scanner scanner = new Scanner(System.in);
         Scanner scanner2 = new Scanner(System.in);
-        AddReviewInterface registerInterface = new AddReview();
-        WelcomeMenuInterface welcomeMenuInterface = new WelcomeMenu();
-        Presenter presenter = new Presenter();
+        LeaveReviewInterface registerInterface = new LeaveReview();
+        LeaveReviewWelcomeMenuInterface leaveReviewWelcomeMenuInterface = new LeaveReviewLeaveReviewWelcomeMenu();
+        LeaveReviewPresenter leaveReviewPresenter = new LeaveReviewPresenter();
         CourseDataAccessInterface dataAccess = new CourseDataAccess();
         dataAccess.generateTempCourses2();
-        InputBoundary inputBoundary =new Interactor(presenter,dataAccess);
-        Controller controller = new Controller(inputBoundary);
+        LeaveReviewInputBoundary leaveReviewInputBoundary =new LeaveReviewInteractor(leaveReviewPresenter,dataAccess);
+        LeaveReviewController leaveReviewController = new LeaveReviewController(leaveReviewInputBoundary);
 
-        welcomeMenuInterface.displayCoursesToReview(presenter, dataAccess);
-        welcomeMenuInterface.chooseCourseToReview(scanner,scanner2, controller,presenter, registerInterface, dataAccess);
+        leaveReviewWelcomeMenuInterface.displayCoursesToReview(leaveReviewPresenter, dataAccess);
+        leaveReviewWelcomeMenuInterface.chooseCourseToReview(scanner,scanner2, leaveReviewController, leaveReviewPresenter, registerInterface, dataAccess);
 
 
     }

@@ -1,4 +1,4 @@
-package usecase;
+package leaveReviewUseCase;
 
 /**
  * this Exception might be customised later, but it is renamed to understand quickly what exactly

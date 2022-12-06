@@ -1,6 +1,6 @@
 package cli;
 
-import usecase.InvalidInputException;
+import leaveReviewUseCase.InvalidInputException;
 
 import java.io.IOException;
 

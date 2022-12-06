@@ -93,7 +93,7 @@ public class User implements Serializable {
 
 
     /**
-     * @return as input restriction for userRegister and userLogIn methods in Interactor
+     * @return as input restriction for userRegister and userLogIn methods in LeaveReviewInteractor
      */
     public boolean getLogInStatus() {
         return logInStatus;

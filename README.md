@@ -93,7 +93,7 @@
 
     5. Regarding test covrage, Interactor class was showing only 80% covrage
     as showUsers() and outputMessage(string s) were not tested. However,
-    this methods only pass the information to outputBoundary, without
+    this methods only pass the information to leaveReviewOutputBoundary, without
     modifying it in any way, hence doesn't need to be tested.
 
 

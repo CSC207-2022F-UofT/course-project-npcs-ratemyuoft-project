@@ -1,4 +1,4 @@
-package usecase;
+package leaveReviewUseCase;
 
 import entities.Course;
 import entities.CourseList;
@@ -12,8 +12,8 @@ import java.util.InputMismatchException;
  * It does al the work and passes it to the Output Boundary
  */
 
-public class Interactor implements InputBoundary {
-    public OutputBoundary outputBoundary;
+public class LeaveReviewInteractor implements LeaveReviewInputBoundary {
+    public LeaveReviewOutputBoundary leaveReviewOutputBoundary;
     public CourseList courseList;
     public CourseDataAccessInterface database;
 
@@ -21,12 +21,12 @@ public class Interactor implements InputBoundary {
 
     /**
      *
-     * @param outputBoundary is needed to pass the results of performing some method
+     * @param leaveReviewOutputBoundary is needed to pass the results of performing some method
      * @param dataAccess is needed in order to access the database
      */
 
-    public Interactor(OutputBoundary outputBoundary, CourseDataAccessInterface dataAccess) {
-        this.outputBoundary = outputBoundary;
+    public LeaveReviewInteractor(LeaveReviewOutputBoundary leaveReviewOutputBoundary, CourseDataAccessInterface dataAccess) {
+        this.leaveReviewOutputBoundary = leaveReviewOutputBoundary;
         this.database = dataAccess;
 
         try {
@@ -58,7 +58,7 @@ public class Interactor implements InputBoundary {
     }
 
     /**
-     * The checkInput function is a helpfer function of the Interactor that checks if the rating is within the bounds
+     * The checkInput function is a helpfer function of the LeaveReviewInteractor that checks if the rating is within the bounds
      * of 0 and 5 and also checks if the rating is an integer.
      * This function also checks if the comment of the review is within the character limit of 280 characters and has
      * at least 1 character.
@@ -123,14 +123,6 @@ public class Interactor implements InputBoundary {
                 } else throw new InvalidCommentLengthException();
             }else throw new InvalidInputException();
         }else throw new InputMismatchException();
-    }
-    /**
-     *
-     * @param s message is being passed further to outputBoundary with no modifications
-     */
-    @Override
-    public void outputMessage(String s) {
-        this.outputBoundary.outputMessage(s);
     }
 }
 

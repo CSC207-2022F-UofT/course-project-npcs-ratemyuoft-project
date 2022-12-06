@@ -4,7 +4,7 @@ import java.io.*;
 
 import entities.Course;
 import entities.CourseList;
-import usecase.CourseDataAccessInterface;
+import leaveReviewUseCase.CourseDataAccessInterface;
 
 
 /**

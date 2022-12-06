@@ -1,12 +1,12 @@
-package interfaceadapter;
-import usecase.OutputBoundary;
+package leaveReviewInterfaceAdapter;
+import leaveReviewUseCase.LeaveReviewOutputBoundary;
 
-public class Presenter implements OutputBoundary{
+public class LeaveReviewPresenter implements LeaveReviewOutputBoundary {
     /**
      *
      * @param s
      * this method is used to make the code clean, so that everything that happens in UI communicates only with
-     * Presenter and Controller.
+     * LeaveReviewPresenter and LeaveReviewController.
      */
     @Override
     public void outputMessage(String s) {

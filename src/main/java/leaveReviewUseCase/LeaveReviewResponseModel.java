@@ -1,4 +1,4 @@
-package usecase;
+package leaveReviewUseCase;
 
 public class LeaveReviewResponseModel {
 }

@@ -1,35 +1,30 @@
 package leaveReviewUseCase;
 
 import courseDataBase.CourseDataAccess;
-import entities.Course;
 import entities.CourseList;
-import entities.Review;
-import interfaceadapter.Presenter;
+import leaveReviewInterfaceAdapter.LeaveReviewPresenter;
 import org.junit.jupiter.api.Test;
-import usecase.*;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests for outputMessage and showUsers were not made as they have the only task is to send the information
- * forward to outputBoundary which sends it to Presenter.
+ * forward to leaveReviewOutputBoundary which sends it to LeaveReviewPresenter.
  */
-class LeaveReviewInteractorTest {
+class LeaveReviewLeaveReviewInteractorTest {
 
 
     private final CourseDataAccessInterface database = new CourseDataAccess();
-    private final OutputBoundary outputBoundary = new Presenter();
+    private final LeaveReviewOutputBoundary leaveReviewOutputBoundary = new LeaveReviewPresenter();
 
-    private final InputBoundary inputBoundary = new Interactor(outputBoundary, database);
+    private final LeaveReviewInputBoundary leaveReviewInputBoundary = new LeaveReviewInteractor(leaveReviewOutputBoundary, database);
 
     private final CourseList courseList = new CourseList();
 
-    private final Interactor interactor = new Interactor(outputBoundary, database);
+    private final LeaveReviewInteractor leaveReviewInteractor = new LeaveReviewInteractor(leaveReviewOutputBoundary, database);
 
     /**
      *
@@ -41,14 +36,14 @@ class LeaveReviewInteractorTest {
     }
 
     /**
-     * This method checks that the interactor actually adds the review with a comment to the course in the database.
+     * This method checks that the leaveReviewInteractor actually adds the review with a comment to the course in the database.
      *
      */
 
     @Test
     void testAddReviewComment(){
         try {
-            interactor.addReview("STA261", "4", "This course was okay");
+            leaveReviewInteractor.addReview("STA261", "4", "This course was okay");
             assertEquals(1, database.importCourses().getCourseList().get(0).getReviewCount());
         } catch (IOException | InvalidInputException | ClassNotFoundException | InvalidCommentLengthException e) {
             System.out.println("testAddReview1 is not working");
@@ -56,14 +51,14 @@ class LeaveReviewInteractorTest {
     }
 
     /**
-     * This method tests if the Interactor correctly creates the reviewID of a review with a comment is added to the
+     * This method tests if the LeaveReviewInteractor correctly creates the reviewID of a review with a comment is added to the
      * course.
      */
 
     @Test
     void testReviewIDComment() {
         try {
-            interactor.addReview("STA257", "4", "This course was okay");
+            leaveReviewInteractor.addReview("STA257", "4", "This course was okay");
             assertEquals("STA257Review1",
                     database.importCourses().getCourseWithName("STA257").getReviews().get(0).getReviewID());
         }catch (IOException | InvalidInputException | ClassNotFoundException | InvalidCommentLengthException e) {
@@ -79,7 +74,7 @@ class LeaveReviewInteractorTest {
     @Test
     void testReviewIDNoComment() {
         try {
-            interactor.addReview("MAT157", "5");
+            leaveReviewInteractor.addReview("MAT157", "5");
             assertEquals("MAT157Review1",
                     database.importCourses().getCourseWithName("MAT157").getReviews().get(0).getReviewID());
         } catch (IOException | InvalidInputException | ClassNotFoundException e) {
@@ -88,26 +83,26 @@ class LeaveReviewInteractorTest {
     }
 
     /**
-     * This test checks that an Interactor with an invalid input of a rating that is outside the range of 0 to 5
+     * This test checks that an LeaveReviewInteractor with an invalid input of a rating that is outside the range of 0 to 5
      * does not add the review to the course.
      */
     @Test
     void testInvalidInputOutOfRange() {
         try {
-            interactor.addReview("MAT157", "6");
+            leaveReviewInteractor.addReview("MAT157", "6");
         } catch (IOException | InvalidInputException | ClassNotFoundException | InputMismatchException e) {
             System.out.println("testInvalidInputOutOfRange is working");
         }
     }
 
     /**
-     * This test checks that an interactor with an invalid input of a decimal number instead of an int does not create
+     * This test checks that an leaveReviewInteractor with an invalid input of a decimal number instead of an int does not create
      * a review.
      */
     @Test
     void testInvalidInputNotInt() {
         try {
-            interactor.addReview("MAT157", "4.6");
+            leaveReviewInteractor.addReview("MAT157", "4.6");
         } catch (IOException | InvalidInputException | ClassNotFoundException | InputMismatchException e) {
             System.out.println("testInvalidInputNotInt is working");
         }
@@ -119,20 +114,20 @@ class LeaveReviewInteractorTest {
     @Test
     void testInvalidInputCourseNotInDatabase() {
         try {
-            interactor.addReview("MAT158", "4");
+            leaveReviewInteractor.addReview("MAT158", "4");
         } catch (IOException | InvalidInputException | ClassNotFoundException | InputMismatchException e) {
             System.out.println("testInvalidInputCourseNotInDatabase is working");
         }
     }
 
     /**
-     * This method tests that a review is not created if the argument of the Interactor contains a comment is
+     * This method tests that a review is not created if the argument of the LeaveReviewInteractor contains a comment is
      * that is of length 0.
      */
     @Test
     void testInvalidInputCommentLength(){
         try {
-            interactor.addReview("MAT158", "4", "");
+            leaveReviewInteractor.addReview("MAT158", "4", "");
         } catch (IOException | InvalidInputException | ClassNotFoundException |
                  InputMismatchException | InvalidCommentLengthException e) {
             System.out.println("testInvalidInputCommentLength is working");
