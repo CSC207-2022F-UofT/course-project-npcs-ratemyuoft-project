@@ -8,9 +8,20 @@ package leaveReviewUseCase;
  */
 
 public class LeaveReviewCourseRequestModel {
+
+    /**
+     * This instance variable is the name of the course that the reviewer decided to review.
+     */
     final private String courseName;
 
+    /**
+     * The constructor of this request model assigns the courseName instance variable to the name in the parameter.
+     */
     public LeaveReviewCourseRequestModel(String courseName) {this.courseName = courseName;}
 
+    /**
+     * This getter returns the courseName instance variable of this request model.
+     */
+    // Getter
     public String getCourseName() {return this.courseName;}
 }

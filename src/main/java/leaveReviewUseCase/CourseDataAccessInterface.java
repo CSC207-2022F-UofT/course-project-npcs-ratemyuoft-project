@@ -25,6 +25,9 @@ public interface CourseDataAccessInterface {
      */
     CourseList importCourses() throws IOException, ClassNotFoundException;
 
+    /**
+     * This method generates courses to add to the database.
+     */
     void generateTempCourses2() throws IOException, NullPointerException;
 
 

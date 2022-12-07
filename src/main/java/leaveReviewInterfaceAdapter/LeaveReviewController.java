@@ -13,7 +13,10 @@ import java.io.IOException;
 public class LeaveReviewController {
     private final LeaveReviewInputBoundary leaveReviewInputBoundary;
 
-    //Constructor
+    /**
+     * The LeaveReviewController Constructor assigns the leaveReviewInputBoundary instance variable to the InputBoundary
+     * in the parameter.
+     */
     public LeaveReviewController(LeaveReviewInputBoundary leaveReviewInputBoundary) {
         this.leaveReviewInputBoundary = leaveReviewInputBoundary;
     }
