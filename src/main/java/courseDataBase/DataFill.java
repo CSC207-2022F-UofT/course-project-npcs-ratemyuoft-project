@@ -1,8 +1,11 @@
 package courseDataBase;
 
+import courseDataBase.CourseDataAccess;
+
 import java.io.IOException;
 
 public class DataFill {
+
     public DataFill(){
         CourseDataAccess dataBase = new CourseDataAccess();
         try {

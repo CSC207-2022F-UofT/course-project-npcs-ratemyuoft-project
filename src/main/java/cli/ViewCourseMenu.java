@@ -14,7 +14,7 @@ public class ViewCourseMenu {
         System.out.println("Press 0 to filter again\nPress 1 to View Course Reviews\nEnter -1 to go back to main menu");
     }
 
-    public void chooseOptions(Scanner scanner, FilterController filterController) throws InvalidInputException, IOException, ClassNotFoundException {
+    public void chooseOptions(Scanner scanner, FilterController filterController) throws InvalidInputException, IOException, ClassNotFoundException, leaveReviewUseCase.InvalidInputException {
         int choice = scanner.nextInt();
         if (choice == 0) {
             FilterMenu filtermenu = new FilterMenu();

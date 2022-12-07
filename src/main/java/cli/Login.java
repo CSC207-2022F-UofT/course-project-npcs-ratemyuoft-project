@@ -34,6 +34,8 @@ public class Login implements LogInInterface  {
                 WelcomeMenuInterface welcomeMenuInterface =new WelcomeMenu();
                 welcomeMenuInterface.displayWelcomeMenu(logInPresenter);
                 welcomeMenuInterface.choseLoginOrRegister(scanner, logInController, logInPresenter);
+            } catch (leaveReviewUseCase.InvalidInputException e) {
+                throw new RuntimeException(e);
             }
 
 

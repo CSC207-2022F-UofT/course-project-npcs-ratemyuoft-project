@@ -3,7 +3,7 @@ package cli;
 import java.io.IOException;
 import java.util.Scanner;
 import courseDataBase.CourseDataAccess;
-import filterUseCases.CourseDataAccessInterface;
+import courseDataBase.CourseDataAccessInterface;
 import likeReviewInterfaceAdapters.LikeReviewController;
 import likeReviewInterfaceAdapters.LikeReviewPresenter;
 import likeReviewUseCase.LikeReviewInputBoundary;
@@ -17,7 +17,7 @@ import viewCourseReviewUseCase.ViewCourseOutputBoundary;
 import viewCourseReviewUseCase.ViewCourseInteractor;
 
 public class ViewCourseCLI {
-    public void viewcourse(Scanner scanner) throws ClassNotFoundException, InvalidInputException, IOException {
+    public void viewcourse(Scanner scanner) throws ClassNotFoundException, InvalidInputException, IOException, leaveReviewUseCase.InvalidInputException {
         ViewCourseOutputBoundary presenter = new ViewCoursePresenter();
         CourseDataAccessInterface dataaccess = new CourseDataAccess();
         ViewCourseInputBoundary viewcourse = new ViewCourseInteractor(dataaccess, presenter);

@@ -1,7 +1,6 @@
 package viewCourseTests;
 
 import courseDataBase.CourseDataAccess;
-import filterUseCases.CourseDataAccessInterface;
 import org.junit.jupiter.api.Test;
 import viewCourseInterfaceAdapters.ViewCoursePresenter;
 import viewCourseDataStructures.CourseNameRequestModel;

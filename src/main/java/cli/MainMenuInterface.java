@@ -12,6 +12,6 @@ public interface MainMenuInterface {
     void displayMainMenu(LogInPresenter logInPresenter);
 
     void choseOption(Scanner scanner, LogInPresenter logInPresenter, LogInController logInController)
-            throws IOException, ClassNotFoundException, InvalidInputException;
+            throws IOException, ClassNotFoundException, InvalidInputException, leaveReviewUseCase.InvalidInputException;
 
 }

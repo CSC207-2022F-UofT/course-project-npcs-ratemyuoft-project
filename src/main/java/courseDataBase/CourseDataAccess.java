@@ -4,8 +4,6 @@ import java.io.*;
 
 import entities.Course;
 import entities.CourseList;
-import entities.Review;
-import filterUseCases.CourseDataAccessInterface;
 
 
 /**
@@ -17,6 +15,7 @@ import filterUseCases.CourseDataAccessInterface;
 public class CourseDataAccess implements CourseDataAccessInterface {
 
     private final String fileName = "courseFile.sav";
+
 
     /**
      * @param courses is the UserList that has all the courses
@@ -71,30 +70,6 @@ public class CourseDataAccess implements CourseDataAccessInterface {
         Course course8 = new Course("STA257", "Statistical Science");
         Course course9 = new Course("STA261", "Statistical Science");
         Course course10 = new Course("STA130", "Statistical Science");
-
-        Review r1 = new Review(3, "Good Course", "review1");
-        Review r2 = new Review(3, "Good Course", "review2");
-        Review r3 = new Review(3, "Good Course", "review3");
-        Review r4 = new Review(3, "Good Course", "review4");
-        Review r5 = new Review(3, "Good Course", "review5");
-        Review r6 = new Review(3, "Good Course", "review6");
-        Review r10 = new Review(3, "Good Course", "review7");
-        Review r7 = new Review(3, "Good Course", "review8");
-        Review r8 = new Review(3, "Good Course", "review9");
-        Review r9 = new Review(3, "Good Course", "review10");
-
-        course1.addReview(r1);
-        course2.addReview(r2);
-        course3.addReview(r3);
-        course4.addReview(r4);
-        course5.addReview(r5);
-        course6.addReview(r6);
-        course7.addReview(r7);
-        course8.addReview(r8);
-        course9.addReview(r9);
-        course10.addReview(r10);
-
-
         cl.addCourse(course9);
         cl.addCourse(course4);
         cl.addCourse(course2);

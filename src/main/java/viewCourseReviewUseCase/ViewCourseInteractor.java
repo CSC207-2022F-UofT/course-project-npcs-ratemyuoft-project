@@ -1,8 +1,8 @@
 package viewCourseReviewUseCase;
+import courseDataBase.CourseDataAccessInterface;
 import entities.Course;
 import entities.CourseList;
 import entities.Review;
-import filterUseCases.CourseDataAccessInterface;
 import viewCourseDataStructures.CourseListResponseModel;
 import viewCourseDataStructures.CourseListResponseModelHelp;
 import viewCourseDataStructures.CourseNameRequestModel;
@@ -37,14 +37,14 @@ public class ViewCourseInteractor implements ViewCourseInputBoundary {
         String courseName = coursenamereq.getCoursename();
 
         for (Course i: courseList){
-            if (Objects.equals(i.courseName, courseName)) {
+            if (Objects.equals(i.getCourseName(), courseName)) {
                 this.course = i;
                 break;
             }
         }
 
         if (this.course != null){
-            this.reviews = this.course.reviews;
+            this.reviews = this.course.getReviews();
             CourseListResponseModelHelp courselistreq = new CourseListResponseModelHelp(this.reviews, this.course);
             CourseListResponseModel courselistresponse = new
                     CourseListResponseModel(courselistreq.reviewlist, courselistreq.coursename);

@@ -13,7 +13,7 @@ public class FilterMenu {
     public void displayFilterOptions (){
         System.out.println("1. Filter by field of studies \n2. Filter by rating \n3. Filter by name \nPlease enter your filter option");
     }
-    public void filter(Scanner scanner, FilterController filterController) throws InvalidInputException, IOException, ClassNotFoundException {
+    public void filter(Scanner scanner, FilterController filterController) throws InvalidInputException, IOException, ClassNotFoundException, leaveReviewUseCase.InvalidInputException {
         int choice = scanner.nextInt();
         if (choice == 1 | choice == 2 | choice == 3) {
             try {

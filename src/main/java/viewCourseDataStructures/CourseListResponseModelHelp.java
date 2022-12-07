@@ -16,11 +16,11 @@ public class CourseListResponseModelHelp {
     public String coursename;
 
     public CourseListResponseModelHelp(ArrayList<Review> reviewlist, Course course) {
-        this.coursename = course.courseName;;
+        this.coursename = course.getCourseName();
         this.reviewlist = new ArrayList<>();
 
         for (Review r : reviewlist) {
-            ReviewInformation ri = new ReviewInformation(r.getName(), r.getRating(), r.getComment(), r.getNumberOfLikes());
+            ReviewInformation ri = new ReviewInformation(r.getReviewID(), r.getRating(), r.getOptionalComment(), r.getNumberOfLikes());
             this.reviewlist.add(ri);
         }
 

@@ -1,4 +1,4 @@
-package filterUseCases;
+package courseDataBase;
 
 import entities.CourseList;
 
@@ -24,5 +24,11 @@ public interface CourseDataAccessInterface {
      * @throws ClassNotFoundException throws NullPointerException
      */
     CourseList importCourses() throws IOException, ClassNotFoundException;
+
+    /**
+     * This method generates courses to add to the database.
+     */
+    void generateTempCourses2() throws IOException, NullPointerException;
+
 
 }

@@ -1,9 +1,9 @@
 package cli;
 
 import courseDataBase.CourseDataAccess;
+import courseDataBase.CourseDataAccessInterface;
 import filterInterfaceAdapters.FilterController;
 import filterInterfaceAdapters.FilterPresenter;
-import filterUseCases.CourseDataAccessInterface;
 import filterUseCases.FilterInputBoundary;
 import filterUseCases.FilterOutputBoundary;
 import filterUseCases.FilterUseCaseInteractor;
@@ -24,7 +24,7 @@ public class MainMenu implements MainMenuInterface{
 
     @Override
     public void choseOption(Scanner scanner, LogInPresenter logInPresenter, LogInController logInController)
-            throws ClassNotFoundException, InvalidInputException, IOException {
+            throws ClassNotFoundException, InvalidInputException, IOException, leaveReviewUseCase.InvalidInputException {
         int choice = scanner.nextInt();
 
         if(choice == 1){

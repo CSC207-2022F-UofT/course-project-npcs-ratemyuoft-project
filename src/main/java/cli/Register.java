@@ -33,6 +33,8 @@ public class Register implements RegisterInterface{
         }catch (InvalidInputException e){
             WelcomeMenuInterface welcomeMenuInterface = new WelcomeMenu();
             welcomeMenuInterface.choseLoginOrRegister(scanner, logInController, logInPresenter);
+        } catch (leaveReviewUseCase.InvalidInputException e) {
+            throw new RuntimeException(e);
         }
 
 

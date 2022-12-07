@@ -9,6 +9,6 @@ import java.util.Scanner;
 
 public interface ShowUsersInterface {
     void showUsers(Scanner scanner, LogInPresenter logInPresenter, LogInController logInController)
-            throws IOException, ClassNotFoundException, InvalidInputException;
+            throws IOException, ClassNotFoundException, InvalidInputException, leaveReviewUseCase.InvalidInputException;
 
 }

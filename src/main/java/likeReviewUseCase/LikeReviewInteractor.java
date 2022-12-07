@@ -1,9 +1,9 @@
 package likeReviewUseCase;
 
+import courseDataBase.CourseDataAccessInterface;
 import entities.Course;
 import entities.CourseList;
 import entities.Review;
-import filterUseCases.CourseDataAccessInterface;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -45,9 +45,9 @@ public class LikeReviewInteractor implements LikeReviewInputBoundary {
         Boolean liked = Boolean.FALSE;
         for (Course i : this.courseList) {
             int iterator = -1;
-            for (Review r : i.reviews) {
+            for (Review r : i.getReviews()) {
                 iterator += 1;
-                if (Objects.equals(r.Name, reviewname)) {
+                if (Objects.equals(r.getReviewID(), reviewname)) {
                     cs = i;
                     iter = iterator;
                     liked = Boolean.TRUE;
@@ -58,7 +58,7 @@ public class LikeReviewInteractor implements LikeReviewInputBoundary {
         }
 
         if (this.rev != null){
-            cs.reviews.get(iter).Like();
+            cs.getReviews().get(iter).Like();
             this.courseDataAccessInterfaceView.saveCourse(this.courseList);
         }
 
