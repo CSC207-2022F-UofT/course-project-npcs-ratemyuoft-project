@@ -1,15 +1,15 @@
 package cli;
 
-import courseDataBase.CourseDataAccess;
+import courseDatabase.CourseDataAccess;
 import filterInterfaceAdapters.FilterController;
 import filterInterfaceAdapters.FilterPresenter;
 import filterUseCases.CourseDataAccessInterface;
 import filterUseCases.FilterInputBoundary;
 import filterUseCases.FilterOutputBoundary;
 import filterUseCases.FilterUseCaseInteractor;
-import logInInterfaceAdapter.LogInController;
-import logInInterfaceAdapter.LogInPresenter;
-import logInUseCase.InvalidInputException;
+import loginInterfaceAdapter.LogInController;
+import loginInterfaceAdapter.LogInPresenter;
+import loginUseCase.InvalidInputException;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -24,7 +24,7 @@ public class MainMenu implements MainMenuInterface{
 
     @Override
     public void choseOption(Scanner scanner, LogInPresenter logInPresenter, LogInController logInController)
-            throws  ClassNotFoundException {
+            throws ClassNotFoundException, InvalidInputException, IOException {
         int choice = scanner.nextInt();
 
         if(choice == 1){
@@ -59,11 +59,9 @@ public class MainMenu implements MainMenuInterface{
             FilterController filterController = new FilterController(filterInputBoundary);
 
             filterMenu.filter(scanner, filterController);
+        }
 
-
-
-
-        }else{
+        else{
             displayMainMenu(logInPresenter);
             choseOption(scanner, logInPresenter, logInController);
         }

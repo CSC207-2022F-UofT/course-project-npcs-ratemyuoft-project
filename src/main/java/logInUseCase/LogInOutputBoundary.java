@@ -1,4 +1,4 @@
-package logInUseCase;
+package loginUseCase;
 
 import entities.UserList;
 

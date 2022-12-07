@@ -1,4 +1,4 @@
-package logInUseCase;
+package loginUseCase;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +32,7 @@ class LogInInteractorTest {
             logInInteractor.userLogOut();
             assertTrue(logInInteractor.checkIfUserExists("mykola"),"checkIfUserExists didn't work properly");
             assertFalse(logInInteractor.checkIfUserExists("mykola1"),"checkIfUserExists didn't work properly");
-        } catch (InvalidInputException | IOException e) {
+        } catch (IOException | InvalidInputException e) {
             System.out.println("wrong input");
         }
 
@@ -46,7 +46,7 @@ class LogInInteractorTest {
             assertTrue(logInInteractor.checkUserStatus("username100"), "checkUserStatus didn't work properly");
             logInInteractor.userLogOut();
             assertFalse(logInInteractor.checkUserStatus("username100"), "checkUserStatus didn't work properly");
-        } catch (InvalidInputException | IOException e) {
+        } catch (IOException | InvalidInputException e) {
             System.out.println("wrong input");
         }
 
@@ -63,7 +63,7 @@ class LogInInteractorTest {
                     "checkPassword didn't work properly");
             assertFalse(logInInteractor.checkPassword("username10","notTired"),
                     "checkPassword didn't work properly");
-        } catch (InvalidInputException | IOException e) {
+        } catch (IOException | InvalidInputException e) {
             System.out.println("wrong input");
         }
     }
@@ -75,9 +75,7 @@ class LogInInteractorTest {
             assertFalse(logInInteractor.checkUserStatus("username30"));
             logInInteractor.userLogin("username","tired");
             assertTrue(logInInteractor.checkUserStatus("username30"));
-        } catch (InvalidInputException e) {
-            System.out.println("wrong input");
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException | InvalidInputException e) {
             System.out.println("smth wrong with userLogin");
         }
 
@@ -93,7 +91,7 @@ class LogInInteractorTest {
         try {
             logInInteractor.userRegister(username,password,major,year);
             logInInteractor.userLogOut();
-        } catch (InvalidInputException | IOException e) {
+        } catch (IOException | InvalidInputException e) {
             System.out.println("wrong input");
         }
         assertTrue(logInInteractor.checkIfUserExists(username));
@@ -108,7 +106,7 @@ class LogInInteractorTest {
             assertTrue(logInInteractor.checkUserStatus("sdasdasd"));
             logInInteractor.userLogOut();
             assertFalse(logInInteractor.checkUserStatus("sdasdasd"));
-        } catch (InvalidInputException | IOException e) {
+        } catch (IOException | InvalidInputException e) {
             System.out.println("wrong input");
         }
 

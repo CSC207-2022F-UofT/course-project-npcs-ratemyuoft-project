@@ -1,8 +1,8 @@
 package cli;
 
-import logInInterfaceAdapter.LogInController;
-import logInInterfaceAdapter.LogInPresenter;
-import logInUseCase.InvalidInputException;
+import loginInterfaceAdapter.LogInController;
+import loginInterfaceAdapter.LogInPresenter;
+import loginUseCase.InvalidInputException;
 
 import java.io.IOException;
 import java.util.Scanner;

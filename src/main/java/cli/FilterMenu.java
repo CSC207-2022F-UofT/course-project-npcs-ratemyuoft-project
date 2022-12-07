@@ -2,6 +2,9 @@ package cli;
 
 import filterInterfaceAdapters.FilterController;
 import filterInterfaceAdapters.FilterFailException;
+import loginUseCase.InvalidInputException;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 public class FilterMenu {
@@ -10,7 +13,7 @@ public class FilterMenu {
     public void displayFilterOptions (){
         System.out.println("1. Filter by field of studies \n2. Filter by rating \n3. Filter by name \nPlease enter your filter option");
     }
-    public void filter(Scanner scanner, FilterController filterController) {
+    public void filter(Scanner scanner, FilterController filterController) throws InvalidInputException, IOException, ClassNotFoundException {
         int choice = scanner.nextInt();
         if (choice == 1 | choice == 2 | choice == 3) {
             try {

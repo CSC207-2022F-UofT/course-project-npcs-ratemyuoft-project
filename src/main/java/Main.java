@@ -1,6 +1,10 @@
+
+
 import cli.BootCLI;
 import cli.BootCLIInterface;
-import logInUseCase.InvalidInputException;
+import courseDatabase.CourseDataAccess;
+import courseDatabase.DataFill;
+import loginUseCase.InvalidInputException;
 
 import java.io.IOException;
 
@@ -12,11 +16,10 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws ClassNotFoundException, IOException, InvalidInputException {
+        CourseDataAccess courseDataAccess = new CourseDataAccess();
+        courseDataAccess.generateTempCourses2();
 
         BootCLIInterface bootCLIInterface = new BootCLI();
         bootCLIInterface.boot();
-
-
-
     }
 }

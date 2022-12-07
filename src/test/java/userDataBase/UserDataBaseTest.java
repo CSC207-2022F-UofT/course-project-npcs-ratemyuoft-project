@@ -1,9 +1,11 @@
-package userDataBase;
+
+package userDatabase;
 
 import entities.User;
 import entities.UserList;
+
+import loginUseCase.UserDataAccess;
 import org.junit.jupiter.api.Test;
-import logInUseCase.UserDataAccess;
 
 import java.io.IOException;
 import java.util.ArrayList;
