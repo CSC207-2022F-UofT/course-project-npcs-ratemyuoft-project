@@ -22,7 +22,7 @@ public class BootCLI implements BootCLIInterface {
         Scanner scanner = new Scanner(System.in);
         Scanner scanner2 = new Scanner(System.in);
         LeaveReviewInterface registerInterface = new LeaveReview();
-        LeaveReviewWelcomeMenuInterface leaveReviewWelcomeMenuInterface = new LeaveReviewLeaveReviewWelcomeMenu();
+        LeaveReviewWelcomeMenuInterface leaveReviewWelcomeMenuInterface = new LeaveReviewWelcomeMenu();
         LeaveReviewPresenter leaveReviewPresenter = new LeaveReviewPresenter();
         CourseDataAccessInterface dataAccess = new CourseDataAccess();
         dataAccess.generateTempCourses2();

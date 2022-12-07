@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Tests for outputMessage and showUsers were not made as they have the only task is to send the information
  * forward to leaveReviewOutputBoundary which sends it to LeaveReviewPresenter.
  */
-class LeaveReviewLeaveReviewInteractorTest {
+class LeaveReviewInteractorTeset {
 
 
     private final CourseDataAccessInterface database = new CourseDataAccess();

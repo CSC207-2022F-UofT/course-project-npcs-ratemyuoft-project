@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
-public class LeaveReviewLeaveReviewWelcomeMenu implements LeaveReviewWelcomeMenuInterface {
+public class LeaveReviewWelcomeMenu implements LeaveReviewWelcomeMenuInterface {
 
     public void displayCoursesToReview(LeaveReviewPresenter leaveReviewPresenter, CourseDataAccessInterface courseDataAccessInterface) throws NullPointerException, IOException {
         try {
