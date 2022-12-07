@@ -1,4 +1,4 @@
-package loginUseCase;
+package logInUseCase;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,6 @@
 package filterUseCases;
 
-import courseDatabase.CourseDataAccess;
+import courseDataBase.CourseDataAccess;
 import entities.Course;
 import filterInterfaceAdapters.FilterPresenter;
 import org.junit.jupiter.api.Test;

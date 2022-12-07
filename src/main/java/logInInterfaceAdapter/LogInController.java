@@ -1,7 +1,7 @@
-package loginInterfaceAdapter;
-import loginUseCase.InvalidInputException;
-import loginUseCase.LogInInputBoundary;
-import loginUseCase.LogInInteractor;
+package logInInterfaceAdapter;
+import logInUseCase.InvalidInputException;
+import logInUseCase.LogInInputBoundary;
+import logInUseCase.LogInInteractor;
 
 
 import java.io.IOException;

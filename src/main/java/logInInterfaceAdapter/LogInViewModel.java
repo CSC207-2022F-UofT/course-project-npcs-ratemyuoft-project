@@ -1,6 +1,4 @@
-package loginInterfaceAdapter;
-
-import loginInterfaceAdapter.LogInPresenter;
+package logInInterfaceAdapter;
 
 /**
  * ViewModel is the class that allows us not to cycle messages we want to display from Controller through the whole

@@ -1,4 +1,4 @@
-package courseDatabase;
+package courseDataBase;
 
 import java.io.IOException;
 

@@ -2,7 +2,7 @@ package cli;
 
 import filterInterfaceAdapters.FilterController;
 import filterInterfaceAdapters.FilterFailException;
-import loginUseCase.InvalidInputException;
+import logInUseCase.InvalidInputException;
 
 import java.io.IOException;
 import java.util.Scanner;

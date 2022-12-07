@@ -1,9 +1,9 @@
 package cli;
 
 import filterInterfaceAdapters.FilterController;
-import loginInterfaceAdapter.LogInController;
-import loginInterfaceAdapter.LogInPresenter;
-import loginUseCase.InvalidInputException;
+import logInInterfaceAdapter.LogInController;
+import logInInterfaceAdapter.LogInPresenter;
+import logInUseCase.InvalidInputException;
 
 import java.io.IOException;
 import java.util.Scanner;

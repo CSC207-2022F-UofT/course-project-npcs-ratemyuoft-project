@@ -1,15 +1,15 @@
 package cli;
 
-import courseDatabase.CourseDataAccess;
+import courseDataBase.CourseDataAccess;
 import filterInterfaceAdapters.FilterController;
 import filterInterfaceAdapters.FilterPresenter;
 import filterUseCases.CourseDataAccessInterface;
 import filterUseCases.FilterInputBoundary;
 import filterUseCases.FilterOutputBoundary;
 import filterUseCases.FilterUseCaseInteractor;
-import loginInterfaceAdapter.LogInController;
-import loginInterfaceAdapter.LogInPresenter;
-import loginUseCase.InvalidInputException;
+import logInInterfaceAdapter.LogInController;
+import logInInterfaceAdapter.LogInPresenter;
+import logInUseCase.InvalidInputException;
 
 import java.io.IOException;
 import java.util.Scanner;

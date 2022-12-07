@@ -1,7 +1,5 @@
 package courseDataBase;
 
-import courseDatabase.CourseDataAccess;
-import courseDatabase.DataFill;
 import entities.Course;
 import entities.CourseList;
 import entities.Review;

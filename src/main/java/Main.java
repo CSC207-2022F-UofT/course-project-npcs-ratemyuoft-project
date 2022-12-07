@@ -2,9 +2,8 @@
 
 import cli.BootCLI;
 import cli.BootCLIInterface;
-import courseDatabase.CourseDataAccess;
-import courseDatabase.DataFill;
-import loginUseCase.InvalidInputException;
+import courseDataBase.CourseDataAccess;
+import logInUseCase.InvalidInputException;
 
 import java.io.IOException;
 
@@ -14,7 +13,6 @@ import java.io.IOException;
  * have any other calls other than to run the project. Tests are omitted for the same reason.
  */
 public class Main {
-
     public static void main(String[] args) throws ClassNotFoundException, IOException, InvalidInputException {
         CourseDataAccess courseDataAccess = new CourseDataAccess();
         courseDataAccess.generateTempCourses2();

@@ -1,9 +1,9 @@
-package loginUseCase;
+package logInUseCase;
 
-import loginInterfaceAdapter.LogInPresenter; // the import can not be used directly. it is used only through DataAccess interface
+import logInInterfaceAdapter.LogInPresenter; // the import can not be used directly. it is used only through DataAccess interface
 import entities.User;
 import entities.UserList;//  can not be used directly. only through outputBoundary
-import userDatabase.UserDataBase;
+import userDataBase.UserDataBase;
 
 
 import java.io.IOException;
