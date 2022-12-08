@@ -29,7 +29,7 @@ public class commentMainFrame extends JFrame{
 
         label = new JLabel(reviewName + ":");
         label.setFont(new Font("Courier New", Font.BOLD, 20));
-        userLabel = new JLabel(" User");
+        userLabel = new JLabel(" review");
         userLabel.setFont(new Font("Courier New", Font.PLAIN, 18));
 
         buttonPanel.setLayout(new BorderLayout());
