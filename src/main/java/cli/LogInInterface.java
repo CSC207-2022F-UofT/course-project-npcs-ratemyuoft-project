@@ -2,9 +2,9 @@ package cli;
 
 import java.io.IOException;
 import java.util.Scanner;
-import logInInterfaceAdapter.LogInController;
-import logInInterfaceAdapter.LogInPresenter;
-import logInUseCase.InvalidInputException;
+import interfaceAdapters.logInInterfaceAdapter.LogInController;
+import interfaceAdapters.logInInterfaceAdapter.LogInPresenter;
+import useCases.logInUseCase.InvalidInputException;
 
 public interface LogInInterface {
 

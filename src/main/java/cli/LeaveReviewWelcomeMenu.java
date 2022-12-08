@@ -1,15 +1,10 @@
 package cli;
 
-import courseDataBase.CourseDataAccess;
-import courseDataBase.CourseDataAccessInterface;
+import dataBases.courseDataBase.CourseDataAccessInterface;
 import entities.CourseList;
-import leaveReviewInterfaceAdapter.LeaveReviewController;
-import leaveReviewInterfaceAdapter.LeaveReviewPresenter;
-import leaveReviewUseCase.InvalidInputException;
-import leaveReviewUseCase.LeaveReviewInputBoundary;
-import leaveReviewUseCase.LeaveReviewInteractor;
-import logInInterfaceAdapter.LogInController;
-import logInInterfaceAdapter.LogInPresenter;
+import interfaceAdapters.leaveReviewInterfaceAdapter.LeaveReviewController;
+import interfaceAdapters.leaveReviewInterfaceAdapter.LeaveReviewPresenter;
+import useCases.leaveReviewUseCase.InvalidInputException;
 
 import java.io.IOException;
 import java.util.List;

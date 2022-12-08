@@ -1,10 +1,11 @@
 package leaveReviewUseCase;
 
-import courseDataBase.CourseDataAccess;
-import courseDataBase.CourseDataAccessInterface;
+import dataBases.courseDataBase.CourseDataAccess;
+import dataBases.courseDataBase.CourseDataAccessInterface;
 import entities.CourseList;
-import leaveReviewInterfaceAdapter.LeaveReviewPresenter;
+import interfaceAdapters.leaveReviewInterfaceAdapter.LeaveReviewPresenter;
 import org.junit.jupiter.api.Test;
+import useCases.leaveReviewUseCase.*;
 
 import java.io.IOException;
 import java.util.InputMismatchException;

@@ -1,19 +1,6 @@
 package likeReviewUseCase;
 
 
-import courseDataBase.CourseDataAccess;
-import courseDataBase.CourseDataAccessInterface;
-import entities.Course;
-import entities.CourseList;
-import entities.Review;
-import likeReviewInterfaceAdapters.LikeReviewPresenter;
-import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 public class LikeReviewInteractorTest {
 /* CLASS IS COMMENTED OUT AS TEST WAS NOT WORKING PROPERLY
 

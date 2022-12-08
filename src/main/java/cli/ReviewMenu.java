@@ -1,20 +1,16 @@
 package cli;
 
-import courseDataBase.CourseDataAccess;
-import courseDataBase.CourseDataAccessInterface;
-import filterInterfaceAdapters.FilterController;
-import filterInterfaceAdapters.FilterPresenter;
-import filterUseCases.FilterInputBoundary;
-import filterUseCases.FilterOutputBoundary;
-import filterUseCases.FilterUseCaseInteractor;
-import leaveReviewInterfaceAdapter.LeaveReviewController;
-import leaveReviewInterfaceAdapter.LeaveReviewPresenter;
-import leaveReviewUseCase.LeaveReviewInputBoundary;
-import leaveReviewUseCase.LeaveReviewInteractor;
-import likeReviewInterfaceAdapters.LikeReviewController;
-import logInInterfaceAdapter.LogInController;
-import logInInterfaceAdapter.LogInPresenter;
-import logInUseCase.InvalidInputException;
+import dataBases.courseDataBase.CourseDataAccess;
+import dataBases.courseDataBase.CourseDataAccessInterface;
+import interfaceAdapters.filterInterfaceAdapters.FilterController;
+import interfaceAdapters.filterInterfaceAdapters.FilterPresenter;
+import useCases.filterUseCases.FilterInputBoundary;
+import useCases.filterUseCases.FilterOutputBoundary;
+import useCases.filterUseCases.FilterUseCaseInteractor;
+import interfaceAdapters.likeReviewInterfaceAdapters.LikeReviewController;
+import interfaceAdapters.logInInterfaceAdapter.LogInController;
+import interfaceAdapters.logInInterfaceAdapter.LogInPresenter;
+import useCases.logInUseCase.InvalidInputException;
 import java.io.IOException;
 import java.util.Scanner;
 public class ReviewMenu {
@@ -38,7 +34,7 @@ public class ReviewMenu {
         return true;
     }
 
-    public void filter(Scanner scanner, LikeReviewController likereviewController) throws ClassNotFoundException, InvalidInputException, IOException, leaveReviewUseCase.InvalidInputException {
+    public void filter(Scanner scanner, LikeReviewController likereviewController) throws ClassNotFoundException, InvalidInputException, IOException, useCases.leaveReviewUseCase.InvalidInputException {
         String choice = scanner.nextLine();
         if (isInteger(choice)) {
             if (Integer.parseInt(choice) == 1) {

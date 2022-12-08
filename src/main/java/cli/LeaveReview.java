@@ -1,20 +1,19 @@
 package cli;
 
-import java.io.FilterInputStream;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import courseDataBase.CourseDataAccessInterface;
-import filterInterfaceAdapters.FilterController;
-import filterInterfaceAdapters.FilterPresenter;
-import filterUseCases.FilterInputBoundary;
-import filterUseCases.FilterOutputBoundary;
-import filterUseCases.FilterUseCaseInteractor;
-import leaveReviewInterfaceAdapter.LeaveReviewController;
-import leaveReviewInterfaceAdapter.LeaveReviewPresenter;
-import leaveReviewUseCase.InvalidCommentLengthException;
-import leaveReviewUseCase.InvalidInputException;
+import dataBases.courseDataBase.CourseDataAccessInterface;
+import interfaceAdapters.filterInterfaceAdapters.FilterController;
+import interfaceAdapters.filterInterfaceAdapters.FilterPresenter;
+import useCases.filterUseCases.FilterInputBoundary;
+import useCases.filterUseCases.FilterOutputBoundary;
+import useCases.filterUseCases.FilterUseCaseInteractor;
+import interfaceAdapters.leaveReviewInterfaceAdapter.LeaveReviewController;
+import interfaceAdapters.leaveReviewInterfaceAdapter.LeaveReviewPresenter;
+import useCases.leaveReviewUseCase.InvalidCommentLengthException;
+import useCases.leaveReviewUseCase.InvalidInputException;
 
 public class LeaveReview implements LeaveReviewInterface {
 
@@ -45,7 +44,7 @@ public class LeaveReview implements LeaveReviewInterface {
             leaveReviewPresenter.outputMessage("Invalid Input! Please ensure that your rating is an integer!" + "\n");
             LeaveReviewInterface leaveReviewInterface = new LeaveReview();
             leaveReviewInterface.addReview(scanner, scanner2, course, leaveReviewController, leaveReviewPresenter, dataaccess, leaveReviewWelcomeMenuInterface);
-        } catch (logInUseCase.InvalidInputException e) {
+        } catch (useCases.logInUseCase.InvalidInputException e) {
             throw new RuntimeException(e);
         }
 
@@ -85,7 +84,7 @@ public class LeaveReview implements LeaveReviewInterface {
                     "characters!"+ "\n");
             LeaveReviewInterface leaveReviewInterface = new LeaveReview();
             leaveReviewInterface.addReviewComment(scanner, scanner2, course, leaveReviewController, leaveReviewPresenter, dataaccess, leaveReviewWelcomeMenuInterface);
-        } catch (logInUseCase.InvalidInputException e) {
+        } catch (useCases.logInUseCase.InvalidInputException e) {
             throw new RuntimeException(e);
         }
     }

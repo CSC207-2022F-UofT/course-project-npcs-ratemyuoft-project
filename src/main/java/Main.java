@@ -2,8 +2,8 @@
 
 import cli.BootCLI;
 import cli.BootCLIInterface;
-import courseDataBase.CourseDataAccess;
-import logInUseCase.InvalidInputException;
+import dataBases.courseDataBase.CourseDataAccess;
+import useCases.logInUseCase.InvalidInputException;
 
 import java.io.IOException;
 

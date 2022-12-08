@@ -1,9 +1,13 @@
 package filterUseCases;
 
-import courseDataBase.CourseDataAccess;
+import dataBases.courseDataBase.CourseDataAccess;
 import entities.Course;
-import filterInterfaceAdapters.FilterPresenter;
+import interfaceAdapters.filterInterfaceAdapters.FilterPresenter;
 import org.junit.jupiter.api.Test;
+import useCases.filterUseCases.FilterByFOSRequestModel;
+import useCases.filterUseCases.FilterByNameRequestModel;
+import useCases.filterUseCases.FilterByRatingRequestModel;
+import useCases.filterUseCases.FilterUseCaseInteractor;
 
 import static org.junit.jupiter.api.Assertions.*;
 

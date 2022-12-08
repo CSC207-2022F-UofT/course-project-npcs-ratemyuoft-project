@@ -3,10 +3,10 @@ package cli;
 import java.io.IOException;
 import java.util.Scanner;
 
-import courseDataBase.CourseDataAccessInterface;
-import leaveReviewInterfaceAdapter.LeaveReviewController;
-import leaveReviewInterfaceAdapter.LeaveReviewPresenter;
-import leaveReviewUseCase.InvalidInputException;
+import dataBases.courseDataBase.CourseDataAccessInterface;
+import interfaceAdapters.leaveReviewInterfaceAdapter.LeaveReviewController;
+import interfaceAdapters.leaveReviewInterfaceAdapter.LeaveReviewPresenter;
+import useCases.leaveReviewUseCase.InvalidInputException;
 
 
 public interface LeaveReviewChooseToCommentInterface {

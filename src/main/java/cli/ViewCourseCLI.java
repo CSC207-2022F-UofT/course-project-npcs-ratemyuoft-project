@@ -2,22 +2,22 @@ package cli;
 
 import java.io.IOException;
 import java.util.Scanner;
-import courseDataBase.CourseDataAccess;
-import courseDataBase.CourseDataAccessInterface;
-import likeReviewInterfaceAdapters.LikeReviewController;
-import likeReviewInterfaceAdapters.LikeReviewPresenter;
-import likeReviewUseCase.LikeReviewInputBoundary;
-import likeReviewUseCase.LikeReviewInteractor;
-import likeReviewUseCase.LikeReviewOutputBoundary;
-import logInUseCase.InvalidInputException;
-import viewCourseInterfaceAdapters.ViewCourseController;
-import viewCourseInterfaceAdapters.ViewCoursePresenter;
-import viewCourseReviewUseCase.ViewCourseInputBoundary;
-import viewCourseReviewUseCase.ViewCourseOutputBoundary;
-import viewCourseReviewUseCase.ViewCourseInteractor;
+import dataBases.courseDataBase.CourseDataAccess;
+import dataBases.courseDataBase.CourseDataAccessInterface;
+import interfaceAdapters.likeReviewInterfaceAdapters.LikeReviewController;
+import interfaceAdapters.likeReviewInterfaceAdapters.LikeReviewPresenter;
+import useCases.likeReviewUseCase.LikeReviewInputBoundary;
+import useCases.likeReviewUseCase.LikeReviewInteractor;
+import useCases.likeReviewUseCase.LikeReviewOutputBoundary;
+import useCases.logInUseCase.InvalidInputException;
+import interfaceAdapters.viewCourseInterfaceAdapters.ViewCourseController;
+import interfaceAdapters.viewCourseInterfaceAdapters.ViewCoursePresenter;
+import useCases.viewCourseReviewUseCase.ViewCourseInputBoundary;
+import useCases.viewCourseReviewUseCase.ViewCourseOutputBoundary;
+import useCases.viewCourseReviewUseCase.ViewCourseInteractor;
 
 public class ViewCourseCLI {
-    public void viewcourse(Scanner scanner) throws ClassNotFoundException, InvalidInputException, IOException, leaveReviewUseCase.InvalidInputException {
+    public void viewcourse(Scanner scanner) throws ClassNotFoundException, InvalidInputException, IOException, useCases.leaveReviewUseCase.InvalidInputException {
         ViewCourseOutputBoundary presenter = new ViewCoursePresenter();
         CourseDataAccessInterface dataaccess = new CourseDataAccess();
         ViewCourseInputBoundary viewcourse = new ViewCourseInteractor(dataaccess, presenter);

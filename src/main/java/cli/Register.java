@@ -2,9 +2,9 @@ package cli;
 
 import java.io.IOException;
 import java.util.Scanner;
-import logInInterfaceAdapter.LogInController;
-import logInInterfaceAdapter.LogInPresenter;
-import logInUseCase.InvalidInputException;
+import interfaceAdapters.logInInterfaceAdapter.LogInController;
+import interfaceAdapters.logInInterfaceAdapter.LogInPresenter;
+import useCases.logInUseCase.InvalidInputException;
 
 public class Register implements RegisterInterface{
 
@@ -49,7 +49,7 @@ public class Register implements RegisterInterface{
             } catch (InvalidInputException e) {
                 WelcomeMenuInterface welcomeMenuInterface = new WelcomeMenu();
                 welcomeMenuInterface.choseLoginOrRegister(scanner, logInController, logInPresenter);
-            } catch (leaveReviewUseCase.InvalidInputException e) {
+            } catch (useCases.leaveReviewUseCase.InvalidInputException e) {
                 throw new RuntimeException(e);
             }
         } else {

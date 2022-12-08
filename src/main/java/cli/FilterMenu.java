@@ -1,10 +1,10 @@
 package cli;
 
-import filterInterfaceAdapters.FilterController;
-import filterInterfaceAdapters.FilterFailException;
-import logInInterfaceAdapter.LogInController;
-import logInInterfaceAdapter.LogInPresenter;
-import logInUseCase.InvalidInputException;
+import interfaceAdapters.filterInterfaceAdapters.FilterController;
+import interfaceAdapters.filterInterfaceAdapters.FilterFailException;
+import interfaceAdapters.logInInterfaceAdapter.LogInController;
+import interfaceAdapters.logInInterfaceAdapter.LogInPresenter;
+import useCases.logInUseCase.InvalidInputException;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -32,7 +32,7 @@ public class FilterMenu {
         }
         return true;
     }
-    public void filter(Scanner scanner, FilterController filterController) throws InvalidInputException, IOException, ClassNotFoundException, leaveReviewUseCase.InvalidInputException {
+    public void filter(Scanner scanner, FilterController filterController) throws InvalidInputException, IOException, ClassNotFoundException, useCases.leaveReviewUseCase.InvalidInputException {
         String choice = scanner.nextLine();
 
         if (isInteger(choice)) {

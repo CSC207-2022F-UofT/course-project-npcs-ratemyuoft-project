@@ -1,10 +1,11 @@
 
 package userDataBase;
 
+import dataBases.userDataBase.UserDataBase;
 import entities.User;
 import entities.UserList;
 
-import logInUseCase.UserDataAccess;
+import useCases.logInUseCase.UserDataAccess;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

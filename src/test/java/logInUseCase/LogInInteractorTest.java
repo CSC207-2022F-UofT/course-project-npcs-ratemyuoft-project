@@ -1,6 +1,8 @@
 package logInUseCase;
 
 import org.junit.jupiter.api.Test;
+import useCases.logInUseCase.InvalidInputException;
+import useCases.logInUseCase.LogInInteractor;
 
 import java.io.IOException;
 

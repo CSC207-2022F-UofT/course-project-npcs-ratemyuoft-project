@@ -1,15 +1,15 @@
 package cli;
 
-import courseDataBase.CourseDataAccess;
-import courseDataBase.CourseDataAccessInterface;
-import filterInterfaceAdapters.FilterController;
-import leaveReviewInterfaceAdapter.LeaveReviewController;
-import leaveReviewInterfaceAdapter.LeaveReviewPresenter;
-import leaveReviewUseCase.LeaveReviewInputBoundary;
-import leaveReviewUseCase.LeaveReviewInteractor;
-import logInInterfaceAdapter.LogInController;
-import logInInterfaceAdapter.LogInPresenter;
-import logInUseCase.InvalidInputException;
+import dataBases.courseDataBase.CourseDataAccess;
+import dataBases.courseDataBase.CourseDataAccessInterface;
+import interfaceAdapters.filterInterfaceAdapters.FilterController;
+import interfaceAdapters.leaveReviewInterfaceAdapter.LeaveReviewController;
+import interfaceAdapters.leaveReviewInterfaceAdapter.LeaveReviewPresenter;
+import useCases.leaveReviewUseCase.LeaveReviewInputBoundary;
+import useCases.leaveReviewUseCase.LeaveReviewInteractor;
+import interfaceAdapters.logInInterfaceAdapter.LogInController;
+import interfaceAdapters.logInInterfaceAdapter.LogInPresenter;
+import useCases.logInUseCase.InvalidInputException;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -38,7 +38,7 @@ public class ViewCourseMenu {
     }
 
 
-    public void chooseOptions(Scanner scanner, FilterController filterController) throws InvalidInputException, IOException, ClassNotFoundException, leaveReviewUseCase.InvalidInputException {
+    public void chooseOptions(Scanner scanner, FilterController filterController) throws InvalidInputException, IOException, ClassNotFoundException, useCases.leaveReviewUseCase.InvalidInputException {
         String choice = scanner.nextLine();
         if (isInteger(choice)) {
             if (Integer.parseInt(choice) == 1) {

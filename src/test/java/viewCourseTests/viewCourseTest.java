@@ -1,12 +1,12 @@
 package viewCourseTests;
 
-import courseDataBase.CourseDataAccess;
-import courseDataBase.CourseDataAccessInterface;
+import dataBases.courseDataBase.CourseDataAccess;
+import dataBases.courseDataBase.CourseDataAccessInterface;
 import org.junit.jupiter.api.Test;
-import viewCourseInterfaceAdapters.ViewCoursePresenter;
-import viewCourseDataStructures.CourseNameRequestModel;
-import viewCourseReviewUseCase.ViewCourseOutputBoundary;
-import viewCourseReviewUseCase.ViewCourseInteractor;
+import interfaceAdapters.viewCourseInterfaceAdapters.ViewCoursePresenter;
+import dataStructures.viewCourseDataStructures.CourseNameRequestModel;
+import useCases.viewCourseReviewUseCase.ViewCourseOutputBoundary;
+import useCases.viewCourseReviewUseCase.ViewCourseInteractor;
 
 import static org.junit.jupiter.api.Assertions.*;
 
