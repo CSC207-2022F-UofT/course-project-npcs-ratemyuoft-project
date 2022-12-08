@@ -1,6 +1,7 @@
 package leaveReviewUseCase;
 
 import courseDataBase.CourseDataAccess;
+import courseDataBase.CourseDataAccessInterface;
 import entities.CourseList;
 import leaveReviewInterfaceAdapter.LeaveReviewPresenter;
 import org.junit.jupiter.api.Test;

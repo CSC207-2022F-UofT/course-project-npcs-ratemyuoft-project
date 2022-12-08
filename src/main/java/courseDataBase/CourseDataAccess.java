@@ -4,7 +4,6 @@ import java.io.*;
 
 import entities.Course;
 import entities.CourseList;
-import leaveReviewUseCase.CourseDataAccessInterface;
 
 
 /**
@@ -81,11 +80,6 @@ public class CourseDataAccess implements CourseDataAccessInterface {
         cl.addCourse(course5);
         cl.addCourse(course1);
         cl.addCourse(course7);
-        int i = 0;
-        for (Course c : cl) {
-            c.setCourseRating(i);
-            i += 1;
-        }
         this.saveCourse(cl);
     }
 

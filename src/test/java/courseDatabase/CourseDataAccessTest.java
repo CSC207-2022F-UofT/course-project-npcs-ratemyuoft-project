@@ -1,15 +1,12 @@
-package courseDatabase;
+package courseDataBase;
 
-import courseDataBase.CourseDataAccess;
-import courseDataBase.DataFill;
 import entities.Course;
 import entities.CourseList;
+import entities.Review;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-
-import static org.junit.Assert.assertEquals;
 
 public class CourseDataAccessTest {
 
@@ -28,6 +25,29 @@ public class CourseDataAccessTest {
         Course course8 = new Course("STA257", "Statistical Science");
         Course course9 = new Course("STA261", "Statistical Science");
         Course course10 = new Course("STA130", "Statistical Science");
+        Review r1 = new Review(course1, 3, "Good Course");
+        Review r2 = new Review(course2, 3, "Good Course");
+        Review r3 = new Review(course3, 3, "Good Course");
+        Review r4 = new Review(course4, 3, "Good Course");
+        Review r5 = new Review(course5, 3, "Good Course");
+        Review r6 = new Review(course6, 3, "Good Course");
+        Review r7 = new Review(course7, 3, "Good Course");
+        Review r8 = new Review(course8, 3, "Good Course");
+        Review r9 = new Review(course9,3, "Good Course");
+        Review r10 = new Review(course10, 3, "Good Course");
+
+        course1.addReview(r1);
+        course2.addReview(r2);
+        course3.addReview(r3);
+        course4.addReview(r4);
+        course5.addReview(r5);
+        course6.addReview(r6);
+        course7.addReview(r7);
+        course8.addReview(r8);
+        course9.addReview(r9);
+        course10.addReview(r10);
+
+
         cl.addCourse(course9);
         cl.addCourse(course4);
         cl.addCourse(course2);
@@ -54,7 +74,6 @@ public class CourseDataAccessTest {
 
     @Test
     public void importCourses() throws IOException, ClassNotFoundException {
-        Assertions.assertEquals("Statistical Science",
-                courseDataAccess.importCourses().getCourseList().get(0).getFieldOfStudy());
+        Assertions.assertEquals("Statistical Science", courseDataAccess.importCourses().getCourseList().get(0).getFieldOfStudy());
     }
 }

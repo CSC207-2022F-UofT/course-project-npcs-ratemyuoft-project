@@ -127,4 +127,14 @@ public class Review implements Serializable {
      * number of reviews the course currently has.
      */
     public void setReviewID(int i) {this.reviewID = course_reviewed.getCourseName() + "Review" + Integer.toString(i);}
+
+    /**
+     * This method increases the number of likes of this review by 1
+     */
+
+    public void Like() {
+        this.numberOfLikes += 1;
+    }
 }
+
+

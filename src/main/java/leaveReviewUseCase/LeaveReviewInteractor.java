@@ -1,5 +1,6 @@
 package leaveReviewUseCase;
 
+import courseDataBase.CourseDataAccessInterface;
 import entities.Course;
 import entities.CourseList;
 import entities.Review;
@@ -64,7 +65,7 @@ public class LeaveReviewInteractor implements LeaveReviewInputBoundary {
      * at least 1 character.
      */
     public boolean checkInputRating(LeaveReviewRatingRequestModel r) {
-            return Integer.parseInt(r.getRating()) <= 5 && Integer.parseInt(r.getRating()) > 0;
+            return Integer.parseInt(r.getRating()) <= 5 && Integer.parseInt(r.getRating()) >= 0;
     }
     public boolean checkInputComment(LeaveReviewCommentRequestModel c) {
         return c.getComment().length() <= 280 && c.getComment().length() > 0;
