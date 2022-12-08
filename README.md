@@ -1,12 +1,42 @@
-# course-project-npcs-ratemyuoft-project
-course-project-npcs-ratemyuoft-project created by GitHub Classroom
+# CSC207 Project 
+# Team NPCs (Mykola, Mason, Michael, Elang, Shawn, John)
 
-KenanBogopa (Elang Bogopa on Quercus Contributions):
+
+## KolyaLovesMarlboro(Mykola Zhuk on Quercus contributions):
+I implemented 1st branch that was merged to main(1-log-in) which included Register/LogIn/ShowUsers/LogOut use cases.
+I also made the base of the CLI(WelcomeMenu, MainMenu,Login,Register,ShowUsers classes). I tried to make the CLI as 
+modular as possible, so that my teammates wouldn't have any trouble merging with main. I believe it was a great success
+as we managed to merge all the leftover branches the day before the deadline. I won't say a lot about my use case as
+I made a separate README.md file which you can find inside my branch. Which has initial explanation of the implementation
+of the use case and CLI, and Log indicating updates and explanation to them.
+
+When I finished my use case I mostly focused on debugging, reviewing, solving conflicts ,cleaning branches from local 
+files (.xml for example, or gradle/wrapper directory). You can see  significant amount of my commits in 6-filter-course 
+and view-course branches. Overall, I tried to give maximum support to my teammates, so that we wouldn't leave this 
+project unfinished.
+
+##
+
+            ___________
+           |.---------.|
+           ||         ||
+           ||  TIRED  ||
+           ||         ||
+           |'---------'|
+            `)__ ____('
+            [=== -- o ]--.
+          __'---------'__ \
+         [::::::::::: :::] )
+          `""'"""""'""""`/T\
+                         \_/
+
+
+## KenanBogopa (Elang Bogopa on Quercus Contributions):
 My completed UseCase (4-Leave-Review) was not directly pulled on to main but was instead merged with (22-viewcourselikereview) which can be seen when seeing the commits done on that branch.
 This branch was then merged with main.
-I also cleaned up everyones CLI by :
+I also cleaned up everyone's CLI by :
 - Ensuring that there is no User Input that can cause the program to crash which made the program much less vulnerable. This was mainly done by switch from int scanners to String scanners and then checking if the Strings where indeed integers.
 - Renaming all input prompts so that the structure of the CLI is consistent throughout the whole program.
 - Changing the arrangement of CLI components sos that it follows a logical and efficient order to reduce the User having to input the same response more than once.
 
-  
+
