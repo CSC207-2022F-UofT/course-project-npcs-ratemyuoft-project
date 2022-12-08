@@ -1,6 +1,8 @@
 # course-project-npcs-ratemyuoft-project
 course-project-npcs-ratemyuoft-project created by GitHub Classroom
 
+KenanBogopa(Elang Bogopa on Quercus) Updates to Leave Review Class.
+
 Update 11/28/22
 
 I have created my UseCase classes, InterfaceAdapters and added required methods to my entities of interest.
