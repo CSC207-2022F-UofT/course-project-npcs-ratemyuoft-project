@@ -21,8 +21,7 @@ public class LeaveReviewLeaveReviewWelcomeMenu implements LeaveReviewWelcomeMenu
             }else {
         leaveReviewPresenter.outputMessage("\n" + "Available Courses:" + "\n");
         for (String c: courseNames) {
-            System.out.println(c); }
-        leaveReviewPresenter.outputMessage("Please enter the name of the course you want to review" + "\n");}}
+            System.out.println(c); }}}
         catch (NullPointerException e) {
             leaveReviewPresenter.outputMessage("Null pointer exception raised when displaying courses to review!" + "\n");} catch (
                 ClassNotFoundException e) {
@@ -34,7 +33,7 @@ public class LeaveReviewLeaveReviewWelcomeMenu implements LeaveReviewWelcomeMenu
                                      LeaveReviewInterface leaveReviewInterface,
                                      CourseDataAccessInterface courseDataAccessInterface)
             throws IOException, ClassNotFoundException, InvalidInputException {
-
+        leaveReviewPresenter.outputMessage("Please enter the name of the course you want to review" + "\n");
         String choice = scanner.nextLine();
         CourseList courseList = courseDataAccessInterface.importCourses();
         List<String> courseNames = courseList.getCourseNameList();
@@ -46,7 +45,6 @@ public class LeaveReviewLeaveReviewWelcomeMenu implements LeaveReviewWelcomeMenu
 
         } else{
             leaveReviewPresenter.outputMessage("Invalid Input! Please choose a course in the list!" + "\n");
-            this.displayCoursesToReview(leaveReviewPresenter, courseDataAccessInterface);
             this.chooseCourseToReview(scanner, scanner2, leaveReviewController, leaveReviewPresenter, leaveReviewInterface,
                     courseDataAccessInterface);
         }
