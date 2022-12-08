@@ -33,7 +33,7 @@ public class ViewCourseInteractor implements ViewCourseInputBoundary {
         this.output = output;
     }
 
-    public void Displayinformation(CourseNameRequestModel coursenamereq){
+    public void Displayinformation(CourseNameRequestModel coursenamereq) throws ClassNotFoundException {
         String courseName = coursenamereq.getCoursename();
 
         for (Course i: courseList){
@@ -51,7 +51,7 @@ public class ViewCourseInteractor implements ViewCourseInputBoundary {
             this.output.Display(courselistresponse);
         }
         else {
-            this.output.outputMessage("Course not in Directory");
+            throw new ClassNotFoundException();
         }
     }
 }

@@ -1,10 +1,16 @@
 package cli;
 
+import java.io.FilterInputStream;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import courseDataBase.CourseDataAccessInterface;
+import filterInterfaceAdapters.FilterController;
+import filterInterfaceAdapters.FilterPresenter;
+import filterUseCases.FilterInputBoundary;
+import filterUseCases.FilterOutputBoundary;
+import filterUseCases.FilterUseCaseInteractor;
 import leaveReviewInterfaceAdapter.LeaveReviewController;
 import leaveReviewInterfaceAdapter.LeaveReviewPresenter;
 import leaveReviewUseCase.InvalidCommentLengthException;
@@ -22,6 +28,13 @@ public class LeaveReview implements LeaveReviewInterface {
         try{
             leaveReviewController.addReview(course, rating);
             leaveReviewPresenter.outputMessage("Your review has been added!" + "\n");
+            FilterOutputBoundary filterOutputBoundary = new FilterPresenter();
+            FilterInputBoundary filterInputBoundary = new FilterUseCaseInteractor(dataaccess, filterOutputBoundary);
+            FilterController filterController =  new FilterController(filterInputBoundary);
+            ViewCourseMenu viewCourseMenu = new ViewCourseMenu();
+            viewCourseMenu.displayAfterFilterOptions();
+            Scanner scanner3 = new Scanner(System.in);
+            viewCourseMenu.chooseOptions(scanner3, filterController);
 
         }catch (InvalidInputException e){
             leaveReviewPresenter.outputMessage("Invalid Input! Please ensure your rating is between 0 and 5 inclusive!" + "\n");
@@ -32,6 +45,8 @@ public class LeaveReview implements LeaveReviewInterface {
             leaveReviewPresenter.outputMessage("Invalid Input! Please ensure that your rating is an integer!" + "\n");
             LeaveReviewInterface leaveReviewInterface = new LeaveReview();
             leaveReviewInterface.addReview(scanner, scanner2, course, leaveReviewController, leaveReviewPresenter, dataaccess, leaveReviewWelcomeMenuInterface);
+        } catch (logInUseCase.InvalidInputException e) {
+            throw new RuntimeException(e);
         }
 
 
@@ -47,6 +62,13 @@ public class LeaveReview implements LeaveReviewInterface {
         try{
             leaveReviewController.addReview(course, rating, c);
             leaveReviewPresenter.outputMessage("Your review has been added!" + "\n");
+            FilterOutputBoundary filterOutputBoundary = new FilterPresenter();
+            FilterInputBoundary filterInputBoundary = new FilterUseCaseInteractor(dataaccess, filterOutputBoundary);
+            FilterController filterController =  new FilterController(filterInputBoundary);
+            ViewCourseMenu viewCourseMenu = new ViewCourseMenu();
+            viewCourseMenu.displayAfterFilterOptions();
+            Scanner scanner3 = new Scanner(System.in);
+            viewCourseMenu.chooseOptions(scanner3, filterController);
 
         }catch (InvalidInputException e) {
             leaveReviewPresenter.outputMessage("Invalid Input! Please ensure your rating is between 0 and 5 inclusive!" + "\n");
@@ -63,6 +85,8 @@ public class LeaveReview implements LeaveReviewInterface {
                     "characters!"+ "\n");
             LeaveReviewInterface leaveReviewInterface = new LeaveReview();
             leaveReviewInterface.addReviewComment(scanner, scanner2, course, leaveReviewController, leaveReviewPresenter, dataaccess, leaveReviewWelcomeMenuInterface);
+        } catch (logInUseCase.InvalidInputException e) {
+            throw new RuntimeException(e);
         }
     }
 }

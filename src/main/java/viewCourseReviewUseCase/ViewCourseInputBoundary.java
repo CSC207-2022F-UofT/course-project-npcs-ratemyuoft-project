@@ -8,5 +8,5 @@ public interface ViewCourseInputBoundary {
      * It has one method, Displayinformation, which takes in CourseNameRequestModel
      */
 
-    void Displayinformation(CourseNameRequestModel coursenamereq);
+    void Displayinformation(CourseNameRequestModel coursenamereq) throws ClassNotFoundException;
 }

@@ -2,6 +2,11 @@ package cli;
 
 import courseDataBase.CourseDataAccess;
 import courseDataBase.CourseDataAccessInterface;
+import filterInterfaceAdapters.FilterController;
+import filterInterfaceAdapters.FilterPresenter;
+import filterUseCases.FilterInputBoundary;
+import filterUseCases.FilterOutputBoundary;
+import filterUseCases.FilterUseCaseInteractor;
 import leaveReviewInterfaceAdapter.LeaveReviewController;
 import leaveReviewInterfaceAdapter.LeaveReviewPresenter;
 import leaveReviewUseCase.LeaveReviewInputBoundary;
@@ -14,30 +19,74 @@ import java.io.IOException;
 import java.util.Scanner;
 public class ReviewMenu {
     public void displayFilterOptions() {
-        System.out.println("1. Like Review \n2. Leave Review\n3. Comment on Review \nPlease enter your filter option");
+        System.out.println("1. Like a review\n2. Comment on a review\n3. Go to course menu\n4. Go back to main menu");
+    }
+
+    public boolean isInteger(String r) {
+        return isInteger(r, 10);
+    }
+
+    public static boolean isInteger(String s, int radix) {
+        if(s.isEmpty()) return false;
+        for(int i = 0; i < s.length(); i++) {
+            if(i == 0 && s.charAt(i) == '-') {
+                if(s.length() == 1) return false;
+                else continue;
+            }
+            if(Character.digit(s.charAt(i),radix) < 0) return false;
+        }
+        return true;
     }
 
     public void filter(Scanner scanner, LikeReviewController likereviewController) throws ClassNotFoundException, InvalidInputException, IOException, leaveReviewUseCase.InvalidInputException {
-        int choice = scanner.nextInt();
-        if (choice == 1) {
-            try {
-                System.out.println("Please enter the name of the Review you want to like");
-                likereviewController.Like(scanner.next());
+        String choice = scanner.nextLine();
+        if (isInteger(choice)) {
+            if (Integer.parseInt(choice) == 1) {
+                try {
+                    System.out.println("Please enter the name of the review you want to like:");
+                    likereviewController.Like(scanner.next());
+                    FilterOutputBoundary filterOutputBoundary = new FilterPresenter();
+                    CourseDataAccessInterface dataaccess = new CourseDataAccess();
+                    FilterInputBoundary filterInputBoundary = new FilterUseCaseInteractor(dataaccess, filterOutputBoundary);
+                    FilterController filterController =  new FilterController(filterInputBoundary);
+                    ViewCourseMenu viewCourseMenu = new ViewCourseMenu();
+                    viewCourseMenu.displayAfterFilterOptions();
+                    Scanner scanner3 = new Scanner(System.in);
+                    viewCourseMenu.chooseOptions(scanner3, filterController);
 
-            } catch (IOException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
+                } catch (IOException | ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            } else if ( Integer.parseInt(choice) == 2) {
+                System.out.println("This feature is coming soon!" + "\n" + "Please choose a different option:");
+                Scanner scanner3 = new Scanner(System.in);
+                filter(scanner3, likereviewController);
+            } else if ( Integer.parseInt(choice) == 3) {
+                FilterOutputBoundary filterOutputBoundary = new FilterPresenter();
+                CourseDataAccessInterface dataaccess = new CourseDataAccess();
+                FilterInputBoundary filterInputBoundary = new FilterUseCaseInteractor(dataaccess, filterOutputBoundary);
+                FilterController filterController =  new FilterController(filterInputBoundary);
+                ViewCourseMenu viewCourseMenu = new ViewCourseMenu();
+                viewCourseMenu.displayAfterFilterOptions();
+                Scanner scanner3 = new Scanner(System.in);
+                viewCourseMenu.chooseOptions(scanner3, filterController);
+
+            } else if (Integer.parseInt(choice) == 4) {
+                MainMenu mainmenu = new MainMenu();
+                LogInPresenter logInPresenter = new LogInPresenter();
+                mainmenu.displayMainMenu(logInPresenter);
+                try {
+                    LogInController logInController = new LogInController();
+                    mainmenu.choseOption(scanner, logInPresenter, logInController);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                }else {System.out.println("Please enter an integer from the given list!");
+                this.filter(scanner, likereviewController);
             }
-        } else if (choice == 2) {
-            Scanner scanner3 = new Scanner(System.in);
-            LeaveReviewInterface registerInterface = new LeaveReview();
-            LeaveReviewPresenter leaveReviewPresenter = new LeaveReviewPresenter();
-            CourseDataAccessInterface dataAccess = new CourseDataAccess();
-            LeaveReviewInputBoundary leaveReviewInputBoundary =new LeaveReviewInteractor(leaveReviewPresenter,dataAccess);
-            LeaveReviewController leaveReviewController = new LeaveReviewController(leaveReviewInputBoundary);
-            LeaveReviewWelcomeMenuInterface leaveReviewWelcomeMenuInterface = new LeaveReviewWelcomeMenu();
-
-            leaveReviewWelcomeMenuInterface.chooseCourseToReview(scanner,scanner3, leaveReviewController,
-                    leaveReviewPresenter, registerInterface, dataAccess);
+        }else {
+            System.out.println("Please enter an integer from the given list!");
+            this.filter(scanner, likereviewController);
 
         }
 

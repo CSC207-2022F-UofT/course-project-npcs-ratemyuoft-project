@@ -10,9 +10,6 @@ import java.util.Scanner;
 
 public interface LeaveReviewWelcomeMenuInterface {
 
-    void displayCoursesToReview(LeaveReviewPresenter leaveReviewPresenter, CourseDataAccessInterface courseDataAccessInterface)
-            throws IOException, ClassNotFoundException;
-
     void chooseCourseToReview(Scanner scanner, Scanner scanner2, LeaveReviewController leaveReviewController, LeaveReviewPresenter leaveReviewPresenter,
                               LeaveReviewInterface leaveReviewInterface,
                               CourseDataAccessInterface courseDataAccessInterface)

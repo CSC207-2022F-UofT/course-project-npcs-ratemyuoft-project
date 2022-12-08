@@ -13,7 +13,7 @@ public class ViewCourseController {
     public ViewCourseController(ViewCourseInputBoundary ip){
         this.ip = ip;
     }
-    public void DisplayReviews(String coursename){
+    public void DisplayReviews(String coursename) throws ClassNotFoundException {
         CourseNameRequestModel coursenamereq = new CourseNameRequestModel(coursename);
         ip.Displayinformation(coursenamereq);
 

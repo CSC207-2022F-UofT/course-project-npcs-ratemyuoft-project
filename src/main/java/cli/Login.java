@@ -15,10 +15,10 @@ public class Login implements LogInInterface  {
             throws IOException, ClassNotFoundException, InvalidInputException {
 
 
-            logInPresenter.outputMessage(" Enter username please => "+ "\n");
+            logInPresenter.outputMessage("Enter username:"+ "\n");
             String username = scanner.nextLine();
 
-            logInPresenter.outputMessage(" Enter password please = >"+ "\n");
+            logInPresenter.outputMessage("Enter password:"+ "\n");
             String password = scanner.nextLine();
 
 

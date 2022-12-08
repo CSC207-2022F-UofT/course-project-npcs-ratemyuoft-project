@@ -17,23 +17,6 @@ import java.util.Scanner;
 
 public class LeaveReviewWelcomeMenu implements LeaveReviewWelcomeMenuInterface {
 
-    public void displayCoursesToReview(LeaveReviewPresenter leaveReviewPresenter, CourseDataAccessInterface courseDataAccessInterface) throws NullPointerException, IOException {
-        try {
-            CourseList courseList = courseDataAccessInterface.importCourses();
-            List<String> courseNames = courseList.getCourseNameList();
-            if (courseNames.size() == 0) {
-                leaveReviewPresenter.outputMessage("There are no courses to review at this time" + "\n");
-            }else {
-        leaveReviewPresenter.outputMessage("\n" + "Available Courses:" + "\n");
-        for (String c: courseNames) {
-            System.out.println(c); }}}
-        catch (NullPointerException e) {
-            leaveReviewPresenter.outputMessage("Null pointer exception raised when displaying courses to review!" + "\n");} catch (
-                ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     @Override
     public void chooseCourseToReview(Scanner scanner, Scanner scanner2, LeaveReviewController leaveReviewController, LeaveReviewPresenter leaveReviewPresenter,
                                      LeaveReviewInterface leaveReviewInterface,
@@ -51,7 +34,6 @@ public class LeaveReviewWelcomeMenu implements LeaveReviewWelcomeMenuInterface {
 
         } else{
             leaveReviewPresenter.outputMessage("Invalid Input! Please choose a course in the list!" + "\n");
-            this.displayCoursesToReview(leaveReviewPresenter, courseDataAccessInterface);
             this.chooseCourseToReview(scanner, scanner2, leaveReviewController, leaveReviewPresenter, leaveReviewInterface,
                     courseDataAccessInterface);
         }

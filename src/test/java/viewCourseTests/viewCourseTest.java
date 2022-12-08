@@ -1,6 +1,7 @@
 package viewCourseTests;
 
 import courseDataBase.CourseDataAccess;
+import courseDataBase.CourseDataAccessInterface;
 import org.junit.jupiter.api.Test;
 import viewCourseInterfaceAdapters.ViewCoursePresenter;
 import viewCourseDataStructures.CourseNameRequestModel;
@@ -16,14 +17,14 @@ public class viewCourseTest {
     ViewCourseInteractor viewcourse = new ViewCourseInteractor(courseDataAccessInterface, viewCourseOutputBoundary);
 
     @Test
-    void checkIfrightinputworks() {
+    void checkIfrightinputworks() throws ClassNotFoundException {
         CourseNameRequestModel coursename = new CourseNameRequestModel("MAT137");
         viewcourse.Displayinformation(coursename);
-        assertEquals(viewcourse.course.courseName, "MAT137");
+        assertEquals(viewcourse.course.getCourseName(), "MAT137");
     }
 
     @Test
-    void checkIfwronginputworks() {
+    void checkIfwronginputworks() throws ClassNotFoundException {
         CourseNameRequestModel coursename = new CourseNameRequestModel("Sta237");
         viewcourse.Displayinformation(coursename);
         assertNull(viewcourse.course);

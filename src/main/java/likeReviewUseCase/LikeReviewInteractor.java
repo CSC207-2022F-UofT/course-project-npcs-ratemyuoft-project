@@ -33,7 +33,6 @@ public class LikeReviewInteractor implements LikeReviewInputBoundary {
 
         try {
             this.courseList = this.courseDataAccessInterfaceView.importCourses();
-            System.out.println("Good");
         } catch (IOException | ClassNotFoundException e) {
             this.courseList = new CourseList();
         }
