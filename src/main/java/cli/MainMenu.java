@@ -33,7 +33,7 @@ public class MainMenu implements MainMenuInterface{
     }
     @Override
     public void displayMainMenu(LogInPresenter logInPresenter) {
-        logInPresenter.outputMessage("Avaliable Actions:" + "\n" + "1. Show all the Users on our forum" + "\n" +
+        logInPresenter.outputMessage("Available Actions:" + "\n" + "1. Show all the Users on our forum" + "\n" +
                 "2. Log out" + "\n" + "3. Look for a course \n");
     }
 
@@ -59,8 +59,8 @@ public class MainMenu implements MainMenuInterface{
                 try {
                     logInController.userLogOut();
                     WelcomeMenuInterface welcomeMenuInterface = new WelcomeMenu();
-                    Scanner scanner1 = new Scanner(System.in);
-                    welcomeMenuInterface.choseLoginOrRegister(scanner1, logInController, logInPresenter);
+                    welcomeMenuInterface.displayWelcomeMenu(logInPresenter);
+                    welcomeMenuInterface.choseLoginOrRegister(scanner, logInController, logInPresenter);
                 } catch (IOException e) {
                     displayMainMenu(logInPresenter);
                     choseOption(scanner, logInPresenter, logInController);

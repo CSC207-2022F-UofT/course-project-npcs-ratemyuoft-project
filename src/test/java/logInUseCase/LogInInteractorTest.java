@@ -75,8 +75,7 @@ class LogInInteractorTest {
             assertFalse(logInInteractor.checkUserStatus("username30"));
             logInInteractor.userLogin("username","tired");
             assertTrue(logInInteractor.checkUserStatus("username30"));
-        } catch (IOException | ClassNotFoundException | InvalidInputException e) {
-            System.out.println("smth wrong with userLogin");
+        } catch (IOException | ClassNotFoundException | InvalidInputException ignored) {
         }
 
     }

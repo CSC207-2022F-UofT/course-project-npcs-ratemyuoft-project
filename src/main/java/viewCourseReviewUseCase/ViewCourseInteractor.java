@@ -1,4 +1,5 @@
 package viewCourseReviewUseCase;
+
 import courseDataBase.CourseDataAccessInterface;
 import entities.Course;
 import entities.CourseList;
@@ -9,7 +10,6 @@ import viewCourseDataStructures.CourseNameRequestModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class ViewCourseInteractor implements ViewCourseInputBoundary {
     /**
@@ -33,11 +33,11 @@ public class ViewCourseInteractor implements ViewCourseInputBoundary {
         this.output = output;
     }
 
-    public void Displayinformation(CourseNameRequestModel coursenamereq) throws ClassNotFoundException {
+    public void Displayinformation(CourseNameRequestModel coursenamereq) {
         String courseName = coursenamereq.getCoursename();
 
         for (Course i: courseList){
-            if (Objects.equals(i.getCourseName(), courseName)) {
+            if (i.getCourseName().equals(courseName)) {
                 this.course = i;
                 break;
             }
@@ -49,9 +49,6 @@ public class ViewCourseInteractor implements ViewCourseInputBoundary {
             CourseListResponseModel courselistresponse = new
                     CourseListResponseModel(courselistreq.reviewlist, courselistreq.coursename);
             this.output.Display(courselistresponse);
-        }
-        else {
-            throw new ClassNotFoundException();
         }
     }
 }
