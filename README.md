@@ -33,7 +33,7 @@ project unfinished.
 
 ## KenanBogopa (Elang Bogopa on Quercus Contributions):
 My completed UseCase (4-Leave-Review) was not directly pulled on to main but was instead merged with (22-viewcourselikereview) which can be seen when seeing the commits done on that branch.
-This branch was then merged with main.
+This branch was then merged with main. Please see the README in 4-Leave-Review as it goes more into detail with the changes that I made with my code.
 I also cleaned up everyone's CLI by :
 - Ensuring that there is no User Input that can cause the program to crash which made the program much less vulnerable. This was mainly done by switch from int scanners to String scanners and then checking if the Strings where indeed integers.
 - Renaming all input prompts so that the structure of the CLI is consistent throughout the whole program.
