@@ -99,6 +99,7 @@ public class commentInteractor implements commentInputBoundary {
             try {
                 //save new comments
                 commentGateway.saveComment(commentList);
+                // this error will rise if the file has problems
             } catch (IOException e) {
                 throw new IOException();
             }
