@@ -1,5 +1,7 @@
-package entities;
+package loginEntities;
 
+import entities.Course;
+import entities.CourseList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.*;

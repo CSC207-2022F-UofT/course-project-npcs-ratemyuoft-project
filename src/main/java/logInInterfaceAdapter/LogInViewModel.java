@@ -24,7 +24,7 @@ public class LogInViewModel {
      * outputFromController is a method that passes error message from LogInController to LogInPresenter for the
      * message to be displayed in the CLI and let user know what has gone wrong.
      */
-    void outputFromController(String s){
+    public void outputFromController(String s){
         logInPresenter.outputMessage(s+ "\n");
     }
 

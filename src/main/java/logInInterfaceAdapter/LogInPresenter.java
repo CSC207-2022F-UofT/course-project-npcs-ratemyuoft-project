@@ -1,8 +1,8 @@
 package logInInterfaceAdapter;
 
-import logInUseCase.LogInOutputBoundary;
 import entities.User;
 import entities.UserList;
+import logInUseCase.LogInOutputBoundary;
 
 
 /**

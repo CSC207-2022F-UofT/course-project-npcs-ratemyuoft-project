@@ -1,7 +1,7 @@
 package logInInterfaceAdapter;
-import logInUseCase.LogInInputBoundary;
-import logInUseCase.LogInInteractor; // this import can't be accessed, only used to initialize input boundary
 import logInUseCase.InvalidInputException;
+import logInUseCase.LogInInputBoundary;
+import logInUseCase.LogInInteractor;
 
 
 import java.io.IOException;

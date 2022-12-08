@@ -15,25 +15,16 @@ import java.util.NoSuchElementException;
 public class CourseList implements Iterable<Course>, Serializable {
     /**
      * CourseList class has one instance variable of type List<Course>
+     * CourseList class has one instance of type List<String>
      */
     private final List<Course> courseList = new ArrayList<>();
 
-    //Getter
-    public List<Course> getCourseList() {
-        return this.courseList;
-    }
+    private final List<String> courseNameList = new ArrayList<>();
 
     //Setter
     public void addCourse(Course course) {
         courseList.add(course);
-    }
-
-    /**
-     * Getter of the size of the courseList
-     * @return the number of courses there is in the CourseList
-     */
-    public int size(){
-        return getCourseList().size();
+        courseNameList.add(course.getCourseName());
     }
 
     /**
@@ -60,5 +51,73 @@ public class CourseList implements Iterable<Course>, Serializable {
             }
             throw new NoSuchElementException();
         }
+    }
+
+    // Getters
+
+    /**
+     *
+     * @return This function returns a list of all the names of courses in this courseList.
+     * @throws ClassNotFoundException It returns this exception if the courseList is empty.
+     */
+    public List<String> getCourseNameList() throws ClassNotFoundException{
+
+        if (!(courseNameList.isEmpty())){
+            return courseNameList;
+        }else {
+            throw new ClassNotFoundException();
+        }
+    }
+
+    /**
+     *
+     * @return This function returns a boolean that is true if the CourseList has no courses in it.
+     */
+    public boolean isEmpty() {
+        return (courseList.isEmpty());
+    }
+
+    /**
+     *
+     * @return This function returns the list of courses in this CourseList.
+     */
+    public List<Course> getCourseList() {
+        return this.courseList;
+    }
+
+    /**
+     * Getter of the size of the courseList
+     * @return the number of courses there is in the CourseList
+     */
+    public int size(){
+        return getCourseList().size();
+    }
+
+    /**
+     * This function returns the course in this CourseList with the name s.
+     *
+     * @param s This is the name of the course this function will return.
+     * @return This is the course that has name provided in the argument.
+     * It throws a class not found exception if there is no course with the name provided or if the courseList is empty.
+     */
+    public Course getCourseWithName(String s) throws ClassNotFoundException {
+        if (this.containsCourseWithName(s)){
+            for (Course c: courseList) {
+                if (c.getCourseName().equals(s)) {
+                    return c;
+                }
+            }
+        }else throw new NoSuchElementException();
+        return null;
+    }
+
+    /**
+     * This function returns true if this CourseList contains a course with the name s
+     * @param s This is the name of the Course we wish to check
+     * @return This is true if this CourseList contains a course with the name s and false otherwise.
+     * @throws ClassNotFoundException This is thrown if the courseList is empty
+     */
+    public boolean containsCourseWithName(String s) throws ClassNotFoundException {
+        return this.getCourseNameList().contains(s);
     }
 }

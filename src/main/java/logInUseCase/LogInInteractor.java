@@ -1,9 +1,10 @@
 package logInUseCase;
 
-import userDataBase.UserDataBase; // the import can not be used directly. it is used only through DataAccess interface
+import logInInterfaceAdapter.LogInPresenter; // the import can not be used directly. it is used only through DataAccess interface
 import entities.User;
-import entities.UserList;
-import logInInterfaceAdapter.LogInPresenter; //  can not be used directly. only through outputBoundary
+import entities.UserList;//  can not be used directly. only through outputBoundary
+import userDataBase.UserDataBase;
+
 
 import java.io.IOException;
 
@@ -45,8 +46,8 @@ public class LogInInteractor implements LogInInputBoundary {
      *  which are interfaces.
      */
     public LogInInteractor() throws ClassNotFoundException{
-        this.logInOutputBoundary = new LogInPresenter();
-        this.userDataAccess = new UserDataBase();
+        this.logInOutputBoundary = (LogInOutputBoundary) new LogInPresenter();
+        this.userDataAccess = (UserDataAccess) new UserDataBase();
         try{
             users = userDataAccess.importUsers();
         }catch (IOException e){ //This exception should be thrown when program starts first time

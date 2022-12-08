@@ -2,8 +2,8 @@ package userDataBase;
 
 import java.io.*;
 
-import logInUseCase.UserDataAccess;
 import entities.UserList;
+import logInUseCase.UserDataAccess;
 
 /**
  * UserDatabase class is an implementation of the UserDataAccess interface that is located in package logInUseCase
