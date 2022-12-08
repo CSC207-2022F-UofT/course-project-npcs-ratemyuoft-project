@@ -112,28 +112,9 @@ public class commentInteractor implements commentInputBoundary {
 
 
 
-    @Override
-    public void editComment(int commentNum, String s)  {
-//        if(checkInput(s)){
-//            for( Comment c : commentList) {
-//                if (c.getCommentNum() == commentNum) {
-//                    try {
-//                        //save new comments
-//                        gateway.saveComment(commentList);
-//                        c.setComment(s);
-//                        this.outputBoundary.outputMessage("Comment Changed");
-//
-//                    } catch (IOException e) {
-//                        this.outputBoundary.outputMessage("edit and save new comment to file failed");
-//                    }
-//                }
-//            }
-//        }
-//        else {
-//            throw new CommentNotInListException();
-//        }
 
-    }
+
+
 
 
     /**

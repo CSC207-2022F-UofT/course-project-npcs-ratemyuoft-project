@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 
 import static org.junit.Assert.*;
 
-public class commentInteractorTest {
+public class CommentInteractorTest {
     commentInputBoundary testInteractor;
     commentOutputBoundary testCommentOutputBoundary;
     commentGateway testCommentGateway;
@@ -182,16 +182,6 @@ public class commentInteractorTest {
 
     }
 
-
-    @Test
-    public void editComment() {
-        try {
-            testInteractor.editComment(0, "entities");
-            assertTrue(true);
-        } catch (InvalidInputException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     /**
      * Check if it will call the output boundary method.

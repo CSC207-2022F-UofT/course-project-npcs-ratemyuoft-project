@@ -56,14 +56,4 @@ public class commentController {
 
     }
 
-    public void editComment(int commentNum, String s) {
-        try {
-            commentInputBoundary.editComment(commentNum, s);
-        } catch (InvalidInputException e) {
-            commentInputBoundary.outputMessage("Invalid Input");
-
-
-        }
-
     }
-}

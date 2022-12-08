@@ -42,10 +42,6 @@ public class ControllerTest {
                 assertEquals("testing", commentInPutData.getComments());
             }
 
-            @Override
-            public void editComment(int commentNum, String s) {
-
-            }
 
             /**
              * @param s
