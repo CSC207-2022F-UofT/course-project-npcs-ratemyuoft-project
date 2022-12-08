@@ -15,7 +15,7 @@ public class CommentTest {
     @BeforeClass
     public static void setUp()  {
         Comment.resetCount();
-        c1 = new Comment("entities");
+        c1 = new Comment("hi");
         c2 = new Comment("bye");
     }
 
@@ -51,7 +51,7 @@ public class CommentTest {
      */
     @Test
     public void testGetComment() {
-        assertEquals("entities", c1.getComment());
+        assertEquals("hi", c1.getComment());
         assertEquals("bye", c2.getComment());
     }
 

@@ -9,7 +9,7 @@ import commentUseCase.commentOutputBoundary;
 
 import java.io.IOException;
 
-public class Main {
+public class CommentMain {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
 

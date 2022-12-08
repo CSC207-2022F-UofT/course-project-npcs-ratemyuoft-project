@@ -6,6 +6,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * I don't really need an iterator but for extra practice of using iterator, I added anyway.
+ */
 public class CommentList implements Iterable<Comment>, Serializable {
 
     private final List<Comment> commentList = new ArrayList<>();
