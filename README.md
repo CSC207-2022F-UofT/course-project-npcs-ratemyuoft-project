@@ -39,4 +39,8 @@ I also cleaned up everyone's CLI by :
 - Renaming all input prompts so that the structure of the CLI is consistent throughout the whole program.
 - Changing the arrangement of CLI components sos that it follows a logical and efficient order to reduce the User having to input the same response more than once.
 
-
+## Shawn Davison (Shawn Davison on Quercus Contributions):
+My completed UseCase (22-view-courselike-review) was the final file merged onto main. It is the implementation for the
+view course and like review use cases. It was created from the progress made in view-course, which was Initally Alexa's Use Case and
+mine was Banuser. However Alexa stopped communicating with our group, and as such, I was forced to abandon my use case, and
+complete hers. In this Use Case there is testing for both View Coruse and Like Review. 
