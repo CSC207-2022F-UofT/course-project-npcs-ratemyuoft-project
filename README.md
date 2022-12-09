@@ -44,3 +44,6 @@ My completed UseCase (22-view-courselike-review) was the final file merged onto 
 view course and like review use cases. It was created from the progress made in view-course, which was Initally Alexa's Use Case and
 mine was Banuser. However Alexa stopped communicating with our group, and as such, I was forced to abandon my use case, and
 complete hers. In this Use Case there is testing for both View Coruse and Like Review. 
+
+## Masonhhhh Mason Hu contribution:
+My completed use case filter/ look for course is merged from 6-filter/look for course into main. It is completely implemented and bug free.
