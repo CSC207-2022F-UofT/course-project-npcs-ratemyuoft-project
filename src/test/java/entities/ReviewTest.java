@@ -47,6 +47,15 @@ public class ReviewTest {
     }
 
     /**
+     * This test checks that the getCourseReviewed getter works as intended by making sure it returns the right course.
+     */
+    @Test
+    void getCourse_ReviewedTest() {
+        Assertions.assertEquals(c, r.getCourse_reviewed());
+
+    }
+
+    /**
      * This test checks that the reviewID of the review is correctly created when a review is added to a course.
      */
     @Test
@@ -56,5 +65,43 @@ public class ReviewTest {
         c.addReview(r2);
         Assertions.assertEquals("MAT137Review2", r2.getReviewID());
 
+    }
+
+    /**
+     * This test checks that the rating of the review is correctly created when a review is created.
+     */
+    @Test
+    void getRatingTest(){
+        Assertions.assertEquals(5, r.getRating());
+    }
+
+    /**
+     * This test checks that the set number of likes setter works as it should by updating the number of likes of the
+     * review when it is called.
+     */
+    @Test
+    void setNumberOfLikesTest() {
+        r.setNumberOfLikes(4);
+        Assertions.assertEquals(4, r.getNumberOfLikes());
+    }
+
+    /**
+     * This test checks that the set number of dislikes setter works as it should by updating the number of dislikes of
+     * the review when it is called.
+     */
+    @Test
+    void setNumberOfDislikesTest() {
+        r.setNumberOfDislikes(4);
+        Assertions.assertEquals(4, r.getNumberOfDislikes());
+    }
+
+    /**
+     * This test checks that the set rating setter works as it should by updating the rating of
+     * the review when it is called.
+     */
+    @Test
+    void setRatingTest() {
+        r.setRating(4);
+        Assertions.assertEquals(4, r.getRating());
     }
 }

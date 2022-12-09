@@ -40,12 +40,6 @@ public class Review implements Serializable {
      */
     private int numberOfDislikes= 0 ;
 
-    /**
-     * If a different user decides to comment on this review after it has been added, then the userand their comment will
-     * be stored in this map.
-     */
-    private Map<User,Comment > comments= new HashMap<>();
-
 
     // Constructors
     // 1st one for having no comment, just a rating and the 2nd one is for review with comment
