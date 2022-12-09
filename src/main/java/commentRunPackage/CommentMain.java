@@ -1,3 +1,5 @@
+package commentRunPackage;
+
 import commentDataBase.commentDataAccess;
 import commentInterfaceAdapter.commentController;
 import commentInterfaceAdapter.commentPresenter;
@@ -12,7 +14,7 @@ import java.io.IOException;
 public class CommentMain {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
-
+        // it will show implementation failed when there is no file then it will create one.
         commentGateway commentGateway = new commentDataAccess("commentsFile.sav");
         commentOutputBoundary commentOutputBoundary = new commentPresenter();
         commentInputBoundary commentInputBoundary = new commentInteractor(commentOutputBoundary, commentGateway);
