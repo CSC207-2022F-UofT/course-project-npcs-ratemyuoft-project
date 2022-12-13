@@ -1,7 +1,11 @@
 package leaveReviewUseCase;
 
 import courseDataBase.CourseDataAccess;
+import courseDataBase.CourseDataAccessInterface;
 import entities.CourseList;
+import leaveReviewExceptions.CourseNotInDatabaseException;
+import leaveReviewExceptions.InvalidCommentLengthException;
+import leaveReviewExceptions.InvalidRatingException;
 import leaveReviewInterfaceAdapter.LeaveReviewPresenter;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Tests for outputMessage and showUsers were not made as they have the only task is to send the information
  * forward to leaveReviewOutputBoundary which sends it to LeaveReviewPresenter.
  */
-class LeaveReviewInteractorTeset {
+class LeaveReviewInteractorTest {
 
 
     private final CourseDataAccessInterface database = new CourseDataAccess();
@@ -41,15 +45,12 @@ class LeaveReviewInteractorTeset {
      */
 
     @Test
-    void testAddReviewComment(){
-        try {
+    void testAddReviewComment() throws IOException, ClassNotFoundException, InvalidCommentLengthException, InvalidRatingException, CourseNotInDatabaseException {
             leaveReviewInteractor.addReview(new LeaveReviewCourseRequestModel("STA261"),
                     new LeaveReviewRatingRequestModel("4"),
                     new LeaveReviewCommentRequestModel("This course was okay"));
             assertEquals(1, database.importCourses().getCourseList().get(0).getReviewCount());
-        } catch (IOException | InvalidInputException | ClassNotFoundException | InvalidCommentLengthException e) {
-            System.out.println("testAddReview1 is not working");
-        }
+
     }
 
     /**
@@ -58,16 +59,14 @@ class LeaveReviewInteractorTeset {
      */
 
     @Test
-    void testReviewIDComment() {
-        try {
-            leaveReviewInteractor.addReview(new LeaveReviewCourseRequestModel("STA257"),
-                    new LeaveReviewRatingRequestModel("4"),
-                    new LeaveReviewCommentRequestModel("This course was okay"));
-            assertEquals("STA257Review1",
-                    database.importCourses().getCourseWithName("STA257").getReviews().get(0).getReviewID());
-        }catch (IOException | InvalidInputException | ClassNotFoundException | InvalidCommentLengthException e) {
-            System.out.println("testReviewIDComment is not working");
-        }
+    void testReviewIDComment() throws InvalidCommentLengthException, IOException, ClassNotFoundException,
+            InvalidRatingException, CourseNotInDatabaseException {
+
+        leaveReviewInteractor.addReview(new LeaveReviewCourseRequestModel("STA257"),
+                new LeaveReviewRatingRequestModel("4"),
+                new LeaveReviewCommentRequestModel("This course was okay"));
+        assertEquals("STA257Review1",
+                database.importCourses().getCourseWithName("STA257").getReviews().get(0).getReviewID());
     }
 
     /**
@@ -76,15 +75,12 @@ class LeaveReviewInteractorTeset {
      */
 
     @Test
-    void testReviewIDNoComment() {
-        try {
-            leaveReviewInteractor.addReview(new LeaveReviewCourseRequestModel("MAT157"),
-                    new LeaveReviewRatingRequestModel("5"));
-            assertEquals("MAT157Review1",
-                    database.importCourses().getCourseWithName("MAT157").getReviews().get(0).getReviewID());
-        } catch (IOException | InvalidInputException | ClassNotFoundException e) {
-            System.out.println("testReviewIDComment is not working");
-        }
+    void testReviewIDNoComment() throws IOException, ClassNotFoundException, InvalidRatingException,
+            CourseNotInDatabaseException {
+        leaveReviewInteractor.addReview(new LeaveReviewCourseRequestModel("MAT157"),
+                new LeaveReviewRatingRequestModel("5"));
+        assertEquals("MAT157Review1",
+                database.importCourses().getCourseWithName("MAT157").getReviews().get(0).getReviewID());
     }
 
     /**
@@ -92,25 +88,26 @@ class LeaveReviewInteractorTeset {
      * does not add the review to the course.
      */
     @Test
-    void testInvalidInputOutOfRange() {
+    void testInvalidInputOutOfRange() throws IOException, ClassNotFoundException, CourseNotInDatabaseException {
         try {
             leaveReviewInteractor.addReview(new LeaveReviewCourseRequestModel("MAT157"),
                     new LeaveReviewRatingRequestModel("6"));
-        } catch (IOException | InvalidInputException | ClassNotFoundException | InputMismatchException e) {
+        } catch (InvalidRatingException e) {
             System.out.println("testInvalidInputOutOfRange is working");
         }
     }
 
     /**
-     * This test checks that an leaveReviewInteractor with an invalid input of a decimal number instead of an int does not create
-     * a review.
+     * This test checks that an leaveReviewInteractor with an invalid input of a decimal number instead of an int does
+     * not create a review.
      */
     @Test
-    void testInvalidInputNotInt() {
+    void testInvalidInputNotInt() throws IOException, ClassNotFoundException, InvalidRatingException,
+            CourseNotInDatabaseException {
         try {
             leaveReviewInteractor.addReview(new LeaveReviewCourseRequestModel("MAT157"),
                     new LeaveReviewRatingRequestModel("4.6"));
-        } catch (IOException | InvalidInputException | ClassNotFoundException | InputMismatchException e) {
+        } catch (InputMismatchException e) {
             System.out.println("testInvalidInputNotInt is working");
         }
     }
@@ -119,11 +116,12 @@ class LeaveReviewInteractorTeset {
      * This method test that an exception is raised if a CourseName of a course that is not in the database is input/
      */
     @Test
-    void testInvalidInputCourseNotInDatabase() {
+    void testInvalidInputCourseNotInDatabase() throws IOException, ClassNotFoundException, InputMismatchException,
+            InvalidRatingException{
         try {
             leaveReviewInteractor.addReview(new LeaveReviewCourseRequestModel("MAT158"),
                     new LeaveReviewRatingRequestModel("4"));
-        } catch (IOException | InvalidInputException | ClassNotFoundException | InputMismatchException e) {
+        } catch (CourseNotInDatabaseException e) {
             System.out.println("testInvalidInputCourseNotInDatabase is working");
         }
     }
@@ -133,13 +131,13 @@ class LeaveReviewInteractorTeset {
      * that is of length 0.
      */
     @Test
-    void testInvalidInputCommentLength(){
+    void testInvalidInputCommentLength() throws IOException, ClassNotFoundException, InvalidRatingException,
+            CourseNotInDatabaseException {
         try {
             leaveReviewInteractor.addReview(new LeaveReviewCourseRequestModel("MAT157"),
                     new LeaveReviewRatingRequestModel("4"),
                     new LeaveReviewCommentRequestModel(""));
-        } catch (IOException | InvalidInputException | ClassNotFoundException |
-                 InputMismatchException | InvalidCommentLengthException e) {
+        } catch (InvalidCommentLengthException e) {
             System.out.println("testInvalidInputCommentLength is working");
         }
     }

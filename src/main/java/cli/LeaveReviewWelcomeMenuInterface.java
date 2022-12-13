@@ -2,8 +2,8 @@ package cli;
 
 import leaveReviewInterfaceAdapter.LeaveReviewController;
 import leaveReviewInterfaceAdapter.LeaveReviewPresenter;
-import leaveReviewUseCase.CourseDataAccessInterface;
-import leaveReviewUseCase.InvalidInputException;
+import courseDataBase.CourseDataAccessInterface;
+import leaveReviewExceptions.InvalidInputException;
 
 import java.io.IOException;
 import java.util.Scanner;

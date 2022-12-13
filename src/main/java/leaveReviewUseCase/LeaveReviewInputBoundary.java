@@ -1,5 +1,10 @@
 package leaveReviewUseCase;
 
+import leaveReviewExceptions.CourseNotInDatabaseException;
+import leaveReviewExceptions.InvalidCommentLengthException;
+import leaveReviewExceptions.InvalidInputException;
+import leaveReviewExceptions.InvalidRatingException;
+
 import java.io.IOException;
 
 /**
@@ -20,7 +25,7 @@ public interface LeaveReviewInputBoundary {
      */
     void addReview(LeaveReviewCourseRequestModel leaveReviewCourseRequestModel,
                    LeaveReviewRatingRequestModel leaveReviewRatingRequestModel) throws
-            InvalidInputException, IOException, ClassNotFoundException;
+            IOException, ClassNotFoundException, InvalidRatingException, CourseNotInDatabaseException;
 
     /**
      *
@@ -38,6 +43,6 @@ public interface LeaveReviewInputBoundary {
     void addReview(LeaveReviewCourseRequestModel leaveReviewCourseRequestModel,
                    LeaveReviewRatingRequestModel leaveReviewRatingRequestModel,
                    LeaveReviewCommentRequestModel leaveReviewCommentRequestModel) throws
-            InvalidInputException, IOException, ClassNotFoundException, InvalidCommentLengthException;
+             IOException, ClassNotFoundException, InvalidCommentLengthException, InvalidRatingException, CourseNotInDatabaseException;
 
 }

@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import leaveReviewExceptions.CourseNotInDatabaseException;
+import leaveReviewExceptions.InvalidRatingException;
 import leaveReviewInterfaceAdapter.LeaveReviewController;
 import leaveReviewInterfaceAdapter.LeaveReviewPresenter;
-import leaveReviewUseCase.CourseDataAccessInterface;
-import leaveReviewUseCase.InvalidCommentLengthException;
-import leaveReviewUseCase.InvalidInputException;
+import courseDataBase.CourseDataAccessInterface;
+import leaveReviewExceptions.InvalidCommentLengthException;
+import leaveReviewExceptions.InvalidInputException;
 
 public class LeaveReview implements LeaveReviewInterface {
 
@@ -23,13 +25,17 @@ public class LeaveReview implements LeaveReviewInterface {
             leaveReviewController.addReview(course, rating);
             leaveReviewPresenter.outputMessage("Your review has been added!" + "\n");
 
-        }catch (InvalidInputException e){
+        }catch (InvalidRatingException e){
             leaveReviewPresenter.outputMessage("Invalid Input! Please ensure your rating is between 0 and 5 inclusive!" + "\n");
             LeaveReviewInterface leaveReviewInterface = new LeaveReview();
             leaveReviewInterface.addReview(scanner, scanner2, course, leaveReviewController, leaveReviewPresenter, dataaccess, leaveReviewWelcomeMenuInterface);
 
         }catch (InputMismatchException f) {
             leaveReviewPresenter.outputMessage("Invalid Input! Please ensure that your rating is an integer!" + "\n");
+            LeaveReviewInterface leaveReviewInterface = new LeaveReview();
+            leaveReviewInterface.addReview(scanner, scanner2, course, leaveReviewController, leaveReviewPresenter, dataaccess, leaveReviewWelcomeMenuInterface);
+        } catch (CourseNotInDatabaseException e) {
+            leaveReviewPresenter.outputMessage("Invalid Input! The course you have entered is not in out database!" + "\n");
             LeaveReviewInterface leaveReviewInterface = new LeaveReview();
             leaveReviewInterface.addReview(scanner, scanner2, course, leaveReviewController, leaveReviewPresenter, dataaccess, leaveReviewWelcomeMenuInterface);
         }
@@ -48,7 +54,7 @@ public class LeaveReview implements LeaveReviewInterface {
             leaveReviewController.addReview(course, rating, c);
             leaveReviewPresenter.outputMessage("Your review has been added!" + "\n");
 
-        }catch (InvalidInputException e) {
+        }catch (InvalidRatingException e) {
             leaveReviewPresenter.outputMessage("Invalid Input! Please ensure your rating is between 0 and 5 inclusive!" + "\n");
             LeaveReviewInterface leaveReviewInterface = new LeaveReview();
             leaveReviewInterface.addReviewComment(scanner, scanner2, course, leaveReviewController, leaveReviewPresenter, dataaccess, leaveReviewWelcomeMenuInterface);
@@ -63,6 +69,12 @@ public class LeaveReview implements LeaveReviewInterface {
                     "characters!"+ "\n");
             LeaveReviewInterface leaveReviewInterface = new LeaveReview();
             leaveReviewInterface.addReviewComment(scanner, scanner2, course, leaveReviewController, leaveReviewPresenter, dataaccess, leaveReviewWelcomeMenuInterface);
+
+        }catch (CourseNotInDatabaseException e) {
+            leaveReviewPresenter.outputMessage("Invalid Input! The course you have entered is not in out database!" + "\n");
+            LeaveReviewInterface leaveReviewInterface = new LeaveReview();
+            leaveReviewInterface.addReview(scanner, scanner2, course, leaveReviewController, leaveReviewPresenter, dataaccess, leaveReviewWelcomeMenuInterface);
         }
+
     }
 }

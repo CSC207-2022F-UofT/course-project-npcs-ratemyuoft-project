@@ -1,4 +1,4 @@
-package leaveReviewUseCase;
+package leaveReviewExceptions;
 
 /**
  * This exception is raised if the OptionalComment of a review is has a length of 0 or a length greater than 280

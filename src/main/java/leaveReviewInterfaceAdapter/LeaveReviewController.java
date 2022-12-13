@@ -1,5 +1,9 @@
 package leaveReviewInterfaceAdapter;
 
+import leaveReviewExceptions.CourseNotInDatabaseException;
+import leaveReviewExceptions.InvalidCommentLengthException;
+import leaveReviewExceptions.InvalidInputException;
+import leaveReviewExceptions.InvalidRatingException;
 import leaveReviewUseCase.*;
 
 import java.io.IOException;
@@ -25,28 +29,19 @@ public class LeaveReviewController {
      * This method tries to pass the addReview method call to leaveReviewInputBoundary if no comment made with the review,
      * and catches Exceptions if they are thrown.
      */
-    public void addReview(String c, String r) throws IOException, InvalidInputException {
-        try {
+    public void addReview(String c, String r) throws IOException, InvalidRatingException, ClassNotFoundException, CourseNotInDatabaseException {
+
             leaveReviewInputBoundary.addReview(new LeaveReviewCourseRequestModel(c), new LeaveReviewRatingRequestModel(r));
-        } catch (InvalidInputException | ClassNotFoundException e) {
-            throw new InvalidInputException();
-        } catch (IOException e) {
-            throw new IOException();
-        }
     }
 
     /**
      * This method tries to pass the addReview method call to leaveReviewInputBoundary if there is a comment made with the review,
      * and catches Exceptions if they are thrown.
      */
-    public void addReview(String c, String n, String s) throws IOException, InvalidInputException, InvalidCommentLengthException {
-        try {
+    public void addReview(String c, String n, String s) throws IOException,
+            InvalidCommentLengthException, InvalidRatingException, ClassNotFoundException, CourseNotInDatabaseException {
             leaveReviewInputBoundary.addReview(new LeaveReviewCourseRequestModel(c), new LeaveReviewRatingRequestModel(n),
                     new LeaveReviewCommentRequestModel(s));
-        } catch (InvalidInputException | ClassNotFoundException e) {
-            throw new InvalidInputException();
-        } catch (IOException e) {
-            throw new IOException();
-        }
+
     }
 }

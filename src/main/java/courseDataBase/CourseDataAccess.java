@@ -4,7 +4,6 @@ import java.io.*;
 
 import entities.Course;
 import entities.CourseList;
-import leaveReviewUseCase.CourseDataAccessInterface;
 
 
 /**
@@ -29,7 +28,7 @@ public class CourseDataAccess implements CourseDataAccessInterface {
      * saveUser accepts courses and writes it to userFile.sav
      */
     @Override
-    public void saveCourse(CourseList courses) throws IOException, NullPointerException{
+    public void saveCourse(CourseList courses) throws NullPointerException, IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(fileName);
         ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
         outputStream.writeObject(courses);

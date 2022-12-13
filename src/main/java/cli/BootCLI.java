@@ -3,10 +3,10 @@ package cli;
 import courseDataBase.CourseDataAccess;
 import leaveReviewInterfaceAdapter.LeaveReviewController;
 import leaveReviewInterfaceAdapter.LeaveReviewPresenter;
-import leaveReviewUseCase.CourseDataAccessInterface;
+import courseDataBase.CourseDataAccessInterface;
 import leaveReviewUseCase.LeaveReviewInputBoundary;
 import leaveReviewUseCase.LeaveReviewInteractor;
-import leaveReviewUseCase.InvalidInputException;
+import leaveReviewExceptions.InvalidInputException;
 
 import java.io.IOException;
 import java.util.Scanner;

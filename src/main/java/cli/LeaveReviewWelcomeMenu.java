@@ -3,8 +3,8 @@ package cli;
 import entities.CourseList;
 import leaveReviewInterfaceAdapter.LeaveReviewController;
 import leaveReviewInterfaceAdapter.LeaveReviewPresenter;
-import leaveReviewUseCase.InvalidInputException;
-import leaveReviewUseCase.CourseDataAccessInterface;
+import leaveReviewExceptions.InvalidInputException;
+import courseDataBase.CourseDataAccessInterface;
 
 import java.io.IOException;
 import java.util.List;

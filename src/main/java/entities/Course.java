@@ -30,7 +30,7 @@ public class Course implements Serializable {
     private String fieldOfStudy;
 
     /**
-     * This is the total ratings that this course has form its reveiws. This is used to calculate the course's
+     * This is the total ratings that this course has form its reviews. This is used to calculate the course's
      * (average) rating.
      */
     private int ratingCount;

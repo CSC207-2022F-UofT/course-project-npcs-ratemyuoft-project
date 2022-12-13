@@ -1,4 +1,4 @@
-package leaveReviewUseCase;
+package courseDataBase;
 
 import entities.CourseList;
 

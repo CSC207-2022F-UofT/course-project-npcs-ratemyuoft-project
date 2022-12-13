@@ -1,6 +1,6 @@
 import cli.BootCLI;
 import cli.BootCLIInterface;
-import leaveReviewUseCase.InvalidInputException;
+import leaveReviewExceptions.InvalidInputException;
 
 import java.io.IOException;
 

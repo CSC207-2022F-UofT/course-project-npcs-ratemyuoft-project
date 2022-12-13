@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 import leaveReviewInterfaceAdapter.LeaveReviewController;
 import leaveReviewInterfaceAdapter.LeaveReviewPresenter;
-import leaveReviewUseCase.CourseDataAccessInterface;
-import leaveReviewUseCase.InvalidInputException;
+import courseDataBase.CourseDataAccessInterface;
+import leaveReviewExceptions.InvalidInputException;
 
 
 public interface LeaveReviewChooseToCommentInterface {
