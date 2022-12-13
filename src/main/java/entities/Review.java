@@ -15,6 +15,11 @@ public class Review implements Serializable {
     private final Course course_reviewed;
 
     /**
+     * This is the Username of the user who left this review.
+     */
+    private String ReviewOwner;
+
+    /**
      * This is the rating that the person reviewing the course decided to give.
      */
     private int rating;
@@ -67,7 +72,13 @@ public class Review implements Serializable {
      */
     public int getRating(){
         return this.rating;
+    }
 
+    /**
+     * This getter returns the username of the owner of the review.
+     */
+    public String getOwner(){
+        return this.ReviewOwner;
     }
 
     /**
@@ -121,4 +132,8 @@ public class Review implements Serializable {
      * number of reviews the course currently has.
      */
     public void setReviewID(int i) {this.reviewID = course_reviewed.getCourseName() + "Review" + Integer.toString(i);}
+
+    public void setReviewOwner(User user) {
+        this.ReviewOwner = user.getUserName();
+    }
 }
