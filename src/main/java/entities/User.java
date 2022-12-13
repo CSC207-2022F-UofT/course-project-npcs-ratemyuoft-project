@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Class User represents single user of the program
@@ -11,6 +12,18 @@ public class User implements Serializable {
 
     private final String userName;
     private final String password;
+
+    /**
+     * This is the list of reviews that this user has made.
+     */
+
+    private List<Review> reviewList;
+
+    /**
+     * This is the list of comments that this user has made.
+     */
+
+    private List<Comment> commentList;
 
     public final String major;
 
