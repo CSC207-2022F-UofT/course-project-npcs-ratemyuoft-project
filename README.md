@@ -31,7 +31,7 @@ project unfinished.
                          \_/
 
 
-## KenanBogopa (Elang Bogopa on Quercus Contributions):
+## Elang Bogopa
 My completed UseCase (4-Leave-Review) was not directly pulled on to main but was instead merged with (22-viewcourselikereview) which can be seen when seeing the commits done on that branch.
 This branch was then merged with main. Please see the README in LeaveReview as it goes more into detail with the changes that I made with my code.
 I also cleaned up everyone's CLI by :
